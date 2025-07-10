@@ -32,13 +32,18 @@ const ServicesSection = () => {
     const progress = Math.max(0, (scrollY - sectionTop) / window.innerHeight);
     const cardProgress = Math.max(0, Math.min(1, progress - index * 0.3));
     
-    const translateY = (1 - cardProgress) * 100;
+    // Circular arc animation - starts from side/top and orbits to center
+    const angle = (1 - cardProgress) * Math.PI; // Half circle
+    const radius = 200 * (1 - cardProgress); // Shrinking orbit
+    const translateX = Math.cos(angle) * radius;
+    const translateY = Math.sin(angle) * radius * 0.5; // Flatter arc
+    
     const opacity = cardProgress;
-    const scale = 0.8 + cardProgress * 0.2;
-    const rotateX = (1 - cardProgress) * 15;
+    const scale = 0.7 + cardProgress * 0.3;
+    const rotateZ = (1 - cardProgress) * 45; // Rotation during orbit
     
     return {
-      transform: `translateY(${translateY}px) scale(${scale}) rotateX(${rotateX}deg)`,
+      transform: `translate(${translateX}px, ${translateY}px) scale(${scale}) rotateZ(${rotateZ}deg)`,
       opacity,
     };
   };
