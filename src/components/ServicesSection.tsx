@@ -70,15 +70,16 @@ const ServicesSection = () => {
 
   // Calculate which card should be active based on scroll
   useEffect(() => {
-    const progress = Math.max(0, (scrollY - sectionTop) / window.innerHeight);
-    const cardIndex = Math.min(Math.floor(progress * 1.2), services.length - 1);
+    const sectionHeight = window.innerHeight * 4; // Total section scroll height
+    const progress = Math.max(0, Math.min(1, (scrollY - sectionTop) / sectionHeight));
+    const cardIndex = Math.min(Math.floor(progress * services.length), services.length - 1);
     setActiveCardIndex(Math.max(0, cardIndex));
   }, [scrollY, sectionTop, services.length]);
 
   // Header animation
   const getHeaderAnimation = () => {
     const progress = Math.max(0, (scrollY - sectionTop) / (window.innerHeight * 0.5));
-    const opacity = Math.max(0.3, 1 - progress);
+    const opacity = Math.max(0.3, 1 - progress * 0.7);
     const translateY = progress * -30;
     
     return {
@@ -89,45 +90,58 @@ const ServicesSection = () => {
 
   // Card animation with arc movement
   const getCardAnimation = (index: number) => {
-    const scrollProgress = Math.max(0, (scrollY - sectionTop) / window.innerHeight);
-    const cardProgress = Math.max(0, Math.min(1, (scrollProgress * 1.2) - (index * 0.8)));
+    const sectionHeight = window.innerHeight * 4;
+    const scrollProgress = Math.max(0, Math.min(1, (scrollY - sectionTop) / sectionHeight));
+    
+    // Each card gets 1/6 of the total scroll progress
+    const cardStartProgress = index / services.length;
+    const cardEndProgress = (index + 1) / services.length;
+    
+    // Current progress within this card's range
+    const cardProgress = Math.max(0, Math.min(1, 
+      (scrollProgress - cardStartProgress) / (cardEndProgress - cardStartProgress)
+    ));
     
     // Arc movement calculation
-    const arcRadius = 200;
-    const angle = (1 - cardProgress) * Math.PI; // Half circle
+    const arcRadius = 300;
+    const angle = (1 - cardProgress) * Math.PI * 0.7; // Reduced angle for smoother arc
     const translateX = Math.cos(angle) * arcRadius * (index % 2 === 0 ? -1 : 1);
     const translateY = Math.sin(angle) * arcRadius - arcRadius;
     
     // Scale and rotation for cinematic effect
-    const scale = 0.7 + (cardProgress * 0.3);
-    const rotateZ = (1 - cardProgress) * (index % 2 === 0 ? -15 : 15);
+    const scale = 0.6 + (cardProgress * 0.4);
+    const rotateZ = (1 - cardProgress) * (index % 2 === 0 ? -20 : 20);
     const opacity = cardProgress;
     
-    // Exit animation for previous cards
-    const isActive = index === activeCardIndex;
-    const isPrevious = index < activeCardIndex;
+    // Show card when it's the active one or about to be active
+    const isVisible = scrollProgress >= cardStartProgress && scrollProgress < cardEndProgress + 0.1;
     
+    // Exit animation for completed cards
     let finalTranslateY = translateY;
     let finalOpacity = opacity;
     
-    if (isPrevious && cardProgress >= 0.8) {
-      finalTranslateY = translateY - (cardProgress - 0.8) * 500; // Exit upward
-      finalOpacity = Math.max(0, 1 - (cardProgress - 0.8) * 5);
+    if (scrollProgress > cardEndProgress) {
+      finalTranslateY = translateY - 200; // Exit upward
+      finalOpacity = Math.max(0, 1 - (scrollProgress - cardEndProgress) * 10);
     }
     
     return {
       transform: `translate3d(${translateX}px, ${finalTranslateY}px, 0) scale(${scale}) rotateZ(${rotateZ}deg)`,
-      opacity: finalOpacity,
+      opacity: isVisible ? finalOpacity : 0,
       zIndex: services.length - index,
+      transition: 'opacity 0.3s ease-out',
     };
   };
 
   return (
     <section 
       ref={sectionRef}
-      className="relative min-h-[600vh] bg-gradient-to-b from-gray-50 to-white overflow-hidden"
+      className="relative bg-gradient-to-b from-gray-50 to-white overflow-hidden"
       id="services"
-      style={{ perspective: '1200px' }}
+      style={{ 
+        perspective: '1200px',
+        minHeight: `${services.length * 100}vh` // Height based on number of services
+      }}
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -152,7 +166,7 @@ const ServicesSection = () => {
       </div>
 
       {/* Cards Container */}
-      <div className="relative flex items-center justify-center min-h-screen">
+      <div className="relative flex items-center justify-center" style={{ minHeight: '100vh' }}>
         {services.map((service, index) => {
           const Icon = service.icon;
           const cardStyle = getCardAnimation(index);
@@ -164,7 +178,7 @@ const ServicesSection = () => {
               className="absolute w-full max-w-2xl px-6"
               style={cardStyle}
             >
-              <div className={`relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 transform-gpu transition-all duration-700 ${isActive ? 'shadow-3xl' : ''}`}>
+              <div className={`relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 transform-gpu ${isActive ? 'shadow-3xl' : ''}`}>
                 {/* Gradient Background */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5`}></div>
                 
@@ -214,8 +228,8 @@ const ServicesSection = () => {
         })}
       </div>
 
-      {/* Progress Indicator */}
-      <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-20">
+      {/* Fixed Progress Indicator */}
+      <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-30">
         <div className="flex flex-col space-y-3">
           {services.map((_, index) => (
             <div
