@@ -30,13 +30,13 @@ const ServicesSection = () => {
 
   const getCardAnimation = (index: number) => {
     const progress = Math.max(0, (scrollY - sectionTop) / window.innerHeight);
-    const cardProgress = Math.max(0, Math.min(1, progress - index * 0.3));
+    const cardProgress = Math.max(0, Math.min(1, progress - index * 0.5)); // Increased spacing between cards
     
     // Circular arc animation - starts from side/top and orbits to center
     const angle = (1 - cardProgress) * Math.PI; // Half circle
-    const radius = 200 * (1 - cardProgress); // Shrinking orbit
+    const radius = 300 * (1 - cardProgress); // Increased radius for better arc
     const translateX = Math.cos(angle) * radius;
-    const translateY = Math.sin(angle) * radius * 0.5; // Flatter arc
+    const translateY = Math.sin(angle) * radius * 0.3; // Flatter arc
     
     const opacity = cardProgress;
     const scale = 0.7 + cardProgress * 0.3;
@@ -90,7 +90,7 @@ const ServicesSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="relative min-h-[600vh] bg-gradient-to-b from-gray-50 to-white"
+      className="relative min-h-[400vh] bg-gradient-to-b from-gray-50 to-white"
       id="services"
     >
       {/* Section Header */}
@@ -114,11 +114,11 @@ const ServicesSection = () => {
           return (
             <div
               key={service.title}
-              className="sticky top-20 mb-20"
+              className="sticky top-1/2 transform -translate-y-1/2 mb-40"
               style={cardStyle}
             >
-              <div className="max-w-4xl mx-auto px-6">
-                <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+              <div className="flex justify-center px-6">
+                <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 max-w-2xl w-full">
                   {/* Background gradient overlay */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5`}></div>
                   
@@ -172,8 +172,8 @@ const ServicesSection = () => {
         })}
       </div>
 
-      {/* Bottom spacing */}
-      <div className="h-40"></div>
+      {/* Reduced bottom spacing */}
+      <div className="h-20"></div>
     </section>
   );
 };
