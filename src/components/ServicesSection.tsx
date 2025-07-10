@@ -68,10 +68,11 @@ const ServicesSection = () => {
     };
   }, []);
 
-  // Calculate which card should be active based on scroll
+  // Calculate which card should be active based on scroll - increased duration per card
   useEffect(() => {
     const viewportHeight = window.innerHeight;
-    const sectionHeight = viewportHeight * services.length; // Each service gets one viewport height
+    const cardDuration = viewportHeight * 1.5; // Increased from 1vh to 1.5vh per card
+    const sectionHeight = cardDuration * services.length;
     const scrollProgress = Math.max(0, (scrollY - sectionTop) / sectionHeight);
     const cardIndex = Math.min(Math.floor(scrollProgress * services.length), services.length - 1);
     setActiveCardIndex(Math.max(0, cardIndex));
@@ -92,7 +93,9 @@ const ServicesSection = () => {
   // Card animation with parallax and 3D effects
   const getCardAnimation = (index: number) => {
     const isActive = index === activeCardIndex;
-    const progress = Math.max(0, (scrollY - sectionTop) / (window.innerHeight * services.length));
+    const viewportHeight = window.innerHeight;
+    const cardDuration = viewportHeight * 1.5;
+    const progress = Math.max(0, (scrollY - sectionTop) / (cardDuration * services.length));
     const cardProgress = Math.max(0, Math.min(1, (progress * services.length) - index));
     
     if (!isActive) {
@@ -103,7 +106,7 @@ const ServicesSection = () => {
       };
     }
 
-    // Active card animations
+    // Active card animations with smoother transitions
     const scale = 0.9 + (cardProgress * 0.1);
     const rotateX = 15 - (cardProgress * 15);
     const rotateZ = Math.sin(cardProgress * Math.PI) * 2;
@@ -123,19 +126,19 @@ const ServicesSection = () => {
       className="relative bg-gradient-to-b from-gray-50 to-white overflow-hidden"
       id="services"
       style={{ 
-        height: `${100 * (services.length + 1)}vh` // +1 for intro space
+        height: `${150 * services.length}vh` // Increased from 100vh to 150vh per card
       }}
     >
       {/* Floating Background Elements */}
-      <div className="fixed inset-0 pointer-events-none z-0">
+      <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-blue-200/30 to-purple-200/30 rounded-full blur-3xl animate-float"></div>
         <div className="absolute top-1/2 right-1/4 w-48 h-48 bg-gradient-to-r from-cyan-200/40 to-blue-200/40 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }}></div>
         <div className="absolute bottom-1/4 left-1/2 w-56 h-56 bg-gradient-to-r from-purple-200/35 to-pink-200/35 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}></div>
       </div>
 
-      {/* Section Header - Fixed at top */}
+      {/* Section Header - Sticky at top of section */}
       <div 
-        className="fixed top-20 left-0 right-0 z-20 text-center pointer-events-none"
+        className="sticky top-20 z-20 text-center pointer-events-none py-16"
         style={getHeaderAnimation()}
       >
         <div className="max-w-4xl mx-auto px-6">
@@ -148,65 +151,67 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Single Card Display - Fixed Center */}
-      <div className="fixed inset-0 flex items-center justify-center z-10 pointer-events-none">
-        <div className="relative w-full max-w-2xl mx-auto px-6">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            const cardStyle = getCardAnimation(index);
-            
-            return (
-              <div
-                key={service.title}
-                className="absolute inset-0 transition-all duration-1000 ease-out transform-gpu"
-                style={cardStyle}
-              >
-                <div className="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/50 overflow-hidden">
-                  {/* Gradient Background Glow */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5`}></div>
-                  
-                  {/* Motion Shadow */}
-                  <div className={`absolute -inset-4 bg-gradient-to-br ${service.gradient} opacity-20 blur-xl -z-10`}></div>
-                  
-                  {/* Floating Icon Background */}
-                  <div className="absolute top-8 right-8 opacity-5">
-                    <Icon className="w-32 h-32 text-gray-900" />
-                  </div>
-                  
-                  {/* Card Content */}
-                  <div className="relative z-10 p-12 text-center">
-                    {/* Animated Icon */}
-                    <div 
-                      className={`inline-flex w-20 h-20 rounded-3xl bg-gradient-to-br ${service.gradient} items-center justify-center shadow-xl mb-8 transform transition-all duration-700`}
-                    >
-                      <Icon className="w-10 h-10 text-white" />
+      {/* Single Card Display - Centered in viewport */}
+      <div className="sticky top-1/2 -translate-y-1/2 z-10 pointer-events-none">
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="relative w-full max-w-2xl mx-auto px-6">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              const cardStyle = getCardAnimation(index);
+              
+              return (
+                <div
+                  key={service.title}
+                  className="absolute inset-0 transition-all duration-1000 ease-out transform-gpu"
+                  style={cardStyle}
+                >
+                  <div className="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/50 overflow-hidden">
+                    {/* Gradient Background Glow */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5`}></div>
+                    
+                    {/* Motion Shadow */}
+                    <div className={`absolute -inset-4 bg-gradient-to-br ${service.gradient} opacity-20 blur-xl -z-10`}></div>
+                    
+                    {/* Floating Icon Background */}
+                    <div className="absolute top-8 right-8 opacity-5">
+                      <Icon className="w-32 h-32 text-gray-900" />
                     </div>
                     
-                    {/* Title */}
-                    <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 cinematic-title">
-                      {service.title}
-                    </h3>
+                    {/* Card Content */}
+                    <div className="relative z-10 p-12 text-center">
+                      {/* Animated Icon */}
+                      <div 
+                        className={`inline-flex w-20 h-20 rounded-3xl bg-gradient-to-br ${service.gradient} items-center justify-center shadow-xl mb-8 transform transition-all duration-700`}
+                      >
+                        <Icon className="w-10 h-10 text-white" />
+                      </div>
+                      
+                      {/* Title */}
+                      <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 cinematic-title">
+                        {service.title}
+                      </h3>
+                      
+                      {/* Description */}
+                      <p className="text-xl text-gray-600 leading-relaxed font-light max-w-lg mx-auto">
+                        {service.description}
+                      </p>
+                      
+                      {/* Decorative Line */}
+                      <div 
+                        className={`mt-8 h-1 bg-gradient-to-r ${service.gradient} rounded-full mx-auto transition-all duration-1000`}
+                        style={{ width: '120px' }}
+                      ></div>
+                    </div>
                     
-                    {/* Description */}
-                    <p className="text-xl text-gray-600 leading-relaxed font-light max-w-lg mx-auto">
-                      {service.description}
-                    </p>
-                    
-                    {/* Decorative Line */}
+                    {/* Enhanced Glow Effect */}
                     <div 
-                      className={`mt-8 h-1 bg-gradient-to-r ${service.gradient} rounded-full mx-auto transition-all duration-1000`}
-                      style={{ width: '120px' }}
+                      className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-10 transition-opacity duration-500`}
                     ></div>
                   </div>
-                  
-                  {/* Enhanced Glow Effect */}
-                  <div 
-                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-10 transition-opacity duration-500`}
-                  ></div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
 
