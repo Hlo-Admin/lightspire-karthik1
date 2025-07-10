@@ -151,6 +151,28 @@ All colors MUST be HSL.
     }
   }
 
+  @keyframes menu-slide-down {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes menu-scale-in {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
   .animate-fade-in {
     animation: fade-in 0.8s ease-out forwards;
   }
@@ -161,6 +183,14 @@ All colors MUST be HSL.
 
   .animate-float {
     animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-menu-slide {
+    animation: menu-slide-down 0.5s ease-out forwards;
+  }
+
+  .animate-menu-scale {
+    animation: menu-scale-in 0.3s ease-out forwards;
   }
 
   /* Smooth scrolling */

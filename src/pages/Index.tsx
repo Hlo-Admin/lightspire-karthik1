@@ -5,6 +5,7 @@ import { Play, Quote, ArrowRight } from 'lucide-react';
 import { ParticleSystem } from '@/components/ParticleSystem';
 import { FloatingElements } from '@/components/FloatingElements';
 import { AnimatedBackground } from '@/components/AnimatedBackground';
+import Navbar from '@/components/Navbar';
 
 const Index = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -44,6 +45,9 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-black">
+      {/* Navbar */}
+      <Navbar />
+      
       {/* Animated Background Canvas */}
       <AnimatedBackground />
       
@@ -57,6 +61,7 @@ const Index = () => {
       <div 
         ref={heroRef}
         className="relative z-10 min-h-screen flex items-center justify-center px-6"
+        id="home"
       >
         <div className="max-w-6xl mx-auto text-center">
           {/* Company Logo/Brand */}
