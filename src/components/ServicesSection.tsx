@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import { Tv, Globe, Film, Megaphone, Users, Smartphone } from 'lucide-react';
 
@@ -88,7 +87,7 @@ const ServicesSection = () => {
     };
   };
 
-  // Card animation with arc movement
+  // Card animation with parallax movement while staying visible
   const getCardAnimation = (index: number) => {
     const sectionHeight = window.innerHeight * 4;
     const scrollProgress = Math.max(0, Math.min(1, (scrollY - sectionTop) / sectionHeight));
@@ -102,34 +101,23 @@ const ServicesSection = () => {
       (scrollProgress - cardStartProgress) / (cardEndProgress - cardStartProgress)
     ));
     
-    // Arc movement calculation
-    const arcRadius = 300;
-    const angle = (1 - cardProgress) * Math.PI * 0.7; // Reduced angle for smoother arc
-    const translateX = Math.cos(angle) * arcRadius * (index % 2 === 0 ? -1 : 1);
-    const translateY = Math.sin(angle) * arcRadius - arcRadius;
+    // Parallax movement - smaller, more subtle movements
+    const translateX = Math.sin(cardProgress * Math.PI) * 100 * (index % 2 === 0 ? -1 : 1);
+    const translateY = Math.sin(cardProgress * Math.PI * 0.5) * 50;
     
-    // Scale and rotation for cinematic effect
-    const scale = 0.6 + (cardProgress * 0.4);
-    const rotateZ = (1 - cardProgress) * (index % 2 === 0 ? -20 : 20);
-    const opacity = cardProgress;
+    // Gentle scale and rotation for cinematic effect
+    const scale = 0.9 + (Math.sin(cardProgress * Math.PI) * 0.1);
+    const rotateZ = Math.sin(cardProgress * Math.PI) * (index % 2 === 0 ? -5 : 5);
     
-    // Show card when it's the active one or about to be active
-    const isVisible = scrollProgress >= cardStartProgress && scrollProgress < cardEndProgress + 0.1;
-    
-    // Exit animation for completed cards
-    let finalTranslateY = translateY;
-    let finalOpacity = opacity;
-    
-    if (scrollProgress > cardEndProgress) {
-      finalTranslateY = translateY - 200; // Exit upward
-      finalOpacity = Math.max(0, 1 - (scrollProgress - cardEndProgress) * 10);
-    }
+    // Keep cards visible throughout their active period
+    const isActive = scrollProgress >= cardStartProgress && scrollProgress <= cardEndProgress;
+    const opacity = isActive ? 1 : 0.3;
     
     return {
-      transform: `translate3d(${translateX}px, ${finalTranslateY}px, 0) scale(${scale}) rotateZ(${rotateZ}deg)`,
-      opacity: isVisible ? finalOpacity : 0,
-      zIndex: services.length - index,
-      transition: 'opacity 0.3s ease-out',
+      transform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale}) rotateZ(${rotateZ}deg)`,
+      opacity,
+      zIndex: isActive ? services.length + 1 : services.length - index,
+      transition: 'opacity 0.5s ease-out',
     };
   };
 
