@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -104,7 +105,7 @@ All colors MUST be HSL.
   }
 }
 
-/* Enhanced animations for the new hero design */
+/* Custom animations and effects for the hero section */
 @layer utilities {
   .neon-text {
     text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
@@ -204,75 +205,6 @@ All colors MUST be HSL.
 
   .bg-gradient-conic {
     background: conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops));
-  }
-
-  @keyframes motion-border {
-    0% {
-      border-image: linear-gradient(45deg, #8b5cf6, transparent, transparent, #8b5cf6) 1;
-    }
-    25% {
-      border-image: linear-gradient(45deg, transparent, #8b5cf6, transparent, transparent) 1;
-    }
-    50% {
-      border-image: linear-gradient(45deg, transparent, transparent, #8b5cf6, transparent) 1;
-    }
-    75% {
-      border-image: linear-gradient(45deg, transparent, transparent, transparent, #8b5cf6) 1;
-    }
-    100% {
-      border-image: linear-gradient(45deg, #8b5cf6, transparent, transparent, #8b5cf6) 1;
-    }
-  }
-
-  @keyframes glow-pulse {
-    0%, 100% {
-      box-shadow: 0 0 20px rgba(6, 182, 212, 0.4), 0 0 40px rgba(6, 182, 212, 0.2);
-    }
-    50% {
-      box-shadow: 0 0 30px rgba(6, 182, 212, 0.6), 0 0 60px rgba(6, 182, 212, 0.4);
-    }
-  }
-
-  .motion-border {
-    position: relative;
-  }
-
-  .motion-border::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: inherit;
-    background: linear-gradient(45deg, #8b5cf6, transparent, transparent, #8b5cf6);
-    background-size: 400% 400%;
-    animation: motion-border 3s ease-in-out infinite;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: -1;
-  }
-
-  .motion-border:hover::before {
-    opacity: 1;
-  }
-
-  .animate-glow-pulse {
-    animation: glow-pulse 2s ease-in-out infinite;
-  }
-
-  /* Enhanced scroll indicator */
-  @keyframes scroll-bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-10px);
-    }
-    60% {
-      transform: translateY(-5px);
-    }
-  }
-
-  .animate-scroll-bounce {
-    animation: scroll-bounce 2s infinite;
   }
 }
 
