@@ -1,6 +1,6 @@
 
 import { useEffect, useRef, useState } from 'react';
-import { Tv, Globe, Film, Megaphone, Users, Smartphone, MapPin, Play, Monitor } from 'lucide-react';
+import { Tv, Globe, Film, Megaphone, Users, Smartphone } from 'lucide-react';
 
 const ServicesSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -28,236 +28,147 @@ const ServicesSection = () => {
     };
   }, []);
 
-  const parallaxOffset = (scrollY - sectionTop) * 0.5;
-  const slowParallax = (scrollY - sectionTop) * 0.3;
-  const fastParallax = (scrollY - sectionTop) * 0.7;
+  const getCardAnimation = (index: number) => {
+    const progress = Math.max(0, (scrollY - sectionTop) / window.innerHeight);
+    const cardProgress = Math.max(0, Math.min(1, progress - index * 0.3));
+    
+    const translateY = (1 - cardProgress) * 100;
+    const opacity = cardProgress;
+    const scale = 0.8 + cardProgress * 0.2;
+    const rotateX = (1 - cardProgress) * 15;
+    
+    return {
+      transform: `translateY(${translateY}px) scale(${scale}) rotateX(${rotateX}deg)`,
+      opacity,
+    };
+  };
+
+  const services = [
+    {
+      icon: Tv,
+      title: "TV Animated Series",
+      description: "High-quality 2D/3D animated series for broadcast networks.",
+      gradient: "from-blue-500 to-purple-600"
+    },
+    {
+      icon: Globe,
+      title: "OTT & Web Series",
+      description: "Stylized content for streaming and digital media.",
+      gradient: "from-cyan-500 to-blue-600"
+    },
+    {
+      icon: Film,
+      title: "Feature Films",
+      description: "End-to-end cinematic VFX and animation.",
+      gradient: "from-purple-500 to-pink-600"
+    },
+    {
+      icon: Megaphone,
+      title: "Ad Animations",
+      description: "Short, sharp brand storytelling in motion.",
+      gradient: "from-orange-500 to-red-600"
+    },
+    {
+      icon: Users,
+      title: "International Co-Productions",
+      description: "Collaborative animation across borders.",
+      gradient: "from-green-500 to-emerald-600"
+    },
+    {
+      icon: Smartphone,
+      title: "Social Media Creatives",
+      description: "Snackable animated content for social platforms.",
+      gradient: "from-pink-500 to-rose-600"
+    }
+  ];
 
   return (
     <section 
       ref={sectionRef}
-      className="relative min-h-[500vh] bg-gradient-to-b from-gray-50 to-white overflow-hidden"
+      className="relative min-h-[600vh] bg-gradient-to-b from-gray-50 to-white"
       id="services"
     >
-      {/* Sticky Header */}
-      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-200/50 py-8">
+      {/* Section Header */}
+      <div className="relative z-10 py-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Services</h2>
-          <p className="text-xl text-gray-600 font-light">Each frame, a new dimension.</p>
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+            Our Services
+          </h2>
+          <p className="text-xl md:text-2xl text-gray-600 font-light">
+            Stories in every frame. Impact in every second.
+          </p>
         </div>
       </div>
 
-      {/* TV Animated Series */}
-      <div className="relative h-screen flex items-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-gradient-to-r from-blue-100 to-purple-100 opacity-30"
-          style={{ transform: `translateY(${parallaxOffset}px)` }}
-        ></div>
-        
-        {/* Floating character animation */}
-        <div 
-          className="absolute right-10 top-1/2 transform -translate-y-1/2"
-          style={{ transform: `translateY(${slowParallax}px) translateX(${Math.sin(scrollY * 0.01) * 20}px)` }}
-        >
-          <div className="w-32 h-32 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-70 animate-pulse"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 z-10">
-          <div className="max-w-2xl">
-            <div className="flex items-center mb-6">
-              <Tv className="w-12 h-12 text-blue-600 mr-4" />
-              <span className="text-blue-600 font-semibold text-lg">01</span>
-            </div>
-            <h3 className="text-5xl font-bold text-gray-900 mb-6">TV Animated Series</h3>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              High-quality 2D/3D animated series for broadcast networks.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* OTT & Web Series */}
-      <div className="relative h-screen flex items-center overflow-hidden bg-gradient-to-r from-cyan-50 to-blue-50">
-        {/* UI mockup elements */}
-        <div 
-          className="absolute left-10 top-1/4"
-          style={{ transform: `translateY(${fastParallax}px)` }}
-        >
-          <Monitor className="w-16 h-16 text-cyan-500 opacity-60" />
-        </div>
-        <div 
-          className="absolute right-20 bottom-1/4"
-          style={{ transform: `translateY(${-fastParallax * 0.5}px)` }}
-        >
-          <Play className="w-12 h-12 text-blue-500 opacity-50" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 z-10">
-          <div className="max-w-2xl ml-auto text-right">
-            <div className="flex items-center justify-end mb-6">
-              <span className="text-cyan-600 font-semibold text-lg mr-4">02</span>
-              <Globe className="w-12 h-12 text-cyan-600" />
-            </div>
-            <h3 className="text-5xl font-bold text-gray-900 mb-6">OTT & Web Series</h3>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Stylized content for streaming and online platforms.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Feature Films */}
-      <div className="relative h-screen flex items-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-gradient-to-br from-purple-900 to-pink-900 opacity-20"
-          style={{ transform: `scale(${1 + (scrollY - sectionTop) * 0.0002})` }}
-        ></div>
-        
-        {/* VFX particles */}
-        <div 
-          className="absolute inset-0"
-          style={{ transform: `translateY(${parallaxOffset * 1.5}px)` }}
-        >
-          {[...Array(8)].map((_, i) => (
+      {/* Animated Service Cards */}
+      <div className="relative">
+        {services.map((service, index) => {
+          const Icon = service.icon;
+          const cardStyle = getCardAnimation(index);
+          
+          return (
             <div
-              key={i}
-              className="absolute w-2 h-2 bg-purple-400 rounded-full opacity-60"
-              style={{
-                left: `${20 + i * 10}%`,
-                top: `${30 + Math.sin(i) * 20}%`,
-                transform: `translateY(${Math.sin(scrollY * 0.01 + i) * 30}px)`,
-                animationDelay: `${i * 0.5}s`
-              }}
-            ></div>
-          ))}
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 z-10">
-          <div className="max-w-2xl mx-auto text-center">
-            <div className="flex items-center justify-center mb-6">
-              <Film className="w-12 h-12 text-purple-600 mr-4" />
-              <span className="text-purple-600 font-semibold text-lg">03</span>
-            </div>
-            <h3 className="text-5xl font-bold text-gray-900 mb-6">Feature Films</h3>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Full-length cinematic animation and VFX services.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Ad Animations */}
-      <div className="relative h-screen flex items-center overflow-hidden bg-gradient-to-r from-orange-50 to-red-50">
-        {/* Motion trails */}
-        <div className="absolute inset-0">
-          {[...Array(5)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute h-px bg-gradient-to-r from-transparent via-orange-400 to-transparent opacity-30"
-              style={{
-                width: '200px',
-                top: `${20 + i * 15}%`,
-                left: `${10 + i * 20}%`,
-                transform: `translateX(${fastParallax * (1 + i * 0.2)}px) rotate(${i * 15}deg)`
-              }}
-            ></div>
-          ))}
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 z-10">
-          <div className="max-w-2xl">
-            <div className="flex items-center mb-6">
-              <Megaphone className="w-12 h-12 text-orange-600 mr-4" />
-              <span className="text-orange-600 font-semibold text-lg">04</span>
-            </div>
-            <h3 className="text-5xl font-bold text-gray-900 mb-6">Ad Animations</h3>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Dynamic motion spots for brands and agencies.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* International Co-Productions */}
-      <div className="relative h-screen flex items-center overflow-hidden bg-gradient-to-r from-green-50 to-emerald-50">
-        {/* World map connections */}
-        <div 
-          className="absolute inset-0"
-          style={{ transform: `translateY(${slowParallax}px)` }}
-        >
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="absolute">
-              <MapPin 
-                className="w-6 h-6 text-green-500 opacity-60" 
-                style={{
-                  left: `${20 + i * 12}%`,
-                  top: `${25 + Math.sin(i * 2) * 20}%`,
-                  transform: `scale(${1 + Math.sin(scrollY * 0.01 + i) * 0.2})`
-                }}
-              />
-              {i < 5 && (
-                <div
-                  className="absolute h-px bg-green-400 opacity-40"
-                  style={{
-                    width: '80px',
-                    top: '12px',
-                    left: '24px',
-                    transform: `rotate(${20 + i * 15}deg)`
-                  }}
-                ></div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 z-10">
-          <div className="max-w-2xl ml-auto text-right">
-            <div className="flex items-center justify-end mb-6">
-              <span className="text-green-600 font-semibold text-lg mr-4">05</span>
-              <Users className="w-12 h-12 text-green-600" />
-            </div>
-            <h3 className="text-5xl font-bold text-gray-900 mb-6">International Co-Productions</h3>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Collaborative storytelling across borders.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Social Media Creatives */}
-      <div className="relative h-screen flex items-center overflow-hidden">
-        {/* Floating social elements */}
-        <div className="absolute inset-0">
-          {[...Array(4)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute"
-              style={{
-                left: `${15 + i * 20}%`,
-                top: `${20 + i * 15}%`,
-                transform: `translateY(${Math.sin(scrollY * 0.008 + i) * 40}px) rotate(${Math.sin(scrollY * 0.005 + i) * 10}deg)`
-              }}
+              key={service.title}
+              className="sticky top-20 mb-20"
+              style={cardStyle}
             >
-              <div className="w-16 h-28 bg-gradient-to-b from-pink-200 to-rose-300 rounded-lg opacity-60 shadow-lg"></div>
+              <div className="max-w-4xl mx-auto px-6">
+                <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+                  {/* Background gradient overlay */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5`}></div>
+                  
+                  {/* Floating icon background */}
+                  <div className="absolute top-8 right-8 opacity-10">
+                    <Icon className="w-32 h-32 text-gray-900" />
+                  </div>
+                  
+                  {/* Card content */}
+                  <div className="relative z-10 p-12 md:p-16">
+                    <div className="flex items-start space-x-6">
+                      {/* Animated icon */}
+                      <div 
+                        className={`flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-lg`}
+                        style={{
+                          transform: `scale(${0.8 + cardStyle.opacity * 0.2}) rotate(${(1 - cardStyle.opacity) * 10}deg)`
+                        }}
+                      >
+                        <Icon className="w-8 h-8 text-white" />
+                      </div>
+                      
+                      {/* Text content */}
+                      <div className="flex-1">
+                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                          {service.title}
+                        </h3>
+                        <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+                          {service.description}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {/* Decorative line */}
+                    <div 
+                      className={`mt-8 h-1 bg-gradient-to-r ${service.gradient} rounded-full`}
+                      style={{
+                        width: `${cardStyle.opacity * 100}%`,
+                        transition: 'width 0.6s ease-out'
+                      }}
+                    ></div>
+                  </div>
+                  
+                  {/* Subtle glow effect */}
+                  <div 
+                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 hover:opacity-5 transition-opacity duration-500 pointer-events-none`}
+                  ></div>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 z-10">
-          <div className="max-w-2xl mx-auto text-center">
-            <div className="flex items-center justify-center mb-6">
-              <Smartphone className="w-12 h-12 text-pink-600 mr-4" />
-              <span className="text-pink-600 font-semibold text-lg">06</span>
-            </div>
-            <h3 className="text-5xl font-bold text-gray-900 mb-6">Social Media Creatives</h3>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Short-form animations tailored for digital impact.
-            </p>
-          </div>
-        </div>
+          );
+        })}
       </div>
 
-      {/* Bottom transition */}
-      <div className="h-32 bg-gradient-to-b from-white to-gray-100"></div>
+      {/* Bottom spacing */}
+      <div className="h-40"></div>
     </section>
   );
 };
