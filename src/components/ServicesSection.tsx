@@ -30,41 +30,25 @@ const ServicesSection = () => {
 
   const getCardAnimation = (index: number) => {
     const progress = Math.max(0, (scrollY - sectionTop) / window.innerHeight);
-    const cardStart = index * 0.8; // Increased spacing between cards
-    const cardDuration = 1.2; // Longer duration for smoother transitions
-    const cardProgress = Math.max(0, Math.min(1, (progress - cardStart) / cardDuration));
+    const cardStart = index * 0.3; // Cards appear every 30% of scroll
+    const cardProgress = Math.max(0, Math.min(1, (progress - cardStart) / 0.3));
     
-    // Slower exit - card stays visible longer
-    const exitStart = cardStart + cardDuration + 0.5; // Stay visible longer
-    const exitDuration = 0.8; // Slower exit
-    const exitProgress = Math.max(0, Math.min(1, (progress - exitStart) / exitDuration));
-    
-    // Calculate final opacity (slower fade out)
-    const entranceOpacity = Math.pow(cardProgress, 0.3); // Smoother entrance
-    const exitOpacity = 1 - Math.pow(exitProgress, 2); // Slower exit
-    const finalOpacity = entranceOpacity * exitOpacity;
-    
-    // Alternating left/right entrance from completely outside
+    // Alternating left/right entrance
     const isEven = index % 2 === 0;
-    const slideDistance = window.innerWidth * 0.7; // Start from 70% outside viewport
+    const slideDistance = 120;
     const translateX = (1 - cardProgress) * (isEven ? -slideDistance : slideDistance);
-    const translateY = (1 - cardProgress) * 60 + (exitProgress * 40); // Slower vertical movement
+    const translateY = (1 - cardProgress) * 50; // Slight upward movement
     
-    // Enhanced parallax effect
+    // Parallax effect - cards move at different speeds based on position
     const parallaxOffset = (scrollY - sectionTop) * (isEven ? 0.1 : -0.1);
     
-    // Smoother scale animation
-    const scale = 0.8 + cardProgress * 0.2; // Scale from 80% to 100%
-    const rotateY = (1 - cardProgress) * (isEven ? -20 : 20); // 3D rotation
-    const rotateZ = (1 - cardProgress) * (isEven ? 5 : -5); // Z rotation
-    
-    // Bounce effect at the end (less pronounced)
-    const bounceEffect = cardProgress > 0.9 ? Math.sin((cardProgress - 0.9) * 30) * 3 : 0;
+    const opacity = cardProgress;
+    const scale = 0.85 + cardProgress * 0.15; // Scale from 85% to 100%
+    const rotateY = (1 - cardProgress) * (isEven ? -15 : 15); // 3D rotation effect
     
     return {
-      transform: `translate3d(${translateX + parallaxOffset}px, ${translateY + bounceEffect}px, 0) scale(${scale}) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`,
-      opacity: finalOpacity,
-      filter: `blur(${(1 - cardProgress) * 5 + exitProgress * 3}px)`,
+      transform: `translate3d(${translateX + parallaxOffset}px, ${translateY}px, 0) scale(${scale}) rotateY(${rotateY}deg)`,
+      opacity,
     };
   };
 
@@ -110,7 +94,7 @@ const ServicesSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="relative min-h-[500vh] bg-gradient-to-b from-gray-50 to-white overflow-hidden"
+      className="relative min-h-[300vh] bg-gradient-to-b from-gray-50 to-white overflow-hidden"
       id="services"
     >
       {/* Section Header */}
@@ -125,9 +109,9 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Service Cards - Enhanced Parallax */}
-      <div className="relative py-20" style={{ perspective: '1500px' }}>
-        <div className="max-w-4xl mx-auto px-6 space-y-60">
+      {/* Service Cards - Alternating Parallax */}
+      <div className="relative py-20" style={{ perspective: '1000px' }}>
+        <div className="max-w-4xl mx-auto px-6 space-y-32">
           {services.map((service, index) => {
             const Icon = service.icon;
             const cardStyle = getCardAnimation(index);
@@ -140,81 +124,51 @@ const ServicesSection = () => {
                 style={cardStyle}
               >
                 <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 w-full max-w-3xl transform-gpu">
-                  {/* Enhanced background gradient overlay */}
+                  {/* Background gradient overlay */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5`}></div>
                   
-                  {/* Animated floating icon background */}
-                  <div 
-                    className={`absolute top-8 ${isEven ? 'right-8' : 'left-8'} opacity-10 transition-all duration-1000`}
-                    style={{
-                      transform: `rotate(${cardStyle.opacity * 360}deg) scale(${0.8 + cardStyle.opacity * 0.4})`
-                    }}
-                  >
+                  {/* Floating icon background */}
+                  <div className={`absolute top-8 ${isEven ? 'right-8' : 'left-8'} opacity-10`}>
                     <Icon className="w-32 h-32 text-gray-900" />
                   </div>
                   
                   {/* Card content */}
                   <div className="relative z-10 p-12 md:p-16">
                     <div className={`flex items-start space-x-6 ${isEven ? '' : 'flex-row-reverse space-x-reverse'}`}>
-                      {/* Enhanced animated icon */}
+                      {/* Animated icon */}
                       <div 
-                        className={`flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-lg transition-all duration-1000`}
+                        className={`flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-lg`}
                         style={{
-                          transform: `scale(${0.7 + cardStyle.opacity * 0.3}) rotate(${cardStyle.opacity * 8}deg)`,
-                          boxShadow: `0 0 ${cardStyle.opacity * 25}px rgba(59, 130, 246, 0.4)`
+                          transform: `scale(${0.8 + cardStyle.opacity * 0.2})`
                         }}
                       >
                         <Icon className="w-8 h-8 text-white" />
                       </div>
                       
-                      {/* Text content with enhanced animations */}
+                      {/* Text content */}
                       <div className={`flex-1 ${isEven ? 'text-left' : 'text-right'}`}>
-                        <h3 
-                          className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 transition-all duration-1000"
-                          style={{
-                            transform: `translateY(${(1 - cardStyle.opacity) * 15}px)`,
-                            opacity: cardStyle.opacity
-                          }}
-                        >
+                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                           {service.title}
                         </h3>
-                        <p 
-                          className="text-lg md:text-xl text-gray-600 leading-relaxed transition-all duration-1000 delay-300"
-                          style={{
-                            transform: `translateY(${(1 - cardStyle.opacity) * 20}px)`,
-                            opacity: cardStyle.opacity
-                          }}
-                        >
+                        <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
                           {service.description}
                         </p>
                       </div>
                     </div>
                     
-                    {/* Enhanced decorative line with animation */}
+                    {/* Decorative line */}
                     <div 
-                      className={`mt-8 h-1 bg-gradient-to-r ${service.gradient} rounded-full transition-all duration-1200 delay-600 ${isEven ? '' : 'ml-auto'}`}
+                      className={`mt-8 h-1 bg-gradient-to-r ${service.gradient} rounded-full ${isEven ? '' : 'ml-auto'}`}
                       style={{
                         width: `${cardStyle.opacity * 100}%`,
-                        boxShadow: `0 0 ${cardStyle.opacity * 12}px rgba(59, 130, 246, 0.3)`
+                        transition: 'width 0.6s ease-out'
                       }}
                     ></div>
                   </div>
                   
                   {/* Enhanced glow effect */}
                   <div 
-                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} transition-all duration-1000 pointer-events-none`}
-                    style={{
-                      opacity: cardStyle.opacity * 0.08,
-                      filter: `blur(${(1 - cardStyle.opacity) * 15}px)`
-                    }}
-                  ></div>
-
-                  {/* Animated border glow */}
-                  <div 
-                    className={`absolute inset-0 rounded-3xl transition-all duration-1000 pointer-events-none`}
-                    style={{
-                      boxShadow: `inset 0 0 ${cardStyle.opacity * 30}px rgba(59, 130, 246, 0.15), 0 0 ${cardStyle.opacity * 50}px rgba(59, 130, 246, 0.08)`
-                    }}
+                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 hover:opacity-10 transition-all duration-700 pointer-events-none`}
                   ></div>
                 </div>
               </div>
@@ -223,8 +177,8 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Enhanced bottom spacing */}
-      <div className="h-40"></div>
+      {/* Reduced bottom spacing */}
+      <div className="h-20"></div>
     </section>
   );
 };
