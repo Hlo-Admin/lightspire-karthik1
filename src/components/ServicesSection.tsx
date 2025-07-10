@@ -70,17 +70,18 @@ const ServicesSection = () => {
 
   // Calculate which card should be active based on scroll
   useEffect(() => {
-    const sectionHeight = window.innerHeight * 3; // Section scroll range
-    const progress = Math.max(0, Math.min(1, (scrollY - sectionTop) / sectionHeight));
-    const cardIndex = Math.min(Math.floor(progress * services.length), services.length - 1);
+    const viewportHeight = window.innerHeight;
+    const sectionHeight = viewportHeight * services.length; // Each service gets one viewport height
+    const scrollProgress = Math.max(0, (scrollY - sectionTop) / sectionHeight);
+    const cardIndex = Math.min(Math.floor(scrollProgress * services.length), services.length - 1);
     setActiveCardIndex(Math.max(0, cardIndex));
   }, [scrollY, sectionTop, services.length]);
 
-  // Header animation
+  // Header animation - fades and moves up as user scrolls
   const getHeaderAnimation = () => {
-    const progress = Math.max(0, (scrollY - sectionTop) / (window.innerHeight * 0.5));
-    const opacity = Math.max(0.3, 1 - progress * 0.7);
-    const translateY = progress * -30;
+    const progress = Math.max(0, (scrollY - sectionTop) / (window.innerHeight * 0.8));
+    const opacity = Math.max(0.1, 1 - progress * 0.9);
+    const translateY = progress * -50;
     
     return {
       opacity,
@@ -88,97 +89,119 @@ const ServicesSection = () => {
     };
   };
 
+  // Card animation with parallax and 3D effects
+  const getCardAnimation = (index: number) => {
+    const isActive = index === activeCardIndex;
+    const progress = Math.max(0, (scrollY - sectionTop) / (window.innerHeight * services.length));
+    const cardProgress = Math.max(0, Math.min(1, (progress * services.length) - index));
+    
+    if (!isActive) {
+      return {
+        opacity: 0,
+        transform: 'translateY(100px) scale(0.8) rotateX(15deg)',
+        zIndex: 1,
+      };
+    }
+
+    // Active card animations
+    const scale = 0.9 + (cardProgress * 0.1);
+    const rotateX = 15 - (cardProgress * 15);
+    const rotateZ = Math.sin(cardProgress * Math.PI) * 2;
+    const translateY = 50 - (cardProgress * 50);
+    const translateX = Math.sin(cardProgress * Math.PI * 0.5) * 10;
+
+    return {
+      opacity: Math.min(1, cardProgress * 2),
+      transform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale}) rotateX(${rotateX}deg) rotateZ(${rotateZ}deg)`,
+      zIndex: 10,
+    };
+  };
+
   return (
     <section 
       ref={sectionRef}
-      className="relative bg-gradient-to-b from-gray-50 to-white overflow-hidden min-h-screen"
+      className="relative bg-gradient-to-b from-gray-50 to-white overflow-hidden"
       id="services"
       style={{ 
-        perspective: '1200px',
-        height: '400vh' // Enough scroll space for all cards
+        height: `${100 * (services.length + 1)}vh` // +1 for intro space
       }}
     >
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-100 rounded-full opacity-30 animate-float"></div>
-        <div className="absolute top-40 right-20 w-24 h-24 bg-purple-100 rounded-full opacity-40 animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-40 left-1/4 w-20 h-20 bg-cyan-100 rounded-full opacity-35 animate-float" style={{ animationDelay: '4s' }}></div>
+      {/* Floating Background Elements */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-blue-200/30 to-purple-200/30 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute top-1/2 right-1/4 w-48 h-48 bg-gradient-to-r from-cyan-200/40 to-blue-200/40 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-1/4 left-1/2 w-56 h-56 bg-gradient-to-r from-purple-200/35 to-pink-200/35 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}></div>
       </div>
 
-      {/* Section Header */}
+      {/* Section Header - Fixed at top */}
       <div 
-        className="relative z-10 py-20 text-center"
+        className="fixed top-20 left-0 right-0 z-20 text-center pointer-events-none"
         style={getHeaderAnimation()}
       >
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 cinematic-title">
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 cinematic-title">
             Our Services
           </h2>
-          <p className="text-xl md:text-2xl text-gray-600 font-light leading-relaxed">
+          <p className="text-xl md:text-2xl text-gray-600 font-light">
             Stories in every frame. Impact in every second.
           </p>
         </div>
       </div>
 
-      {/* Cards Grid - Fixed Position */}
-      <div className="sticky top-0 flex items-center justify-center min-h-screen px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+      {/* Single Card Display - Fixed Center */}
+      <div className="fixed inset-0 flex items-center justify-center z-10 pointer-events-none">
+        <div className="relative w-full max-w-2xl mx-auto px-6">
           {services.map((service, index) => {
             const Icon = service.icon;
-            const isActive = index === activeCardIndex;
+            const cardStyle = getCardAnimation(index);
             
             return (
               <div
                 key={service.title}
-                className={`transition-all duration-500 transform ${
-                  isActive 
-                    ? 'scale-105 opacity-100 z-10' 
-                    : 'scale-95 opacity-60 z-5'
-                }`}
+                className="absolute inset-0 transition-all duration-1000 ease-out transform-gpu"
+                style={cardStyle}
               >
-                <div className={`relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 transform-gpu ${isActive ? 'shadow-3xl ring-2 ring-blue-500 ring-opacity-50' : ''}`}>
-                  {/* Gradient Background */}
+                <div className="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/50 overflow-hidden">
+                  {/* Gradient Background Glow */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5`}></div>
                   
+                  {/* Motion Shadow */}
+                  <div className={`absolute -inset-4 bg-gradient-to-br ${service.gradient} opacity-20 blur-xl -z-10`}></div>
+                  
                   {/* Floating Icon Background */}
-                  <div className="absolute top-8 right-8 opacity-10">
-                    <Icon className="w-24 h-24 text-gray-900" />
+                  <div className="absolute top-8 right-8 opacity-5">
+                    <Icon className="w-32 h-32 text-gray-900" />
                   </div>
                   
                   {/* Card Content */}
-                  <div className="relative z-10 p-8 text-center">
+                  <div className="relative z-10 p-12 text-center">
                     {/* Animated Icon */}
                     <div 
-                      className={`inline-flex w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} items-center justify-center shadow-lg mb-6 transform transition-all duration-500`}
-                      style={{
-                        transform: `scale(${isActive ? 1.1 : 1}) rotateY(${isActive ? 360 : 0}deg)`
-                      }}
+                      className={`inline-flex w-20 h-20 rounded-3xl bg-gradient-to-br ${service.gradient} items-center justify-center shadow-xl mb-8 transform transition-all duration-700`}
                     >
-                      <Icon className="w-8 h-8 text-white" />
+                      <Icon className="w-10 h-10 text-white" />
                     </div>
                     
                     {/* Title */}
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 cinematic-title">
+                    <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 cinematic-title">
                       {service.title}
                     </h3>
                     
                     {/* Description */}
-                    <p className="text-base text-gray-600 leading-relaxed font-light">
+                    <p className="text-xl text-gray-600 leading-relaxed font-light max-w-lg mx-auto">
                       {service.description}
                     </p>
                     
                     {/* Decorative Line */}
                     <div 
-                      className={`mt-6 h-1 bg-gradient-to-r ${service.gradient} rounded-full mx-auto transition-all duration-700`}
-                      style={{
-                        width: isActive ? '80px' : '40px',
-                      }}
+                      className={`mt-8 h-1 bg-gradient-to-r ${service.gradient} rounded-full mx-auto transition-all duration-1000`}
+                      style={{ width: '120px' }}
                     ></div>
                   </div>
                   
-                  {/* Glow Effect */}
+                  {/* Enhanced Glow Effect */}
                   <div 
-                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} transition-opacity duration-500 ${isActive ? 'opacity-5' : 'opacity-0'}`}
+                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-10 transition-opacity duration-500`}
                   ></div>
                 </div>
               </div>
@@ -187,16 +210,21 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Fixed Progress Indicator */}
+      {/* Vertical Progress Indicator */}
       <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-30">
-        <div className="flex flex-col space-y-3">
+        <div className="flex flex-col space-y-4">
+          <div className="text-xs text-gray-500 font-medium mb-2 rotate-90 origin-center whitespace-nowrap">
+            {activeCardIndex + 1} / {services.length}
+          </div>
           {services.map((_, index) => (
             <div
               key={index}
-              className={`w-2 h-8 rounded-full transition-all duration-300 ${
+              className={`w-1 h-12 rounded-full transition-all duration-500 ${
                 index === activeCardIndex 
-                  ? 'bg-gradient-to-b from-blue-500 to-purple-600' 
-                  : 'bg-gray-300'
+                  ? 'bg-gradient-to-b from-blue-500 to-purple-600 shadow-lg' 
+                  : index < activeCardIndex
+                  ? 'bg-gray-400'
+                  : 'bg-gray-200'
               }`}
             />
           ))}
