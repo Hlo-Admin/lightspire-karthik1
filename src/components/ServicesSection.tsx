@@ -71,7 +71,7 @@ const ServicesSection = () => {
   // Calculate which card should be active based on scroll
   useEffect(() => {
     const viewportHeight = window.innerHeight;
-    const sectionHeight = viewportHeight * services.length; // Each service gets one viewport height
+    const sectionHeight = viewportHeight * services.length;
     const scrollProgress = Math.max(0, (scrollY - sectionTop) / sectionHeight);
     const cardIndex = Math.min(Math.floor(scrollProgress * services.length), services.length - 1);
     setActiveCardIndex(Math.max(0, cardIndex));
@@ -123,19 +123,19 @@ const ServicesSection = () => {
       className="relative bg-gradient-to-b from-gray-50 to-white overflow-hidden"
       id="services"
       style={{ 
-        height: `${100 * (services.length + 1)}vh` // +1 for intro space
+        height: `${100 * (services.length + 1)}vh`
       }}
     >
       {/* Floating Background Elements */}
-      <div className="fixed inset-0 pointer-events-none z-0">
+      <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-blue-200/30 to-purple-200/30 rounded-full blur-3xl animate-float"></div>
         <div className="absolute top-1/2 right-1/4 w-48 h-48 bg-gradient-to-r from-cyan-200/40 to-blue-200/40 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }}></div>
         <div className="absolute bottom-1/4 left-1/2 w-56 h-56 bg-gradient-to-r from-purple-200/35 to-pink-200/35 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}></div>
       </div>
 
-      {/* Section Header - Fixed at top */}
+      {/* Section Header - Sticky at top of section */}
       <div 
-        className="fixed top-20 left-0 right-0 z-20 text-center pointer-events-none"
+        className="sticky top-20 left-0 right-0 z-20 text-center pointer-events-none py-16"
         style={getHeaderAnimation()}
       >
         <div className="max-w-4xl mx-auto px-6">
@@ -148,8 +148,8 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Single Card Display - Fixed Center */}
-      <div className="fixed inset-0 flex items-center justify-center z-10 pointer-events-none">
+      {/* Single Card Display - Centered in viewport */}
+      <div className="sticky top-0 left-0 right-0 h-screen flex items-center justify-center z-10 pointer-events-none">
         <div className="relative w-full max-w-2xl mx-auto px-6">
           {services.map((service, index) => {
             const Icon = service.icon;
