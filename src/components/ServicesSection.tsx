@@ -42,7 +42,7 @@ const ServicesSection = () => {
       <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-gray-200/50 py-8">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Services</h2>
-          <p className="text-xl text-gray-600 font-light">From big screens to mobile feeds — we animate it all.</p>
+          <p className="text-xl text-gray-600 font-light">Each frame, a new dimension.</p>
         </div>
       </div>
 
@@ -69,7 +69,7 @@ const ServicesSection = () => {
             </div>
             <h3 className="text-5xl font-bold text-gray-900 mb-6">TV Animated Series</h3>
             <p className="text-xl text-gray-600 leading-relaxed">
-              High-quality 2D/3D animated series for broadcast platforms, bringing characters to life with cinematic storytelling.
+              High-quality 2D/3D animated series for broadcast networks.
             </p>
           </div>
         </div>
@@ -99,7 +99,7 @@ const ServicesSection = () => {
             </div>
             <h3 className="text-5xl font-bold text-gray-900 mb-6">OTT & Web Series</h3>
             <p className="text-xl text-gray-600 leading-relaxed">
-              Visually compelling content for streaming platforms and web, optimized for digital consumption and binge-watching.
+              Stylized content for streaming and online platforms.
             </p>
           </div>
         </div>
@@ -139,7 +139,7 @@ const ServicesSection = () => {
             </div>
             <h3 className="text-5xl font-bold text-gray-900 mb-6">Feature Films</h3>
             <p className="text-xl text-gray-600 leading-relaxed">
-              Full-scale animation and VFX for theatrical storytelling, creating immersive worlds that captivate audiences.
+              Full-length cinematic animation and VFX services.
             </p>
           </div>
         </div>
@@ -171,7 +171,7 @@ const ServicesSection = () => {
             </div>
             <h3 className="text-5xl font-bold text-gray-900 mb-6">Ad Animations</h3>
             <p className="text-xl text-gray-600 leading-relaxed">
-              Dynamic commercials and brand storytelling in motion, creating memorable campaigns that drive engagement.
+              Dynamic motion spots for brands and agencies.
             </p>
           </div>
         </div>
@@ -217,7 +217,7 @@ const ServicesSection = () => {
             </div>
             <h3 className="text-5xl font-bold text-gray-900 mb-6">International Co-Productions</h3>
             <p className="text-xl text-gray-600 leading-relaxed">
-              Collaborative cross-border projects with creative synergy, bringing together global talent and perspectives.
+              Collaborative storytelling across borders.
             </p>
           </div>
         </div>
@@ -250,7 +250,7 @@ const ServicesSection = () => {
             </div>
             <h3 className="text-5xl font-bold text-gray-900 mb-6">Social Media Creatives</h3>
             <p className="text-xl text-gray-600 leading-relaxed">
-              Short-form animations tailored for digital platforms, optimized for social engagement and viral potential.
+              Short-form animations tailored for digital impact.
             </p>
           </div>
         </div>
