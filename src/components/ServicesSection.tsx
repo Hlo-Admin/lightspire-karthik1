@@ -154,7 +154,7 @@ const ServicesSection = () => {
       </div>
 
       {/* Cards Container */}
-      <div className="relative flex items-center justify-center min-h-screen">
+      <div className="relative min-h-[700vh]">
         {services.map((service, index) => {
           const Icon = service.icon;
           const cardStyle = getCardAnimation(index);
@@ -162,10 +162,14 @@ const ServicesSection = () => {
           
           return (
             <div
-              key={service.title}
-              className="fixed w-full max-w-2xl px-6"
-              style={cardStyle}
-            >
+  key={service.title}
+  className={`w-full max-w-2xl px-6 transition-opacity duration-500 ${
+    isActive
+      ? 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30'
+      : 'hidden'
+  }`}
+  style={cardStyle}
+>
               <div className={`relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 transform-gpu ${isActive ? 'shadow-3xl' : ''}`}>
                 {/* Gradient Background */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5`}></div>
