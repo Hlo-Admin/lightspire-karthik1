@@ -163,7 +163,7 @@ const ServicesSection = () => {
           return (
             <div
               key={service.title}
-              className="absolute w-full max-w-2xl px-6"
+              className="fixed w-full max-w-2xl px-6"
               style={cardStyle}
             >
               <div className={`relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 transform-gpu ${isActive ? 'shadow-3xl' : ''}`}>
