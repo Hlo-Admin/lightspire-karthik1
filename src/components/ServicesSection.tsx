@@ -30,11 +30,11 @@ const ServicesSection = () => {
 
   const getCardAnimation = (index: number) => {
     const progress = Math.max(0, (scrollY - sectionTop) / window.innerHeight);
-    const cardProgress = Math.max(0, Math.min(1, progress - index * 0.5)); // Increased spacing between cards
+    const cardProgress = Math.max(0, Math.min(1, progress - index * 0.8)); // More spacing between card triggers
     
     // Circular arc animation - starts from side/top and orbits to center
     const angle = (1 - cardProgress) * Math.PI; // Half circle
-    const radius = 300 * (1 - cardProgress); // Increased radius for better arc
+    const radius = 300 * (1 - cardProgress); // Radius for arc
     const translateX = Math.cos(angle) * radius;
     const translateY = Math.sin(angle) * radius * 0.3; // Flatter arc
     
@@ -90,11 +90,11 @@ const ServicesSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="relative min-h-[400vh] bg-gradient-to-b from-gray-50 to-white"
+      className="relative bg-gradient-to-b from-gray-50 to-white py-20"
       id="services"
     >
       {/* Section Header */}
-      <div className="relative z-10 py-20">
+      <div className="relative z-10 pb-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
             Our Services
@@ -105,8 +105,8 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Animated Service Cards */}
-      <div className="relative">
+      {/* Service Cards - Stacked Vertically */}
+      <div className="relative space-y-40">
         {services.map((service, index) => {
           const Icon = service.icon;
           const cardStyle = getCardAnimation(index);
@@ -114,7 +114,7 @@ const ServicesSection = () => {
           return (
             <div
               key={service.title}
-              className="sticky top-1/2 transform -translate-y-1/2 mb-40"
+              className="relative"
               style={cardStyle}
             >
               <div className="flex justify-center px-6">
@@ -172,7 +172,7 @@ const ServicesSection = () => {
         })}
       </div>
 
-      {/* Reduced bottom spacing */}
+      {/* Bottom spacing */}
       <div className="h-20"></div>
     </section>
   );
