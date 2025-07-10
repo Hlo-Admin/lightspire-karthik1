@@ -69,7 +69,7 @@ const ServicesSection = () => {
 
   // Calculate which card should be active based on scroll
   useEffect(() => {
-    const sectionHeight = window.innerHeight * 4; // Total section scroll height
+    const sectionHeight = window.innerHeight * 2; // Reduced section height
     const progress = Math.max(0, Math.min(1, (scrollY - sectionTop) / sectionHeight));
     const cardIndex = Math.min(Math.floor(progress * services.length), services.length - 1);
     setActiveCardIndex(Math.max(0, cardIndex));
@@ -87,12 +87,12 @@ const ServicesSection = () => {
     };
   };
 
-  // Card animation with parallax movement while staying visible
+  // Card animation with subtle parallax while keeping visible
   const getCardAnimation = (index: number) => {
-    const sectionHeight = window.innerHeight * 4;
+    const sectionHeight = window.innerHeight * 2;
     const scrollProgress = Math.max(0, Math.min(1, (scrollY - sectionTop) / sectionHeight));
     
-    // Each card gets 1/6 of the total scroll progress
+    // Each card gets equal time in the scroll range
     const cardStartProgress = index / services.length;
     const cardEndProgress = (index + 1) / services.length;
     
@@ -101,23 +101,23 @@ const ServicesSection = () => {
       (scrollProgress - cardStartProgress) / (cardEndProgress - cardStartProgress)
     ));
     
-    // Parallax movement - smaller, more subtle movements
-    const translateX = Math.sin(cardProgress * Math.PI) * 100 * (index % 2 === 0 ? -1 : 1);
-    const translateY = Math.sin(cardProgress * Math.PI * 0.5) * 50;
+    // Very subtle parallax movement
+    const translateX = cardProgress * 30 * (index % 2 === 0 ? -1 : 1);
+    const translateY = Math.sin(cardProgress * Math.PI) * 20;
     
-    // Gentle scale and rotation for cinematic effect
-    const scale = 0.9 + (Math.sin(cardProgress * Math.PI) * 0.1);
-    const rotateZ = Math.sin(cardProgress * Math.PI) * (index % 2 === 0 ? -5 : 5);
+    // Gentle scale effect
+    const scale = 0.95 + (cardProgress * 0.05);
+    const rotateZ = cardProgress * (index % 2 === 0 ? -2 : 2);
     
-    // Keep cards visible throughout their active period
-    const isActive = scrollProgress >= cardStartProgress && scrollProgress <= cardEndProgress;
-    const opacity = isActive ? 1 : 0.3;
+    // Keep all cards visible, highlight the active one
+    const isActive = index === activeCardIndex;
+    const opacity = isActive ? 1 : 0.4;
     
     return {
       transform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale}) rotateZ(${rotateZ}deg)`,
       opacity,
-      zIndex: isActive ? services.length + 1 : services.length - index,
-      transition: 'opacity 0.5s ease-out',
+      zIndex: isActive ? 10 : 1,
+      transition: 'opacity 0.3s ease-out, transform 0.1s ease-out',
     };
   };
 
@@ -128,7 +128,7 @@ const ServicesSection = () => {
       id="services"
       style={{ 
         perspective: '1200px',
-        minHeight: `${services.length * 100}vh` // Height based on number of services
+        minHeight: `${services.length * 50}vh` // Reduced height
       }}
     >
       {/* Animated Background Elements */}
@@ -154,7 +154,7 @@ const ServicesSection = () => {
       </div>
 
       {/* Cards Container */}
-      <div className="relative flex items-center justify-center" style={{ minHeight: '100vh' }}>
+      <div className="relative flex items-center justify-center min-h-screen">
         {services.map((service, index) => {
           const Icon = service.icon;
           const cardStyle = getCardAnimation(index);
