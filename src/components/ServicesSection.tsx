@@ -28,39 +28,18 @@ const ServicesSection = () => {
     };
   }, []);
 
-  const getCardFocus = (index: number) => {
+  const getCardAnimation = (index: number) => {
     const progress = Math.max(0, (scrollY - sectionTop) / window.innerHeight);
-    const cardCenter = index + 1; // Cards are centered at 1vh, 2vh, 3vh etc
-    const distance = Math.abs(progress - cardCenter);
-    const isInFocus = distance < 0.5;
+    const cardProgress = Math.max(0, Math.min(1, progress - index * 0.3));
     
-    // Calculate opacity and scale based on distance from center
-    const opacity = Math.max(0.2, 1 - distance * 2);
-    const scale = isInFocus ? 1 : 0.85;
-    const translateY = (distance * 100) * (progress < cardCenter ? -1 : 1);
-    const blur = isInFocus ? 0 : Math.min(8, distance * 10);
+    const translateY = (1 - cardProgress) * 100;
+    const opacity = cardProgress;
+    const scale = 0.8 + cardProgress * 0.2;
+    const rotateX = (1 - cardProgress) * 15;
     
     return {
+      transform: `translateY(${translateY}px) scale(${scale}) rotateX(${rotateX}deg)`,
       opacity,
-      transform: `translateY(${translateY}px) scale(${scale})`,
-      filter: `blur(${blur}px)`,
-      transition: 'all 0.3s ease-out',
-      zIndex: isInFocus ? 10 : 1,
-    };
-  };
-
-  const getIconAnimation = (index: number) => {
-    const progress = Math.max(0, (scrollY - sectionTop) / window.innerHeight);
-    const cardCenter = index + 1;
-    const distance = Math.abs(progress - cardCenter);
-    const isInFocus = distance < 0.5;
-    
-    const rotation = isInFocus ? 0 : distance * 20;
-    const iconScale = isInFocus ? 1.1 : 0.9;
-    
-    return {
-      transform: `rotate(${rotation}deg) scale(${iconScale})`,
-      transition: 'all 0.4s ease-out',
     };
   };
 
@@ -69,114 +48,127 @@ const ServicesSection = () => {
       icon: Tv,
       title: "TV Animated Series",
       description: "High-quality 2D/3D animated series for broadcast networks.",
-      gradient: "from-blue-500/20 to-purple-600/20"
+      gradient: "from-blue-500 to-purple-600"
     },
     {
       icon: Globe,
       title: "OTT & Web Series",
       description: "Stylized content for streaming and digital media.",
-      gradient: "from-cyan-500/20 to-blue-600/20"
+      gradient: "from-cyan-500 to-blue-600"
     },
     {
       icon: Film,
       title: "Feature Films",
       description: "End-to-end cinematic VFX and animation.",
-      gradient: "from-purple-500/20 to-pink-600/20"
+      gradient: "from-purple-500 to-pink-600"
     },
     {
       icon: Megaphone,
       title: "Ad Animations",
       description: "Short, sharp brand storytelling in motion.",
-      gradient: "from-orange-500/20 to-red-600/20"
+      gradient: "from-orange-500 to-red-600"
     },
     {
       icon: Users,
       title: "International Co-Productions",
       description: "Collaborative animation across borders.",
-      gradient: "from-green-500/20 to-emerald-600/20"
+      gradient: "from-green-500 to-emerald-600"
     },
     {
       icon: Smartphone,
       title: "Social Media Creatives",
       description: "Snackable animated content for social platforms.",
-      gradient: "from-pink-500/20 to-rose-600/20"
+      gradient: "from-pink-500 to-rose-600"
     }
   ];
 
   return (
     <section 
       ref={sectionRef}
-      className="relative bg-gradient-to-b from-gray-50 to-white"
-      style={{ height: `${(services.length + 1) * 100}vh` }}
+      className="relative min-h-[600vh] bg-gradient-to-b from-gray-50 to-white"
       id="services"
     >
-      {/* Section Header - Fixed at top */}
-      <div className="sticky top-0 z-20 py-20 bg-gradient-to-b from-gray-50 to-transparent">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 cinematic-title">
+      {/* Section Header */}
+      <div className="relative z-10 py-20">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
             Our Services
           </h2>
           <p className="text-xl md:text-2xl text-gray-600 font-light">
-            Designed to move. Engineered to inspire.
+            Stories in every frame. Impact in every second.
           </p>
         </div>
       </div>
 
-      {/* Service Cards Container */}
+      {/* Animated Service Cards */}
       <div className="relative">
         {services.map((service, index) => {
           const Icon = service.icon;
-          const cardStyle = getCardFocus(index);
-          const iconStyle = getIconAnimation(index);
+          const cardStyle = getCardAnimation(index);
           
           return (
             <div
               key={service.title}
-              className="fixed inset-0 flex items-center justify-center px-6"
+              className="sticky top-20 mb-20"
               style={cardStyle}
             >
-              <div className="max-w-2xl w-full">
-                {/* Glassmorphism Card */}
-                <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-12 md:p-16 shadow-2xl border border-white/20">
+              <div className="max-w-4xl mx-auto px-6">
+                <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                   {/* Background gradient overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} rounded-3xl`}></div>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5`}></div>
                   
-                  {/* Animated glow effect */}
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-white/10 via-transparent to-white/10 animate-pulse-glow"></div>
+                  {/* Floating icon background */}
+                  <div className="absolute top-8 right-8 opacity-10">
+                    <Icon className="w-32 h-32 text-gray-900" />
+                  </div>
                   
                   {/* Card content */}
-                  <div className="relative z-10 text-center">
-                    {/* Animated Icon */}
-                    <div 
-                      className="flex justify-center mb-8"
-                      style={iconStyle}
-                    >
-                      <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center shadow-xl">
-                        <Icon className="w-10 h-10 text-white" />
+                  <div className="relative z-10 p-12 md:p-16">
+                    <div className="flex items-start space-x-6">
+                      {/* Animated icon */}
+                      <div 
+                        className={`flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-lg`}
+                        style={{
+                          transform: `scale(${0.8 + cardStyle.opacity * 0.2}) rotate(${(1 - cardStyle.opacity) * 10}deg)`
+                        }}
+                      >
+                        <Icon className="w-8 h-8 text-white" />
+                      </div>
+                      
+                      {/* Text content */}
+                      <div className="flex-1">
+                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                          {service.title}
+                        </h3>
+                        <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+                          {service.description}
+                        </p>
                       </div>
                     </div>
                     
-                    {/* Service Title */}
-                    <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 cinematic-title">
-                      {service.title}
-                    </h3>
-                    
-                    {/* Service Description */}
-                    <p className="text-lg md:text-xl text-gray-700 leading-relaxed font-light">
-                      {service.description}
-                    </p>
+                    {/* Decorative line */}
+                    <div 
+                      className={`mt-8 h-1 bg-gradient-to-r ${service.gradient} rounded-full`}
+                      style={{
+                        width: `${cardStyle.opacity * 100}%`,
+                        transition: 'width 0.6s ease-out'
+                      }}
+                    ></div>
                   </div>
                   
-                  {/* Floating particles effect */}
-                  <div className="absolute top-4 right-4 w-2 h-2 bg-white/40 rounded-full animate-float"></div>
-                  <div className="absolute bottom-8 left-8 w-1 h-1 bg-white/60 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
-                  <div className="absolute top-1/2 left-4 w-1.5 h-1.5 bg-white/30 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
+                  {/* Subtle glow effect */}
+                  <div 
+                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 hover:opacity-5 transition-opacity duration-500 pointer-events-none`}
+                  ></div>
                 </div>
               </div>
             </div>
           );
         })}
       </div>
+
+      {/* Bottom spacing */}
+      <div className="h-40"></div>
     </section>
   );
 };
