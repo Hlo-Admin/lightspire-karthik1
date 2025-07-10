@@ -128,7 +128,7 @@ const ServicesSection = () => {
       id="services"
       style={{ 
         perspective: '1200px',
-        minHeight: `${services.length * 50}vh` // Reduced height
+        minHeight: '500px'// Reduced height
       }}
     >
       {/* Animated Background Elements */}
