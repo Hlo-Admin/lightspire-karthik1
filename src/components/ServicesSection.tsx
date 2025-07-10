@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react';
 import { Tv, Globe, Film, Megaphone, Users, Smartphone } from 'lucide-react';
 
@@ -69,7 +70,7 @@ const ServicesSection = () => {
 
   // Calculate which card should be active based on scroll
   useEffect(() => {
-    const sectionHeight = window.innerHeight * 2; // Reduced section height
+    const sectionHeight = window.innerHeight * 3; // Section scroll range
     const progress = Math.max(0, Math.min(1, (scrollY - sectionTop) / sectionHeight));
     const cardIndex = Math.min(Math.floor(progress * services.length), services.length - 1);
     setActiveCardIndex(Math.max(0, cardIndex));
@@ -87,48 +88,14 @@ const ServicesSection = () => {
     };
   };
 
-  // Card animation with subtle parallax while keeping visible
-  const getCardAnimation = (index: number) => {
-    const sectionHeight = window.innerHeight * 2;
-    const scrollProgress = Math.max(0, Math.min(1, (scrollY - sectionTop) / sectionHeight));
-    
-    // Each card gets equal time in the scroll range
-    const cardStartProgress = index / services.length;
-    const cardEndProgress = (index + 1) / services.length;
-    
-    // Current progress within this card's range
-    const cardProgress = Math.max(0, Math.min(1, 
-      (scrollProgress - cardStartProgress) / (cardEndProgress - cardStartProgress)
-    ));
-    
-    // Very subtle parallax movement
-    const translateX = cardProgress * 30 * (index % 2 === 0 ? -1 : 1);
-    const translateY = Math.sin(cardProgress * Math.PI) * 20;
-    
-    // Gentle scale effect
-    const scale = 0.95 + (cardProgress * 0.05);
-    const rotateZ = cardProgress * (index % 2 === 0 ? -2 : 2);
-    
-    // Keep all cards visible, highlight the active one
-    const isActive = index === activeCardIndex;
-    const opacity = isActive ? 1 : 0.4;
-    
-    return {
-      transform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale}) rotateZ(${rotateZ}deg)`,
-      opacity,
-      zIndex: isActive ? 10 : 1,
-      transition: 'opacity 0.3s ease-out, transform 0.1s ease-out',
-    };
-  };
-
   return (
     <section 
       ref={sectionRef}
-      className="relative bg-gradient-to-b from-gray-50 to-white overflow-hidden"
+      className="relative bg-gradient-to-b from-gray-50 to-white overflow-hidden min-h-screen"
       id="services"
       style={{ 
         perspective: '1200px',
-        minHeight: '500px'// Reduced height
+        height: '400vh' // Enough scroll space for all cards
       }}
     >
       {/* Animated Background Elements */}
@@ -153,71 +120,71 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Cards Container */}
-      <div className="relative min-h-[700vh]">
-        {services.map((service, index) => {
-          const Icon = service.icon;
-          const cardStyle = getCardAnimation(index);
-          const isActive = index === activeCardIndex;
-          
-          return (
-            <div
-  key={service.title}
-  className={`w-full max-w-2xl px-6 transition-opacity duration-500 ${
-    isActive
-      ? 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30'
-      : 'hidden'
-  }`}
-  style={cardStyle}
->
-              <div className={`relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 transform-gpu ${isActive ? 'shadow-3xl' : ''}`}>
-                {/* Gradient Background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5`}></div>
-                
-                {/* Floating Icon Background */}
-                <div className="absolute top-8 right-8 opacity-10">
-                  <Icon className="w-24 h-24 text-gray-900" />
-                </div>
-                
-                {/* Card Content */}
-                <div className="relative z-10 p-12 md:p-16 text-center">
-                  {/* Animated Icon */}
-                  <div 
-                    className={`inline-flex w-20 h-20 rounded-3xl bg-gradient-to-br ${service.gradient} items-center justify-center shadow-lg mb-8 transform transition-all duration-500`}
-                    style={{
-                      transform: `scale(${isActive ? 1.1 : 1}) rotateY(${isActive ? 360 : 0}deg)`
-                    }}
-                  >
-                    <Icon className="w-10 h-10 text-white" />
+      {/* Cards Grid - Fixed Position */}
+      <div className="sticky top-0 flex items-center justify-center min-h-screen px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            const isActive = index === activeCardIndex;
+            
+            return (
+              <div
+                key={service.title}
+                className={`transition-all duration-500 transform ${
+                  isActive 
+                    ? 'scale-105 opacity-100 z-10' 
+                    : 'scale-95 opacity-60 z-5'
+                }`}
+              >
+                <div className={`relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 transform-gpu ${isActive ? 'shadow-3xl ring-2 ring-blue-500 ring-opacity-50' : ''}`}>
+                  {/* Gradient Background */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5`}></div>
+                  
+                  {/* Floating Icon Background */}
+                  <div className="absolute top-8 right-8 opacity-10">
+                    <Icon className="w-24 h-24 text-gray-900" />
                   </div>
                   
-                  {/* Title */}
-                  <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 cinematic-title">
-                    {service.title}
-                  </h3>
+                  {/* Card Content */}
+                  <div className="relative z-10 p-8 text-center">
+                    {/* Animated Icon */}
+                    <div 
+                      className={`inline-flex w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} items-center justify-center shadow-lg mb-6 transform transition-all duration-500`}
+                      style={{
+                        transform: `scale(${isActive ? 1.1 : 1}) rotateY(${isActive ? 360 : 0}deg)`
+                      }}
+                    >
+                      <Icon className="w-8 h-8 text-white" />
+                    </div>
+                    
+                    {/* Title */}
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 cinematic-title">
+                      {service.title}
+                    </h3>
+                    
+                    {/* Description */}
+                    <p className="text-base text-gray-600 leading-relaxed font-light">
+                      {service.description}
+                    </p>
+                    
+                    {/* Decorative Line */}
+                    <div 
+                      className={`mt-6 h-1 bg-gradient-to-r ${service.gradient} rounded-full mx-auto transition-all duration-700`}
+                      style={{
+                        width: isActive ? '80px' : '40px',
+                      }}
+                    ></div>
+                  </div>
                   
-                  {/* Description */}
-                  <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-light">
-                    {service.description}
-                  </p>
-                  
-                  {/* Decorative Line */}
+                  {/* Glow Effect */}
                   <div 
-                    className={`mt-8 h-1 bg-gradient-to-r ${service.gradient} rounded-full mx-auto transition-all duration-700`}
-                    style={{
-                      width: isActive ? '100px' : '60px',
-                    }}
+                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} transition-opacity duration-500 ${isActive ? 'opacity-5' : 'opacity-0'}`}
                   ></div>
                 </div>
-                
-                {/* Glow Effect */}
-                <div 
-                  className={`absolute inset-0 bg-gradient-to-br ${service.gradient} transition-opacity duration-500 ${isActive ? 'opacity-10' : 'opacity-0'}`}
-                ></div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
 
       {/* Fixed Progress Indicator */}
@@ -235,9 +202,6 @@ const ServicesSection = () => {
           ))}
         </div>
       </div>
-
-      {/* Bottom Spacing */}
-      <div className="h-40"></div>
     </section>
   );
 };
