@@ -30,20 +30,15 @@ const ServicesSection = () => {
 
   const getCardAnimation = (index: number) => {
     const progress = Math.max(0, (scrollY - sectionTop) / window.innerHeight);
-    const cardProgress = Math.max(0, Math.min(1, progress - index * 0.5)); // Increased spacing between cards
+    const cardStart = index * 0.3; // Cards appear every 30% of scroll
+    const cardProgress = Math.max(0, Math.min(1, (progress - cardStart) / 0.3));
     
-    // Circular arc animation - starts from side/top and orbits to center
-    const angle = (1 - cardProgress) * Math.PI; // Half circle
-    const radius = 300 * (1 - cardProgress); // Increased radius for better arc
-    const translateX = Math.cos(angle) * radius;
-    const translateY = Math.sin(angle) * radius * 0.3; // Flatter arc
-    
+    const translateY = (1 - cardProgress) * 100; // Slide up from below
     const opacity = cardProgress;
-    const scale = 0.7 + cardProgress * 0.3;
-    const rotateZ = (1 - cardProgress) * 45; // Rotation during orbit
+    const scale = 0.8 + cardProgress * 0.2; // Scale from 80% to 100%
     
     return {
-      transform: `translate(${translateX}px, ${translateY}px) scale(${scale}) rotateZ(${rotateZ}deg)`,
+      transform: `translateY(${translateY}px) scale(${scale})`,
       opacity,
     };
   };
@@ -90,7 +85,7 @@ const ServicesSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="relative min-h-[400vh] bg-gradient-to-b from-gray-50 to-white"
+      className="relative min-h-[300vh] bg-gradient-to-b from-gray-50 to-white"
       id="services"
     >
       {/* Section Header */}
@@ -105,20 +100,20 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Animated Service Cards */}
-      <div className="relative">
-        {services.map((service, index) => {
-          const Icon = service.icon;
-          const cardStyle = getCardAnimation(index);
-          
-          return (
-            <div
-              key={service.title}
-              className="sticky top-1/2 transform -translate-y-1/2 mb-40"
-              style={cardStyle}
-            >
-              <div className="flex justify-center px-6">
-                <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 max-w-2xl w-full">
+      {/* Service Cards - Vertically Stacked */}
+      <div className="relative py-20">
+        <div className="max-w-4xl mx-auto px-6 space-y-32">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            const cardStyle = getCardAnimation(index);
+            
+            return (
+              <div
+                key={service.title}
+                className="flex justify-center"
+                style={cardStyle}
+              >
+                <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 w-full max-w-3xl">
                   {/* Background gradient overlay */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5`}></div>
                   
@@ -134,7 +129,7 @@ const ServicesSection = () => {
                       <div 
                         className={`flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-lg`}
                         style={{
-                          transform: `scale(${0.8 + cardStyle.opacity * 0.2}) rotate(${(1 - cardStyle.opacity) * 10}deg)`
+                          transform: `scale(${0.8 + cardStyle.opacity * 0.2})`
                         }}
                       >
                         <Icon className="w-8 h-8 text-white" />
@@ -167,9 +162,9 @@ const ServicesSection = () => {
                   ></div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
 
       {/* Reduced bottom spacing */}
