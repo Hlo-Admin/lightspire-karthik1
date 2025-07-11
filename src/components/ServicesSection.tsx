@@ -67,22 +67,32 @@ const ServicesSection = () => {
     };
   }, []);
 
-  // Calculate parallax movement - cards move from right to left with first card starting from center
+  // Calculate parallax movement - ensure all cards can be scrolled through
   const getParallaxOffset = () => {
     const scrollProgress = Math.max(0, scrollY - sectionTop + window.innerHeight * 0.5);
-    const baseOffset = window.innerWidth * 0.3; // Start first card from center
-    const scrollMultiplier = 0.8; // Speed of parallax movement
-    return baseOffset - (scrollProgress * scrollMultiplier);
+    const cardWidth = 320;
+    const totalCardsWidth = services.length * cardWidth;
+    const viewportWidth = window.innerWidth;
+    
+    // Start from center and ensure we can scroll through all cards
+    const startOffset = viewportWidth * 0.5 - cardWidth * 0.5;
+    const maxScroll = totalCardsWidth - viewportWidth + cardWidth;
+    const scrollMultiplier = 1.2;
+    
+    const offset = startOffset - (scrollProgress * scrollMultiplier);
+    
+    // Clamp the offset to ensure all cards are visible
+    return Math.max(-maxScroll, Math.min(startOffset, offset));
   };
 
   return (
     <section 
       ref={sectionRef}
-      className="relative bg-gradient-to-b from-gray-50 via-white to-gray-100 py-20"
+      className="relative bg-gradient-to-b from-gray-50 via-white to-gray-100 py-20 min-h-screen"
       id="services"
     >
-      {/* Header */}
-      <div className="text-center mb-8">
+      {/* Header - Fixed Position */}
+      <div className="text-center mb-8 relative z-10">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 cinematic-title">
             Our Services
@@ -93,13 +103,13 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Cards Container with Horizontal Parallax */}
-      <div className="relative overflow-hidden h-96">
+      {/* Cards Container with Horizontal Parallax - Fixed Height */}
+      <div className="relative overflow-hidden h-96 flex items-center">
         <div 
-          className="flex absolute top-0 transition-transform duration-100 ease-out"
+          className="flex absolute top-1/2 -translate-y-1/2 transition-transform duration-100 ease-out"
           style={{ 
             transform: `translateX(${getParallaxOffset()}px)`,
-            width: `${services.length * 320}px` // Fixed width for seamless movement
+            width: `${services.length * 320}px`
           }}
         >
           {services.map((service, index) => {
@@ -108,9 +118,9 @@ const ServicesSection = () => {
             return (
               <div
                 key={service.title}
-                className="flex-shrink-0 w-80 h-80 mr-0"
+                className="flex-shrink-0 w-80 h-80"
               >
-                <div className="relative bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden h-full">
+                <div className="relative bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden h-full mx-2">
                   {/* Gradient Background */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-5`}></div>
                   
