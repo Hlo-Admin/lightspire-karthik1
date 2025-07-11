@@ -1,5 +1,4 @@
-
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { 
   Share2, 
   FileText, 
@@ -19,6 +18,8 @@ import {
 
 const KidsIPStrategy = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const observerOptions = {
@@ -39,11 +40,41 @@ const KidsIPStrategy = () => {
       });
     }, observerOptions);
 
+    // Scroll progress observer for timeline fill
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const sectionHeight = sectionRef.current.offsetHeight;
+        const windowHeight = window.innerHeight;
+        
+        // Calculate scroll progress through the section
+        const sectionTop = rect.top;
+        const sectionBottom = rect.bottom;
+        
+        let progress = 0;
+        
+        if (sectionTop < windowHeight && sectionBottom > 0) {
+          const visibleHeight = Math.min(windowHeight, sectionBottom) - Math.max(0, sectionTop);
+          const totalScrollableHeight = sectionHeight + windowHeight;
+          const scrolled = windowHeight - sectionTop;
+          progress = Math.max(0, Math.min(1, scrolled / totalScrollableHeight));
+        }
+        
+        setScrollProgress(progress);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const strategyItems = [
@@ -105,8 +136,17 @@ const KidsIPStrategy = () => {
         <div className="mb-20">
           <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">Strategic Action Framework</h3>
           <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400 rounded-full hidden lg:block"></div>
+            {/* Timeline Line - Background (gray) */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gray-200 rounded-full hidden lg:block"></div>
+            
+            {/* Timeline Line - Animated Fill */}
+            <div 
+              ref={timelineRef}
+              className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400 rounded-full hidden lg:block transition-all duration-300 ease-out"
+              style={{
+                height: `${scrollProgress * 100}%`,
+              }}
+            ></div>
             
             {/* Strategy Items in Timeline */}
             <div className="space-y-8">
