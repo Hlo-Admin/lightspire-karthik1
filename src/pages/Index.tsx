@@ -1,18 +1,18 @@
-import { useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { Play, Quote, ArrowRight } from 'lucide-react';
-import { ParticleSystem } from '@/components/ParticleSystem';
-import { FloatingElements } from '@/components/FloatingElements';
-import { AnimatedBackground } from '@/components/AnimatedBackground';
-import Navbar from '@/components/Navbar';
-import ServicesSection from '@/components/ServicesSection';
-import ServicesSection2 from '@/components/ServicesSection2';
-import AboutSectionDark from '@/components/AboutSectionDark';
-import KidsIPStrategy from '@/components/KidsIPStrategy';
-import FoundersSection from '@/components/FoundersSection';
-import MagneticHover from '@/components/MagneticHover';
-import ContactSection from '@/components/ContactSection';
-import Footer from '@/components/Footer';
+import { useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { Play, Quote, ArrowRight } from "lucide-react";
+import { ParticleSystem } from "@/components/ParticleSystem";
+import { FloatingElements } from "@/components/FloatingElements";
+import Spline from "@splinetool/react-spline";
+import Navbar from "@/components/Navbar";
+import ServicesSection from "@/components/ServicesSection";
+import ServicesSection2 from "@/components/ServicesSection2";
+import AboutSectionDark from "@/components/AboutSectionDark";
+import KidsIPStrategy from "@/components/KidsIPStrategy";
+import FoundersSection from "@/components/FoundersSection";
+import MagneticHover from "@/components/MagneticHover";
+import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -23,28 +23,29 @@ const Index = () => {
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: "0px 0px -50px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in');
+          entry.target.classList.add("animate-fade-in");
         }
       });
     }, observerOptions);
 
     // Staggered animation sequence
     setTimeout(() => {
-      if (titleRef.current) titleRef.current.classList.add('animate-fade-in');
+      if (titleRef.current) titleRef.current.classList.add("animate-fade-in");
     }, 500);
-    
+
     setTimeout(() => {
-      if (subtitleRef.current) subtitleRef.current.classList.add('animate-fade-in');
+      if (subtitleRef.current)
+        subtitleRef.current.classList.add("animate-fade-in");
     }, 1000);
-    
+
     setTimeout(() => {
-      if (ctaRef.current) ctaRef.current.classList.add('animate-fade-in');
+      if (ctaRef.current) ctaRef.current.classList.add("animate-fade-in");
     }, 1500);
 
     return () => observer.disconnect();
@@ -54,20 +55,25 @@ const Index = () => {
     <div className="relative font-toasty">
       {/* Navbar */}
       <Navbar />
-      
+
       {/* Hero Section */}
-      <div className="relative min-h-screen overflow-hidden bg-black creative-section" data-cursor="creative">
-        {/* Animated Background Canvas */}
-        <AnimatedBackground />
-        
+      <div
+        className="relative min-h-screen overflow-hidden bg-black creative-section"
+        data-cursor="creative"
+      >
+        {/* Spline 3D Background */}
+        <div className="absolute inset-0 z-0">
+          <Spline scene="https://prod.spline.design/eooOuQJdLnU2Uuu1/scene.splinecode" />
+        </div>
+
         {/* Particle System */}
         <ParticleSystem />
-        
+
         {/* Floating 3D Elements */}
         <FloatingElements />
-        
+
         {/* Main Hero Content */}
-        <div 
+        <div
           ref={heroRef}
           className="relative z-10 min-h-screen flex items-center justify-center px-6"
           id="home"
@@ -84,33 +90,37 @@ const Index = () => {
             </div>
 
             {/* Main Headline */}
-            <h1 
+            <h1
               ref={titleRef}
               className="opacity-0 text-6xl md:text-8xl font-bold mb-8 bg-gradient-to-r from-white via-cyan-300 to-purple-400 bg-clip-text text-transparent leading-tight cinematic-title"
             >
               Where Imagination
               <br />
-              <span className="text-cyan-400 neon-text-strong">Meets Reality</span>
+              <span className="text-white-400 neon-text-strong">
+                Meets Reality
+              </span>
             </h1>
 
             {/* Subheading */}
-            <p 
+            <p
               ref={subtitleRef}
               className="opacity-0 text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed font-light"
             >
-              Crafting breathtaking <span className="text-cyan-400">2D</span>, <span className="text-purple-400">3D</span> & <span className="text-pink-400">VFX</span> experiences
+              Crafting breathtaking <span className="text-cyan-400">2D</span>,{" "}
+              <span className="text-purple-400">3D</span> &{" "}
+              <span className="text-pink-400">VFX</span> experiences
               <br />
               for film, gaming, and beyond.
             </p>
 
             {/* CTA Buttons */}
-            <div 
+            <div
               ref={ctaRef}
               className="opacity-0 flex flex-col sm:flex-row gap-6 justify-center items-center"
             >
               <MagneticHover strength={0.4}>
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="group relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-8 py-4 text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]"
                 >
                   <Play className="mr-2 h-5 w-5 group-hover:animate-pulse" />
@@ -118,10 +128,10 @@ const Index = () => {
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                 </Button>
               </MagneticHover>
-              
+
               <MagneticHover strength={0.4}>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   size="lg"
                   className="group relative overflow-hidden border-2 border-purple-500 text-purple-400 hover:text-white px-8 py-4 text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:bg-purple-500 hover:shadow-[0_0_30px_rgba(168,85,247,0.5)]"
                 >
