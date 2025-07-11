@@ -81,7 +81,7 @@ const CustomCursor = () => {
   }, []);
 
   const getCursorClasses = () => {
-    let baseClasses = "fixed pointer-events-none z-50 transition-all duration-300 ease-out";
+    let baseClasses = "fixed pointer-events-none z-50 transition-all duration-100 ease-out";
     
     if (isClicking) {
       return `${baseClasses} w-8 h-8 border-2 border-cyan-400 rounded-full bg-cyan-400/20 shadow-[0_0_20px_rgba(6,182,212,0.6)] scale-75`;
@@ -104,7 +104,7 @@ const CustomCursor = () => {
   };
 
   const getTrailClasses = () => {
-    return "fixed pointer-events-none z-40 w-12 h-12 border border-white/20 rounded-full bg-gradient-to-br from-cyan-400/10 to-purple-400/10 transition-all duration-500 ease-out";
+    return "fixed pointer-events-none z-40 w-12 h-12 border border-white/20 rounded-full bg-gradient-to-br from-cyan-400/10 to-purple-400/10 transition-all duration-200 ease-out";
   };
 
   return (
@@ -131,7 +131,7 @@ const CustomCursor = () => {
       >
         {/* Inner dot */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className={`w-1 h-1 bg-white rounded-full transition-all duration-300 ${isClicking ? 'scale-150' : 'scale-100'}`} />
+          <div className={`w-1 h-1 bg-white rounded-full transition-all duration-100 ${isClicking ? 'scale-150' : 'scale-100'}`} />
         </div>
         
         {/* Cursor icon for creative sections */}
@@ -145,7 +145,7 @@ const CustomCursor = () => {
       {/* Cursor label */}
       {cursorLabel && (
         <div
-          className="fixed pointer-events-none z-50 px-2 py-1 text-xs font-medium text-white bg-black/80 rounded backdrop-blur-sm transition-all duration-300"
+          className="fixed pointer-events-none z-50 px-2 py-1 text-xs font-medium text-white bg-black/80 rounded backdrop-blur-sm transition-all duration-100"
           style={{
             left: cursorPosition.x + 20,
             top: cursorPosition.y - 30,
