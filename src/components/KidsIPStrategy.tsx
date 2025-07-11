@@ -12,7 +12,9 @@ import {
   Tv, 
   Monitor, 
   Film, 
-  ShoppingBag 
+  ShoppingBag,
+  Target,
+  Zap
 } from 'lucide-react';
 
 const KidsIPStrategy = () => {
@@ -27,11 +29,11 @@ const KidsIPStrategy = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const cards = entry.target.querySelectorAll('.strategy-card, .platform-card');
+          const cards = entry.target.querySelectorAll('.strategy-item, .platform-item');
           cards.forEach((card, index) => {
             setTimeout(() => {
               card.classList.add('animate-fade-in');
-            }, index * 150);
+            }, index * 100);
           });
         }
       });
@@ -45,86 +47,44 @@ const KidsIPStrategy = () => {
   }, []);
 
   const strategyItems = [
-    {
-      icon: Share2,
-      title: "Social Media",
-      description: "Post animation snippets, storyboards & insights on IG, LinkedIn & YouTube."
-    },
-    {
-      icon: FileText,
-      title: "Content & Community",
-      description: "Share case studies, IP diaries & character designs via blog, Medium & Substack."
-    },
-    {
-      icon: Calendar,
-      title: "Events & Visibility",
-      description: "Attend/exhibit at Annecy, MIPCOM, ATF & Indian B2B markets to pitch projects."
-    },
-    {
-      icon: Megaphone,
-      title: "PR & Outreach",
-      description: "Publish interviews in AnimationXpress, Animation Magazine & trade portals."
-    },
-    {
-      icon: Users,
-      title: "Inbound Sales",
-      description: "Custom sample episodes shared via website and by request."
-    },
-    {
-      icon: Building,
-      title: "Direct Studio Outreach",
-      description: "Connect with OTT, kids' TV & licensing decision-makers."
-    },
-    {
-      icon: Handshake,
-      title: "Co-Production & Distribution Deals",
-      description: "Partner with animation studios globally for development."
-    },
-    {
-      icon: Globe,
-      title: "International Syndication & Licensing",
-      description: "Collaborate with global agents to expand IP reach & formats."
-    }
+    { icon: Share2, title: "Social Media", desc: "Animation snippets & insights on IG, LinkedIn & YouTube" },
+    { icon: FileText, title: "Content & Community", desc: "Case studies & IP diaries via blog & Medium" },
+    { icon: Calendar, title: "Events & Visibility", desc: "Annecy, MIPCOM, ATF & Indian B2B markets" },
+    { icon: Megaphone, title: "PR & Outreach", desc: "AnimationXpress, Animation Magazine interviews" },
+    { icon: Users, title: "Inbound Sales", desc: "Custom sample episodes via website" },
+    { icon: Building, title: "Direct Studio Outreach", desc: "OTT, kids' TV & licensing decision-makers" },
+    { icon: Handshake, title: "Co-Production Deals", desc: "Global animation studio partnerships" },
+    { icon: Globe, title: "International Syndication", desc: "Global agents for IP reach & formats" }
   ];
 
   const platformItems = [
-    {
-      icon: Tv,
-      title: "Kids' Animation for OTT Platforms",
-      description: "Netflix, Amazon Prime, Disney+, YouTube Kids etc.",
-      gradient: "from-purple-500 to-pink-500"
-    },
-    {
-      icon: Monitor,
-      title: "Children's Television Content",
-      description: "Broadcasters and Cable Networks.",
-      gradient: "from-blue-500 to-cyan-500"
-    },
-    {
-      icon: Film,
-      title: "Animated Feature Films",
-      description: "For family audiences.",
-      gradient: "from-green-500 to-emerald-500"
-    },
-    {
-      icon: ShoppingBag,
-      title: "Consumer Brands Targeting Children",
-      description: "Co-branded IP opportunities and licensing.",
-      gradient: "from-orange-500 to-red-500"
-    }
+    { icon: Tv, title: "Kids' Animation for OTT", desc: "Netflix, Amazon Prime, Disney+, YouTube Kids", color: "from-red-500 to-pink-500" },
+    { icon: Monitor, title: "Children's Television", desc: "Broadcasters and Cable Networks", color: "from-blue-500 to-cyan-500" },
+    { icon: Film, title: "Animated Feature Films", desc: "For family audiences", color: "from-purple-500 to-indigo-500" },
+    { icon: ShoppingBag, title: "Consumer Brands", desc: "Co-branded IP opportunities & licensing", color: "from-green-500 to-emerald-500" }
   ];
 
   return (
     <section 
       ref={sectionRef}
-      className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 py-20 px-6 font-toasty"
+      className="relative bg-gradient-to-br from-gray-50 via-white to-blue-50 py-20 px-6 font-toasty overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
+      {/* Decorative Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-blue-200/30 to-purple-200/30 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-32 left-16 w-48 h-48 bg-gradient-to-br from-pink-200/30 to-orange-200/30 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header Section */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Launch original IPs via global partners,<br />
-            platform deals & storytelling to position{' '}
+          <div className="inline-flex items-center gap-3 mb-6 bg-blue-50 px-6 py-3 rounded-full">
+            <Target className="w-6 h-6 text-blue-600" />
+            <span className="text-blue-700 font-semibold text-lg">IP Strategy Framework</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight max-w-5xl mx-auto">
+            Launch original IPs via global partners, platform deals & storytelling to position{' '}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Light Spire
             </span>{' '}
@@ -132,84 +92,56 @@ const KidsIPStrategy = () => {
             <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               kids' animation leader
             </span>
-            .
           </h2>
-          <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+          
+          <div className="flex items-center justify-center gap-4 mt-8">
+            <div className="h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent flex-1 max-w-32"></div>
+            <Zap className="w-8 h-8 text-blue-500" />
+            <div className="h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent flex-1 max-w-32"></div>
+          </div>
         </div>
 
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Left Side: Strategy Grid */}
-          <div className="space-y-8">
-            <div className="text-center lg:text-left">
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                Strategic Action Framework
-              </h3>
-              <p className="text-lg text-gray-600">
-                Comprehensive approach to market positioning and brand building
-              </p>
-            </div>
+        {/* Strategy Timeline Layout */}
+        <div className="mb-20">
+          <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">Strategic Action Framework</h3>
+          <div className="relative">
+            {/* Timeline Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400 rounded-full hidden lg:block"></div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Strategy Items in Timeline */}
+            <div className="space-y-8">
               {strategyItems.map((item, index) => {
                 const IconComponent = item.icon;
+                const isLeft = index % 2 === 0;
+                
                 return (
                   <div
                     key={index}
-                    className="strategy-card opacity-0 group relative bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-purple-200 hover:-translate-y-2"
+                    className={`strategy-item opacity-0 flex items-center gap-8 ${
+                      isLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                    } flex-col lg:gap-16`}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative z-10">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <IconComponent className="w-6 h-6 text-white" />
-                      </div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-purple-700 transition-colors">
-                        {item.title}
-                      </h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Right Side: Platform & Distribution Focus */}
-          <div className="space-y-8">
-            <div className="text-center lg:text-left">
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                Distribution Target Focus
-              </h3>
-              <p className="text-lg text-gray-600">
-                Key platforms and audience channels for maximum reach
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {platformItems.map((item, index) => {
-                const IconComponent = item.icon;
-                return (
-                  <div
-                    key={index}
-                    className="platform-card opacity-0 group relative bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-transparent overflow-hidden animate-float-gentle"
-                    style={{ animationDelay: `${index * 0.5}s` }}
-                  >
-                    <div className={`absolute inset-0 bg-gradient-to-r ${item.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
-                    <div className="relative z-10 flex items-start space-x-6">
-                      <div className={`w-16 h-16 bg-gradient-to-r ${item.gradient} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                        <IconComponent className="w-8 h-8 text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-gray-800 transition-colors">
+                    {/* Content Card */}
+                    <div className={`flex-1 ${isLeft ? 'lg:text-right' : 'lg:text-left'} text-center`}>
+                      <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                        <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                           {item.title}
                         </h4>
-                        <p className="text-gray-600 leading-relaxed">
-                          {item.description}
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          {item.desc}
                         </p>
                       </div>
                     </div>
+                    
+                    {/* Timeline Node */}
+                    <div className="relative lg:flex-shrink-0">
+                      <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 border-4 border-white">
+                        <IconComponent className="w-8 h-8 text-white" />
+                      </div>
+                    </div>
+                    
+                    {/* Spacer for opposite side */}
+                    <div className="flex-1 hidden lg:block"></div>
                   </div>
                 );
               })}
@@ -217,12 +149,42 @@ const KidsIPStrategy = () => {
           </div>
         </div>
 
-        {/* Bottom Decorative Element */}
-        <div className="mt-20 text-center">
-          <div className="inline-flex items-center space-x-4 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold shadow-lg">
+        {/* Platform Focus - Horizontal Cards */}
+        <div>
+          <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">Distribution Target Focus</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {platformItems.map((item, index) => {
+              const IconComponent = item.icon;
+              return (
+                <div
+                  key={index}
+                  className="platform-item opacity-0 group relative overflow-hidden"
+                >
+                  <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 h-full">
+                    <div className={`w-14 h-14 bg-gradient-to-r ${item.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                      <IconComponent className="w-7 h-7 text-white" />
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-gray-700 transition-colors">
+                      {item.title}
+                    </h4>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      {item.desc}
+                    </p>
+                    
+                    {/* Hover Effect Background */}
+                    <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl`}></div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center mt-16">
+          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <Globe className="w-6 h-6" />
-            <span>Ready to Launch Your Next IP</span>
-            <Globe className="w-6 h-6" />
+            <span className="font-semibold text-lg">Ready to Launch Your Next IP</span>
           </div>
         </div>
       </div>

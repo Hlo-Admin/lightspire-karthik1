@@ -154,14 +154,14 @@ const Index = () => {
         <ServicesSection2 />
       </div>
 
-      {/* Kids IP Strategy Section */}
-      <div className="creative-section" data-cursor="creative">
-        <KidsIPStrategy />
-      </div>
-
       {/* Dark About Section */}
       <div className="creative-section" data-cursor="creative">
         <AboutSectionDark />
+      </div>
+
+      {/* Kids IP Strategy Section - Now placed after About Us */}
+      <div className="creative-section" data-cursor="creative">
+        <KidsIPStrategy />
       </div>
     </div>
   );
