@@ -17,7 +17,11 @@
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     
-    <!-- Toasty Milk Font -->
+    <!-- Preload Toasty Milk Font -->
+    <link rel="preload" href="/Toasty Milk.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="/Toasty Milk.ttf" as="font" type="font/ttf" crossorigin>
+    
+    <!-- Toasty Milk Font with improved loading -->
     <style>
       @font-face {
         font-family: 'Toasty Milk';
@@ -26,6 +30,11 @@
         font-weight: normal;
         font-style: normal;
         font-display: swap;
+      }
+      
+      /* Ensure font is immediately available */
+      * {
+        font-family: 'Toasty Milk', 'Plus Jakarta Sans', sans-serif !important;
       }
     </style>
     
