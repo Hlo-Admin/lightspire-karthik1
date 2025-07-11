@@ -177,17 +177,17 @@ const ServicesSection = () => {
       </div>
 
       {/* Sticky Header */}
-      <div className="sticky top-20 z-30 text-center py-12 bg-gradient-to-b from-white/90 to-transparent backdrop-blur-sm">
+      <div className="sticky top-20 z-30 text-center pt-8 pb-4 bg-gradient-to-b from-white/90 to-transparent backdrop-blur-sm">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 cinematic-title">
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-2 cinematic-title">
             Our Services
           </h2>
-          <p className="text-xl md:text-2xl text-gray-600 font-light">
+          <p className="text-xl md:text-2xl text-gray-600 font-light mb-4">
             A journey through animation, design, and visual magic.
           </p>
           
           {/* Horizontal Progress Bar */}
-          <div className="mt-8 max-w-md mx-auto">
+          <div className="max-w-md mx-auto">
             <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
               <div 
                 className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 ease-out"
