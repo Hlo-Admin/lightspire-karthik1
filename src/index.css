@@ -50,6 +50,9 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Custom heading color */
+    --heading-color: 222 100% 50%;
   }
 
   .dark {
@@ -88,6 +91,9 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Custom heading color for dark mode */
+    --heading-color: 222 100% 60%;
   }
 }
 
@@ -104,10 +110,20 @@ All colors MUST be HSL.
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Toasty Milk', 'Plus Jakarta Sans', sans-serif !important;
+    color: hsl(var(--heading-color)) !important;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.8), 0 0 4px rgba(255, 255, 255, 0.6) !important;
+    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.3);
   }
 
   p, span, div, button, input, textarea, label {
     font-family: 'Toasty Milk', 'Plus Jakarta Sans', sans-serif !important;
+  }
+
+  /* Special styling for cinematic titles */
+  .cinematic-title {
+    color: hsl(var(--heading-color)) !important;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 255, 255, 0.7) !important;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
   }
 }
 
