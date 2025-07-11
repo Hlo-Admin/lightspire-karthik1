@@ -10,6 +10,7 @@ import ServicesSection from '@/components/ServicesSection';
 import ServicesSection2 from '@/components/ServicesSection2';
 import AboutSectionDark from '@/components/AboutSectionDark';
 import KidsIPStrategy from '@/components/KidsIPStrategy';
+import FoundersSection from '@/components/FoundersSection';
 import MagneticHover from '@/components/MagneticHover';
 
 const Index = () => {
@@ -162,6 +163,11 @@ const Index = () => {
       {/* Kids IP Strategy Section - Now placed after About Us */}
       <div className="creative-section" data-cursor="creative">
         <KidsIPStrategy />
+      </div>
+
+      {/* Founders Section - New section after Kids IP Strategy */}
+      <div className="creative-section" data-cursor="creative">
+        <FoundersSection />
       </div>
     </div>
   );
