@@ -1,6 +1,6 @@
 
 import { useEffect, useRef, useState } from 'react';
-import { Trophy, Tv, Film, Globe, Gamepad2, Smartphone, Star, Sparkles, Zap, Award, Target } from 'lucide-react';
+import { Trophy, Tv, Film, Globe, Gamepad2, Smartphone, Star, Sparkles, Zap, Award, Target, Building2 } from 'lucide-react';
 
 const AboutSectionDark = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -17,15 +17,15 @@ const AboutSectionDark = () => {
   ];
 
   const studios = [
-    "TIL Studios",
-    "Prime Focus", 
-    "Sanraa Media",
-    "Criya Infotainment",
-    "INSCRIBE Graphics",
-    "Green Gold Animation",
-    "DQ Entertainment",
-    "Toonz Media",
-    "Pixagon Digital"
+    { name: "TIL Studios", logo: "TIL" },
+    { name: "Prime Focus", logo: "PF" }, 
+    { name: "Sanraa Media", logo: "SM" },
+    { name: "Criya Infotainment", logo: "CI" },
+    { name: "INSCRIBE Graphics", logo: "IG" },
+    { name: "Green Gold Animation", logo: "GGA" },
+    { name: "DQ Entertainment", logo: "DQ" },
+    { name: "Toonz Media", logo: "TM" },
+    { name: "Pixagon Digital", logo: "PD" }
   ];
 
   // Count-up animation for years
@@ -92,12 +92,12 @@ const AboutSectionDark = () => {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-16 mb-20">
+        <div className="grid lg:grid-cols-3 gap-8 mb-16">
           {/* Left Column - About Description */}
-          <div className={`space-y-8 transition-all duration-1000 delay-300 ${
+          <div className={`lg:col-span-2 transition-all duration-1000 delay-300 ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
           }`}>
-            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8">
+            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 h-full">
               <div className="flex items-center mb-6">
                 <Target className="w-8 h-8 text-cyan-400 mr-3" />
                 <h3 className="text-2xl font-bold text-white">Our Mission</h3>
@@ -109,77 +109,91 @@ const AboutSectionDark = () => {
                 From concept to completion, we blend artistic vision with technical excellence to deliver content that not only meets but exceeds expectations. Every frame we create is a testament to our commitment to quality, creativity, and the magic of visual storytelling.
               </p>
             </div>
+          </div>
 
-            {/* Experience Card */}
-            <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm border border-gray-600/50 rounded-2xl p-8 text-center">
-              <div className="flex items-center justify-center mb-4">
-                <Award className="w-10 h-10 text-yellow-400 mr-3" />
-                <div className="text-6xl font-bold text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text">
+          {/* Right Column - Experience Card (Smaller) */}
+          <div className={`transition-all duration-1000 delay-500 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+          }`}>
+            <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm border border-gray-600/50 rounded-2xl p-6 text-center h-full flex flex-col justify-center">
+              <div className="flex items-center justify-center mb-3">
+                <Award className="w-8 h-8 text-yellow-400 mr-2" />
+                <div className="text-4xl font-bold text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text">
                   {yearsCount}+
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Years of Excellence</h3>
-              <p className="text-gray-300">
-                Over two decades mastering the art of <span className="text-cyan-400">animation</span> and <span className="text-purple-400">visual effects</span> across all platforms.
+              <h3 className="text-xl font-bold text-white mb-2">Years of Excellence</h3>
+              <p className="text-gray-300 text-sm">
+                Over two decades mastering <span className="text-cyan-400">animation</span> and <span className="text-purple-400">visual effects</span>.
               </p>
             </div>
           </div>
+        </div>
 
-          {/* Right Column - Domains & Studios */}
-          <div className={`space-y-8 transition-all duration-1000 delay-500 ${
-            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-          }`}>
-            {/* Domains */}
-            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-white mb-6 text-center">
-                <span className="text-purple-400">Visual Realms</span> We Master
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
-                {domains.map((domain, index) => {
-                  const Icon = domain.icon;
-                  return (
-                    <div
-                      key={domain.label}
-                      className="group bg-gray-700/50 rounded-xl p-4 hover:bg-gray-600/50 transition-all duration-300 hover:scale-105"
-                      style={{ transitionDelay: `${index * 100}ms` }}
-                    >
-                      <Icon className="w-8 h-8 text-gray-400 group-hover:text-white mx-auto mb-2 transition-colors duration-300" />
-                      <span className="block text-center text-gray-300 group-hover:text-white font-medium transition-colors duration-300">
-                        {domain.label}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Trusted Studios */}
-            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-white mb-6 text-center">
-                Trusted By <span className="text-pink-400">Studios Worldwide</span>
-              </h3>
-              <div className="grid grid-cols-1 gap-3">
-                {studios.map((studio, index) => (
+        {/* Domains Section */}
+        <div className={`mb-16 transition-all duration-1000 delay-700 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-white mb-6 text-center">
+              <span className="text-purple-400">Visual Realms</span> We Master
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              {domains.map((domain, index) => {
+                const Icon = domain.icon;
+                return (
                   <div
-                    key={studio}
-                    className="group bg-gray-700/30 rounded-lg p-3 hover:bg-gradient-to-r hover:from-purple-500/20 hover:to-cyan-500/20 transition-all duration-300"
-                    style={{ transitionDelay: `${index * 50}ms` }}
+                    key={domain.label}
+                    className="group bg-gray-700/50 rounded-xl p-4 hover:bg-gray-600/50 transition-all duration-300 hover:scale-105"
+                    style={{ transitionDelay: `${index * 100}ms` }}
                   >
-                    <div className="flex items-center">
-                      <Trophy className="w-5 h-5 text-gray-400 group-hover:text-purple-400 mr-3 transition-colors duration-300" />
+                    <Icon className="w-8 h-8 text-gray-400 group-hover:text-white mx-auto mb-2 transition-colors duration-300" />
+                    <span className="block text-center text-gray-300 group-hover:text-white font-medium transition-colors duration-300">
+                      {domain.label}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* Trusted Studios Section */}
+        <div className={`mb-16 transition-all duration-1000 delay-900 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-white mb-8 text-center">
+              Trusted By <span className="text-pink-400">Studios Worldwide</span>
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {studios.map((studio, index) => (
+                <div
+                  key={studio.name}
+                  className="group bg-gray-700/30 rounded-lg p-4 hover:bg-gradient-to-r hover:from-purple-500/20 hover:to-cyan-500/20 transition-all duration-300 hover:scale-105"
+                  style={{ transitionDelay: `${index * 50}ms` }}
+                >
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-700 rounded-lg flex items-center justify-center mr-4 group-hover:from-purple-500/30 group-hover:to-cyan-500/30 transition-all duration-300">
+                      <Building2 className="w-6 h-6 text-gray-400 group-hover:text-white transition-colors duration-300" />
+                    </div>
+                    <div>
+                      <div className="text-xs text-gray-500 group-hover:text-purple-400 font-mono transition-colors duration-300">
+                        {studio.logo}
+                      </div>
                       <span className="text-gray-300 group-hover:text-white font-medium transition-colors duration-300">
-                        {studio}
+                        {studio.name}
                       </span>
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
         {/* Bottom Quote */}
-        <div className={`text-center transition-all duration-1000 delay-700 ${
+        <div className={`text-center transition-all duration-1000 delay-1100 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <div className="relative inline-block bg-gray-800/60 backdrop-blur-sm border border-gray-600/50 rounded-2xl px-12 py-8">
