@@ -177,12 +177,12 @@ const ServicesSection = () => {
       </div>
 
       {/* Sticky Header */}
-      <div className="sticky top-20 z-30 text-center pt-8 pb-4 bg-gradient-to-b from-white/90 to-transparent backdrop-blur-sm">
+      <div className="sticky top-20 z-30 text-center pt-8 pb-6 bg-gradient-to-b from-white/90 to-transparent backdrop-blur-sm">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-2 cinematic-title">
             Our Services
           </h2>
-          <p className="text-xl md:text-2xl text-gray-600 font-light mb-4">
+          <p className="text-xl md:text-2xl text-gray-600 font-light mb-6">
             A journey through animation, design, and visual magic.
           </p>
           
@@ -201,9 +201,9 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Cards Container */}
-      <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-20">
-        <div className="relative w-full max-w-4xl mx-auto px-6 perspective-1000">
+      {/* Cards Container - Positioned relative to section, not fixed */}
+      <div className="relative h-full">
+        <div className="sticky top-1/2 transform -translate-y-1/2 w-full max-w-4xl mx-auto px-6 perspective-1000 z-20">
           {services.map((service, index) => {
             const Icon = service.icon;
             const cardStyle = getCardPosition(index);
@@ -259,7 +259,7 @@ const ServicesSection = () => {
       </div>
 
       {/* Speed Lines Effect */}
-      <div className="fixed inset-0 pointer-events-none z-10">
+      <div className="absolute inset-0 pointer-events-none z-10">
         {[...Array(8)].map((_, i) => (
           <div
             key={i}
