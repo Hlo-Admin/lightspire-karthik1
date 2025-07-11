@@ -20,8 +20,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'toasty': ['Plus Jakarta Sans', 'sans-serif'],
-				'sans': ['Plus Jakarta Sans', 'sans-serif'],
+				'toasty': ['Toasty Milk', 'Plus Jakarta Sans', 'sans-serif'],
+				'sans': ['Toasty Milk', 'Plus Jakarta Sans', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
