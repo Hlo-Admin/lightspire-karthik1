@@ -100,7 +100,7 @@ const AboutSection = () => {
           }`}></div>
         </div>
 
-        {/* Leadership Section */}
+        {/* Leadership Section  */}
         <div className="mb-24">
           <h3 className={`text-3xl md:text-4xl font-bold text-gray-800 text-center mb-16 transition-all duration-700 delay-500 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
