@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Play, Quote, ArrowRight } from 'lucide-react';
@@ -8,6 +7,7 @@ import { AnimatedBackground } from '@/components/AnimatedBackground';
 import Navbar from '@/components/Navbar';
 import ServicesSection from '@/components/ServicesSection';
 import ServicesSection2 from '@/components/ServicesSection2';
+import AboutSection from '@/components/AboutSection';
 import MagneticHover from '@/components/MagneticHover';
 
 const Index = () => {
@@ -140,6 +140,11 @@ const Index = () => {
         {/* Gradient Overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-60 pointer-events-none"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-900/20 via-transparent to-purple-900/20 pointer-events-none"></div>
+      </div>
+
+      {/* About Section */}
+      <div className="creative-section" data-cursor="creative">
+        <AboutSection />
       </div>
 
       {/* Services Section */}
