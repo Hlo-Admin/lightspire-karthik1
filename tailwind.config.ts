@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'toasty': ['Plus Jakarta Sans', 'sans-serif'],
+				'sans': ['Plus Jakarta Sans', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -84,11 +89,16 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'float-gentle': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-10px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float-gentle': 'float-gentle 3s ease-in-out infinite'
 			},
 			perspective: {
 				'1000': '1000px',

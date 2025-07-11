@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Play, Quote, ArrowRight } from 'lucide-react';
@@ -8,6 +9,7 @@ import Navbar from '@/components/Navbar';
 import ServicesSection from '@/components/ServicesSection';
 import ServicesSection2 from '@/components/ServicesSection2';
 import AboutSectionDark from '@/components/AboutSectionDark';
+import KidsIPStrategy from '@/components/KidsIPStrategy';
 import MagneticHover from '@/components/MagneticHover';
 
 const Index = () => {
@@ -47,7 +49,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative font-toasty">
       {/* Navbar */}
       <Navbar />
       
@@ -150,6 +152,11 @@ const Index = () => {
       {/* Premium Services Section */}
       <div className="creative-section" data-cursor="creative">
         <ServicesSection2 />
+      </div>
+
+      {/* Kids IP Strategy Section */}
+      <div className="creative-section" data-cursor="creative">
+        <KidsIPStrategy />
       </div>
 
       {/* Dark About Section */}
