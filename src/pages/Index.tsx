@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Play, Quote, ArrowRight } from 'lucide-react';
@@ -12,6 +11,8 @@ import AboutSectionDark from '@/components/AboutSectionDark';
 import KidsIPStrategy from '@/components/KidsIPStrategy';
 import FoundersSection from '@/components/FoundersSection';
 import MagneticHover from '@/components/MagneticHover';
+import ContactSection from '@/components/ContactSection';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -169,6 +170,14 @@ const Index = () => {
       <div className="creative-section" data-cursor="creative">
         <FoundersSection />
       </div>
+
+      {/* Contact Section - New section */}
+      <div className="creative-section" data-cursor="creative" id="contact">
+        <ContactSection />
+      </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
