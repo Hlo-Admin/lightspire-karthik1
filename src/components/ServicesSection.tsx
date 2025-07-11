@@ -6,7 +6,6 @@ const ServicesSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
   const [sectionTop, setSectionTop] = useState(0);
-  const [activeCardIndex, setActiveCardIndex] = useState(0);
 
   const services = [
     {
@@ -68,66 +67,85 @@ const ServicesSection = () => {
     };
   }, []);
 
-  // Calculate which card should be active and scroll progress
-  useEffect(() => {
+  // Calculate current active card based on scroll progress
+  const getCurrentCardIndex = () => {
     const viewportHeight = window.innerHeight;
-    const sectionHeight = viewportHeight * (services.length + 1); // Extra space for smooth transitions
+    const sectionHeight = viewportHeight * services.length;
     const scrollProgress = Math.max(0, Math.min(1, (scrollY - sectionTop) / sectionHeight));
-    const cardIndex = Math.min(Math.floor(scrollProgress * services.length), services.length - 1);
-    setActiveCardIndex(Math.max(0, cardIndex));
-  }, [scrollY, sectionTop, services.length]);
+    return Math.min(Math.floor(scrollProgress * services.length), services.length - 1);
+  };
 
   // Calculate scroll progress for the progress bar
   const getScrollProgress = () => {
     const viewportHeight = window.innerHeight;
-    const sectionHeight = viewportHeight * (services.length + 1);
-    return Math.max(0, Math.min(100, ((scrollY - sectionTop) / sectionHeight) * 100));
+    const sectionHeight = viewportHeight * services.length;
+    const progress = Math.max(0, Math.min(100, ((scrollY - sectionTop) / sectionHeight) * 100));
+    return progress;
   };
 
-  // Calculate horizontal position for each card
+  // Calculate position for each card based on continuous scroll
   const getCardPosition = (index: number) => {
-    const progress = Math.max(0, (scrollY - sectionTop) / (window.innerHeight * (services.length + 1)));
-    const cardProgress = (progress * services.length) - index;
+    const viewportHeight = window.innerHeight;
+    const sectionHeight = viewportHeight * services.length;
+    const scrollProgress = Math.max(0, (scrollY - sectionTop) / sectionHeight);
     
-    // Cards come from right, center, then exit to left
-    let translateX = 100; // Start off-screen right
-    let opacity = 0;
-    let scale = 0.8;
-    let rotateY = 15;
+    // Calculate how far along we are in the entire sequence
+    const totalProgress = scrollProgress * services.length;
+    
+    // Calculate this card's position relative to center
+    const cardOffset = totalProgress - index;
+    
+    // Start with first card at center (cardOffset = 0)
+    let translateX = -cardOffset * 120; // 120% spacing between cards
+    let opacity = 1;
+    let scale = 1;
+    let rotateY = 0;
+    let zIndex = 1;
 
-    if (cardProgress >= 0 && cardProgress <= 1) {
-      // Card is transitioning in or centered
-      translateX = 100 - (cardProgress * 200); // Move from right (100) to left (-100)
+    // Card is approaching center from right
+    if (cardOffset < 0) {
+      opacity = Math.max(0, 1 + cardOffset * 2); // Fade in as it approaches
+      scale = 0.8 + Math.max(0, 1 + cardOffset) * 0.2;
+      rotateY = Math.max(-15, cardOffset * 15);
+    }
+    // Card is at or near center
+    else if (cardOffset >= 0 && cardOffset <= 1) {
+      const centerDistance = Math.abs(cardOffset - 0.5);
+      opacity = Math.max(0.3, 1 - centerDistance * 1.5);
+      scale = 0.9 + (1 - centerDistance * 2) * 0.1;
+      rotateY = (cardOffset - 0.5) * 10;
       
-      // Opacity and scale based on distance from center
-      const distanceFromCenter = Math.abs(0.5 - cardProgress);
-      opacity = Math.max(0, 1 - (distanceFromCenter * 4));
-      scale = 0.8 + (1 - distanceFromCenter * 2) * 0.4;
-      rotateY = (0.5 - cardProgress) * 30;
-    } else if (cardProgress > 1) {
-      // Card has exited to the left
-      translateX = -100;
-      opacity = 0;
-      scale = 0.8;
-      rotateY = -15;
+      // Higher z-index for centered card
+      if (centerDistance < 0.5) {
+        zIndex = 10;
+      }
+    }
+    // Card is moving away to the left
+    else {
+      const exitProgress = cardOffset - 1;
+      opacity = Math.max(0, 1 - exitProgress * 2);
+      scale = Math.max(0.7, 1 - exitProgress * 0.3);
+      rotateY = Math.min(15, exitProgress * 15);
     }
 
     return {
       transform: `translateX(${translateX}%) scale(${scale}) rotateY(${rotateY}deg)`,
-      opacity,
-      zIndex: opacity > 0.5 ? 10 : 1,
+      opacity: Math.max(0, opacity),
+      zIndex,
     };
   };
 
   // Background parallax elements
   const getBackgroundElementStyle = (index: number) => {
-    const speed = 0.2 + (index * 0.1);
+    const speed = 0.1 + (index * 0.05);
     const translateX = -(scrollY - sectionTop) * speed * 0.1;
     return {
       transform: `translateX(${translateX}px)`,
-      opacity: 0.3 - (index * 0.1),
+      opacity: 0.2 - (index * 0.03),
     };
   };
+
+  const currentCardIndex = getCurrentCardIndex();
 
   return (
     <section 
@@ -135,19 +153,19 @@ const ServicesSection = () => {
       className="relative bg-gradient-to-b from-gray-50 via-white to-gray-100 overflow-hidden"
       id="services"
       style={{ 
-        height: `${100 * (services.length + 2)}vh` // Extra height for smooth scrolling
+        height: `${100 * services.length}vh` // One viewport height per card
       }}
     >
-      {/* Moving Background Elements - Train Track Metaphor */}
+      {/* Moving Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Floating background shapes */}
-        {[...Array(5)].map((_, i) => (
+        {[...Array(6)].map((_, i) => (
           <div
             key={i}
             className="absolute w-32 h-32 rounded-full bg-gradient-to-r from-blue-200/20 to-purple-200/20 blur-2xl"
             style={{
-              top: `${20 + i * 15}%`,
-              left: `${10 + i * 20}%`,
+              top: `${10 + i * 15}%`,
+              left: `${5 + i * 18}%`,
               ...getBackgroundElementStyle(i),
             }}
           />
@@ -177,13 +195,13 @@ const ServicesSection = () => {
               ></div>
             </div>
             <div className="text-sm text-gray-500 mt-2">
-              {activeCardIndex + 1} of {services.length}
+              {currentCardIndex + 1} of {services.length}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Cards Container - Train Cars */}
+      {/* Cards Container */}
       <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-20">
         <div className="relative w-full max-w-4xl mx-auto px-6 perspective-1000">
           {services.map((service, index) => {
@@ -193,7 +211,7 @@ const ServicesSection = () => {
             return (
               <div
                 key={service.title}
-                className="absolute inset-0 transition-all duration-700 ease-out transform-gpu"
+                className="absolute inset-0 transition-all duration-500 ease-out transform-gpu"
                 style={cardStyle}
               >
                 <div className="relative bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/60 overflow-hidden max-w-2xl mx-auto">
@@ -250,8 +268,8 @@ const ServicesSection = () => {
               top: `${15 + i * 10}%`,
               left: '0%',
               right: '0%',
-              transform: `translateX(${-(scrollY - sectionTop) * (0.3 + i * 0.05)}px)`,
-              opacity: 0.6 - (i * 0.05),
+              transform: `translateX(${-(scrollY - sectionTop) * (0.2 + i * 0.03)}px)`,
+              opacity: 0.4 - (i * 0.03),
             }}
           />
         ))}
