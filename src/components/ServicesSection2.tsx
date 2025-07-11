@@ -4,7 +4,6 @@ import { Tv, Globe, Film, Megaphone, Users, Smartphone } from 'lucide-react';
 
 const ServicesSection2 = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [scrollY, setScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
   const services = [
@@ -12,51 +11,41 @@ const ServicesSection2 = () => {
       icon: Tv,
       title: "TV Animated Series",
       description: "High-quality 2D/3D animated series for broadcast platforms.",
-      gradient: "from-blue-500 to-purple-600",
-      animation: "slide-left"
+      gradient: "from-blue-500 to-purple-600"
     },
     {
       icon: Globe,
       title: "OTT & Web Series", 
       description: "Visually compelling content for streaming platforms and web.",
-      gradient: "from-cyan-500 to-blue-600",
-      animation: "slide-right"
+      gradient: "from-cyan-500 to-blue-600"
     },
     {
       icon: Film,
       title: "Feature Films",
       description: "Full-scale animation and VFX for theatrical storytelling.",
-      gradient: "from-purple-500 to-pink-600",
-      animation: "zoom-in"
+      gradient: "from-purple-500 to-pink-600"
     },
     {
       icon: Megaphone,
       title: "Ad Animations",
       description: "Dynamic commercials and brand storytelling in motion.",
-      gradient: "from-orange-500 to-red-600",
-      animation: "slide-up"
+      gradient: "from-orange-500 to-red-600"
     },
     {
       icon: Users,
       title: "International Co-Productions",
       description: "Collaborative cross-border projects with creative synergy.",
-      gradient: "from-green-500 to-emerald-600",
-      animation: "rotate-in"
+      gradient: "from-green-500 to-emerald-600"
     },
     {
       icon: Smartphone,
       title: "Social Media Creatives",
       description: "Short-form animations tailored for digital platforms.",
-      gradient: "from-pink-500 to-rose-600",
-      animation: "scale-in"
+      gradient: "from-pink-500 to-rose-600"
     }
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -100px 0px'
@@ -74,59 +63,10 @@ const ServicesSection2 = () => {
       observer.observe(sectionRef.current);
     }
 
-    window.addEventListener('scroll', handleScroll);
-
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
     };
   }, []);
-
-  const getCardTransform = (index: number, animationType: string) => {
-    if (!isVisible) return {};
-    
-    const scrollProgress = Math.max(0, scrollY - (sectionRef.current?.offsetTop || 0) + window.innerHeight * 0.3);
-    const cardDelay = index * 200;
-    const progress = Math.max(0, scrollProgress - cardDelay) / 500;
-    const clampedProgress = Math.min(1, progress);
-
-    const animations = {
-      'slide-left': {
-        transform: `translateX(${(1 - clampedProgress) * -100}px) translateY(${(1 - clampedProgress) * 30}px)`,
-        opacity: clampedProgress
-      },
-      'slide-right': {
-        transform: `translateX(${(1 - clampedProgress) * 100}px) translateY(${(1 - clampedProgress) * 30}px)`,
-        opacity: clampedProgress
-      },
-      'zoom-in': {
-        transform: `scale(${0.8 + (clampedProgress * 0.2)}) translateY(${(1 - clampedProgress) * 50}px)`,
-        opacity: clampedProgress
-      },
-      'slide-up': {
-        transform: `translateY(${(1 - clampedProgress) * 80}px)`,
-        opacity: clampedProgress
-      },
-      'rotate-in': {
-        transform: `rotate(${(1 - clampedProgress) * 15}deg) translateY(${(1 - clampedProgress) * 40}px)`,
-        opacity: clampedProgress
-      },
-      'scale-in': {
-        transform: `scale(${0.7 + (clampedProgress * 0.3)}) rotate(${(1 - clampedProgress) * -10}deg)`,
-        opacity: clampedProgress
-      }
-    };
-
-    return animations[animationType as keyof typeof animations] || animations['slide-up'];
-  };
-
-  const getIconRotation = (index: number) => {
-    if (!isVisible) return 0;
-    const scrollProgress = Math.max(0, scrollY - (sectionRef.current?.offsetTop || 0) + window.innerHeight * 0.3);
-    const cardDelay = index * 200;
-    const progress = Math.max(0, scrollProgress - cardDelay) / 300;
-    return Math.min(360, progress * 360);
-  };
 
   return (
     <section 
@@ -160,15 +100,17 @@ const ServicesSection2 = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
-            const cardStyle = getCardTransform(index, service.animation);
             
             return (
               <div
                 key={service.title}
-                className="group relative"
+                className={`group relative transform transition-all duration-700 ${
+                  isVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-8'
+                }`}
                 style={{
-                  ...cardStyle,
-                  transition: 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                  transitionDelay: `${index * 150}ms`
                 }}
               >
                 <div className="relative bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden h-full p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
@@ -179,11 +121,7 @@ const ServicesSection2 = () => {
                   <div className="relative z-10">
                     {/* Animated Icon */}
                     <div 
-                      className={`inline-flex w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} items-center justify-center shadow-lg mb-6 group-hover:shadow-xl transition-all duration-500`}
-                      style={{
-                        transform: `rotate(${getIconRotation(index)}deg)`,
-                        transition: 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                      }}
+                      className={`inline-flex w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} items-center justify-center shadow-lg mb-6 group-hover:shadow-xl transition-all duration-500 group-hover:scale-110`}
                     >
                       <Icon className="w-8 h-8 text-white" />
                     </div>
