@@ -8,6 +8,7 @@ import { AnimatedBackground } from '@/components/AnimatedBackground';
 import Navbar from '@/components/Navbar';
 import ServicesSection from '@/components/ServicesSection';
 import ServicesSection2 from '@/components/ServicesSection2';
+import MagneticHover from '@/components/MagneticHover';
 
 const Index = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -51,7 +52,7 @@ const Index = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <div className="relative min-h-screen overflow-hidden bg-black">
+      <div className="relative min-h-screen overflow-hidden bg-black creative-section" data-cursor="creative">
         {/* Animated Background Canvas */}
         <AnimatedBackground />
         
@@ -103,24 +104,28 @@ const Index = () => {
               ref={ctaRef}
               className="opacity-0 flex flex-col sm:flex-row gap-6 justify-center items-center"
             >
-              <Button 
-                size="lg" 
-                className="group relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-8 py-4 text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]"
-              >
-                <Play className="mr-2 h-5 w-5 group-hover:animate-pulse" />
-                Watch Our Reel
-                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-              </Button>
+              <MagneticHover strength={0.4}>
+                <Button 
+                  size="lg" 
+                  className="group relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-8 py-4 text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]"
+                >
+                  <Play className="mr-2 h-5 w-5 group-hover:animate-pulse" />
+                  Watch Our Reel
+                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                </Button>
+              </MagneticHover>
               
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="group relative overflow-hidden border-2 border-purple-500 text-purple-400 hover:text-white px-8 py-4 text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:bg-purple-500 hover:shadow-[0_0_30px_rgba(168,85,247,0.5)]"
-              >
-                <Quote className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
-                Get a Quote
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </Button>
+              <MagneticHover strength={0.4}>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="group relative overflow-hidden border-2 border-purple-500 text-purple-400 hover:text-white px-8 py-4 text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:bg-purple-500 hover:shadow-[0_0_30px_rgba(168,85,247,0.5)]"
+                >
+                  <Quote className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+                  Get a Quote
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </Button>
+              </MagneticHover>
             </div>
 
             {/* Scroll Indicator */}
@@ -138,10 +143,14 @@ const Index = () => {
       </div>
 
       {/* Services Section */}
-      <ServicesSection />
+      <div className="creative-section" data-cursor="creative">
+        <ServicesSection />
+      </div>
 
       {/* Premium Services Section */}
-      <ServicesSection2 />
+      <div className="creative-section" data-cursor="creative">
+        <ServicesSection2 />
+      </div>
     </div>
   );
 };
