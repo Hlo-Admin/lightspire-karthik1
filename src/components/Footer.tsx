@@ -51,9 +51,14 @@ const Footer = () => {
           {/* Logo + Tagline */}
           <div className="space-y-6">
             <div>
-              <h3 className="text-2xl font-bold tracking-wider text-white mb-2 font-toasty">
-                LIGHT SPIRE MEDIA
-              </h3>
+              <div className="pb-5">
+              <img
+                src="/logo.png"
+                alt="Light Spire Media Logo"
+                className="h-10 w-auto object-contain drop-shadow-md"
+                style={{ filter: "drop-shadow(0 2px 8px #0678cf55)" }}
+              />
+              </div>
               <p className="text-gray-400 text-lg font-light italic font-toasty">
                 "Stories that move. Frames that matter."
               </p>
