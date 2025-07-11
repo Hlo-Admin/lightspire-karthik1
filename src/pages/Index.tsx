@@ -7,6 +7,7 @@ import { FloatingElements } from '@/components/FloatingElements';
 import { AnimatedBackground } from '@/components/AnimatedBackground';
 import Navbar from '@/components/Navbar';
 import ServicesSection from '@/components/ServicesSection';
+import ServicesSection2 from '@/components/ServicesSection2';
 
 const Index = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -138,6 +139,9 @@ const Index = () => {
 
       {/* Services Section */}
       <ServicesSection />
+
+      {/* Premium Services Section */}
+      <ServicesSection2 />
     </div>
   );
 };
