@@ -67,11 +67,12 @@ const ServicesSection = () => {
     };
   }, []);
 
-  // Calculate parallax movement - cards move from right to left
+  // Calculate parallax movement - cards move from right to left with first card starting from center
   const getParallaxOffset = () => {
-    const scrollProgress = Math.max(0, scrollY - sectionTop);
-    const maxOffset = window.innerWidth * 0.8; // Maximum offset
-    return -scrollProgress * 0.5; // Negative for right-to-left movement
+    const scrollProgress = Math.max(0, scrollY - sectionTop + window.innerHeight * 0.5);
+    const baseOffset = window.innerWidth * 0.3; // Start first card from center
+    const scrollMultiplier = 0.8; // Speed of parallax movement
+    return baseOffset - (scrollProgress * scrollMultiplier);
   };
 
   return (
@@ -81,7 +82,7 @@ const ServicesSection = () => {
       id="services"
     >
       {/* Header */}
-      <div className="text-center mb-16">
+      <div className="text-center mb-8">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 cinematic-title">
             Our Services
@@ -93,12 +94,12 @@ const ServicesSection = () => {
       </div>
 
       {/* Cards Container with Horizontal Parallax */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden h-96">
         <div 
-          className="flex gap-0 transition-transform duration-100 ease-out"
+          className="flex absolute top-0 transition-transform duration-100 ease-out"
           style={{ 
             transform: `translateX(${getParallaxOffset()}px)`,
-            width: `${services.length * 400}px` // Fixed width for each card
+            width: `${services.length * 320}px` // Fixed width for seamless movement
           }}
         >
           {services.map((service, index) => {
@@ -107,7 +108,7 @@ const ServicesSection = () => {
             return (
               <div
                 key={service.title}
-                className="flex-shrink-0 w-96 h-80"
+                className="flex-shrink-0 w-80 h-80 mr-0"
               >
                 <div className="relative bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden h-full">
                   {/* Gradient Background */}
