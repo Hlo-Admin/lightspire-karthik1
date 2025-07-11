@@ -7,7 +7,7 @@ import { AnimatedBackground } from '@/components/AnimatedBackground';
 import Navbar from '@/components/Navbar';
 import ServicesSection from '@/components/ServicesSection';
 import ServicesSection2 from '@/components/ServicesSection2';
-import AboutSection from '@/components/AboutSection';
+import AboutSectionDark from '@/components/AboutSectionDark';
 import MagneticHover from '@/components/MagneticHover';
 
 const Index = () => {
@@ -142,11 +142,6 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-900/20 via-transparent to-purple-900/20 pointer-events-none"></div>
       </div>
 
-      {/* About Section */}
-      <div className="creative-section" data-cursor="creative">
-        <AboutSection />
-      </div>
-
       {/* Services Section */}
       <div className="creative-section" data-cursor="creative">
         <ServicesSection />
@@ -155,6 +150,11 @@ const Index = () => {
       {/* Premium Services Section */}
       <div className="creative-section" data-cursor="creative">
         <ServicesSection2 />
+      </div>
+
+      {/* Dark About Section */}
+      <div className="creative-section" data-cursor="creative">
+        <AboutSectionDark />
       </div>
     </div>
   );
