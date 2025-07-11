@@ -81,7 +81,7 @@ const CustomCursor = () => {
   }, []);
 
   const getCursorClasses = () => {
-    let baseClasses = "fixed pointer-events-none z-50 transition-all duration-100 ease-out";
+    let baseClasses = "fixed pointer-events-none z-50 transition-all ease-out";
     
     if (isClicking) {
       return `${baseClasses} w-8 h-8 border-2 border-cyan-400 rounded-full bg-cyan-400/20 shadow-[0_0_20px_rgba(6,182,212,0.6)] scale-75`;
