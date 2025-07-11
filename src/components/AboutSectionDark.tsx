@@ -81,10 +81,7 @@ const AboutSectionDark = () => {
             }`}
           >
             <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              About{" "}
-              <span className="text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text">
-                Light Spire Media
-              </span>
+              About <span className="text-[#0678cf]">Light Spire Media</span>
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto mb-8"></div>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
@@ -118,8 +115,8 @@ const AboutSectionDark = () => {
                 , we are passionate storytellers who transform imagination into
                 stunning visual reality. Our studio specializes in creating
                 captivating{" "}
-                <span className="text-purple-400">2D animations</span>,
-                immersive <span className="text-pink-400">3D experiences</span>,
+                <span className="text-[#0678cf]">2D animations</span>,
+                immersive <span className="text-[#0678cf]">3D experiences</span>,
                 and cutting-edge{" "}
                 <span className="text-yellow-400">VFX solutions</span> that
                 bring stories to life across every platform.
@@ -137,7 +134,7 @@ const AboutSectionDark = () => {
             <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm border border-gray-600/50 rounded-2xl p-6 text-center">
               <div className="flex items-center justify-center mb-3">
                 <Award className="w-8 h-8 text-yellow-400 mr-2" />
-                <div className="text-4xl font-bold text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text">
+                <div className="text-4xl font-bold text-[#0678cf]">
                   {yearsCount}+
                 </div>
               </div>
@@ -147,7 +144,7 @@ const AboutSectionDark = () => {
               <p className="text-gray-300 text-sm">
                 Over two decades mastering{" "}
                 <span className="text-cyan-400">animation</span> and{" "}
-                <span className="text-purple-400">visual effects</span>.
+                <span className="text-[#0678cf]">visual effects</span>.
               </p>
             </div>
           </div>
@@ -175,7 +172,7 @@ const AboutSectionDark = () => {
           <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-white mb-8 text-center">
               Trusted By{" "}
-              <span className="text-pink-400">Studios Worldwide</span>
+              <span className="text-[#0678cf]">Studios Worldwide</span>
             </h3>
             <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-4">
               {studios.map((studio, index) => (
@@ -203,7 +200,7 @@ const AboutSectionDark = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl blur-xl"></div>
             <div className="relative flex items-center justify-center">
               <Sparkles className="w-8 h-8 text-cyan-400 mr-4 animate-pulse" />
-              <p className="text-2xl md:text-3xl font-bold text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text italic">
+              <p className="text-2xl md:text-3xl font-bold text-[#0678cf]">
                 "We don't just animate. We envision worlds, frame by frame."
               </p>
               <Sparkles

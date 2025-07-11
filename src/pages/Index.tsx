@@ -82,10 +82,10 @@ const Index = () => {
             {/* Company Logo/Brand */}
             <div className="mb-8 opacity-0 animate-fade-in">
               <div className="inline-block relative">
-                <h3 className="text-2xl font-light tracking-widest text-cyan-400 mb-2 neon-text">
+                <h3 className="text-2xl font-light tracking-widest text-brand mb-2 neon-text">
                   LIGHT SPIRE MEDIA
                 </h3>
-                <div className="h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+                <div className="h-px bg-gradient-to-r from-transparent via-brand to-transparent"></div>
               </div>
             </div>
 
@@ -106,7 +106,7 @@ const Index = () => {
               ref={subtitleRef}
               className="opacity-0 text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed font-light"
             >
-              Crafting breathtaking <span className="text-cyan-400">2D</span>,{" "}
+              Crafting breathtaking <span className="text-brand">2D</span>,{" "}
               <span className="text-purple-400">3D</span> &{" "}
               <span className="text-pink-400">VFX</span> experiences
               <br />
@@ -121,7 +121,7 @@ const Index = () => {
               <MagneticHover strength={0.4}>
                 <Button
                   size="lg"
-                  className="group relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-8 py-4 text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]"
+                  className="group relative overflow-hidden bg-gradient-to-r from-brand to-blue-600 hover:from-brand hover:to-blue-500 text-white px-8 py-4 text-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(6,120,207,0.5)]"
                 >
                   <Play className="mr-2 h-5 w-5 group-hover:animate-pulse" />
                   Watch Our Reel
@@ -144,8 +144,8 @@ const Index = () => {
 
             {/* Scroll Indicator */}
             <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-              <div className="w-6 h-10 border-2 border-cyan-400 rounded-full flex justify-center">
-                <div className="w-1 h-3 bg-cyan-400 rounded-full mt-2 animate-pulse"></div>
+              <div className="w-6 h-10 border-2 border-brand rounded-full flex justify-center">
+                <div className="w-1 h-3 bg-brand rounded-full mt-2 animate-pulse"></div>
               </div>
             </div>
           </div>
@@ -153,7 +153,7 @@ const Index = () => {
 
         {/* Gradient Overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-60 pointer-events-none"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-900/20 via-transparent to-purple-900/20 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-brand/20 via-transparent to-purple-900/20 pointer-events-none"></div>
       </div>
 
       {/* Services Section */}

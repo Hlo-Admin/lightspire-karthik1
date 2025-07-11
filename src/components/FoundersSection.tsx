@@ -117,14 +117,14 @@ const FoundersSection = () => {
           <div className="inline-flex items-center mb-6">
             <Sparkles className="w-8 h-8 text-cyan-400 mr-4 animate-pulse" />
             <h2 className="text-5xl md:text-6xl font-bold text-white">
-              Meet Our <span className="text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text">Founders</span>
+              Meet Our <span className="text-[#0678cf]">Founders</span>
             </h2>
             <Sparkles className="w-8 h-8 text-purple-400 ml-4 animate-pulse" style={{ animationDelay: '0.5s' }} />
           </div>
           <div className="w-32 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto mb-8 rounded-full"></div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             The visionary minds behind Light Spire Media, bringing together decades of experience 
-            in <span className="text-cyan-400">creative direction</span> and <span className="text-purple-400">production excellence</span>.
+            in <span className="text-cyan-400">creative direction</span> and <span className="text-[#0678cf]">production excellence</span>.
           </p>
         </div>
 
@@ -206,7 +206,7 @@ const FoundersSection = () => {
           <div className="relative inline-block bg-gray-800/40 backdrop-blur-sm border border-gray-600/30 rounded-2xl px-8 py-6">
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-purple-500/5 to-blue-500/5 rounded-2xl blur-xl"></div>
             <p className="text-xl md:text-2xl font-light text-gray-300 italic relative z-10">
-              "Together, we transform imagination into <span className="text-transparent bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text font-semibold">visual reality</span>."
+              "Together, we transform imagination into <span className="text-[#0779cf] font-semibold">visual reality</span>."
             </p>
           </div>
         </div>

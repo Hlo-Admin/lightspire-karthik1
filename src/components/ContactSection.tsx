@@ -78,7 +78,7 @@ const ContactSection = () => {
                   type="text"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent transition-all duration-200"
                   placeholder="Your full name"
                   required
                 />
@@ -94,7 +94,7 @@ const ContactSection = () => {
                   type="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent transition-all duration-200"
                   placeholder="your@email.com"
                   required
                 />
@@ -110,7 +110,7 @@ const ContactSection = () => {
                   type="text"
                   value={formData.company}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent transition-all duration-200"
                   placeholder="Your company name (optional)"
                 />
               </div>
@@ -125,7 +125,7 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={5}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent transition-all duration-200 resize-none"
                   placeholder="Tell us about your project..."
                   required
                 />
@@ -133,7 +133,7 @@ const ContactSection = () => {
 
               <Button
                 type="submit"
-                className="group w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+                className="group w-full bg-[#0779cf] from-brand to-purple-600 hover:from-brand hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
               >
                 <Send className="mr-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
                 Send Message
@@ -154,14 +154,14 @@ const ContactSection = () => {
             <div className="space-y-6">
               {/* Email */}
               <div className="flex items-center space-x-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 group">
-                <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-200 transition-colors duration-300">
-                  <Mail className="h-6 w-6 text-blue-600" />
+                <div className="flex-shrink-0 w-12 h-12 bg-brand/10 rounded-full flex items-center justify-center group-hover:bg-brand/20 transition-colors duration-300">
+                  <Mail className="h-6 w-6 text-brand" />
                 </div>
                 <div>
                   <h4 className="font-medium text-gray-900">Email</h4>
                   <a 
                     href="mailto:hello@lightspiremedia.com" 
-                    className="text-blue-600 hover:text-blue-700 transition-colors duration-200"
+                    className="text-brand hover:text-brand/80 transition-colors duration-200"
                   >
                     hello@lightspiremedia.com
                   </a>
@@ -197,14 +197,14 @@ const ContactSection = () => {
             </div>
 
             {/* Call to Action */}
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 border border-blue-100">
+            <div className="bg-gradient-to-r from-brand/10 to-purple-50 rounded-xl p-6 border border-brand/20">
               <h4 className="font-semibold text-gray-900 mb-2">Ready to start your project?</h4>
               <p className="text-gray-600 mb-4">
                 Let's discuss how we can bring your creative vision to life with our expertise in 2D, 3D, and VFX.
               </p>
               <Button 
                 variant="outline" 
-                className="border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-400 transition-all duration-200"
+                className="border-brand text-brand hover:bg-brand/10 hover:border-brand/80 transition-all duration-200"
               >
                 Schedule a Call
               </Button>

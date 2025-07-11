@@ -1,20 +1,20 @@
-import { useEffect, useRef, useState } from 'react';
-import { 
-  Share2, 
-  FileText, 
-  Calendar, 
-  Megaphone, 
-  Users, 
-  Building, 
-  Handshake, 
-  Globe, 
-  Tv, 
-  Monitor, 
-  Film, 
+import { useEffect, useRef, useState } from "react";
+import {
+  Share2,
+  FileText,
+  Calendar,
+  Megaphone,
+  Users,
+  Building,
+  Handshake,
+  Globe,
+  Tv,
+  Monitor,
+  Film,
   ShoppingBag,
   Target,
-  Zap
-} from 'lucide-react';
+  Zap,
+} from "lucide-react";
 
 const KidsIPStrategy = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -24,16 +24,18 @@ const KidsIPStrategy = () => {
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: "0px 0px -50px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const cards = entry.target.querySelectorAll('.strategy-item, .platform-item');
+          const cards = entry.target.querySelectorAll(
+            ".strategy-item, .platform-item"
+          );
           cards.forEach((card, index) => {
             setTimeout(() => {
-              card.classList.add('animate-fade-in');
+              card.classList.add("animate-fade-in");
             }, index * 100);
           });
         }
@@ -46,25 +48,26 @@ const KidsIPStrategy = () => {
         const rect = sectionRef.current.getBoundingClientRect();
         const sectionHeight = sectionRef.current.offsetHeight;
         const windowHeight = window.innerHeight;
-        
+
         // Calculate scroll progress through the section
         const sectionTop = rect.top;
         const sectionBottom = rect.bottom;
-        
+
         let progress = 0;
-        
+
         if (sectionTop < windowHeight && sectionBottom > 0) {
-          const visibleHeight = Math.min(windowHeight, sectionBottom) - Math.max(0, sectionTop);
+          const visibleHeight =
+            Math.min(windowHeight, sectionBottom) - Math.max(0, sectionTop);
           const totalScrollableHeight = sectionHeight + windowHeight;
           const scrolled = windowHeight - sectionTop;
           progress = Math.max(0, Math.min(1, scrolled / totalScrollableHeight));
         }
-        
+
         setScrollProgress(progress);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     handleScroll(); // Initial call
 
     if (sectionRef.current) {
@@ -73,30 +76,82 @@ const KidsIPStrategy = () => {
 
     return () => {
       observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   const strategyItems = [
-    { icon: Share2, title: "Social Media", desc: "Animation snippets & insights on IG, LinkedIn & YouTube" },
-    { icon: FileText, title: "Content & Community", desc: "Case studies & IP diaries via blog & Medium" },
-    { icon: Calendar, title: "Events & Visibility", desc: "Annecy, MIPCOM, ATF & Indian B2B markets" },
-    { icon: Megaphone, title: "PR & Outreach", desc: "AnimationXpress, Animation Magazine interviews" },
-    { icon: Users, title: "Inbound Sales", desc: "Custom sample episodes via website" },
-    { icon: Building, title: "Direct Studio Outreach", desc: "OTT, kids' TV & licensing decision-makers" },
-    { icon: Handshake, title: "Co-Production Deals", desc: "Global animation studio partnerships" },
-    { icon: Globe, title: "International Syndication", desc: "Global agents for IP reach & formats" }
+    {
+      icon: Share2,
+      title: "Social Media",
+      desc: "Animation snippets & insights on IG, LinkedIn & YouTube",
+    },
+    {
+      icon: FileText,
+      title: "Content & Community",
+      desc: "Case studies & IP diaries via blog & Medium",
+    },
+    {
+      icon: Calendar,
+      title: "Events & Visibility",
+      desc: "Annecy, MIPCOM, ATF & Indian B2B markets",
+    },
+    {
+      icon: Megaphone,
+      title: "PR & Outreach",
+      desc: "AnimationXpress, Animation Magazine interviews",
+    },
+    {
+      icon: Users,
+      title: "Inbound Sales",
+      desc: "Custom sample episodes via website",
+    },
+    {
+      icon: Building,
+      title: "Direct Studio Outreach",
+      desc: "OTT, kids' TV & licensing decision-makers",
+    },
+    {
+      icon: Handshake,
+      title: "Co-Production Deals",
+      desc: "Global animation studio partnerships",
+    },
+    {
+      icon: Globe,
+      title: "International Syndication",
+      desc: "Global agents for IP reach & formats",
+    },
   ];
 
   const platformItems = [
-    { icon: Tv, title: "Kids' Animation for OTT", desc: "Netflix, Amazon Prime, Disney+, YouTube Kids", color: "from-red-500 to-pink-500" },
-    { icon: Monitor, title: "Children's Television", desc: "Broadcasters and Cable Networks", color: "from-blue-500 to-cyan-500" },
-    { icon: Film, title: "Animated Feature Films", desc: "For family audiences", color: "from-purple-500 to-indigo-500" },
-    { icon: ShoppingBag, title: "Consumer Brands", desc: "Co-branded IP opportunities & licensing", color: "from-green-500 to-emerald-500" }
+    {
+      icon: Tv,
+      title: "Kids' Animation for OTT",
+      desc: "Netflix, Amazon Prime, Disney+, YouTube Kids",
+      color: "from-red-500 to-pink-500",
+    },
+    {
+      icon: Monitor,
+      title: "Children's Television",
+      desc: "Broadcasters and Cable Networks",
+      color: "from-blue-500 to-cyan-500",
+    },
+    {
+      icon: Film,
+      title: "Animated Feature Films",
+      desc: "For family audiences",
+      color: "from-purple-500 to-indigo-500",
+    },
+    {
+      icon: ShoppingBag,
+      title: "Consumer Brands",
+      desc: "Co-branded IP opportunities & licensing",
+      color: "from-green-500 to-emerald-500",
+    },
   ];
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="relative bg-gradient-to-br from-gray-50 via-white to-blue-50 py-20 px-6 font-toasty overflow-hidden"
     >
@@ -111,20 +166,20 @@ const KidsIPStrategy = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-3 mb-6 bg-blue-50 px-6 py-3 rounded-full">
             <Target className="w-6 h-6 text-blue-600" />
-            <span className="text-blue-700 font-semibold text-lg">IP Strategy Framework</span>
-          </div>
-          
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight max-w-5xl mx-auto">
-            Launch original IPs via global partners, platform deals & storytelling to position{' '}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Light Spire
-            </span>{' '}
-            as a{' '}
-            <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              kids' animation leader
+            <span className="text-[#0678cf] font-semibold text-lg">
+              IP Strategy Framework
             </span>
+          </div>
+
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight max-w-5xl mx-auto">
+            Launch original IPs via global partners, platform deals &
+            storytelling to position{" "}
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-[#0678cf]">
+              Light Spire
+            </span>{" "}
+            as a <span className="text-[#0678cf]">kids' animation leader</span>
           </h2>
-          
+
           <div className="flex items-center justify-center gap-4 mt-8">
             <div className="h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent flex-1 max-w-32"></div>
             <Zap className="w-8 h-8 text-blue-500" />
@@ -134,35 +189,41 @@ const KidsIPStrategy = () => {
 
         {/* Strategy Timeline Layout */}
         <div className="mb-20">
-          <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">Strategic Action Framework</h3>
+          <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">
+            Strategic Action Framework
+          </h3>
           <div className="relative">
             {/* Timeline Line - Background (gray) */}
             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gray-200 rounded-full hidden lg:block"></div>
-            
+
             {/* Timeline Line - Animated Fill */}
-            <div 
+            <div
               ref={timelineRef}
               className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400 rounded-full hidden lg:block transition-all duration-300 ease-out"
               style={{
                 height: `${scrollProgress * 100}%`,
               }}
             ></div>
-            
+
             {/* Strategy Items in Timeline */}
             <div className="space-y-8">
               {strategyItems.map((item, index) => {
                 const IconComponent = item.icon;
                 const isLeft = index % 2 === 0;
-                
+
                 return (
                   <div
                     key={index}
                     className={`strategy-item opacity-0 flex items-center gap-8 ${
-                      isLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                      isLeft ? "lg:flex-row" : "lg:flex-row-reverse"
                     } flex-col lg:gap-16`}
                   >
                     {/* Content Card */}
-                    <div className={`flex-1 ${isLeft ? 'lg:text-right' : 'lg:text-left'} text-center`}>
+                    <div
+                      className={`flex-1 ${
+                        isLeft ? "lg:text-right" : "lg:text-left"
+                      } text-center`}
+                    >
                       <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
                         <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                           {item.title}
@@ -172,14 +233,17 @@ const KidsIPStrategy = () => {
                         </p>
                       </div>
                     </div>
-                    
+
                     {/* Timeline Node */}
                     <div className="relative lg:flex-shrink-0">
-                      <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 border-4 border-white">
+                      <div
+                        className="w-16 h-16 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 border-4 border-white"
+                        style={{ backgroundColor: "#0678cf" }}
+                      >
                         <IconComponent className="w-8 h-8 text-white" />
                       </div>
                     </div>
-                    
+
                     {/* Spacer for opposite side */}
                     <div className="flex-1 hidden lg:block"></div>
                   </div>
@@ -191,7 +255,9 @@ const KidsIPStrategy = () => {
 
         {/* Platform Focus - Horizontal Cards */}
         <div>
-          <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">Distribution Target Focus</h3>
+          <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">
+            Distribution Target Focus
+          </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {platformItems.map((item, index) => {
               const IconComponent = item.icon;
@@ -201,7 +267,10 @@ const KidsIPStrategy = () => {
                   className="platform-item opacity-0 group relative overflow-hidden"
                 >
                   <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 h-full">
-                    <div className={`w-14 h-14 bg-gradient-to-r ${item.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <div
+                      className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                      style={{ backgroundColor: "#0678cf" }}
+                    >
                       <IconComponent className="w-7 h-7 text-white" />
                     </div>
                     <h4 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-gray-700 transition-colors">
@@ -210,9 +279,12 @@ const KidsIPStrategy = () => {
                     <p className="text-gray-600 text-sm leading-relaxed">
                       {item.desc}
                     </p>
-                    
+
                     {/* Hover Effect Background */}
-                    <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl`}></div>
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl"
+                      style={{ backgroundColor: "#0678cf" }}
+                    ></div>
                   </div>
                 </div>
               );
@@ -222,9 +294,11 @@ const KidsIPStrategy = () => {
 
         {/* Bottom CTA */}
         <div className="text-center mt-16">
-          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+          <div className="inline-flex items-center gap-3 bg-[#0779cf] from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <Globe className="w-6 h-6" />
-            <span className="font-semibold text-lg">Ready to Launch Your Next IP</span>
+            <span className="font-semibold text-lg">
+              Ready to Launch Your Next IP
+            </span>
           </div>
         </div>
       </div>

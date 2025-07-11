@@ -81,7 +81,7 @@ const AboutSection = () => {
     >
       {/* Floating Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-40 h-40 bg-gradient-to-br from-cyan-200/20 to-blue-300/20 rounded-full blur-2xl animate-float"></div>
+        <div className="absolute top-20 left-10 w-40 h-40 bg-gradient-to-br from-brand/20 to-purple-300/20 rounded-full blur-2xl animate-float"></div>
         <div className="absolute top-60 right-20 w-32 h-32 bg-gradient-to-br from-purple-200/20 to-pink-300/20 rounded-full blur-xl animate-float" style={{ animationDelay: '2s' }}></div>
         <div className="absolute bottom-40 left-1/3 w-24 h-24 bg-gradient-to-br from-orange-200/20 to-red-300/20 rounded-full blur-lg animate-float" style={{ animationDelay: '1s' }}></div>
         <div className="absolute bottom-60 right-1/4 w-36 h-36 bg-gradient-to-br from-green-200/20 to-emerald-300/20 rounded-full blur-xl animate-float" style={{ animationDelay: '3s' }}></div>
@@ -93,9 +93,9 @@ const AboutSection = () => {
           <h2 className={`text-5xl md:text-6xl font-bold text-gray-900 mb-6 cinematic-title transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            About <span className="text-transparent bg-gradient-to-r from-cyan-500 to-purple-600 bg-clip-text">Light Spire</span>
+            About <span className="text-transparent bg-gradient-to-r from-brand to-purple-600 bg-clip-text">Light Spire</span>
           </h2>
-          <div className={`w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto rounded-full transition-all duration-1000 delay-300 ${
+          <div className={`w-24 h-1 bg-gradient-to-r from-brand to-purple-500 mx-auto rounded-full transition-all duration-1000 delay-300 ${
             isVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
           }`}></div>
         </div>
@@ -118,16 +118,16 @@ const AboutSection = () => {
                 style={{ transitionDelay: `${700 + index * 200}ms` }}
               >
                 <div className="flex items-center mb-6">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-brand to-purple-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
                     <User className="w-8 h-8 text-white" />
                   </div>
                   <div className="ml-4">
                     <h4 className="text-xl font-bold text-gray-900">{leader.name}</h4>
-                    <p className="text-cyan-600 font-semibold">{leader.role}</p>
+                    <p className="text-brand font-semibold">{leader.role}</p>
                   </div>
                 </div>
                 <p className="text-gray-600 leading-relaxed">{leader.description}</p>
-                <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 w-0 group-hover:w-full transition-all duration-500 rounded-full"></div>
+                <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-brand to-purple-600 w-0 group-hover:w-full transition-all duration-500 rounded-full"></div>
               </div>
             ))}
           </div>
@@ -143,14 +143,14 @@ const AboutSection = () => {
         <div className={`text-center mb-24 transition-all duration-1000 delay-700 ${
           isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
         }`}>
-          <div className="inline-block bg-gradient-to-r from-cyan-500 to-purple-600 rounded-3xl p-12 shadow-2xl">
+          <div className="inline-block bg-gradient-to-r from-brand to-purple-600 rounded-3xl p-12 shadow-2xl">
             <div className="text-6xl md:text-8xl font-bold text-white mb-4 neon-text-strong">
               {yearsCount}+
             </div>
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Years of Animation Excellence
             </h3>
-            <p className="text-xl text-cyan-100 max-w-2xl">
+            <p className="text-xl text-brand/80 max-w-2xl">
               With over two decades in the industry, we've mastered captivating 2D animation across platforms.
             </p>
           </div>
@@ -175,7 +175,7 @@ const AboutSection = () => {
                   }`}
                   style={{ transitionDelay: `${1100 + index * 100}ms` }}
                 >
-                  <Icon className="w-6 h-6 text-cyan-500 mr-3 group-hover:text-purple-500 transition-colors duration-300" />
+                  <Icon className="w-6 h-6 text-brand mr-3 group-hover:text-purple-500 transition-colors duration-300" />
                   <span className="font-semibold text-gray-800 group-hover:text-gray-900">{domain.label}</span>
                 </div>
               );
@@ -206,13 +206,13 @@ const AboutSection = () => {
                 }`}
                 style={{ transitionDelay: `${1200 + index * 100}ms` }}
               >
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand to-purple-600 flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
                   <Trophy className="w-6 h-6 text-white" />
                 </div>
                 <h4 className="font-bold text-gray-900 group-hover:text-gray-800 transition-colors duration-300">
                   {studio}
                 </h4>
-                <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-cyan-500 to-purple-600 w-0 group-hover:w-full transition-all duration-500 rounded-full"></div>
+                <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-brand to-purple-600 w-0 group-hover:w-full transition-all duration-500 rounded-full"></div>
               </div>
             ))}
           </div>
@@ -223,7 +223,7 @@ const AboutSection = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}>
           <div className="inline-block bg-gray-900 rounded-2xl px-8 py-6 shadow-2xl">
-            <p className="text-2xl md:text-3xl font-bold text-transparent bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text">
+            <p className="text-2xl md:text-3xl font-bold text-transparent bg-gradient-to-r from-brand to-purple-400 bg-clip-text">
               We don't just animate stories — we elevate them.
             </p>
           </div>
