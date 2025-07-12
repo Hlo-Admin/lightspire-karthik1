@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -33,10 +32,8 @@ const Navbar = () => {
       {/* Main Navbar */}
       <nav
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out",
-          isScrolled
-            ? "bg-black/90 backdrop-blur-xl border-b border-cyan-500/30"
-            : "bg-black/20 backdrop-blur-sm"
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out bg-[#f5f5f5] border-b border-cyan-500/30",
+          isScrolled ? "shadow-md" : ""
         )}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -54,7 +51,7 @@ const Navbar = () => {
             {/* Hamburger Menu Button */}
             <button
               onClick={toggleMenu}
-              className="relative z-60 p-3 rounded-lg bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/40 hover:border-cyan-400/60 transition-all duration-300 group hover:scale-105 hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-purple-500/30"
+              className="relative z-60 p-3 rounded-lg bg-black from-cyan-500/20 to-purple-500/20 border border-cyan-500/40 hover:border-cyan-400/60 transition-all duration-300 group hover:scale-105 hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-purple-500/30"
               aria-label="Toggle menu"
             >
               <div className="relative w-6 h-6">
@@ -83,15 +80,15 @@ const Navbar = () => {
       {/* Full-Screen Menu Overlay */}
       <div
         className={cn(
-          "fixed inset-0 z-40 transition-all duration-700 ease-out",
+          "fixed inset-0 z-40 transition-all duration-700 ease-out bg-[#f5f5f5]",
           isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         )}
       >
         {/* Background Overlay with better contrast */}
         <div
           className={cn(
-            "absolute inset-0 bg-gradient-to-br from-black/95 via-gray-900/95 to-black/95 transition-all duration-700",
-            isMenuOpen ? "backdrop-blur-xl" : "backdrop-blur-none"
+            "absolute inset-0 transition-all duration-700 bg-[#f5f5f5]",
+            isMenuOpen ? "" : ""
           )}
           onClick={toggleMenu}
         />
@@ -119,14 +116,15 @@ const Navbar = () => {
                   <a
                     href={item.href}
                     onClick={toggleMenu}
-                    className="group block text-5xl md:text-7xl font-bold text-white hover:text-transparent hover:bg-gradient-to-r hover:from-cyan-400 hover:via-purple-400 hover:to-pink-400 hover:bg-clip-text transition-all duration-500 relative cinematic-title hover:scale-105 transform-gpu"
+                    className="group block text-5xl md:text-7xl font-bold text-black hover:text-[#0678cf] transition-all duration-500 relative cinematic-title hover:scale-105 transform-gpu"
                     style={{
-                      textShadow: "0 0 20px rgba(255,255,255,0.1), 0 2px 4px rgba(0,0,0,0.8)"
+                      textShadow:
+                        "0 0 20px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.08)",
                     }}
                   >
-                    <span className="relative z-10 drop-shadow-xl">{item.name}</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-cyan-500/30 group-hover:via-purple-500/30 group-hover:to-pink-500/30 blur-2xl transition-all duration-500 transform scale-150" />
-                    <div className="absolute inset-0 bg-white/5 group-hover:bg-white/10 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                    <span className="relative z-10 drop-shadow-xl">
+                      {item.name}
+                    </span>
                   </a>
                 </div>
               ))}

@@ -1,6 +1,16 @@
-
 import { useEffect, useRef, useState, Suspense, lazy } from "react";
-import { Target, Award, Building2, Sparkles } from "lucide-react";
+import {
+  Target,
+  Award,
+  Building2,
+  Sparkles,
+  Play,
+  Crown,
+  Zap,
+  Globe,
+  Film,
+  Tv,
+} from "lucide-react";
 
 // Lazy load Spline for better performance
 const LazySpline = lazy(() => import("@splinetool/react-spline"));
@@ -22,15 +32,14 @@ const AboutSectionDark = () => {
   const [yearsCount, setYearsCount] = useState(0);
 
   const studios = [
-    { name: "TIL Studios", logo: "TIL" },
-    { name: "Prime Focus", logo: "PF" },
-    { name: "Sanraa Media", logo: "SM" },
-    { name: "Criya Infotainment", logo: "CI" },
-    { name: "INSCRIBE Graphics", logo: "IG" },
-    { name: "Green Gold Animation", logo: "GGA" },
-    { name: "DQ Entertainment", logo: "DQ" },
-    { name: "Toonz Media", logo: "TM" },
-    { name: "Pixagon Digital", logo: "PD" },
+    { name: "Netflix", icon: Play, color: "text-red-500" },
+    { name: "Disney+", icon: Crown, color: "text-blue-500" },
+    { name: "Amazon Prime", icon: Zap, color: "text-blue-600" },
+    { name: "HBO Max", icon: Tv, color: "text-purple-500" },
+    { name: "Warner Bros", icon: Film, color: "text-blue-700" },
+    { name: "Universal", icon: Globe, color: "text-green-600" },
+    { name: "Sony Pictures", icon: Building2, color: "text-blue-800" },
+    { name: "Paramount", icon: Sparkles, color: "text-indigo-600" },
   ];
 
   // Count-up animation for years
@@ -68,163 +77,185 @@ const AboutSectionDark = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-gradient-to-br from-gray-900 via-black to-gray-800 py-24 overflow-hidden"
+      className="relative py-0 overflow-visible"
       id="about"
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-32 left-1/4 w-96 h-96 bg-gradient-radial from-cyan-500/10 via-cyan-500/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
-        <div
-          className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-radial from-purple-500/8 via-purple-500/4 to-transparent rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "1s" }}
-        ></div>
+      <div
+        className="relative w-full"
+        style={{
+          background: "#0678cf",
+          clipPath: "polygon(0 3vw, 100% 0, 100% 100%, 0 calc(100% - 3vw))",
+          paddingTop: "6rem", // Add extra padding for top slant
+          paddingBottom: "6rem", // Add extra padding for bottom slant
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          {/* Place ALL your content here, including background effects */}
+          {/* Background Effects */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-32 left-1/4 w-96 h-96 bg-gradient-radial from-cyan-500/10 via-cyan-500/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
+            <div
+              className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-radial from-purple-500/8 via-purple-500/4 to-transparent rounded-full blur-3xl animate-pulse"
+              style={{ animationDelay: "1s" }}
+            ></div>
 
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Hero Section */}
-        <div className="text-center mb-20">
-          <div
-            className={`transition-all duration-1000 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-12"
-            }`}
-          >
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              About <span className="text-[#0678cf]">Light Spire Media</span>
-            </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 mx-auto mb-8"></div>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Crafting stories with character, color, and{" "}
-              <span className="text-cyan-400">cinematic precision</span>.
-            </p>
+            {/* Grid Pattern */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
           </div>
-        </div>
 
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
-          {/* Left Column - About Description and Experience Card */}
-          <div
-            className={`transition-all duration-1000 delay-300 ${
-              isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-8"
-            }`}
-          >
-            {/* About Description */}
-            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 mb-8">
-              <div className="flex items-center mb-6">
-                <Target className="w-8 h-8 text-cyan-400 mr-3" />
-                <h3 className="text-2xl font-bold text-white">Our Mission</h3>
-              </div>
-              <p className="text-gray-300 leading-relaxed mb-6">
-                At{" "}
-                <span className="text-cyan-400 font-semibold">
-                  Light Spire Media
-                </span>
-                , we are passionate storytellers who transform imagination into
-                stunning visual reality. Our studio specializes in creating
-                captivating{" "}
-                <span className="text-[#0678cf]">2D animations</span>,
-                immersive <span className="text-[#0678cf]">3D experiences</span>,
-                and cutting-edge{" "}
-                <span className="text-yellow-400">VFX solutions</span> that
-                bring stories to life across every platform.
-              </p>
-              <p className="text-gray-400 leading-relaxed">
-                From concept to completion, we blend artistic vision with
-                technical excellence to deliver content that not only meets but
-                exceeds expectations. Every frame we create is a testament to
-                our commitment to quality, creativity, and the magic of visual
-                storytelling.
+          {/* Hero Section */}
+          <div className="text-center mb-20">
+            <div
+              className={`transition-all duration-1000 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-12"
+              }`}
+            >
+              <h2 className="text-5xl md:text-6xl font-bold text-[#f5f5f5] mb-6">
+                About <span className="text-white">Light Spire Media</span>
+              </h2>
+              <div className="w-24 h-1 bg-[#f5f5f5] mx-auto mb-8"></div>
+              <p className="text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed">
+                Crafting stories with character, color, and{" "}
+                <span className="text-white">cinematic precision</span>.
               </p>
             </div>
+          </div>
 
-            {/* Experience Card */}
-            <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm border border-gray-600/50 rounded-2xl p-6 text-center">
-              <div className="flex items-center justify-center mb-3">
-                <Award className="w-8 h-8 text-yellow-400 mr-2" />
-                <div className="text-4xl font-bold text-[#0678cf]">
-                  {yearsCount}+
+          {/* Main Content Grid */}
+          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+            {/* Left Column - About Description and Experience Card */}
+            <div
+              className={`transition-all duration-1000 delay-300 ${
+                isVisible
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 -translate-x-8"
+              }`}
+            >
+              {/* About Description */}
+              <div className="bg-[#0678cf]/80 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl p-8 mb-8">
+                <div className="flex items-center mb-6">
+                  <Target className="w-8 h-8 text-white mr-3" />
+                  <h3 className="text-2xl font-bold text-white">Our Mission</h3>
                 </div>
+                <p className="text-[#f5f5f5] leading-relaxed mb-6">
+                  At{" "}
+                  <span className="text-white font-semibold">
+                    Light Spire Media
+                  </span>
+                  , we are passionate storytellers who transform imagination
+                  into stunning visual reality. Our studio specializes in
+                  creating captivating{" "}
+                  <span className="text-white">2D animations</span>, immersive{" "}
+                  <span className="text-white">3D experiences</span>, and
+                  cutting-edge <span className="text-white">VFX solutions</span>{" "}
+                  that bring stories to life across every platform.
+                </p>
+                <p className="text-white leading-relaxed">
+                  From concept to completion, we blend artistic vision with
+                  technical excellence to deliver content that not only meets
+                  but exceeds expectations. Every frame we create is a testament
+                  to our commitment to quality, creativity, and the magic of
+                  visual storytelling.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">
-                Years of Excellence
-              </h3>
-              <p className="text-gray-300 text-sm">
-                Over two decades mastering{" "}
-                <span className="text-cyan-400">animation</span> and{" "}
-                <span className="text-[#0678cf]">visual effects</span>.
-              </p>
-            </div>
-          </div>
 
-          {/* Right Column - Optimized Spline 3D Component */}
-          <div
-            className={`transition-all duration-1000 delay-500 ${
-              isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-8"
-            }`}
-          >
-            <div className="relative h-full min-h-[500px] rounded-2xl overflow-hidden">
-              <Suspense fallback={<SplineLoader />}>
-                <LazySpline 
-                  scene="https://prod.spline.design/6dQW-8PtBylGcVV9/scene.splinecode"
-                  style={{ width: '100%', height: '100%' }}
-                />
-              </Suspense>
-            </div>
-          </div>
-        </div>
-
-        {/* Trusted Studios Section */}
-        <div
-          className={`mb-16 transition-all duration-1000 delay-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-white mb-8 text-center">
-              Trusted By{" "}
-              <span className="text-[#0678cf]">Studios Worldwide</span>
-            </h3>
-            <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-4">
-              {studios.map((studio, index) => (
-                <div
-                  key={studio.name}
-                  className="group bg-gray-700/30 rounded-lg p-4 hover:bg-gradient-to-r hover:from-purple-500/20 hover:to-cyan-500/20 transition-all duration-300 hover:scale-105 flex items-center justify-center"
-                  style={{ transitionDelay: `${index * 50}ms` }}
-                >
-                  <div className="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-700 rounded-lg flex items-center justify-center group-hover:from-purple-500/30 group-hover:to-cyan-500/30 transition-all duration-300">
-                    <Building2 className="w-6 h-6 text-gray-400 group-hover:text-white transition-colors duration-300" />
+              {/* Experience Card */}
+              <div className="bg-[#0678cf]/80 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl p-6 text-center">
+                <div className="flex items-center justify-center mb-3">
+                  <Award className="w-8 h-8 text-white mr-2" />
+                  <div className="text-4xl font-bold text-white">
+                    {yearsCount}+
                   </div>
                 </div>
-              ))}
+                <h3 className="text-xl font-bold text-white mb-2">
+                  Years of Excellence
+                </h3>
+                <p className="text-[#f5f5f5] text-sm">
+                  Over two decades mastering{" "}
+                  <span className="text-white">animation</span> and{" "}
+                  <span className="text-white">visual effects</span>.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Column - Optimized Spline 3D Component */}
+            <div
+              className={`transition-all duration-1000 delay-500 ${
+                isVisible
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 translate-x-8"
+              }`}
+            >
+              <div className="relative h-full min-h-[500px] rounded-2xl overflow-hidden">
+                <Suspense fallback={<SplineLoader />}>
+                  <LazySpline
+                    scene="https://prod.spline.design/6dQW-8PtBylGcVV9/scene.splinecode"
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                </Suspense>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Bottom Quote */}
-        <div
-          className={`text-center transition-all duration-1000 delay-900 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          <div className="relative inline-block bg-gray-800/60 backdrop-blur-sm border border-gray-600/50 rounded-2xl px-12 py-8">
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl blur-xl"></div>
-            <div className="relative flex items-center justify-center">
-              <Sparkles className="w-8 h-8 text-cyan-400 mr-4 animate-pulse" />
-              <p className="text-2xl md:text-3xl font-bold text-[#0678cf]">
-                "We don't just animate. We envision worlds, frame by frame."
-              </p>
-              <Sparkles
-                className="w-8 h-8 text-purple-400 ml-4 animate-pulse"
-                style={{ animationDelay: "0.5s" }}
-              />
+          {/* Trusted Studios Section */}
+          <div
+            className={`mb-16 transition-all duration-1000 delay-700 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
+          >
+            <div className="bg-[#0678cf]/80 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl p-8">
+              <h3 className="text-2xl font-bold text-white mb-8 text-center">
+                Trusted By{" "}
+                <span className="text-[#f5f5f5]">Studios Worldwide</span>
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+                {studios.map((studio, index) => {
+                  const Icon = studio.icon;
+                  return (
+                    <div
+                      key={studio.name}
+                      className="group bg-[#f5f5f5]/10 rounded-lg p-4 hover:bg-[#f5f5f5]/20 transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center"
+                      style={{ transitionDelay: `${index * 50}ms` }}
+                    >
+                      <div className="w-12 h-12 bg-[#f5f5f5]/20 rounded-lg flex items-center justify-center group-hover:bg-white/20 transition-all duration-300 mb-2">
+                        <Icon
+                          className={`w-6 h-6 ${studio.color} group-hover:text-white transition-colors duration-300`}
+                        />
+                      </div>
+                      <span className="text-xs text-[#f5f5f5] text-center font-medium group-hover:text-white transition-colors duration-300">
+                        {studio.name}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Quote */}
+          <div
+            className={`text-center transition-all duration-1000 delay-900 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
+          >
+            <div className="relative inline-block bg-[#0678cf]/80 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl px-12 py-8">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#f5f5f5]/10 via-[#0678cf]/10 to-white/10 rounded-2xl blur-xl"></div>
+              <div className="relative flex items-center justify-center">
+                <Sparkles className="w-8 h-8 text-white mr-4 animate-pulse" />
+                <p className="text-2xl md:text-3xl font-bold text-white">
+                  "We don't just animate. We envision worlds, frame by frame."
+                </p>
+                <Sparkles
+                  className="w-8 h-8 text-[#f5f5f5] ml-4 animate-pulse"
+                  style={{ animationDelay: "0.5s" }}
+                />
+              </div>
             </div>
           </div>
         </div>
