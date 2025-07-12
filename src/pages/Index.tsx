@@ -157,9 +157,9 @@ const Index = () => {
       </div>
 
       {/* Services Section */}
-      <div className="creative-section" data-cursor="creative">
+      {/* <div className="creative-section" data-cursor="creative">
         <ServicesSection />
-      </div>
+      </div> */}
 
       {/* Premium Services Section */}
       <div className="creative-section" data-cursor="creative">
