@@ -1,9 +1,9 @@
-import { useEffect, useRef } from "react";
+
+import { useEffect, useRef, Suspense, lazy } from "react";
 import { Button } from "@/components/ui/button";
 import { Play, Quote, ArrowRight } from "lucide-react";
 import { ParticleSystem } from "@/components/ParticleSystem";
 import { FloatingElements } from "@/components/FloatingElements";
-import Spline from "@splinetool/react-spline";
 import Navbar from "@/components/Navbar";
 import ServicesSection from "@/components/ServicesSection";
 import ServicesSection2 from "@/components/ServicesSection2";
@@ -13,6 +13,19 @@ import FoundersSection from "@/components/FoundersSection";
 import MagneticHover from "@/components/MagneticHover";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+
+// Lazy load Spline component for better performance
+const LazySpline = lazy(() => import("@splinetool/react-spline"));
+
+// Loading fallback component
+const SplineLoader = () => (
+  <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center">
+    <div className="text-center">
+      <div className="w-12 h-12 border-4 border-brand border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+      <p className="text-gray-400 text-sm">Loading 3D Experience...</p>
+    </div>
+  </div>
+);
 
 const Index = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -61,9 +74,14 @@ const Index = () => {
         className="relative min-h-screen overflow-hidden bg-black creative-section"
         data-cursor="creative"
       >
-        {/* Spline 3D Background */}
+        {/* Optimized Spline 3D Background with lazy loading */}
         <div className="absolute inset-0 z-0">
-          <Spline scene="https://prod.spline.design/eooOuQJdLnU2Uuu1/scene.splinecode" />
+          <Suspense fallback={<SplineLoader />}>
+            <LazySpline 
+              scene="https://prod.spline.design/eooOuQJdLnU2Uuu1/scene.splinecode"
+              style={{ width: '100%', height: '100%' }}
+            />
+          </Suspense>
         </div>
 
         {/* Particle System */}
@@ -156,13 +174,8 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-brand/20 via-transparent to-purple-900/20 pointer-events-none"></div>
       </div>
 
-      {/* Services Section */}
-      {/* <div className="creative-section" data-cursor="creative">
-        <ServicesSection />
-      </div> */}
-
       {/* Premium Services Section */}
-      <div className="creative-section" data-cursor="creative" id="services-premium">
+      <div className="creative-section" data-cursor="creative" id="services">
         <ServicesSection2 />
       </div>
 

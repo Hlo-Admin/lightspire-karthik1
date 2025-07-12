@@ -1,5 +1,5 @@
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface Particle {
   x: number;
@@ -15,6 +15,8 @@ interface Particle {
 
 export const ParticleSystem = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const animationFrameRef = useRef<number>();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -32,7 +34,8 @@ export const ParticleSystem = () => {
     window.addEventListener('resize', resizeCanvas);
 
     const particles: Particle[] = [];
-    const maxParticles = 100;
+    // Reduced particle count for better performance
+    const maxParticles = 50;
     const colors = ['#06b6d4', '#8b5cf6', '#ec4899', '#10b981'];
 
     const createParticle = (): Particle => {
@@ -41,11 +44,11 @@ export const ParticleSystem = () => {
         y: canvas.height + 10,
         vx: (Math.random() - 0.5) * 0.5,
         vy: -Math.random() * 2 - 0.5,
-        size: Math.random() * 3 + 1,
-        opacity: Math.random() * 0.8 + 0.2,
+        size: Math.random() * 2 + 0.5, // Smaller particles
+        opacity: Math.random() * 0.6 + 0.2, // Reduced opacity
         color: colors[Math.floor(Math.random() * colors.length)],
         life: 0,
-        maxLife: Math.random() * 300 + 100
+        maxLife: Math.random() * 200 + 100 // Shorter life for better performance
       };
     };
 
@@ -55,6 +58,12 @@ export const ParticleSystem = () => {
     }
 
     const animate = () => {
+      // Skip animation if not visible to save performance
+      if (!isVisible) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((particle, index) => {
@@ -67,12 +76,18 @@ export const ParticleSystem = () => {
         const lifeFactor = 1 - (particle.life / particle.maxLife);
         const currentOpacity = particle.opacity * lifeFactor;
 
-        // Draw particle with glow effect
+        // Skip drawing if opacity is too low
+        if (currentOpacity < 0.01) {
+          particles[index] = createParticle();
+          return;
+        }
+
+        // Optimized drawing - reduced glow effect
         ctx.save();
         ctx.globalAlpha = currentOpacity;
         
-        // Glow effect
-        ctx.shadowBlur = 20;
+        // Simplified glow effect
+        ctx.shadowBlur = 8;
         ctx.shadowColor = particle.color;
         
         ctx.fillStyle = particle.color;
@@ -88,15 +103,30 @@ export const ParticleSystem = () => {
         }
       });
 
-      requestAnimationFrame(animate);
+      animationFrameRef.current = requestAnimationFrame(animate);
     };
 
+    // Intersection Observer to pause animation when not visible
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(canvas);
     animate();
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      observer.disconnect();
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
     };
-  }, []);
+  }, [isVisible]);
 
   return (
     <canvas

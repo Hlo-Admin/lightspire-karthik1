@@ -1,6 +1,19 @@
-import { useEffect, useRef, useState } from "react";
+
+import { useEffect, useRef, useState, Suspense, lazy } from "react";
 import { Target, Award, Building2, Sparkles } from "lucide-react";
-import Spline from "@splinetool/react-spline";
+
+// Lazy load Spline for better performance
+const LazySpline = lazy(() => import("@splinetool/react-spline"));
+
+// Optimized loading component
+const SplineLoader = () => (
+  <div className="flex items-center justify-center h-full bg-gradient-to-br from-gray-800/60 to-gray-900/60 rounded-2xl">
+    <div className="text-center">
+      <div className="w-8 h-8 border-3 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+      <p className="text-gray-400 text-xs">Loading 3D Model...</p>
+    </div>
+  </div>
+);
 
 const AboutSectionDark = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -149,7 +162,7 @@ const AboutSectionDark = () => {
             </div>
           </div>
 
-          {/* Right Column - Spline 3D Component */}
+          {/* Right Column - Optimized Spline 3D Component */}
           <div
             className={`transition-all duration-1000 delay-500 ${
               isVisible
@@ -158,7 +171,12 @@ const AboutSectionDark = () => {
             }`}
           >
             <div className="relative h-full min-h-[500px] rounded-2xl overflow-hidden">
-              <Spline scene="https://prod.spline.design/6dQW-8PtBylGcVV9/scene.splinecode" />
+              <Suspense fallback={<SplineLoader />}>
+                <LazySpline 
+                  scene="https://prod.spline.design/6dQW-8PtBylGcVV9/scene.splinecode"
+                  style={{ width: '100%', height: '100%' }}
+                />
+              </Suspense>
             </div>
           </div>
         </div>
