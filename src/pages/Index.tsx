@@ -162,12 +162,12 @@ const Index = () => {
       </div> */}
 
       {/* Premium Services Section */}
-      <div className="creative-section" data-cursor="creative">
+      <div className="creative-section" data-cursor="creative" id="services-premium">
         <ServicesSection2 />
       </div>
 
       {/* Dark About Section */}
-      <div className="creative-section" data-cursor="creative">
+      <div className="creative-section" data-cursor="creative" id="about">
         <AboutSectionDark />
       </div>
 
