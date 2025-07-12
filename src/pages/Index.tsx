@@ -1,10 +1,10 @@
-
 import { useEffect, useRef, Suspense, lazy } from "react";
 import { Button } from "@/components/ui/button";
 import { Play, Quote, ArrowRight } from "lucide-react";
 import { ParticleSystem } from "@/components/ParticleSystem";
 import { FloatingElements } from "@/components/FloatingElements";
 import Navbar from "@/components/Navbar";
+import ScrollSpy from "@/components/ScrollSpy";
 import ServicesSection from "@/components/ServicesSection";
 import ServicesSection2 from "@/components/ServicesSection2";
 import AboutSectionDark from "@/components/AboutSectionDark";
@@ -33,6 +33,14 @@ const Index = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+
+  const menuItems = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Services", href: "#services" },
+    { name: "Portfolio", href: "#portfolio" },
+    { name: "Contact", href: "#contact" },
+  ];
 
   useEffect(() => {
     const observerOptions = {
@@ -70,8 +78,13 @@ const Index = () => {
       {/* Navbar */}
       <Navbar />
 
+      {/* ScrollSpy */}
+      <ScrollSpy menuItems={menuItems} />
+
       {/* Hero Section */}
-    <LightspireHero/>
+      <div id="home">
+        <LightspireHero />
+      </div>
 
       {/* Premium Services Section */}
       <div className="creative-section" data-cursor="creative" id="services">
@@ -84,7 +97,7 @@ const Index = () => {
       </div>
 
       {/* Kids IP Strategy Section - Now placed after About Us */}
-      <div className="creative-section" data-cursor="creative">
+      <div className="creative-section" data-cursor="creative" id="portfolio">
         <KidsIPStrategy />
       </div>
 

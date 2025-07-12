@@ -55,7 +55,7 @@ const LightspireHero = () => {
         className="absolute bottom-1/3 right-10 hidden lg:block animate-fade-in"
         style={{ animationDelay: "1s" }}
       >
-        <Play className="h-12 w-12 text-[#0678cf] opacity-30" />
+        
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -63,7 +63,7 @@ const LightspireHero = () => {
           <div className="max-w-4xl">
             <div className="flex items-center justify-center mb-6 animate-fade-in">
               <div className="bg-[#0678cf] bg-opacity-10 text-[#0678cf] rounded-full px-6 py-2 text-sm font-medium inline-flex items-center border border-[#0678cf]/20">
-                <Sparkles className="h-4 w-4 mr-2 text-[#0678cf]" />
+                {/* <Sparkles className="h-4 w-4 mr-2 text-[#0678cf]" /> */}
                 27+ Years of Animation Excellence
               </div>
             </div>
