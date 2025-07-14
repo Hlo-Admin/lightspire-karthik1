@@ -263,7 +263,7 @@ const AboutSectionDark = () => {
 
           {/* Bottom Quote */}
           <div
-            className={`text-center transition-all duration-1000 delay-900 ${
+            className={`text-center transition-all pt-16 duration-1000 delay-900 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
