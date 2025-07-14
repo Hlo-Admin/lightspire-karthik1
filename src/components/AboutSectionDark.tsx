@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, Suspense, lazy } from "react";
-import { gsap } from "gsap";
 import {
   Target,
   Award,
@@ -28,8 +27,6 @@ const SplineLoader = () => (
 
 const AboutSectionDark = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const topSlantRef = useRef<HTMLDivElement>(null);
-  const bottomSlantRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [countStarted, setCountStarted] = useState(false);
   const [yearsCount, setYearsCount] = useState(0);
@@ -66,25 +63,6 @@ const AboutSectionDark = () => {
         if (entry.isIntersecting) {
           setIsVisible(true);
           setTimeout(() => setCountStarted(true), 1000);
-          
-          // Animate slant lines
-          if (topSlantRef.current && bottomSlantRef.current) {
-            gsap.set([topSlantRef.current, bottomSlantRef.current], { scaleX: 0 });
-            
-            gsap.to(topSlantRef.current, {
-              scaleX: 1,
-              duration: 1.5,
-              ease: "power2.out",
-              delay: 0.3
-            });
-            
-            gsap.to(bottomSlantRef.current, {
-              scaleX: 1,
-              duration: 1.5,
-              ease: "power2.out",
-              delay: 0.6
-            });
-          }
         }
       });
     }, observerOptions);
@@ -102,25 +80,13 @@ const AboutSectionDark = () => {
       className="relative py-0 overflow-visible bg-[#f2f4f5]"
       id="about"
     >
-      {/* Animated Top Slant Line */}
-      <div className="absolute top-0 left-0 w-full h-24 overflow-hidden z-20">
-        <div 
-          ref={topSlantRef}
-          className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-500 origin-left"
-          style={{
-            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 80%)",
-            transform: "scaleX(0)"
-          }}
-        />
-      </div>
-
       <div
         className="relative w-full"
         style={{
           background: "#0678cf",
           clipPath: "polygon(0 3vw, 100% 0, 100% 100%, 0 calc(100% - 3vw))",
-          paddingTop: "6rem",
-          paddingBottom: "6rem",
+          paddingTop: "6rem", // Add extra padding for top slant
+          paddingBottom: "6rem", // Add extra padding for bottom slant
         }}
       >
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -293,18 +259,6 @@ const AboutSectionDark = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Animated Bottom Slant Line */}
-      <div className="absolute bottom-0 left-0 w-full h-24 overflow-hidden z-20">
-        <div 
-          ref={bottomSlantRef}
-          className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-400 origin-left"
-          style={{
-            clipPath: "polygon(0 20%, 100% 0, 100% 100%, 0 100%)",
-            transform: "scaleX(0)"
-          }}
-        />
       </div>
     </section>
   );
