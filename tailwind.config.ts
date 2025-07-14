@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -19,8 +20,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        toasty: ["Toasty Milk", "Plus Jakarta Sans", "sans-serif"],
-        sans: ["Toasty Milk", "Plus Jakarta Sans", "sans-serif"],
+        creato: ["CreatoDisplay", "Plus Jakarta Sans", "sans-serif"],
+        sans: ["CreatoDisplay", "Plus Jakarta Sans", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -17,24 +17,130 @@
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     
-    <!-- Preload Toasty Milk Font -->
-    <link rel="preload" href="/Toasty Milk.otf" as="font" type="font/otf" crossorigin>
-    <link rel="preload" href="/Toasty Milk.ttf" as="font" type="font/ttf" crossorigin>
+    <!-- Preload CreatoDisplay Fonts -->
+    <link rel="preload" href="/fonts/CreatoDisplay-Regular.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="/fonts/CreatoDisplay-Medium.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="/fonts/CreatoDisplay-Bold.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="/fonts/CreatoDisplay-Black.otf" as="font" type="font/otf" crossorigin>
     
-    <!-- Toasty Milk Font with improved loading -->
+    <!-- CreatoDisplay Font Face Declarations -->
     <style>
       @font-face {
-        font-family: 'Toasty Milk';
-        src: url('/Toasty Milk.otf') format('opentype'),
-             url('/Toasty Milk.ttf') format('truetype');
-        font-weight: normal;
+        font-family: 'CreatoDisplay';
+        src: url('/fonts/CreatoDisplay-Thin.otf') format('opentype');
+        font-weight: 100;
         font-style: normal;
         font-display: swap;
       }
       
-      /* Ensure font is immediately available */
+      @font-face {
+        font-family: 'CreatoDisplay';
+        src: url('/fonts/CreatoDisplay-Light.otf') format('opentype');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+      }
+      
+      @font-face {
+        font-family: 'CreatoDisplay';
+        src: url('/fonts/CreatoDisplay-Regular.otf') format('opentype');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      
+      @font-face {
+        font-family: 'CreatoDisplay';
+        src: url('/fonts/CreatoDisplay-Medium.otf') format('opentype');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+      
+      @font-face {
+        font-family: 'CreatoDisplay';
+        src: url('/fonts/CreatoDisplay-Bold.otf') format('opentype');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+      
+      @font-face {
+        font-family: 'CreatoDisplay';
+        src: url('/fonts/CreatoDisplay-ExtraBold.otf') format('opentype');
+        font-weight: 800;
+        font-style: normal;
+        font-display: swap;
+      }
+      
+      @font-face {
+        font-family: 'CreatoDisplay';
+        src: url('/fonts/CreatoDisplay-Black.otf') format('opentype');
+        font-weight: 900;
+        font-style: normal;
+        font-display: swap;
+      }
+      
+      /* Italic variants */
+      @font-face {
+        font-family: 'CreatoDisplay';
+        src: url('/fonts/CreatoDisplay-ThinItalic.otf') format('opentype');
+        font-weight: 100;
+        font-style: italic;
+        font-display: swap;
+      }
+      
+      @font-face {
+        font-family: 'CreatoDisplay';
+        src: url('/fonts/CreatoDisplay-LightItalic.otf') format('opentype');
+        font-weight: 300;
+        font-style: italic;
+        font-display: swap;
+      }
+      
+      @font-face {
+        font-family: 'CreatoDisplay';
+        src: url('/fonts/CreatoDisplay-RegularItalic.otf') format('opentype');
+        font-weight: 400;
+        font-style: italic;
+        font-display: swap;
+      }
+      
+      @font-face {
+        font-family: 'CreatoDisplay';
+        src: url('/fonts/CreatoDisplay-MediumItalic.otf') format('opentype');
+        font-weight: 500;
+        font-style: italic;
+        font-display: swap;
+      }
+      
+      @font-face {
+        font-family: 'CreatoDisplay';
+        src: url('/fonts/CreatoDisplay-BoldItalic.otf') format('opentype');
+        font-weight: 700;
+        font-style: italic;
+        font-display: swap;
+      }
+      
+      @font-face {
+        font-family: 'CreatoDisplay';
+        src: url('/fonts/CreatoDisplay-ExtraBoldItalic.otf') format('opentype');
+        font-weight: 800;
+        font-style: italic;
+        font-display: swap;
+      }
+      
+      @font-face {
+        font-family: 'CreatoDisplay';
+        src: url('/fonts/CreatoDisplay-BlackItalic.otf') format('opentype');
+        font-weight: 900;
+        font-style: italic;
+        font-display: swap;
+      }
+      
+      /* Apply CreatoDisplay globally */
       * {
-        font-family: 'Toasty Milk', 'Plus Jakarta Sans', sans-serif !important;
+        font-family: 'CreatoDisplay', 'Plus Jakarta Sans', sans-serif !important;
       }
     </style>
     

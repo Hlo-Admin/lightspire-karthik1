@@ -1,8 +1,9 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Import Toasty Milt inspired font */
+/* Import Plus Jakarta Sans as fallback */
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap");
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
@@ -93,12 +94,12 @@ All colors MUST be HSL.
 @layer base {
   * {
     @apply border-border;
-    font-family: "Toasty Milk", "Plus Jakarta Sans", sans-serif !important;
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Toasty Milk", "Plus Jakarta Sans", sans-serif !important;
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
   }
 
   h1,
@@ -107,7 +108,7 @@ All colors MUST be HSL.
   h4,
   h5,
   h6 {
-    font-family: "Toasty Milk", "Plus Jakarta Sans", sans-serif !important;
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
   }
 
   p,
@@ -117,7 +118,7 @@ All colors MUST be HSL.
   input,
   textarea,
   label {
-    font-family: "Toasty Milk", "Plus Jakarta Sans", sans-serif !important;
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
   }
 }
 
@@ -134,7 +135,7 @@ All colors MUST be HSL.
   }
 
   .cinematic-title {
-    font-family: "Toasty Milk", "Plus Jakarta Sans", sans-serif !important;
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
     font-weight: 900;
     letter-spacing: -0.02em;
     line-height: 0.9;
