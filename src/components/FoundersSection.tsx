@@ -5,6 +5,9 @@ const FoundersSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  // Add for bottom slant animation
+  const [bottomLineVisible, setBottomLineVisible] = useState(false);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observerOptions = {
@@ -16,6 +19,8 @@ const FoundersSection = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+        } else {
+          setIsVisible(false);
         }
       });
     }, observerOptions);
@@ -38,6 +43,26 @@ const FoundersSection = () => {
       observer.disconnect();
       window.removeEventListener("mousemove", handleMouseMove);
     };
+  }, []);
+
+  // Add observer for bottom slant line
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setBottomLineVisible(true);
+          } else {
+            setBottomLineVisible(false);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    if (bottomRef.current) {
+      observer.observe(bottomRef.current);
+    }
+    return () => observer.disconnect();
   }, []);
 
   const founders = [
@@ -70,6 +95,31 @@ const FoundersSection = () => {
           paddingBottom: "6rem",
         }}
       >
+        {/* Top Slant Animated Line */}
+        <svg
+          className={`absolute left-0 top-0 w-full h-[3vw] pointer-events-none transition-all duration-2000 ${
+            isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+          }`}
+          style={{ zIndex: 20 }}
+          width="100%"
+          height="3vw"
+          viewBox="0 0 100 3"
+          preserveAspectRatio="none"
+        >
+          <line
+            x1="0"
+            y1="3"
+            x2="100"
+            y2="0"
+            stroke="#f5f5f5"
+            strokeWidth="2"
+            strokeDasharray="100"
+            strokeDashoffset={isVisible ? "0" : "100"}
+            style={{
+              transition: "stroke-dashoffset 2s cubic-bezier(0.4,0,0.2,1)",
+            }}
+          />
+        </svg>
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           {/* Section Title */}
           <div
@@ -189,6 +239,43 @@ const FoundersSection = () => {
             </div>
           </div>
         </div>
+        {/* Bottom Slant Animated Line */}
+        <svg
+          className={`absolute left-0 bottom-0 w-full h-[3vw] pointer-events-none transition-all duration-2000 ${
+            bottomLineVisible
+              ? "opacity-100 scale-x-100"
+              : "opacity-0 scale-x-0"
+          }`}
+          style={{ zIndex: 20 }}
+          width="100%"
+          height="3vw"
+          viewBox="0 0 100 3"
+          preserveAspectRatio="none"
+        >
+          <line
+            x1="0"
+            y1="0"
+            x2="100"
+            y2="3"
+            stroke="#f5f5f5"
+            strokeWidth="2"
+            strokeDasharray="100"
+            strokeDashoffset={bottomLineVisible ? "0" : "100"}
+            style={{
+              transition: "stroke-dashoffset 2s cubic-bezier(0.4,0,0.2,1)",
+            }}
+          />
+        </svg>
+        <div
+          ref={bottomRef}
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            height: "1px",
+          }}
+        />
       </div>
     </section>
   );

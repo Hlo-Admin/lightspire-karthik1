@@ -17,7 +17,7 @@ const ScrollSpy = ({ menuItems, className }: ScrollSpyProps) => {
   useEffect(() => {
     const handleScroll = () => {
       const sections = menuItems
-        .map((item) => document.querySelector(item.href.replace("#", "")))
+        .map((item) => document.querySelector(item.href))
         .filter(Boolean);
 
       const scrollPosition = window.scrollY + 100; // Offset for navbar
@@ -77,7 +77,8 @@ const ScrollSpy = ({ menuItems, className }: ScrollSpyProps) => {
                   : "opacity-0 scale-x-0"
               )}
               style={{
-                backgroundColor: activeSection === item.href ? "#0678cf" : "transparent"
+                backgroundColor:
+                  activeSection === item.href ? "#0678cf" : "transparent",
               }}
             />
 
@@ -86,16 +87,15 @@ const ScrollSpy = ({ menuItems, className }: ScrollSpyProps) => {
               className={cn(
                 "text-sm font-medium transition-all duration-300 whitespace-nowrap text-3xl",
                 "group-hover:translate-x-1 transform-gpu",
-                activeSection === item.href
-                  ? "font-semibold"
-                  : "text-gray-600"
+                activeSection === item.href ? "font-semibold" : "text-gray-600"
               )}
               style={{
-                color: activeSection === item.href 
-                  ? "#0678cf" 
-                  : activeSection !== item.href 
+                color:
+                  activeSection === item.href
+                    ? "#0678cf"
+                    : activeSection !== item.href
                     ? "#6b7280" // gray-600 equivalent
-                    : "#0678cf"
+                    : "#0678cf",
               }}
               onMouseEnter={(e) => {
                 if (activeSection !== item.href) {
@@ -120,7 +120,8 @@ const ScrollSpy = ({ menuItems, className }: ScrollSpyProps) => {
                   : "bg-gray-400 scale-75 group-hover:scale-90"
               )}
               style={{
-                backgroundColor: activeSection === item.href ? "#0678cf" : "#9ca3af"
+                backgroundColor:
+                  activeSection === item.href ? "#0678cf" : "#9ca3af",
               }}
               onMouseEnter={(e) => {
                 if (activeSection !== item.href) {

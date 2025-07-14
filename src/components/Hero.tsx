@@ -87,7 +87,7 @@ const LightspireHero = () => {
               Trusted by the Best, Loved by Millions
             </p>
             <br></br>
-            <div
+            {/* <div
               className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in"
               style={{ animationDelay: "0.8s" }}
             >
@@ -104,7 +104,7 @@ const LightspireHero = () => {
               >
                 Get in Touch
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

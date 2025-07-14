@@ -30,6 +30,8 @@ const AboutSectionDark = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [countStarted, setCountStarted] = useState(false);
   const [yearsCount, setYearsCount] = useState(0);
+  const [bottomLineVisible, setBottomLineVisible] = useState(false);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
   const studios = [
     { name: "Netflix", icon: Play, color: "text-red-500" },
@@ -63,6 +65,10 @@ const AboutSectionDark = () => {
         if (entry.isIntersecting) {
           setIsVisible(true);
           setTimeout(() => setCountStarted(true), 1000);
+        } else {
+          setIsVisible(false);
+          setCountStarted(false);
+          setYearsCount(0);
         }
       });
     }, observerOptions);
@@ -74,10 +80,29 @@ const AboutSectionDark = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setBottomLineVisible(true);
+          } else {
+            setBottomLineVisible(false);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    if (bottomRef.current) {
+      observer.observe(bottomRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       ref={sectionRef}
-      className="relative py-0 overflow-visible bg-[#f2f4f5]"
+      className="relative py-0 overflow-visible"
       id="about"
     >
       <div
@@ -124,7 +149,7 @@ const AboutSectionDark = () => {
           </div>
 
           {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+          <div className="grid lg:grid-cols-2 gap-12">
             {/* Left Column - About Description and Experience Card */}
             <div
               className={`transition-all duration-1000 delay-300 ${
@@ -200,7 +225,7 @@ const AboutSectionDark = () => {
           </div>
 
           {/* Trusted Studios Section */}
-          <div
+          {/* <div
             className={`mb-16 transition-all duration-1000 delay-700 ${
               isVisible
                 ? "opacity-100 translate-y-0"
@@ -234,7 +259,7 @@ const AboutSectionDark = () => {
                 })}
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Bottom Quote */}
           <div
@@ -259,6 +284,68 @@ const AboutSectionDark = () => {
             </div>
           </div>
         </div>
+        {/* Top Slant Animated Line */}
+        <svg
+          className={`absolute left-0 top-0 w-full h-[3vw] pointer-events-none transition-all duration-2000 ${
+            isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+          }`}
+          style={{ zIndex: 20 }}
+          width="100%"
+          height="3vw"
+          viewBox="0 0 100 3"
+          preserveAspectRatio="none"
+        >
+          <line
+            x1="0"
+            y1="3"
+            x2="100"
+            y2="0"
+            stroke="#f5f5f5"
+            strokeWidth="2"
+            strokeDasharray="100"
+            strokeDashoffset={isVisible ? "0" : "100"}
+            style={{
+              transition: "stroke-dashoffset 2s cubic-bezier(0.4,0,0.2,1)",
+            }}
+          />
+        </svg>
+        {/* Bottom Slant Animated Line */}
+        <svg
+          className={`absolute left-0 bottom-0 w-full h-[3vw] pointer-events-none transition-all duration-2000 ${
+            bottomLineVisible
+              ? "opacity-100 scale-x-100"
+              : "opacity-0 scale-x-0"
+          }`}
+          style={{ zIndex: 20 }}
+          width="100%"
+          height="3vw"
+          viewBox="0 0 100 3"
+          preserveAspectRatio="none"
+        >
+          <line
+            x1="0"
+            y1="0"
+            x2="100"
+            y2="3"
+            stroke="#f5f5f5"
+            strokeWidth="2"
+            strokeDasharray="100"
+            strokeDashoffset={bottomLineVisible ? "0" : "100"}
+            style={{
+              transition: "stroke-dashoffset 2s cubic-bezier(0.4,0,0.2,1)",
+            }}
+          />
+        </svg>
+        <div
+          ref={bottomRef}
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            width: "100%",
+            height: "1px",
+          }}
+        />
       </div>
     </section>
   );

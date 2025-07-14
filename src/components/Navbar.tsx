@@ -32,7 +32,7 @@ const Navbar = () => {
       {/* Main Navbar */}
       <nav
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out bg-[#f5f5f5] border-b border-cyan-500/30",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out bg-white border-b border-cyan-500/30",
           isScrolled ? "shadow-md" : ""
         )}
       >
@@ -51,7 +51,7 @@ const Navbar = () => {
             {/* Hamburger Menu Button */}
             <button
               onClick={toggleMenu}
-              className="relative z-60 p-3 rounded-lg bg-black from-cyan-500/20 to-purple-500/20 border border-cyan-500/40 hover:border-cyan-400/60 transition-all duration-300 group hover:scale-105 hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-purple-500/30"
+              className="md:hidden relative z-60 p-3 rounded-lg bg-black from-cyan-500/20 to-purple-500/20 border border-cyan-500/40 hover:border-cyan-400/60 transition-all duration-300 group hover:scale-105 hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-purple-500/30"
               aria-label="Toggle menu"
             >
               <div className="relative w-6 h-6">

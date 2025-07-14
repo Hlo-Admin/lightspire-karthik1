@@ -86,14 +86,16 @@ const Index = () => {
         <LightspireHero />
       </div>
 
-      {/* Premium Services Section */}
-      <div className="creative-section" data-cursor="creative" id="services">
-        <ServicesSection2 />
-      </div>
+     
 
       {/* Dark About Section */}
       <div className="creative-section" data-cursor="creative" id="about">
         <AboutSectionDark />
+      </div>
+
+       {/* Premium Services Section */}
+       <div className="creative-section" data-cursor="creative" id="services">
+        <ServicesSection2 />
       </div>
 
       {/* Kids IP Strategy Section - Now placed after About Us */}

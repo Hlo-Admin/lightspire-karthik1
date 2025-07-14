@@ -81,7 +81,7 @@ const ServicesSection = () => {
     <section
       ref={sectionRef}
       className="relative bg-gradient-to-b from-gray-50 via-white to-gray-100 py-20"
-      id="services"
+     
     >
       {/* Header */}
       <div className="text-center mb-8">
