@@ -69,18 +69,7 @@ const ScrollSpy = ({ menuItems, className }: ScrollSpyProps) => {
             }}
           >
             {/* Active indicator line */}
-            <div
-              className={cn(
-                "absolute right-0 w-8 h-0.5 transition-all duration-300",
-                activeSection === item.href
-                  ? "opacity-100 scale-x-100"
-                  : "opacity-0 scale-x-0"
-              )}
-              style={{
-                backgroundColor:
-                  activeSection === item.href ? "#0678cf" : "transparent",
-              }}
-            />
+            {/* Removed horizontal line */}
 
             {/* Menu item text */}
             <span
