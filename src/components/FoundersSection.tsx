@@ -1,8 +1,12 @@
+
 import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 import { Sparkles, Star, Zap } from "lucide-react";
 
 const FoundersSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const topSlantRef = useRef<HTMLDivElement>(null);
+  const bottomSlantRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -16,6 +20,25 @@ const FoundersSection = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          
+          // Animate slant lines
+          if (topSlantRef.current && bottomSlantRef.current) {
+            gsap.set([topSlantRef.current, bottomSlantRef.current], { scaleX: 0 });
+            
+            gsap.to(topSlantRef.current, {
+              scaleX: 1,
+              duration: 1.5,
+              ease: "power2.out",
+              delay: 0.3
+            });
+            
+            gsap.to(bottomSlantRef.current, {
+              scaleX: 1,
+              duration: 1.5,
+              ease: "power2.out",
+              delay: 0.6
+            });
+          }
         }
       });
     }, observerOptions);
@@ -61,6 +84,18 @@ const FoundersSection = () => {
       className="relative py-0 overflow-visible"
       id="founders"
     >
+      {/* Animated Top Slant Line */}
+      <div className="absolute top-0 left-0 w-full h-24 overflow-hidden z-20">
+        <div 
+          ref={topSlantRef}
+          className="absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-500 origin-left"
+          style={{
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 80%)",
+            transform: "scaleX(0)"
+          }}
+        />
+      </div>
+
       <div
         className="relative w-full"
         style={{
@@ -189,6 +224,18 @@ const FoundersSection = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Animated Bottom Slant Line */}
+      <div className="absolute bottom-0 left-0 w-full h-24 overflow-hidden z-20">
+        <div 
+          ref={bottomSlantRef}
+          className="absolute inset-0 bg-gradient-to-r from-orange-500 to-amber-400 origin-left"
+          style={{
+            clipPath: "polygon(0 20%, 100% 0, 100% 100%, 0 100%)",
+            transform: "scaleX(0)"
+          }}
+        />
       </div>
     </section>
   );
