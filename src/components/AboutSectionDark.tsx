@@ -77,7 +77,7 @@ const AboutSectionDark = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative py-0 overflow-visible"
+      className="relative py-0 overflow-visible bg-[#f2f4f5]"
       id="about"
     >
       <div

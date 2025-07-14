@@ -51,7 +51,7 @@ const ScrollSpy = ({ menuItems, className }: ScrollSpyProps) => {
   return (
     <div
       className={cn(
-        "fixed right-6 top-1/2 transform -translate-y-1/2 z-40 hidden lg:block animate-scrollspy-fade-in",
+        "fixed right-6 top-[40%] transform -translate-y-1/2 z-40 hidden lg:block animate-scrollspy-fade-in",
         className
       )}
     >
@@ -71,22 +71,42 @@ const ScrollSpy = ({ menuItems, className }: ScrollSpyProps) => {
             {/* Active indicator line */}
             <div
               className={cn(
-                "absolute right-0 w-8 h-0.5 bg-gradient-to-l from-cyan-400 to-purple-500 transition-all duration-300",
+                "absolute right-0 w-8 h-0.5 transition-all duration-300",
                 activeSection === item.href
                   ? "opacity-100 scale-x-100"
                   : "opacity-0 scale-x-0"
               )}
+              style={{
+                backgroundColor: activeSection === item.href ? "#0678cf" : "transparent"
+              }}
             />
 
             {/* Menu item text */}
             <span
               className={cn(
-                "text-sm font-medium transition-all duration-300 whitespace-nowrap",
-                "hover:text-cyan-400 group-hover:translate-x-1 transform-gpu",
+                "text-sm font-medium transition-all duration-300 whitespace-nowrap text-3xl",
+                "group-hover:translate-x-1 transform-gpu",
                 activeSection === item.href
-                  ? "text-cyan-400 font-semibold"
-                  : "text-gray-600 hover:text-cyan-400"
+                  ? "font-semibold"
+                  : "text-gray-600"
               )}
+              style={{
+                color: activeSection === item.href 
+                  ? "#0678cf" 
+                  : activeSection !== item.href 
+                    ? "#6b7280" // gray-600 equivalent
+                    : "#0678cf"
+              }}
+              onMouseEnter={(e) => {
+                if (activeSection !== item.href) {
+                  e.currentTarget.style.color = "#0678cf";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (activeSection !== item.href) {
+                  e.currentTarget.style.color = "#6b7280";
+                }
+              }}
             >
               {item.name}
             </span>
@@ -96,9 +116,22 @@ const ScrollSpy = ({ menuItems, className }: ScrollSpyProps) => {
               className={cn(
                 "ml-2 w-2 h-2 rounded-full transition-all duration-300",
                 activeSection === item.href
-                  ? "bg-cyan-400 scale-100 shadow-[0_0_8px_rgba(6,182,212,0.6)] animate-scrollspy-pulse"
-                  : "bg-gray-400 scale-75 group-hover:bg-cyan-300 group-hover:scale-90"
+                  ? "scale-100 shadow-[0_0_8px_rgba(6,120,207,0.6)] animate-scrollspy-pulse"
+                  : "bg-gray-400 scale-75 group-hover:scale-90"
               )}
+              style={{
+                backgroundColor: activeSection === item.href ? "#0678cf" : "#9ca3af"
+              }}
+              onMouseEnter={(e) => {
+                if (activeSection !== item.href) {
+                  e.currentTarget.style.backgroundColor = "#0678cf";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (activeSection !== item.href) {
+                  e.currentTarget.style.backgroundColor = "#9ca3af";
+                }
+              }}
             />
           </button>
         ))}

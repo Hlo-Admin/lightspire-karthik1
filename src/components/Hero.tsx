@@ -29,7 +29,7 @@ const LightspireHero = () => {
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* FlickeringGrid Background */}
-      <div
+      {/* <div
         ref={backgroundRef}
         className="absolute inset-0 z-0 transition-transform duration-700 ease-out"
         style={{ willChange: "transform" }}
@@ -42,7 +42,7 @@ const LightspireHero = () => {
           maxOpacity={0.2}
           flickerChance={0.08}
         />
-      </div>
+      </div> */}
 
       {/* Decorative Elements */}
       <div
