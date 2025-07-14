@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
@@ -89,10 +88,14 @@ const ScrollSpy = ({ menuItems, className }: ScrollSpyProps) => {
                 "group-hover:translate-x-1 transform-gpu",
                 activeSection === item.href
                   ? "font-semibold"
-                  : ""
+                  : "text-gray-600"
               )}
               style={{
-                color: activeSection === item.href ? "#0678cf" : "#6b7280"
+                color: activeSection === item.href 
+                  ? "#0678cf" 
+                  : activeSection !== item.href 
+                    ? "#6b7280" // gray-600 equivalent
+                    : "#0678cf"
               }}
               onMouseEnter={(e) => {
                 if (activeSection !== item.href) {
