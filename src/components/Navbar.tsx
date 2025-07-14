@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { WordRotate } from "@/components/magicui/word-rotate";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,13 +40,42 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 flex items-center gap-4">
               <img
                 src="/logo.png"
                 alt="Light Spire Media Logo"
                 className="h-10 w-auto object-contain drop-shadow-md"
                 style={{ filter: "drop-shadow(0 2px 8px #0678cf55)" }}
               />
+            </div>
+
+            {/* Centered Hero Text - only visible after scroll */}
+            <div
+              className={cn(
+                "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-full max-w-2xl px-4 transition-all duration-500 ml-12 lg:ml-24",
+                isScrolled
+                  ? "opacity-100 pointer-events-auto"
+                  : "opacity-0 pointer-events-none"
+              )}
+              style={{ zIndex: 55 }}
+            >
+              {/* Column 1 */}
+              <span className="flex-1 text-base md:text-lg font-semibold text-[#222] text-right pr-4 whitespace-nowrap">
+                India's Premier
+              </span>
+              {/* Column 2: Animated center with separators */}
+              <span className="flex-1 flex items-center justify-center gap-2 text-xl md:text-2xl font-bold text-[#0678cf] whitespace-nowrap">
+                <span>|</span>
+                <WordRotate
+                  className="inline-block text-[#0678cf] font-bold"
+                  words={["2D Animation", "3D Animation", "VFX"]}
+                />
+                <span>|</span>
+              </span>
+              {/* Column 3 */}
+              <span className="flex-1 text-base md:text-lg font-semibold text-[#222] text-left pl-4 whitespace-nowrap">
+                Studio
+              </span>
             </div>
 
             {/* Hamburger Menu Button */}
