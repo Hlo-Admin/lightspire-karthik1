@@ -11,6 +11,7 @@ import {
   Film,
   Tv,
 } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Lazy load Spline for better performance
 const LazySpline = lazy(() => import("@splinetool/react-spline"));
@@ -32,6 +33,7 @@ const AboutSectionDark = () => {
   const [yearsCount, setYearsCount] = useState(0);
   const [bottomLineVisible, setBottomLineVisible] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   const studios = [
     { name: "Netflix", icon: Play, color: "text-red-500" },
@@ -206,22 +208,24 @@ const AboutSectionDark = () => {
             </div>
 
             {/* Right Column - Optimized Spline 3D Component */}
-            <div
-              className={`transition-all duration-1000 delay-500 ${
-                isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 translate-x-8"
-              }`}
-            >
-              <div className="relative h-full min-h-[500px] rounded-2xl overflow-hidden">
-                <Suspense fallback={<SplineLoader />}>
-                  <LazySpline
-                    scene="https://prod.spline.design/6dQW-8PtBylGcVV9/scene.splinecode"
-                    style={{ width: "100%", height: "100%" }}
-                  />
-                </Suspense>
+            {!isMobile && (
+              <div
+                className={`transition-all duration-1000 delay-500 ${
+                  isVisible
+                    ? "opacity-100 translate-x-0"
+                    : "opacity-0 translate-x-8"
+                }`}
+              >
+                <div className="relative h-full min-h-[500px] rounded-2xl overflow-hidden">
+                  <Suspense fallback={<SplineLoader />}>
+                    <LazySpline
+                      scene="https://prod.spline.design/6dQW-8PtBylGcVV9/scene.splinecode"
+                      style={{ width: "100%", height: "100%" }}
+                    />
+                  </Suspense>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Trusted Studios Section */}

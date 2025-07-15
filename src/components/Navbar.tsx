@@ -52,7 +52,7 @@ const Navbar = () => {
             {/* Centered Hero Text - only visible after scroll */}
             <div
               className={cn(
-                "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-full max-w-2xl px-4 transition-all duration-500 ml-12 lg:ml-24",
+                "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-full max-w-2xl px-4 transition-all duration-500 ml-12 lg:ml-24 hidden md:flex",
                 isScrolled
                   ? "opacity-100 pointer-events-auto"
                   : "opacity-0 pointer-events-none"
