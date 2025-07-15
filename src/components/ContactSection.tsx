@@ -81,7 +81,7 @@ const PremiumContactSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="relative bg-gradient-to-br from-gray-50 via-white to-blue-50 py-32 overflow-hidden"
+      className="relative bg-[#ffffff] from-gray-50 via-white to-blue-50 py-32 overflow-hidden"
       id="contact"
     >
       {/* Background Effects */}
