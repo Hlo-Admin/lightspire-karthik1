@@ -5,6 +5,8 @@
 
 /* Import Plus Jakarta Sans as fallback */
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap");
+/* Import Montserrat for paragraphs */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
@@ -111,7 +113,11 @@ All colors MUST be HSL.
     font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
   }
 
-  p,
+  /* Specific rule for paragraphs to use Montserrat */
+  p {
+    font-family: "Montserrat", sans-serif !important;
+  }
+
   span,
   div,
   button,
