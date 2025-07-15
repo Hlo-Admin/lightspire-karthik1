@@ -81,14 +81,14 @@ const ScrollSpy = ({ menuItems, className }: ScrollSpyProps) => {
               style={{
                 color:
                   activeSection === item.href
-                    ? "#0678cf"
+                    ? "#000000"
                     : activeSection !== item.href
                     ? "#6b7280" // gray-600 equivalent
-                    : "#0678cf",
+                    : "#000000",
               }}
               onMouseEnter={(e) => {
                 if (activeSection !== item.href) {
-                  e.currentTarget.style.color = "#0678cf";
+                  e.currentTarget.style.color = "#000000";
                 }
               }}
               onMouseLeave={(e) => {
@@ -110,11 +110,11 @@ const ScrollSpy = ({ menuItems, className }: ScrollSpyProps) => {
               )}
               style={{
                 backgroundColor:
-                  activeSection === item.href ? "#0678cf" : "#9ca3af",
+                  activeSection === item.href ? "#000000" : "#9ca3af",
               }}
               onMouseEnter={(e) => {
                 if (activeSection !== item.href) {
-                  e.currentTarget.style.backgroundColor = "#0678cf";
+                  e.currentTarget.style.backgroundColor = "#000000";
                 }
               }}
               onMouseLeave={(e) => {
