@@ -152,7 +152,7 @@ const PremiumFooter = () => {
           </div>
 
           {/* Newsletter Section */}
-          <div className={`bg-[#0678cf] from-blue-600 to-purple-600 rounded-3xl p-8 mb-12 relative overflow-hidden transition-all duration-1000 delay-600 ${
+          {/* <div className={`bg-[#0678cf] from-blue-600 to-purple-600 rounded-3xl p-8 mb-12 relative overflow-hidden transition-all duration-1000 delay-600 ${
             isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
           }`}>
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 animate-pulse"></div>
@@ -173,7 +173,7 @@ const PremiumFooter = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Bottom Section */}
           <div className={`border-t border-gray-200 pt-8 transition-all duration-1000 delay-800 ${

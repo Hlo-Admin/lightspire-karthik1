@@ -285,6 +285,7 @@ const AboutSectionDark = () => {
           </div>
         </div>
         {/* Top Slant Animated Line */}
+        {/**
         <svg
           className={`absolute left-0 top-0 w-full h-[3vw] pointer-events-none transition-all duration-2000 ${
             isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
@@ -309,7 +310,9 @@ const AboutSectionDark = () => {
             }}
           />
         </svg>
+        */}
         {/* Bottom Slant Animated Line */}
+        {/**
         <svg
           className={`absolute left-0 bottom-0 w-full h-[3vw] pointer-events-none transition-all duration-2000 ${
             bottomLineVisible
@@ -336,6 +339,7 @@ const AboutSectionDark = () => {
             }}
           />
         </svg>
+        */}
         <div
           ref={bottomRef}
           style={{

@@ -70,12 +70,12 @@ const PremiumContactSection = () => {
       content: "123 Creative District, Animation Hub",
       subtext: "Los Angeles, CA 90028"
     },
-    {
-      icon: Clock,
-      title: "Working Hours",
-      content: "Mon - Fri: 9 AM - 6 PM",
-      subtext: "Weekend consultations available"
-    }
+    // {
+    //   icon: Clock,
+    //   title: "Working Hours",
+    //   content: "Mon - Fri: 9 AM - 6 PM",
+    //   subtext: "Weekend consultations available"
+    // }
   ];
 
   return (
@@ -266,7 +266,7 @@ const PremiumContactSection = () => {
             </div>
 
             {/* CTA Box */}
-            <div className="mt-12 bg-[#0678cf] rounded-3xl p-8 text-white relative overflow-hidden">
+            <div className="mt-12 bg-[#0678cf] rounded-3xl p-10 text-white relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 animate-pulse"></div>
               <div className="relative z-10">
                 <h4 className="text-xl font-bold mb-3">Ready for a Quick Chat?</h4>

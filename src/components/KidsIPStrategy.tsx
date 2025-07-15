@@ -153,7 +153,7 @@ const KidsIPStrategy = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-gradient-to-br from-gray-50 via-white to-blue-50 py-20 px-6 font-toasty overflow-hidden"
+      className="relative bg-[#ffffff] from-gray-50 via-white to-blue-50 py-20 px-6 font-toasty overflow-hidden"
     >
       {/* Decorative Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

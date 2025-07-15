@@ -71,7 +71,7 @@ const ServicesSection2 = () => {
   return (
     <section 
       ref={sectionRef}
-      className="relative bg-gradient-to-b from-gray-50 via-white to-gray-100 py-24 overflow-hidden"
+      className="relative bg-[#ffffff] from-gray-50 via-white to-gray-100 py-24 overflow-hidden"
       id="services"
     >
       {/* Floating Background Elements */}

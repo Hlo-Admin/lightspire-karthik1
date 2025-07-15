@@ -6,8 +6,8 @@ const FoundersSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   // Add for bottom slant animation
-  const [bottomLineVisible, setBottomLineVisible] = useState(false);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  // const [bottomLineVisible, setBottomLineVisible] = useState(false);
+  // const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observerOptions = {
@@ -46,24 +46,24 @@ const FoundersSection = () => {
   }, []);
 
   // Add observer for bottom slant line
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setBottomLineVisible(true);
-          } else {
-            setBottomLineVisible(false);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (bottomRef.current) {
-      observer.observe(bottomRef.current);
-    }
-    return () => observer.disconnect();
-  }, []);
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach((entry) => {
+  //         if (entry.isIntersecting) {
+  //           setBottomLineVisible(true);
+  //         } else {
+  //           setBottomLineVisible(false);
+  //         }
+  //       });
+  //     },
+  //     { threshold: 0.1 }
+  //   );
+  //   if (bottomRef.current) {
+  //     observer.observe(bottomRef.current);
+  //   }
+  //   return () => observer.disconnect();
+  // }, []);
 
   const founders = [
     {
@@ -96,6 +96,7 @@ const FoundersSection = () => {
         }}
       >
         {/* Top Slant Animated Line */}
+        {/*
         <svg
           className={`absolute left-0 top-0 w-full h-[3vw] pointer-events-none transition-all duration-2000 ${
             isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
@@ -120,6 +121,7 @@ const FoundersSection = () => {
             }}
           />
         </svg>
+        */}
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           {/* Section Title */}
           <div
@@ -240,6 +242,7 @@ const FoundersSection = () => {
           </div>
         </div>
         {/* Bottom Slant Animated Line */}
+        {/*
         <svg
           className={`absolute left-0 bottom-0 w-full h-[3vw] pointer-events-none transition-all duration-2000 ${
             bottomLineVisible
@@ -276,6 +279,7 @@ const FoundersSection = () => {
             height: "1px",
           }}
         />
+        */}
       </div>
     </section>
   );
