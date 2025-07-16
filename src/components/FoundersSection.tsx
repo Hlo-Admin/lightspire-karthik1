@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Sparkles, Star, Zap } from "lucide-react";
+import { Sparkles, Star } from "lucide-react";
 
 const FoundersSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -68,7 +68,7 @@ const FoundersSection = () => {
   const founders = [
     {
       name: "Sathiya Narayanan",
-      title: "Founder",
+      title: "Co-Founder",
       tagline: "Vision meets production mastery.",
       delay: 200,
     },
@@ -191,11 +191,11 @@ const FoundersSection = () => {
                     </div>
                     {/* Title */}
                     <div className="flex items-center justify-center mb-6">
-                      <Zap className="w-5 h-5 text-white mr-2 group-hover:animate-pulse" />
+                      <Star className="w-5 h-5 text-white mr-2 group-hover:animate-pulse" />
                       <p className="text-xl text-white font-semibold tracking-wide">
                         {founder.title}
                       </p>
-                      <Zap
+                      <Star
                         className="w-5 h-5 text-[#f5f5f5] ml-2 group-hover:animate-pulse"
                         style={{ animationDelay: "0.3s" }}
                       />

@@ -3,6 +3,7 @@ import { Play, ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FlickeringGrid } from "./magicui/flickering-grid";
 import { WordRotate } from "@/components/magicui/word-rotate";
+import { TypingAnimation } from "@/components/magicui/typing-animation";
 
 const LightspireHero = () => {
   const backgroundRef = useRef<HTMLDivElement>(null);
@@ -54,9 +55,7 @@ const LightspireHero = () => {
       <div
         className="absolute bottom-1/3 right-10 hidden lg:block animate-fade-in"
         style={{ animationDelay: "1s" }}
-      >
-        
-      </div>
+      ></div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center">
@@ -73,10 +72,9 @@ const LightspireHero = () => {
               style={{ animationDelay: "0.2s" }}
             >
               India's Premier <br />
-              <WordRotate
-                className="text-[#0678cf]"
-                words={["2D Animation", "3D Animation", "VFX"]}
-              />
+              <TypingAnimation className="text-[#0678cf] text-6xl" loop={true}>
+                2D Animation
+              </TypingAnimation>
               Studio
             </h1>
 

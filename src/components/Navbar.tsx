@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { WordRotate } from "@/components/magicui/word-rotate";
+import { TypingAnimation } from "@/components/magicui/typing-animation";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -66,10 +67,12 @@ const Navbar = () => {
               {/* Column 2: Animated center with separators */}
               <span className="flex-1 flex items-center justify-center gap-2 text-xl md:text-2xl font-bold text-[#0678cf] whitespace-nowrap">
                 <span>|</span>
-                <WordRotate
+                <TypingAnimation
                   className="inline-block text-[#0678cf] font-bold"
-                  words={["2D Animation", "3D Animation", "VFX"]}
-                />
+                  loop={true}
+                >
+                  2D Animation
+                </TypingAnimation>
                 <span>|</span>
               </span>
               {/* Column 3 */}
