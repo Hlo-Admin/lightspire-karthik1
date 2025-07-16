@@ -102,28 +102,98 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+    font-size: 18px !important;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
+  h1 {
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+    font-size: 3.5rem !important;
+  }
+
+  h2 {
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+    font-size: 2.5rem !important;
+  }
+
+  h3 {
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+    font-size: 2rem !important;
+  }
+
+  h4 {
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+    font-size: 1.5rem !important;
+  }
+
+  h5 {
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+    font-size: 1.25rem !important;
+  }
+
   h6 {
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+    font-size: 1.125rem !important;
+  }
+
+  /* Specific rule for paragraphs to use Montserrat with increased size */
+  p {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 1.125rem !important;
+  }
+
+  span {
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+    font-size: 1rem !important;
+  }
+
+  div {
     font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
   }
 
-  /* Specific rule for paragraphs to use Montserrat */
-  p {
-    font-family: "Montserrat", sans-serif !important;
+  button {
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+    font-size: 1.125rem !important;
   }
 
-  span,
-  div,
-  button,
-  input,
-  textarea,
+  input {
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+    font-size: 1rem !important;
+  }
+
+  textarea {
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+    font-size: 1rem !important;
+  }
+
   label {
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+    font-size: 1rem !important;
+  }
+
+  a {
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+    font-size: 1rem !important;
+  }
+
+  li {
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+    font-size: 1rem !important;
+  }
+
+  ul, ol {
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+  }
+
+  small {
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+    font-size: 0.875rem !important;
+  }
+
+  strong, b {
+    font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
+  }
+
+  em, i {
     font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
   }
 }
@@ -276,10 +346,34 @@ All colors MUST be HSL.
     font-size: 3rem;
     line-height: 1;
   }
+
+  h1 {
+    font-size: 2.5rem !important;
+  }
+
+  h2 {
+    font-size: 2rem !important;
+  }
+
+  h3 {
+    font-size: 1.75rem !important;
+  }
 }
 
 @media (max-width: 480px) {
   .cinematic-title {
     font-size: 2.5rem;
+  }
+
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  h2 {
+    font-size: 1.75rem !important;
+  }
+
+  h3 {
+    font-size: 1.5rem !important;
   }
 }
