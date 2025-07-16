@@ -72,9 +72,7 @@ const LightspireHero = () => {
               style={{ animationDelay: "0.2s" }}
             >
               India's Premier <br />
-              <TypingAnimation className="text-[#0678cf] text-6xl" loop={true}>
-                2D Animation
-              </TypingAnimation>
+              <span className="text-[#0678cf] text-6xl">2D Animation <br /></span>
               Studio
             </h1>
 

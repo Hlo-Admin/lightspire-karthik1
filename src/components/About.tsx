@@ -110,13 +110,36 @@ const AboutSectionDark = () => {
       <div
         className="relative w-full"
         style={{
-          background: "#0678cf",
+          background: "none", // Remove old background
           clipPath: "polygon(0 3vw, 100% 0, 100% 100%, 0 calc(100% - 3vw))",
           paddingTop: "6rem", // Add extra padding for top slant
           paddingBottom: "6rem", // Add extra padding for bottom slant
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+        {/* --- Background Layers Start --- */}
+        {/* World Map Image Layer */}
+        <div
+          className="absolute inset-0 w-full h-full z-0"
+          style={{
+            backgroundImage:
+              "url('https://www.freepik.com/free-vector/black-white-world-map-halftone-pattern-texture-background_377489136.htm#fromView=search&page=1&position=4&uuid=6a7db130-c38d-49af-843b-13d23e945409&query=world+map+white+background')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.1,
+            pointerEvents: "none",
+          }}
+        />
+        {/* Blue Overlay Layer */}
+        <div
+          className="absolute inset-0 w-full h-full z-10"
+          style={{
+            background: "#0678cf",
+            opacity: 0.8,
+            pointerEvents: "none",
+          }}
+        />
+        {/* --- Background Layers End --- */}
+        <div className="max-w-7xl mx-auto px-6 relative z-20">
           {/* Place ALL your content here, including background effects */}
           {/* Background Effects */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -225,7 +248,6 @@ const AboutSectionDark = () => {
               </div>
             )}
           </div>
-
 
           {/* Bottom Quote */}
           <div
