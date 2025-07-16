@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 import ScrollSpy from "@/components/ScrollSpy";
 import ServicesSection from "@/components/ServicesSection";
 import ServicesSection2 from "@/components/ServicesSection2";
-import AboutSectionDark from "@/components/AboutSectionDark";
+import AboutSectionDark from "@/components/About";
 import KidsIPStrategy from "@/components/KidsIPStrategy";
 import FoundersSection from "@/components/FoundersSection";
 import MagneticHover from "@/components/MagneticHover";

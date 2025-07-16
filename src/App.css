@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Set caret color for all inputs and textareas */
+input,
+textarea {
+  caret-color: #0678cf;
+}
+
+/* Set selection background color for better visibility (optional) */
+::selection {
+  background: #0678cf;
+  color: #fff;
+}
