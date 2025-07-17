@@ -51,7 +51,7 @@ const ScrollSpy = ({ menuItems, className }: ScrollSpyProps) => {
   return (
     <div
       className={cn(
-        "fixed right-6 top-[40%] transform -translate-y-1/2 z-40 hidden lg:block animate-scrollspy-fade-in",
+        "fixed right-6 top-[10%] transform -translate-y-1/2 z-40 hidden lg:block animate-scrollspy-fade-in",
         className
       )}
     >
