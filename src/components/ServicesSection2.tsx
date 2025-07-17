@@ -79,8 +79,6 @@ const ServicesSection2 = () => {
         paddingBottom: "6rem", // adjust as needed
       }}
     >
-   
-
       {/* Header */}
       <div className="text-center mb-20 relative z-10">
         <div className="max-w-4xl mx-auto px-6">
@@ -122,7 +120,9 @@ const ServicesSection2 = () => {
                   <div className="relative z-10">
                     {/* Animated Icon */}
                     <div
-                      className={`inline-flex w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} items-center justify-center shadow-lg mb-6 group-hover:shadow-xl transition-all duration-500 group-hover:scale-110`}
+                      className={
+                        `inline-flex w-16 h-16 rounded-2xl items-center justify-center shadow-lg mb-6 group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 bg-[#0678cf]` // gray-500
+                      }
                     >
                       <Icon className="w-8 h-8 text-white" />
                     </div>
@@ -139,7 +139,13 @@ const ServicesSection2 = () => {
 
                     {/* Hover Effect Line */}
                     <div
-                      className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${service.gradient} w-0 group-hover:w-full transition-all duration-500 rounded-full`}
+                      className={`
+                        absolute bottom-0 left-0 h-1 
+                        bg-gray-200 
+                        w-0 group-hover:w-full 
+                        group-hover:bg-[#0678cf]
+                        transition-all duration-500 rounded-full
+                      `}
                     ></div>
                   </div>
                 </div>

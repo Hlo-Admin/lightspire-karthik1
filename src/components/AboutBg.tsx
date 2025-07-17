@@ -110,25 +110,16 @@ const AboutSectionDark = () => {
       <div
         className="relative w-full"
         style={{
-          background: "none", // Remove old background
+          backgroundImage: "url('/map1.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
           clipPath: "polygon(0 3vw, 100% 0, 100% 100%, 0 calc(100% - 3vw))",
           paddingTop: "6rem", // Add extra padding for top slant
           paddingBottom: "6rem", // Add extra padding for bottom slant
         }}
       >
         {/* --- Background Layers Start --- */}
-        {/* World Map Image Layer */}
-        <div
-          className="absolute inset-0 w-full h-full z-0"
-          style={{
-            backgroundImage:
-              "url('https://www.freepik.com/free-vector/black-white-world-map-halftone-pattern-texture-background_377489136.htm#fromView=search&page=1&position=4&uuid=6a7db130-c38d-49af-843b-13d23e945409&query=world+map+white+background')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            opacity: 0.1,
-            pointerEvents: "none",
-          }}
-        />
         {/* Blue Overlay Layer */}
         <div
           className="absolute inset-0 w-full h-full z-10"
@@ -186,7 +177,7 @@ const AboutSectionDark = () => {
               {/* About Description */}
               <div className="bg-[#0678cf]/80 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl p-8 mb-8">
                 <div className="flex items-center mb-6">
-                <img src="/mission.svg" alt="Mission" className="w-8 h-8 mr-3" />
+                  <Target className="w-8 h-8 text-white mr-3" />
                   <h3 className="text-2xl font-bold text-white">Our Mission</h3>
                 </div>
                 <p className="text-[#f5f5f5] leading-relaxed mb-6">
@@ -272,62 +263,6 @@ const AboutSectionDark = () => {
             </div>
           </div>
         </div>
-        {/* Top Slant Animated Line */}
-        {/**
-        <svg
-          className={`absolute left-0 top-0 w-full h-[3vw] pointer-events-none transition-all duration-2000 ${
-            isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
-          }`}
-          style={{ zIndex: 20 }}
-          width="100%"
-          height="3vw"
-          viewBox="0 0 100 3"
-          preserveAspectRatio="none"
-        >
-          <line
-            x1="0"
-            y1="3"
-            x2="100"
-            y2="0"
-            stroke="#f5f5f5"
-            strokeWidth="2"
-            strokeDasharray="100"
-            strokeDashoffset={isVisible ? "0" : "100"}
-            style={{
-              transition: "stroke-dashoffset 2s cubic-bezier(0.4,0,0.2,1)",
-            }}
-          />
-        </svg>
-        */}
-        {/* Bottom Slant Animated Line */}
-        {/**
-        <svg
-          className={`absolute left-0 bottom-0 w-full h-[3vw] pointer-events-none transition-all duration-2000 ${
-            bottomLineVisible
-              ? "opacity-100 scale-x-100"
-              : "opacity-0 scale-x-0"
-          }`}
-          style={{ zIndex: 20 }}
-          width="100%"
-          height="3vw"
-          viewBox="0 0 100 3"
-          preserveAspectRatio="none"
-        >
-          <line
-            x1="0"
-            y1="0"
-            x2="100"
-            y2="3"
-            stroke="#f5f5f5"
-            strokeWidth="2"
-            strokeDasharray="100"
-            strokeDashoffset={bottomLineVisible ? "0" : "100"}
-            style={{
-              transition: "stroke-dashoffset 2s cubic-bezier(0.4,0,0.2,1)",
-            }}
-          />
-        </svg>
-        */}
         <div
           ref={bottomRef}
           style={{

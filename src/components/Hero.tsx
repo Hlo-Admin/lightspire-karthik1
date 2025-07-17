@@ -50,7 +50,7 @@ const LightspireHero = () => {
         className="absolute top-1/3 left-10 hidden lg:block animate-fade-in"
         style={{ animationDelay: "0.5s" }}
       >
-        <Sparkles className="h-8 w-8 text-[#0678cf] opacity-30" />
+        {/* <Sparkles className="h-8 w-8 text-[#0678cf] opacity-30" /> */}
       </div>
       <div
         className="absolute bottom-1/3 right-10 hidden lg:block animate-fade-in"
