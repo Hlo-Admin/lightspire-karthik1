@@ -94,8 +94,8 @@ const ServicesSection2 = () => {
       </div>
 
       {/* Services Grid */}
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
 
@@ -111,7 +111,7 @@ const ServicesSection2 = () => {
                   transitionDelay: `${index * 150}ms`,
                 }}
               >
-                <div className="relative bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden h-full p-8 hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2 group-hover:-translate-x-1">
+                <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 overflow-hidden h-full p-4 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2 group-hover:-translate-x-1">
                   {/* Gradient Background */}
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
@@ -121,20 +121,18 @@ const ServicesSection2 = () => {
                   <div className="relative z-10">
                     {/* Animated Icon */}
                     <div
-                      className={
-                        `inline-flex w-16 h-16 rounded-2xl items-center justify-center shadow-lg mb-6 group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 bg-[#0678cf]` // gray-500
-                      }
+                      className={`inline-flex w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl items-center justify-center shadow-lg mb-4 sm:mb-6 group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 bg-[#0678cf]`}
                     >
-                      <Icon className="w-8 h-8 text-white" />
+                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4 cinematic-title group-hover:text-gray-800 transition-colors duration-300">
+                    <h3 className="text-sm sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 sm:mb-4 cinematic-title group-hover:text-gray-800 transition-colors duration-300">
                       {isVisible ? (
                         <HyperText
                           animateOnHover={false}
                           startOnView={true}
-                          className="text-2xl font-bold text-gray-900 cinematic-title group-hover:text-gray-800 transition-colors duration-300"
+                          className="text-sm sm:text-xl md:text-2xl font-bold text-gray-900 cinematic-title group-hover:text-gray-800 transition-colors duration-300"
                         >
                           {service.title}
                         </HyperText>
@@ -144,7 +142,7 @@ const ServicesSection2 = () => {
                     </h3>
 
                     {/* Description */}
-                    <p className="text-base text-gray-600 leading-relaxed font-light">
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-light">
                       {service.description}
                     </p>
 

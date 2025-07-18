@@ -41,7 +41,7 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <div className="flex-shrink-0 flex items-center gap-4">
+            <div className="flex-shrink-0 flex items-center gap-4 ml-0 md:ml-6">
               <img
                 src="/logo.png"
                 alt="Light Spire Media Logo"
@@ -68,7 +68,11 @@ const Navbar = () => {
               <span className="flex-1 flex items-center justify-center gap-2 text-xl md:text-2xl font-bold text-[#0678cf] whitespace-nowrap">
                 <span>|</span>
                 <span className="inline-block text-[#0678cf] font-bold">
-                  2D Animation
+                  <WordRotate
+                    words={["2D", "Animation"]}
+                    duration={2000}
+                    className="inline-block text-[#0678cf] font-bold"
+                  />
                 </span>
                 <span>|</span>
               </span>

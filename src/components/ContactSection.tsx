@@ -1,23 +1,35 @@
-
-import { useEffect, useRef, useState } from 'react';
-import { Send, Mail, Phone, MapPin, Clock, ArrowRight, Sparkles } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useEffect, useRef, useState } from "react";
+import {
+  Send,
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  ArrowRight,
+  Sparkles,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import gsap from "gsap";
+// @ts-ignore
+import SplitText from "gsap/SplitText";
+gsap.registerPlugin(SplitText);
 
 const PremiumContactSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    message: ''
+    name: "",
+    email: "",
+    company: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
+      rootMargin: "0px 0px -100px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -35,20 +47,62 @@ const PremiumContactSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  useEffect(() => {
+    if (!isVisible || !headlineRef.current) return;
+    const split = new SplitText(headlineRef.current, {
+      type: "chars,words,lines",
+    });
+    const tl = gsap.timeline();
+    tl.from(
+      split.chars,
+      {
+        duration: 0.6,
+        autoAlpha: 0,
+        scale: 3,
+        force3D: true,
+        stagger: 0.02,
+      },
+      0.5
+    )
+      .to(
+        split.words,
+        {
+          duration: 0.2,
+          color: "#0678cf",
+          scale: 0.9,
+          stagger: 0.1,
+        },
+        "words"
+      )
+      .to(
+        split.words,
+        {
+          duration: 0.4,
+          color: "#222",
+          scale: 1,
+          stagger: 0.1,
+        },
+        "words+=0.1"
+      );
+    return () => split.revert();
+  }, [isVisible]);
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    console.log('Form submitted:', formData);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    console.log("Form submitted:", formData);
     setIsSubmitting(false);
-    setFormData({ name: '', email: '', company: '', message: '' });
+    setFormData({ name: "", email: "", company: "", message: "" });
   };
 
   const contactInfo = [
@@ -56,19 +110,19 @@ const PremiumContactSection = () => {
       icon: Mail,
       title: "Email Us",
       content: "hello@lightspire.media",
-      subtext: "Quick response within 24 hours"
+      subtext: "Quick response within 24 hours",
     },
     {
-      icon: Phone, 
+      icon: Phone,
       title: "Call Us",
       content: "+1 (555) 123-4567",
-      subtext: "Mon-Fri, 9 AM - 6 PM EST"
+      subtext: "Mon-Fri, 9 AM - 6 PM EST",
     },
     {
       icon: MapPin,
       title: "Visit Us",
       content: "123 Creative District, Animation Hub",
-      subtext: "Los Angeles, CA 90028"
+      subtext: "Los Angeles, CA 90028",
     },
     // {
     //   icon: Clock,
@@ -79,16 +133,18 @@ const PremiumContactSection = () => {
   ];
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      className="relative bg-[#ffffff] from-gray-50 via-white to-blue-50 py-32 overflow-hidden"
+      className="relative bg-[#ffffff] from-gray-50 via-white to-blue-50 py-20 md:py-32 overflow-hidden"
       id="contact"
     >
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-purple-200/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-32 right-20 w-80 h-80 bg-gradient-to-br from-cyan-200/20 to-pink-200/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        
+        <div className="absolute top-10 md:top-20 left-5 md:left-20 w-60 md:w-96 h-60 md:h-96 bg-gradient-to-br from-blue-200/20 to-purple-200/20 rounded-full blur-3xl animate-pulse"></div>
+        <div
+          className="absolute bottom-16 md:bottom-32 right-5 md:right-20 w-48 md:w-80 h-48 md:h-80 bg-gradient-to-br from-cyan-200/20 to-pink-200/20 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
         {/* Floating elements */}
         {[...Array(15)].map((_, i) => (
           <div
@@ -101,45 +157,67 @@ const PremiumContactSection = () => {
               animationDuration: `${2 + Math.random() * 2}s`,
             }}
           >
-            <Sparkles className="w-3 h-3 text-blue-400" />
+            <Sparkles className="w-2 h-2 md:w-3 md:h-3 text-blue-400" />
           </div>
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto px-8 relative z-10">
+      <div className="max-w-3xl md:max-w-5xl lg:max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         {/* Header */}
-        <div className="text-center mb-20">
-          <div className={`inline-flex items-center gap-3 mb-8 transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-          }`}>
-            <Send className="w-8 h-8 text-[#0678cf]" />
-            <span className="text-[#0678cf] font-semibold text-lg tracking-wider">GET IN TOUCH</span>
+        <div className="text-center mb-12 md:mb-20">
+          <div
+            className={`inline-flex items-center gap-2 md:gap-3 mb-6 md:mb-8 transition-all duration-1000 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-12"
+            }`}
+          >
+            <Send className="w-6 h-6 md:w-8 md:h-8 text-[#0678cf]" />
+            <span className="text-[#0678cf] font-semibold text-base md:text-lg tracking-wider">
+              GET IN TOUCH
+            </span>
           </div>
 
-          <h2 className={`text-4xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-8 leading-tight transition-all duration-1000 delay-300 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'
-          }`}>
-            Let's Bring Your 
+          <h2
+            ref={headlineRef}
+            className={`text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-6 md:mb-8 leading-tight transition-all duration-1000 delay-300 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-16"
+            }`}
+          >
+            Let's Bring Your
             <span className=" text-[#0678cf]"> Vision to Life</span>
           </h2>
 
-          <p className={`text-xl md:text-2xl text-[#8a8a8a] max-w-4xl mx-auto leading-relaxed font-light transition-all duration-1000 delay-500 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-          }`}>
-            Ready to create something extraordinary? Let's discuss your next animated masterpiece.
+          <p
+            className={`text-base sm:text-xl md:text-2xl text-[#8a8a8a] max-w-xl md:max-w-4xl mx-auto leading-relaxed font-light transition-all duration-1000 delay-500 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-12"
+            }`}
+          >
+            Ready to create something extraordinary? Let's discuss your next
+            animated masterpiece.
           </p>
         </div>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start">
           {/* Contact Form */}
-          <div className={`transition-all duration-1000 delay-700 ${
-            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
-          }`}>
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-10 shadow-2xl border border-gray-100/50">
-              <h3 className="text-2xl font-bold text-gray-900 mb-8">Start Your Project</h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
+          <div
+            className={`transition-all duration-1000 delay-700 ${
+              isVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-8"
+            }`}
+          >
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl md:rounded-3xl p-5 sm:p-8 md:p-10 shadow-2xl border border-gray-100/50">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 md:mb-8">
+                Start Your Project
+              </h3>
+
+              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                 {/* Name Field */}
                 <div className="group">
                   <label className="block text-sm font-semibold text-[#0678cf] mb-2">
@@ -151,7 +229,7 @@ const PremiumContactSection = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:shadow-md"
+                    className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border border-gray-200 rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:shadow-md"
                     placeholder="Your full name"
                   />
                 </div>
@@ -167,7 +245,7 @@ const PremiumContactSection = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:shadow-md"
+                    className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border border-gray-200 rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:shadow-md"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -182,7 +260,7 @@ const PremiumContactSection = () => {
                     name="company"
                     value={formData.company}
                     onChange={handleInputChange}
-                    className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:shadow-md"
+                    className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border border-gray-200 rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:shadow-md"
                     placeholder="Your company name"
                   />
                 </div>
@@ -197,8 +275,8 @@ const PremiumContactSection = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    rows={5}
-                    className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:shadow-md resize-none"
+                    rows={4}
+                    className="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-50 border border-gray-200 rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:shadow-md resize-none"
                     placeholder="Tell us about your animation project, timeline, and goals..."
                   />
                 </div>
@@ -207,20 +285,20 @@ const PremiumContactSection = () => {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="group relative w-full bg-[#0678cf] from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white px-8 py-6 text-lg font-bold transition-all duration-500 transform hover:scale-105 hover:shadow-2xl rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="group relative w-full bg-[#0678cf] from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white px-6 md:px-8 py-4 md:py-6 text-base md:text-lg font-bold transition-all duration-500 transform hover:scale-105 hover:shadow-2xl rounded-xl md:rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                  
+
                   {isSubmitting ? (
-                    <div className="flex items-center justify-center gap-3">
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    <div className="flex items-center justify-center gap-2 md:gap-3">
+                      <div className="w-4 h-4 md:w-5 md:h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                       Sending Message...
                     </div>
                   ) : (
-                    <div className="flex items-center justify-center gap-3">
-                      <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    <div className="flex items-center justify-center gap-2 md:gap-3">
+                      <Send className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform duration-300" />
                       Send Message
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                      <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
                   )}
                 </Button>
@@ -229,33 +307,39 @@ const PremiumContactSection = () => {
           </div>
 
           {/* Contact Information */}
-          <div className={`transition-all duration-1000 delay-900 ${
-            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-          }`}>
-            <div className="space-y-8">
+          <div
+            className={`transition-all duration-1000 delay-900 ${
+              isVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-8"
+            }`}
+          >
+            <div className="space-y-6 md:space-y-8">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
                 return (
                   <div
                     key={info.title}
-                    className="group bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-100/50 hover:shadow-xl transition-all duration-500 hover:scale-105"
-                    style={{ 
+                    className="group bg-white/60 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-gray-100/50 hover:shadow-xl transition-all duration-500 hover:scale-105"
+                    style={{
                       animationDelay: `${1000 + index * 100}ms`,
-                      animation: isVisible ? 'fade-in 0.8s ease-out forwards' : 'none'
+                      animation: isVisible
+                        ? "fade-in 0.8s ease-out forwards"
+                        : "none",
                     }}
                   >
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-[#0678cf] from-blue-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                        <Icon className="w-6 h-6 text-white" />
+                    <div className="flex items-start gap-3 md:gap-4">
+                      <div className="w-10 h-10 md:w-12 md:h-12 bg-[#0678cf] from-blue-500 to-purple-500 rounded-lg md:rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <Icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                       </div>
                       <div className="flex-1">
-                        <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors duration-300">
+                        <h4 className="text-base md:text-lg font-bold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors duration-300">
                           {info.title}
                         </h4>
-                        <p className="text-gray-800 font-semibold mb-1">
+                        <p className="text-gray-800 font-semibold mb-1 text-sm md:text-base">
                           {info.content}
                         </p>
-                        <p className="text-gray-600 text-sm">
+                        <p className="text-gray-600 text-xs md:text-sm">
                           {info.subtext}
                         </p>
                       </div>
@@ -266,14 +350,17 @@ const PremiumContactSection = () => {
             </div>
 
             {/* CTA Box */}
-            <div className="mt-12 bg-[#0678cf] rounded-3xl p-10 text-white relative overflow-hidden">
+            <div className="mt-8 md:mt-12 bg-[#0678cf] rounded-2xl md:rounded-3xl p-6 md:p-10 text-white relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 animate-pulse"></div>
               <div className="relative z-10">
-                <h4 className="text-xl font-bold mb-3">Ready for a Quick Chat?</h4>
-                <p className="text-blue-100 mb-6 font-light">
-                  Schedule a 15-minute discovery call to discuss your project requirements and timeline.
+                <h4 className="text-lg md:text-xl font-bold mb-2 md:mb-3">
+                  Ready for a Quick Chat?
+                </h4>
+                <p className="text-blue-100 mb-4 md:mb-6 font-light text-sm md:text-base">
+                  Schedule a 15-minute discovery call to discuss your project
+                  requirements and timeline.
                 </p>
-                <Button 
+                <Button
                   variant="outline"
                   className="bg-white/10 border-white/20 text-white hover:bg-white hover:text-blue-600 transition-all duration-300 font-semibold"
                 >
