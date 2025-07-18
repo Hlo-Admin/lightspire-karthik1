@@ -8,11 +8,13 @@ import gsap from "gsap";
 // @ts-ignore
 import SplitText from "gsap/SplitText";
 gsap.registerPlugin(SplitText);
-import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
 
 const LightspireHero = () => {
   const backgroundRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
+  // Store SplitText and animation instances
+  const splitRef = useRef<any>(null);
+  const animationRef = useRef<any>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -33,19 +35,47 @@ const LightspireHero = () => {
     };
   }, []);
 
+  // Setup SplitText on mount and animate words
   useEffect(() => {
     if (!headlineRef.current) return;
-    const split = new SplitText(headlineRef.current, { type: "lines" });
-    gsap.from(split.lines, {
-      rotationX: -80,
-      transformOrigin: "50% 50% -80px",
-      opacity: 0,
-      duration: 0.7, // shorter duration for snappier effect
-      // ease: "expo.out", // smoother ease
-      stagger: 0.5, // less lag between lines
+    splitRef.current = new SplitText(headlineRef.current, {
+      type: "lines,words,chars",
     });
-    return () => split.revert();
+    // Run the words animation automatically on mount
+    if (animationRef.current && animationRef.current.revert) {
+      animationRef.current.revert();
+    }
+    animationRef.current = gsap.from(splitRef.current.words, {
+      y: -100,
+      opacity: 0,
+      rotation: () => gsap.utils.random(-80, 80),
+      duration: 0.7,
+      ease: "back",
+      stagger: 0.15,
+    });
+    return () => {
+      splitRef.current && splitRef.current.revert();
+      animationRef.current &&
+        animationRef.current.revert &&
+        animationRef.current.revert();
+    };
   }, []);
+
+  // Handler to run the 'words' animation
+  const runWordsAnimation = () => {
+    if (!splitRef.current) return;
+    if (animationRef.current && animationRef.current.revert) {
+      animationRef.current.revert();
+    }
+    animationRef.current = gsap.from(splitRef.current.words, {
+      y: -100,
+      opacity: 0,
+      rotation: () => gsap.utils.random(-80, 80),
+      duration: 0.7,
+      ease: "back",
+      stagger: 0.15,
+    });
+  };
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
@@ -83,11 +113,18 @@ const LightspireHero = () => {
             <div className="flex items-center justify-center mb-6 animate-fade-in">
               <div className="bg-[#0678cf] bg-opacity-10 text-[#0678cf] rounded-full px-6 py-2 text-sm font-medium inline-flex items-center border border-[#0678cf]/20">
                 {/* <Sparkles className="h-4 w-4 mr-2 text-[#0678cf]" /> */}
-                <AnimatedShinyText>
-                  27+ Years of Animation Excellence
-                </AnimatedShinyText>
+                27+ Years of Animation Excellence
               </div>
             </div>
+
+            {/* Animation trigger button */}
+            {/* <button
+              onClick={runWordsAnimation}
+              className="mb-4 px-4 py-2 bg-[#0678cf] text-white rounded hover:bg-[#055fa3] transition-colors"
+              type="button"
+            >
+              Animate Words
+            </button> */}
 
             <h1
               ref={headlineRef}

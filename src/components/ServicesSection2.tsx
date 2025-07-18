@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Tv, Globe, Film, Megaphone, Users, Smartphone } from "lucide-react";
+import { HyperText } from "./magicui/hyper-text";
 
 const ServicesSection2 = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -72,7 +73,7 @@ const ServicesSection2 = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#ffffff] from-gray-50 via-white to-gray-100 py-24 overflow-hidden"
+      className="relative bg-gray-200 bg-gradient-to-b from-gray-200 via-gray-100 to-gray-200 py-24 overflow-hidden"
       id="services"
       style={{
         clipPath: "polygon(0 0, 100% 3vw, 100% 100%, 0 calc(100% - 3vw))",
@@ -129,7 +130,17 @@ const ServicesSection2 = () => {
 
                     {/* Title */}
                     <h3 className="text-2xl font-bold text-gray-900 mb-4 cinematic-title group-hover:text-gray-800 transition-colors duration-300">
-                      {service.title}
+                      {isVisible ? (
+                        <HyperText
+                          animateOnHover={false}
+                          startOnView={true}
+                          className="text-2xl font-bold text-gray-900 cinematic-title group-hover:text-gray-800 transition-colors duration-300"
+                        >
+                          {service.title}
+                        </HyperText>
+                      ) : (
+                        service.title
+                      )}
                     </h3>
 
                     {/* Description */}
@@ -172,7 +183,7 @@ const ServicesSection2 = () => {
           y1="0"
           x2="100"
           y2="3"
-          stroke="#f7f9fa" // Tailwind's gray-200, adjust as needed
+          stroke="gray-200" // Tailwind's gray-200, adjust as needed
           strokeWidth="2"
           strokeDasharray="100"
           strokeDashoffset="0"
