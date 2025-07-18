@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Tv, Globe, Film, Megaphone, Users, Smartphone } from "lucide-react";
 import { HyperText } from "./magicui/hyper-text";
+import ScrollStack, {
+  ScrollStackItem,
+} from "../../Components/ScrollStack/ScrollStack";
 
 const ServicesSection2 = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -70,6 +73,11 @@ const ServicesSection2 = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Scroll to the section on mount
+    sectionRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
   return (
     <section
       ref={sectionRef}
@@ -93,75 +101,47 @@ const ServicesSection2 = () => {
         </div>
       </div>
 
-      {/* Services Grid */}
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+      {/* Services ScrollStack */}
+      <div
+        className="relative w-full mx-0 z-10"
+        style={{
+          height: "600px",
+          paddingLeft: 0,
+          paddingRight: 0,
+          maxWidth: "100vw",
+        }}
+      >
+        <div className="flex justify-center mb-4">
+          <span className="animate-bounce text-2xl text-blue-500">
+            ↓ Scroll
+          </span>
+        </div>
+        <ScrollStack
+          itemDistance={60}
+          itemScale={0.04}
+          baseScale={0.92}
+          className="h-full"
+        >
           {services.map((service, index) => {
             const Icon = service.icon;
-
             return (
-              <div
+              <ScrollStackItem
                 key={service.title}
-                className={`group relative transform transition-all duration-700 ${
-                  isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                }`}
-                style={{
-                  transitionDelay: `${index * 150}ms`,
-                }}
+                itemClassName="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden p-8 flex flex-col items-center text-center"
               >
-                <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 overflow-hidden h-full p-4 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2 group-hover:-translate-x-1">
-                  {/* Gradient Background */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
-                  ></div>
-
-                  {/* Card Content */}
-                  <div className="relative z-10">
-                    {/* Animated Icon */}
-                    <div
-                      className={`inline-flex w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl items-center justify-center shadow-lg mb-4 sm:mb-6 group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 bg-[#0678cf]`}
-                    >
-                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-xs sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-4 cinematic-title group-hover:text-gray-800 transition-colors duration-300">
-                      {isVisible ? (
-                        <HyperText
-                          animateOnHover={false}
-                          startOnView={true}
-                          className="text-xs sm:text-lg md:text-xl font-bold text-gray-900 cinematic-title group-hover:text-gray-800 transition-colors duration-300"
-                        >
-                          {service.title}
-                        </HyperText>
-                      ) : (
-                        service.title
-                      )}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-light">
-                      {service.description}
-                    </p>
-
-                    {/* Hover Effect Line */}
-                    <div
-                      className={`
-                        absolute bottom-0 left-0 h-1 
-                        bg-gray-200 
-                        w-0 group-hover:w-full 
-                        group-hover:bg-[#0678cf]
-                        transition-all duration-500 rounded-full
-                      `}
-                    ></div>
-                  </div>
+                <div className="inline-flex w-16 h-16 rounded-2xl items-center justify-center shadow-lg mb-6 bg-[#0678cf]">
+                  <Icon className="w-8 h-8 text-white" />
                 </div>
-              </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2 cinematic-title">
+                  {service.title}
+                </h3>
+                <p className="text-base text-gray-600 leading-relaxed font-light">
+                  {service.description}
+                </p>
+              </ScrollStackItem>
             );
           })}
-        </div>
+        </ScrollStack>
       </div>
 
       {/* Bottom Gradient Fade */}
