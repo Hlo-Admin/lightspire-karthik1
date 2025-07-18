@@ -12,6 +12,33 @@ import {
 } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Globe } from "@/components/magicui/globe";
+// --- GSAP for line animation ---
+import gsap from "gsap";
+// @ts-ignore
+import SplitText from "gsap/SplitText";
+gsap.registerPlugin(SplitText);
+// --- Custom hook for per-element visibility ---
+import { useCallback } from "react";
+function useElementVisible<T extends HTMLElement = HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const observerCallback = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => setIsVisible(entry.isIntersecting));
+    },
+    []
+  );
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new window.IntersectionObserver(observerCallback, {
+      threshold: 0.1,
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [observerCallback]);
+  return [ref, isVisible] as const;
+}
 
 // Lazy load Spline for better performance
 const LazySpline = lazy(() => import("@splinetool/react-spline"));
@@ -34,6 +61,17 @@ const AboutSectionDark = () => {
   const [bottomLineVisible, setBottomLineVisible] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  // --- Add headlineRef for GSAP animation ---
+  const [headlineRef, headlineVisible] =
+    useElementVisible<HTMLHeadingElement>();
+  // --- Add refs for paragraphs ---
+  const [missionPara1Ref, missionPara1Visible] =
+    useElementVisible<HTMLParagraphElement>();
+  const [missionPara2Ref, missionPara2Visible] =
+    useElementVisible<HTMLParagraphElement>();
+  // --- Add ref for bottom quote ---
+  const [bottomQuoteRef, bottomQuoteVisible] =
+    useElementVisible<HTMLParagraphElement>();
 
   const studios = [
     { name: "Netflix", icon: Play, color: "text-red-500" },
@@ -101,6 +139,67 @@ const AboutSectionDark = () => {
     return () => observer.disconnect();
   }, []);
 
+  // GSAP line animation for About heading
+  useEffect(() => {
+    if (!headlineVisible || !headlineRef.current) return;
+    const split = new SplitText(headlineRef.current, { type: "lines" });
+    gsap.from(split.lines, {
+      rotationX: -80,
+      transformOrigin: "50% 50% -80px",
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.5,
+      ease: "expo.out",
+    });
+    return () => split.revert();
+  }, [headlineVisible, headlineRef]);
+
+  // GSAP character animation for mission paragraph 1
+  useEffect(() => {
+    if (!missionPara1Visible || !missionPara1Ref.current) return;
+    const split = new SplitText(missionPara1Ref.current, { type: "chars" });
+    gsap.from(split.chars, {
+      y: 20,
+      opacity: 0,
+      stagger: 0.005, // much faster
+      duration: 0.3, // much faster
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+    return () => split.revert();
+  }, [missionPara1Visible, missionPara1Ref]);
+
+  // GSAP character animation for mission paragraph 2
+  useEffect(() => {
+    if (!missionPara2Visible || !missionPara2Ref.current) return;
+    const split = new SplitText(missionPara2Ref.current, { type: "chars" });
+    gsap.from(split.chars, {
+      y: 20,
+      opacity: 0,
+      stagger: 0.005, // much faster
+      duration: 0.3, // much faster
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+    return () => split.revert();
+  }, [missionPara2Visible, missionPara2Ref]);
+
+  // GSAP character animation for bottom quote
+  useEffect(() => {
+    if (!bottomQuoteVisible || !bottomQuoteRef.current) return;
+    const split = new SplitText(bottomQuoteRef.current, { type: "chars" });
+    gsap.from(split.chars, {
+      scale: 2.5,
+      rotationX: -180,
+      opacity: 0,
+      transformOrigin: "100% 50%",
+      ease: "back",
+      duration: 1,
+      stagger: 0.02,
+    });
+    return () => split.revert();
+  }, [bottomQuoteVisible, bottomQuoteRef]);
+
   return (
     <section
       ref={sectionRef}
@@ -110,7 +209,7 @@ const AboutSectionDark = () => {
       <div
         className="relative w-full"
         style={{
-          backgroundImage: "url('/map1.png')",
+          // backgroundImage: "url('/map1.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -153,7 +252,10 @@ const AboutSectionDark = () => {
                   : "opacity-0 translate-y-12"
               }`}
             >
-              <h2 className="text-5xl md:text-6xl font-bold text-[#f5f5f5] mb-6">
+              <h2
+                className="text-5xl md:text-6xl font-bold text-[#f5f5f5] mb-6"
+                ref={headlineRef}
+              >
                 About <span className="text-white">Light Spire Media</span>
               </h2>
               <div className="w-24 h-1 bg-[#f5f5f5] mx-auto mb-8"></div>
@@ -165,22 +267,20 @@ const AboutSectionDark = () => {
           </div>
 
           {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Left Column - About Description and Experience Card */}
+          <div className="w-full flex flex-col items-center justify-center min-h-[500px]">
             <div
-              className={`transition-all duration-1000 delay-300 ${
-                isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-8"
-              }`}
+              className={`transition-all duration-1000 delay-300 w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-center text-center`}
             >
               {/* About Description */}
-              <div className="bg-[#0678cf]/80 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl p-8 mb-8">
-                <div className="flex items-center mb-6">
+              <div className="bg-[#0678cf]/50 backdrop-blur-sm border border-[#f5f5f5]/20 rounded-2xl p-8 mb-8 md:mb-0 w-full mx-auto">
+                <div className="flex items-center justify-center mb-6">
                   <Target className="w-8 h-8 text-white mr-3" />
                   <h3 className="text-2xl font-bold text-white">Our Mission</h3>
                 </div>
-                <p className="text-[#f5f5f5] leading-relaxed mb-6">
+                <p
+                  className="text-[#f5f5f5] leading-relaxed mb-6"
+                  ref={missionPara1Ref}
+                >
                   At{" "}
                   <span className="text-white font-semibold">
                     Light Spire Media
@@ -193,7 +293,7 @@ const AboutSectionDark = () => {
                   cutting-edge <span className="text-white">VFX solutions</span>{" "}
                   that bring stories to life across every platform.
                 </p>
-                <p className="text-white leading-relaxed">
+                <p className="text-white leading-relaxed" ref={missionPara2Ref}>
                   From concept to completion, we blend artistic vision with
                   technical excellence to deliver content that not only meets
                   but exceeds expectations. Every frame we create is a testament
@@ -203,7 +303,7 @@ const AboutSectionDark = () => {
               </div>
 
               {/* Experience Card */}
-              <div className="bg-[#0678cf]/80 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl p-6 text-center">
+              <div className="bg-[#0678cf]/50 backdrop-blur-sm border border-[#f5f5f5]/20 rounded-2xl p-6 text-center w-full max-w-xs mx-auto">
                 <div className="flex items-center justify-center mb-3">
                   <Award className="w-8 h-8 text-white mr-2" />
                   <div className="text-4xl font-bold text-white">
@@ -220,24 +320,6 @@ const AboutSectionDark = () => {
                 </p>
               </div>
             </div>
-
-            {/* Right Column - Optimized Spline 3D Component */}
-            {!isMobile && (
-              <div
-                className={`transition-all duration-1000 delay-500 ${
-                  isVisible
-                    ? "opacity-100 translate-x-0"
-                    : "opacity-0 translate-x-8"
-                }`}
-              >
-                <div className="relative h-full min-h-[500px] overflow-hidden flex items-center justify-center">
-                  <div className="relative flex size-full max-w-lg items-center justify-center overflow-hidden px-40 pb-40 pt-8 md:pb-60">
-                    <Globe className="top-38" />
-                    <div className="pointer-events-none absolute inset-0 h-full" />
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Bottom Quote */}
@@ -252,7 +334,10 @@ const AboutSectionDark = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-[#f5f5f5]/10 via-[#0678cf]/10 to-white/10 rounded-2xl blur-xl"></div>
               <div className="relative flex items-center justify-center">
                 <Sparkles className="w-8 h-8 text-white mr-4 animate-pulse" />
-                <p className="text-2xl md:text-3xl font-bold text-white">
+                <p
+                  className="text-2xl md:text-3xl font-bold text-white"
+                  ref={bottomQuoteRef}
+                >
                   "We don't just animate. We envision worlds, frame by frame."
                 </p>
                 <Sparkles

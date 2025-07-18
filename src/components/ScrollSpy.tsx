@@ -74,7 +74,7 @@ const ScrollSpy = ({ menuItems, className }: ScrollSpyProps) => {
             {/* Menu item text */}
             <span
               className={cn(
-                "text-sm font-medium transition-all duration-300 whitespace-nowrap text-3xl",
+                "text-sm font-medium transition-all duration-300 whitespace-nowrap text-2xl",
                 "group-hover:translate-x-1 transform-gpu",
                 activeSection === item.href ? "font-semibold" : "text-gray-600"
               )}

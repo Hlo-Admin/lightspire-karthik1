@@ -1,3 +1,4 @@
+import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import {
   Share2,
@@ -15,11 +16,48 @@ import {
   Target,
   Zap,
 } from "lucide-react";
+import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
+import SplitText from "gsap/SplitText";
+gsap.registerPlugin(SplitText);
 
 const KidsIPStrategy = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    if (!headingRef.current) return;
+
+    let split: any = null;
+    let hasAnimated = false;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            hasAnimated = true;
+            split = new SplitText(headingRef.current, { type: "words" });
+            gsap.from(split.words, {
+              duration: 1,
+              opacity: 0,
+              y: 50,
+              stagger: 0.05,
+              ease: "power3.out",
+            });
+          }
+        });
+      },
+      { threshold: 0.3 } // Adjust threshold as needed
+    );
+
+    observer.observe(headingRef.current);
+
+    return () => {
+      observer.disconnect();
+      if (split) split.revert();
+    };
+  }, []);
 
   useEffect(() => {
     const observerOptions = {
@@ -166,12 +204,15 @@ const KidsIPStrategy = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-3 mb-6 bg-blue-50 px-6 py-3 rounded-full">
             <Target className="w-6 h-6 text-blue-600" />
-            <span className="text-[#0678cf] font-semibold text-lg">
+            <AnimatedShinyText className="text-[#0678cf] font-semibold text-lg">
               IP Strategy Framework
-            </span>
+            </AnimatedShinyText>
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight max-w-5xl mx-auto">
+          <h2
+            ref={headingRef}
+            className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight max-w-5xl mx-auto"
+          >
             Launch original IPs via global partners, platform deals &
             storytelling to position{" "}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-[#0678cf]">
@@ -224,8 +265,8 @@ const KidsIPStrategy = () => {
                         isLeft ? "lg:text-right" : "lg:text-left"
                       } text-center`}
                     >
-                      <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
-                        <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                      <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-500 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+                        <h4 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-[#0678cf] transition-colors">
                           {item.title}
                         </h4>
                         <p className="text-gray-600 text-sm leading-relaxed">
@@ -264,27 +305,25 @@ const KidsIPStrategy = () => {
               return (
                 <div
                   key={index}
-                  className="platform-item opacity-0 group relative overflow-hidden"
+                  className="platform-item opacity-0 relative overflow-hidden"
                 >
-                  <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 h-full">
+                  <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 transition-all duration-500 h-full relative">
+                    {/* Animated Border */}
+                    <div className="absolute inset-0 z-10 pointer-events-none">
+                      <span className="block w-full h-full rounded-2xl border-2 border-[#0678cf] animate-border-draw"></span>
+                    </div>
                     <div
-                      className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                      className="w-14 h-14 rounded-xl flex items-center justify-center mb-4"
                       style={{ backgroundColor: "#0678cf" }}
                     >
                       <IconComponent className="w-7 h-7 text-white" />
                     </div>
-                    <h4 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-gray-700 transition-colors">
+                    <h4 className="text-lg font-bold text-gray-900 mb-3">
                       {item.title}
                     </h4>
                     <p className="text-gray-600 text-sm leading-relaxed">
                       {item.desc}
                     </p>
-
-                    {/* Hover Effect Background */}
-                    <div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl"
-                      style={{ backgroundColor: "#0678cf" }}
-                    ></div>
                   </div>
                 </div>
               );
