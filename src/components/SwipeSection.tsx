@@ -14,6 +14,7 @@ const SwipeSection = () => {
     let scrollTimeout = gsap.delayedCall(1, () => allowScroll = true).pause();
     let currentIndex = 0;
     let swipePanels = panelsRef.current;
+    let restoreScroll: (() => void) | null = null;
 
     // set z-index levels for the swipe panels
     gsap.set(swipePanels, { zIndex: i => swipePanels.length - i});
@@ -30,10 +31,15 @@ const SwipeSection = () => {
         scrollTimeout.restart(true);
         // when enabling, we should save the scroll position and freeze it
         let savedScroll = self.scrollY();
-        self._restoreScroll = () => self.scrollY(savedScroll);
-        document.addEventListener("scroll", self._restoreScroll, {passive: false});
+        restoreScroll = () => self.scrollY(savedScroll);
+        document.addEventListener("scroll", restoreScroll, {passive: false});
       },
-      onDisable: self => document.removeEventListener("scroll", self._restoreScroll)
+      onDisable: () => {
+        if (restoreScroll) {
+          document.removeEventListener("scroll", restoreScroll);
+          restoreScroll = null;
+        }
+      }
     });
     intentObserver.disable();
 
@@ -77,6 +83,9 @@ const SwipeSection = () => {
       scrollTrigger.kill();
       intentObserver.disable();
       scrollTimeout.kill();
+      if (restoreScroll) {
+        document.removeEventListener("scroll", restoreScroll);
+      }
     };
   }, []);
 
