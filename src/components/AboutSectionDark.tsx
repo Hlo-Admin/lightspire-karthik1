@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState, Suspense, lazy } from "react";
 import {
   Target,
@@ -116,6 +117,17 @@ const AboutSectionDark = () => {
           paddingBottom: "6rem", // Add extra padding for bottom slant
         }}
       >
+        {/* World Map Background */}
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `url('/lovable-uploads/1bfa71d5-65c9-42ee-919c-06fbd6583e7a.png')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           {/* Place ALL your content here, including background effects */}
           {/* Background Effects */}
@@ -161,7 +173,7 @@ const AboutSectionDark = () => {
               }`}
             >
               {/* About Description */}
-              <div className="bg-[#0678cf]/80 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl p-8 mb-8">
+              <div className="bg-[#0678cf]/60 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl p-8 mb-8">
                 <div className="flex items-center mb-6">
                   <Target className="w-8 h-8 text-white mr-3" />
                   <h3 className="text-2xl font-bold text-white">Our Mission</h3>
@@ -189,7 +201,7 @@ const AboutSectionDark = () => {
               </div>
 
               {/* Experience Card */}
-              <div className="bg-[#0678cf]/80 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl p-6 text-center">
+              <div className="bg-[#0678cf]/60 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl p-6 text-center">
                 <div className="flex items-center justify-center mb-3">
                   <Award className="w-8 h-8 text-white mr-2" />
                   <div className="text-4xl font-bold text-white">
@@ -228,43 +240,6 @@ const AboutSectionDark = () => {
             )}
           </div>
 
-          {/* Trusted Studios Section */}
-          {/* <div
-            className={`mb-16 transition-all duration-1000 delay-700 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            }`}
-          >
-            <div className="bg-[#0678cf]/80 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-white mb-8 text-center">
-                Trusted By{" "}
-                <span className="text-[#f5f5f5]">Studios Worldwide</span>
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-                {studios.map((studio, index) => {
-                  const Icon = studio.icon;
-                  return (
-                    <div
-                      key={studio.name}
-                      className="group bg-[#f5f5f5]/10 rounded-lg p-4 hover:bg-[#f5f5f5]/20 transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center"
-                      style={{ transitionDelay: `${index * 50}ms` }}
-                    >
-                      <div className="w-12 h-12 bg-[#f5f5f5]/20 rounded-lg flex items-center justify-center group-hover:bg-white/20 transition-all duration-300 mb-2">
-                        <Icon
-                          className={`w-6 h-6 ${studio.color} group-hover:text-white transition-colors duration-300`}
-                        />
-                      </div>
-                      <span className="text-xs text-[#f5f5f5] text-center font-medium group-hover:text-white transition-colors duration-300">
-                        {studio.name}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div> */}
-
           {/* Bottom Quote */}
           <div
             className={`text-center transition-all pt-16 duration-1000 delay-900 ${
@@ -273,7 +248,7 @@ const AboutSectionDark = () => {
                 : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="relative inline-block bg-[#0678cf]/80 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl px-12 py-8">
+            <div className="relative inline-block bg-[#0678cf]/60 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl px-12 py-8">
               <div className="absolute inset-0 bg-gradient-to-r from-[#f5f5f5]/10 via-[#0678cf]/10 to-white/10 rounded-2xl blur-xl"></div>
               <div className="relative flex items-center justify-center">
                 <Sparkles className="w-8 h-8 text-white mr-4 animate-pulse" />
@@ -288,62 +263,7 @@ const AboutSectionDark = () => {
             </div>
           </div>
         </div>
-        {/* Top Slant Animated Line */}
-        {/**
-        <svg
-          className={`absolute left-0 top-0 w-full h-[3vw] pointer-events-none transition-all duration-2000 ${
-            isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
-          }`}
-          style={{ zIndex: 20 }}
-          width="100%"
-          height="3vw"
-          viewBox="0 0 100 3"
-          preserveAspectRatio="none"
-        >
-          <line
-            x1="0"
-            y1="3"
-            x2="100"
-            y2="0"
-            stroke="#f5f5f5"
-            strokeWidth="2"
-            strokeDasharray="100"
-            strokeDashoffset={isVisible ? "0" : "100"}
-            style={{
-              transition: "stroke-dashoffset 2s cubic-bezier(0.4,0,0.2,1)",
-            }}
-          />
-        </svg>
-        */}
-        {/* Bottom Slant Animated Line */}
-        {/**
-        <svg
-          className={`absolute left-0 bottom-0 w-full h-[3vw] pointer-events-none transition-all duration-2000 ${
-            bottomLineVisible
-              ? "opacity-100 scale-x-100"
-              : "opacity-0 scale-x-0"
-          }`}
-          style={{ zIndex: 20 }}
-          width="100%"
-          height="3vw"
-          viewBox="0 0 100 3"
-          preserveAspectRatio="none"
-        >
-          <line
-            x1="0"
-            y1="0"
-            x2="100"
-            y2="3"
-            stroke="#f5f5f5"
-            strokeWidth="2"
-            strokeDasharray="100"
-            strokeDashoffset={bottomLineVisible ? "0" : "100"}
-            style={{
-              transition: "stroke-dashoffset 2s cubic-bezier(0.4,0,0.2,1)",
-            }}
-          />
-        </svg>
-        */}
+
         <div
           ref={bottomRef}
           style={{
