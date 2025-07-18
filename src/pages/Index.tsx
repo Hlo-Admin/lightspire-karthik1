@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, Suspense, lazy } from "react";
 import { Button } from "@/components/ui/button";
 import { Play, Quote, ArrowRight } from "lucide-react";
@@ -14,6 +15,7 @@ import MagneticHover from "@/components/MagneticHover";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import LightspireHero from "@/components/Hero-words";
+import SwipeSection from "@/components/SwipeSection";
 
 // Lazy load Spline component for better performance
 const LazySpline = lazy(() => import("@splinetool/react-spline"));
@@ -87,8 +89,6 @@ const Index = () => {
         <LightspireHero />
       </div>
 
-     
-
       {/* Dark About Section */}
       <div className="creative-section" data-cursor="creative" id="about">
         <AboutSectionDark />
@@ -102,6 +102,11 @@ const Index = () => {
       {/* Kids IP Strategy Section - Now placed after About Us */}
       <div className="creative-section" data-cursor="creative" id="portfolio">
         <KidsIPStrategy />
+      </div>
+
+      {/* Swipe Section - New GSAP powered section */}
+      <div className="creative-section" data-cursor="creative">
+        <SwipeSection />
       </div>
 
       {/* Founders Section - New section after Kids IP Strategy */}
