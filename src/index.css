@@ -158,17 +158,6 @@ All colors MUST be HSL.
     }
   }
 
-  @keyframes scroll-stack-enter {
-    from {
-      opacity: 0;
-      transform: translateY(100px) scale(0.8);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
-
   @keyframes pulse-glow {
     0%,
     100% {
@@ -213,10 +202,6 @@ All colors MUST be HSL.
 
   .animate-fade-in {
     animation: fade-in 0.8s ease-out forwards;
-  }
-
-  .animate-scroll-stack-enter {
-    animation: scroll-stack-enter 0.8s ease-out forwards;
   }
 
   .animate-pulse-glow {
@@ -265,16 +250,6 @@ All colors MUST be HSL.
 
   .animate-scrollspy-pulse {
     animation: scrollspy-pulse 2s ease-in-out infinite;
-  }
-
-  /* Scroll Stack specific styles */
-  .scroll-stack {
-    position: relative;
-  }
-
-  .scroll-stack > div {
-    position: relative;
-    z-index: 1;
   }
 
   /* Smooth scrolling */

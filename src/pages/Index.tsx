@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, Suspense, lazy } from "react";
 import { Button } from "@/components/ui/button";
 import { Play, Quote, ArrowRight } from "lucide-react";
@@ -15,7 +14,6 @@ import MagneticHover from "@/components/MagneticHover";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import LightspireHero from "@/components/Hero-words";
-import ScrollStackDemo from "@/components/ScrollStackDemo";
 
 // Lazy load Spline component for better performance
 const LazySpline = lazy(() => import("@splinetool/react-spline"));
@@ -41,7 +39,6 @@ const Index = () => {
     { name: "About", href: "#about" },
     { name: "Services", href: "#services" },
     { name: "Portfolio", href: "#portfolio" },
-    { name: "Scroll Stack", href: "#scroll-stack" },
     { name: "Founders", href:"#founders"},
     { name: "Contact", href: "#contact" },
   ];
@@ -90,6 +87,8 @@ const Index = () => {
         <LightspireHero />
       </div>
 
+     
+
       {/* Dark About Section */}
       <div className="creative-section" data-cursor="creative" id="about">
         <AboutSectionDark />
@@ -105,13 +104,8 @@ const Index = () => {
         <KidsIPStrategy />
       </div>
 
-      {/* Scroll Stack Demo Section */}
-      <div className="creative-section" data-cursor="creative" id="scroll-stack">
-        <ScrollStackDemo />
-      </div>
-
       {/* Founders Section - New section after Kids IP Strategy */}
-      <div className="creative-section" data-cursor="creative" id="founders">
+      <div className="creative-section" data-cursor="creative">
         <FoundersSection />
       </div>
 
