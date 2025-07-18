@@ -6,7 +6,7 @@ import { FloatingElements } from "@/components/FloatingElements";
 import Navbar from "@/components/Navbar";
 import ScrollSpy from "@/components/ScrollSpy";
 import ServicesSection from "@/components/ServicesSection";
-import ServicesSection2 from "@/components/Servicesnew";
+import ServicesSection2 from "@/components/ServicesSection2";
 import AboutSectionDark from "@/components/AboutBg";
 import KidsIPStrategy from "@/components/KidsIPStrategy";
 import FoundersSection from "@/components/FoundersSection";
