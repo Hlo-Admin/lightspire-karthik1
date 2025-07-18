@@ -7,7 +7,7 @@ import { FloatingElements } from "@/components/FloatingElements";
 import Navbar from "@/components/Navbar";
 import ScrollSpy from "@/components/ScrollSpy";
 import ServicesSection from "@/components/ServicesSection";
-import ServicesSection2 from "@/components/ServicesSection2";
+import ServicesSection2 from "@/components/Servicesnew";
 import AboutSectionDark from "@/components/AboutBg";
 import KidsIPStrategy from "@/components/KidsIPStrategy";
 import FoundersSection from "@/components/FoundersSection";
@@ -30,7 +30,7 @@ const SplineLoader = () => (
   </div>
 );
 
-const Index = () => {
+const HomeNew = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -125,4 +125,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default HomeNew;
