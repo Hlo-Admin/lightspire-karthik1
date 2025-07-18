@@ -13,7 +13,7 @@ import FoundersSection from "@/components/FoundersSection";
 import MagneticHover from "@/components/MagneticHover";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import LightspireHero from "@/components/Hero-words";
+import LightspireHero from "@/components/Hero";
 
 // Lazy load Spline component for better performance
 const LazySpline = lazy(() => import("@splinetool/react-spline"));

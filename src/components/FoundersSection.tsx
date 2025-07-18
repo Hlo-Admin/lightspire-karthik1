@@ -1,30 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Sparkles, Star } from "lucide-react";
-import gsap from "gsap";
-// @ts-ignore
-import SplitText from "gsap/SplitText";
-gsap.registerPlugin(SplitText);
-import { useCallback } from "react";
-function useElementVisible<T extends HTMLElement = HTMLElement>() {
-  const ref = useRef<T>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const observerCallback = useCallback(
-    (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => setIsVisible(entry.isIntersecting));
-    },
-    []
-  );
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-    const observer = new window.IntersectionObserver(observerCallback, {
-      threshold: 0.1,
-    });
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [observerCallback]);
-  return [ref, isVisible] as const;
-}
 
 const FoundersSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -105,55 +80,6 @@ const FoundersSection = () => {
     },
   ];
 
-  const [headlineRef, headlineVisible] =
-    useElementVisible<HTMLHeadingElement>();
-  const [descParaRef, descParaVisible] =
-    useElementVisible<HTMLParagraphElement>();
-  const [quoteRef, quoteVisible] = useElementVisible<HTMLParagraphElement>();
-
-  useEffect(() => {
-    if (!headlineVisible || !headlineRef.current) return;
-    const split = new SplitText(headlineRef.current, { type: "lines" });
-    gsap.from(split.lines, {
-      rotationX: -80,
-      transformOrigin: "50% 50% -80px",
-      opacity: 0,
-      duration: 0.7,
-      stagger: 0.5,
-      ease: "expo.out",
-    });
-    return () => split.revert();
-  }, [headlineVisible, headlineRef]);
-
-  useEffect(() => {
-    if (!descParaVisible || !descParaRef.current) return;
-    const split = new SplitText(descParaRef.current, { type: "chars" });
-    gsap.from(split.chars, {
-      y: 20,
-      opacity: 0,
-      stagger: 0.005,
-      duration: 0.3,
-      ease: "power2.out",
-      overwrite: "auto",
-    });
-    return () => split.revert();
-  }, [descParaVisible, descParaRef]);
-
-  useEffect(() => {
-    if (!quoteVisible || !quoteRef.current) return;
-    const split = new SplitText(quoteRef.current, { type: "chars" });
-    gsap.from(split.chars, {
-      scale: 2.5,
-      rotationX: -180,
-      opacity: 0,
-      transformOrigin: "100% 50%",
-      ease: "back",
-      duration: 1,
-      stagger: 0.02,
-    });
-    return () => split.revert();
-  }, [quoteVisible, quoteRef]);
-
   return (
     <section
       ref={sectionRef}
@@ -207,10 +133,7 @@ const FoundersSection = () => {
           >
             <div className="inline-flex items-center mb-6">
               <Sparkles className="w-8 h-8 text-white mr-4 animate-pulse" />
-              <h2
-                className="text-5xl md:text-6xl font-bold text-white"
-                ref={headlineRef}
-              >
+              <h2 className="text-5xl md:text-6xl font-bold text-white">
                 Meet Our <span className="text-[#f5f5f5]">Founders</span>
               </h2>
               <Sparkles
@@ -219,10 +142,7 @@ const FoundersSection = () => {
               />
             </div>
             <div className="w-32 h-1 bg-gradient-to-r from-white to-[#f5f5f5] mx-auto mb-8 rounded-full"></div>
-            <p
-              className="text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed"
-              ref={descParaRef}
-            >
+            <p className="text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed">
               The visionary minds behind Light Spire Media, bringing together
               decades of experience in{" "}
               <span className="text-white">creative direction</span> and{" "}
@@ -313,10 +233,7 @@ const FoundersSection = () => {
           >
             <div className="relative inline-block bg-[#7a7a7a]/80 backdrop-blur-sm border border-white/20 rounded-2xl px-8 py-6">
               <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-[#f5f5f5]/10 to-[#8a8a8a]/10 rounded-2xl blur-xl"></div>
-              <p
-                className="text-xl md:text-2xl font-light text-[#f5f5f5] italic relative z-10"
-                ref={quoteRef}
-              >
+              <p className="text-xl md:text-2xl font-light text-[#f5f5f5] italic relative z-10">
                 "Together, we transform imagination into{" "}
                 <span className="text-white font-semibold">visual reality</span>
                 ."

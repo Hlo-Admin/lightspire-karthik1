@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Tv, Globe, Film, Megaphone, Users, Smartphone } from "lucide-react";
-import { HyperText } from "./magicui/hyper-text";
 
 const ServicesSection2 = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -73,7 +72,7 @@ const ServicesSection2 = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-gray-200 bg-gradient-to-b from-gray-200 via-gray-100 to-gray-200 py-24 overflow-hidden"
+      className="relative bg-[#ffffff] from-gray-50 via-white to-gray-100 py-24 overflow-hidden"
       id="services"
       style={{
         clipPath: "polygon(0 0, 100% 3vw, 100% 100%, 0 calc(100% - 3vw))",
@@ -94,8 +93,8 @@ const ServicesSection2 = () => {
       </div>
 
       {/* Services Grid */}
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
 
@@ -111,7 +110,7 @@ const ServicesSection2 = () => {
                   transitionDelay: `${index * 150}ms`,
                 }}
               >
-                <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 overflow-hidden h-full p-4 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2 group-hover:-translate-x-1">
+                <div className="relative bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden h-full p-8 hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2 group-hover:-translate-x-1">
                   {/* Gradient Background */}
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
@@ -121,28 +120,20 @@ const ServicesSection2 = () => {
                   <div className="relative z-10">
                     {/* Animated Icon */}
                     <div
-                      className={`inline-flex w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl items-center justify-center shadow-lg mb-4 sm:mb-6 group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 bg-[#0678cf]`}
+                      className={
+                        `inline-flex w-16 h-16 rounded-2xl items-center justify-center shadow-lg mb-6 group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 bg-[#0678cf]` // gray-500
+                      }
                     >
-                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
+                      <Icon className="w-8 h-8 text-white" />
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xs sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-4 cinematic-title group-hover:text-gray-800 transition-colors duration-300">
-                      {isVisible ? (
-                        <HyperText
-                          animateOnHover={false}
-                          startOnView={true}
-                          className="text-xs sm:text-lg md:text-xl font-bold text-gray-900 cinematic-title group-hover:text-gray-800 transition-colors duration-300"
-                        >
-                          {service.title}
-                        </HyperText>
-                      ) : (
-                        service.title
-                      )}
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4 cinematic-title group-hover:text-gray-800 transition-colors duration-300">
+                      {service.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-light">
+                    <p className="text-base text-gray-600 leading-relaxed font-light">
                       {service.description}
                     </p>
 
@@ -181,7 +172,7 @@ const ServicesSection2 = () => {
           y1="0"
           x2="100"
           y2="3"
-          stroke="gray-200" // Tailwind's gray-200, adjust as needed
+          stroke="#f7f9fa" // Tailwind's gray-200, adjust as needed
           strokeWidth="2"
           strokeDasharray="100"
           strokeDashoffset="0"
