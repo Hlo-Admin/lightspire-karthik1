@@ -1,6 +1,6 @@
 
 import React from 'react';
-import ScrollStack, { ScrollStackCard } from '@component2/ui/scroll-stack';
+import ScrollStack, { ScrollStackCard } from '@/components/ui/scroll-stack';
 
 const ScrollStackDemo = () => {
   const stackCards: ScrollStackCard[] = [
@@ -42,28 +42,13 @@ const ScrollStackDemo = () => {
     },
   ];
 
-  const simpleCards: ScrollStackCard[] = [
-    {
-      title: "Simple Stack Example",
-      subtitle: "This is a basic scroll stack with minimal configuration."
-    },
-    {
-      title: "Second Card",
-      subtitle: "Cards automatically use default background images when not specified."
-    },
-    {
-      title: "Third Card",
-      subtitle: "Smooth animations create an engaging scroll experience."
-    }
-  ];
-
   return (
-    <div className="relative">
+    <div className="relative py-20">
       {/* Full Example */}
-      <div className="text-center px-4">
-        <h2 className="text-3xl font-bold ">Start scroll in this preview section inside to check the preview scroll stack</h2>
+      <div className="text-center px-4 mb-12">
+        <h2 className="text-3xl font-bold">Start scroll in this preview section inside to check the preview scroll stack</h2>
       </div>
-      <ScrollStack cards={stackCards} className='absolute -top-20' />
+      <ScrollStack cards={stackCards} className="max-w-6xl mx-auto px-4" />
     </div>
   );
 };
