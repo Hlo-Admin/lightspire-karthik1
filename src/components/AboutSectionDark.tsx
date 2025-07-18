@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState, Suspense, lazy } from "react";
 import {
   Target,
@@ -111,15 +110,15 @@ const AboutSectionDark = () => {
       <div
         className="relative w-full"
         style={{
-          background: "#0678cf",
+          background: "#0678cf", // Blue background - bottom layer
           clipPath: "polygon(0 3vw, 100% 0, 100% 100%, 0 calc(100% - 3vw))",
-          paddingTop: "6rem", // Add extra padding for top slant
-          paddingBottom: "6rem", // Add extra padding for bottom slant
+          paddingTop: "6rem",
+          paddingBottom: "6rem",
         }}
       >
-        {/* World Map Background */}
+        {/* World Map Background - middle layer */}
         <div 
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 z-10 opacity-30"
           style={{
             backgroundImage: `url('/lovable-uploads/1bfa71d5-65c9-42ee-919c-06fbd6583e7a.png')`,
             backgroundSize: 'cover',
@@ -128,8 +127,8 @@ const AboutSectionDark = () => {
           }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          {/* Place ALL your content here, including background effects */}
+        {/* Content Container - top layer */}
+        <div className="max-w-7xl mx-auto px-6 relative z-20">
           {/* Background Effects */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <div className="absolute top-32 left-1/4 w-96 h-96 bg-gradient-radial from-cyan-500/10 via-cyan-500/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
