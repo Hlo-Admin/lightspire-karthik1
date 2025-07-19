@@ -209,7 +209,7 @@ const AboutSectionDark = () => {
       <div
         className="relative w-full"
         style={{
-          // backgroundImage: "url('/map1.png')",
+          backgroundImage: "url('/newmap.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -269,10 +269,10 @@ const AboutSectionDark = () => {
           {/* Main Content Grid */}
           <div className="w-full flex flex-col items-center justify-center min-h-[500px]">
             <div
-              className={`transition-all duration-1000 delay-300 w-full max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-center text-center`}
+              className={`transition-all duration-1000 delay-300 w-full max-w-5xl mx-auto flex flex-col items-center justify-center text-center gap-8`}
             >
               {/* About Description */}
-              <div className="bg-[#0678cf]/50 backdrop-blur-sm border border-[#f5f5f5]/20 rounded-2xl p-8 mb-8 md:mb-0 w-full mx-auto">
+              <div className="bg-[#0678cf]/50 backdrop-blur-sm border border-[#f5f5f5]/20 rounded-2xl p-8 w-full max-w-4xl mx-auto mb-8">
                 <div className="flex items-center justify-center mb-6">
                   <Target className="w-8 h-8 text-white mr-3" />
                   <h3 className="text-2xl font-bold text-white">Our Mission</h3>
