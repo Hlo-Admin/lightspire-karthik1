@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Tv, Globe, Film, Megaphone, Users, Smartphone } from "lucide-react";
-import { HyperText } from "./magicui/hyper-text";
+import { TypingAnimation } from "./magicui/typing-animation";
+import { AnimatedShinyText } from "./magicui/animated-shiny-text";
 
 const ServicesSection2 = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -73,7 +74,7 @@ const ServicesSection2 = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-gray-200 bg-gradient-to-b from-gray-200 via-gray-100 to-gray-200 py-24 overflow-hidden"
+      className="relative bg-gray-200 bg-gradient-to-b from-white via-gray-100 to-gray-200 py-24 overflow-hidden"
       id="services"
       style={{
         clipPath: "polygon(0 0, 100% 3vw, 100% 100%, 0 calc(100% - 3vw))",
@@ -98,7 +99,6 @@ const ServicesSection2 = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
-
             return (
               <div
                 key={service.title}
@@ -127,15 +127,11 @@ const ServicesSection2 = () => {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-sm sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 sm:mb-4 cinematic-title group-hover:text-gray-800 transition-colors duration-300">
+                    <h3 className="text-xs sm:text-sm md:text-base font-bold text-gray-900 mb-2 sm:mb-4 cinematic-title group-hover:text-gray-800 transition-colors duration-300">
                       {isVisible ? (
-                        <HyperText
-                          animateOnHover={false}
-                          startOnView={true}
-                          className="text-sm sm:text-xl md:text-2xl font-bold text-gray-900 cinematic-title group-hover:text-gray-800 transition-colors duration-300"
-                        >
+                        <TypingAnimation startOnView duration={60}>
                           {service.title}
-                        </HyperText>
+                        </TypingAnimation>
                       ) : (
                         service.title
                       )}

@@ -209,7 +209,7 @@ const AboutSectionDark = () => {
       <div
         className="relative w-full"
         style={{
-          backgroundImage: "url('/newmap.png')",
+          backgroundImage: "url('/abtbg.jpeg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -272,7 +272,7 @@ const AboutSectionDark = () => {
               className={`transition-all duration-1000 delay-300 w-full max-w-5xl mx-auto flex flex-col items-center justify-center text-center gap-8`}
             >
               {/* About Description */}
-              <div className="bg-[#0678cf]/50 backdrop-blur-sm border border-[#f5f5f5]/20 rounded-2xl p-8 w-full max-w-4xl mx-auto mb-8">
+              <div className="bg-[#0678cf]/10 backdrop-blur-sm border border-[#f5f5f5]/20 rounded-2xl p-8 w-full max-w-4xl mx-auto mb-8">
                 <div className="flex items-center justify-center mb-6">
                   <Target className="w-8 h-8 text-white mr-3" />
                   <h3 className="text-2xl font-bold text-white">Our Mission</h3>
@@ -303,7 +303,7 @@ const AboutSectionDark = () => {
               </div>
 
               {/* Experience Card */}
-              <div className="bg-[#0678cf]/50 backdrop-blur-sm border border-[#f5f5f5]/20 rounded-2xl p-6 text-center w-full max-w-xs mx-auto">
+              <div className="bg-[#0678cf]/10 backdrop-blur-sm border border-[#f5f5f5]/20 rounded-2xl p-6 text-center w-full max-w-xs mx-auto">
                 <div className="flex items-center justify-center mb-3">
                   <Award className="w-8 h-8 text-white mr-2" />
                   <div className="text-4xl font-bold text-white">
@@ -330,7 +330,7 @@ const AboutSectionDark = () => {
                 : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="relative inline-block bg-[#0678cf]/80 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl px-12 py-8">
+            <div className="relative inline-block bg-[#0678cf]/10 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl px-12 py-8">
               <div className="absolute inset-0 bg-gradient-to-r from-[#f5f5f5]/10 via-[#0678cf]/10 to-white/10 rounded-2xl blur-xl"></div>
               <div className="relative flex items-center justify-center">
                 <Sparkles className="w-8 h-8 text-white mr-4 animate-pulse" />

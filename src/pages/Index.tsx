@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, Suspense, lazy } from "react";
 import { Button } from "@/components/ui/button";
 import { Play, Quote, ArrowRight } from "lucide-react";
@@ -41,7 +40,7 @@ const Index = () => {
     { name: "About", href: "#about" },
     { name: "Services", href: "#services" },
     { name: "Portfolio", href: "#portfolio" },
-    { name: "Founders", href:"#founders"},
+    { name: "Founders", href: "#founders" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -85,7 +84,7 @@ const Index = () => {
       <ScrollSpy menuItems={menuItems} />
 
       {/* Hero Section */}
-      <div id="home">
+      <div id="home" className="mt-16 sm:mt-0">
         <LightspireHero />
       </div>
 
@@ -94,8 +93,8 @@ const Index = () => {
         <AboutSectionDark />
       </div>
 
-       {/* Premium Services Section */}
-       <div className="creative-section" data-cursor="creative" id="services">
+      {/* Premium Services Section */}
+      <div className="creative-section" data-cursor="creative" id="services">
         <ServicesSection2 />
       </div>
 
