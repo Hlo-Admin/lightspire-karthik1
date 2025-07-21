@@ -39,8 +39,8 @@ const Index = () => {
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Services", href: "#services" },
+    { name: "Team", href: "#founders" },
     { name: "Portfolio", href: "#portfolio" },
-    { name: "Founders", href: "#founders" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -98,6 +98,11 @@ const Index = () => {
         <ServicesSection2 />
       </div>
 
+        {/* Founders Section - New section after Kids IP Strategy */}
+        <div className="creative-section" data-cursor="creative">
+        <FoundersSection />
+      </div>
+
       {/* Kids IP Strategy Section - Now placed after About Us */}
       <div className="creative-section" data-cursor="creative" id="portfolio">
         <KidsIPStrategy />
@@ -108,10 +113,7 @@ const Index = () => {
         <SwipeSection />
       </div> */}
 
-      {/* Founders Section - New section after Kids IP Strategy */}
-      <div className="creative-section" data-cursor="creative">
-        <FoundersSection />
-      </div>
+    
 
       {/* Contact Section - New section */}
       <div className="creative-section" data-cursor="creative" id="contact">

@@ -74,7 +74,7 @@ const ServicesSection2 = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-gray-200 bg-gradient-to-b from-white via-gray-100 to-gray-200 py-24 overflow-hidden"
+      className="relative bg-white bg-gradient-to-b from-white via-white to-white py-24 overflow-hidden"
       id="services"
       style={{
         clipPath: "polygon(0 0, 100% 3vw, 100% 100%, 0 calc(100% - 3vw))",
@@ -161,7 +161,7 @@ const ServicesSection2 = () => {
       </div>
 
       {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-100 to-transparent pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
 
       {/* Bottom Slant SVG Line */}
       <svg
@@ -177,7 +177,7 @@ const ServicesSection2 = () => {
           y1="0"
           x2="100"
           y2="3"
-          stroke="gray-200" // Tailwind's gray-200, adjust as needed
+          stroke="white" // Tailwind's gray-200, adjust as needed
           strokeWidth="2"
           strokeDasharray="100"
           strokeDashoffset="0"

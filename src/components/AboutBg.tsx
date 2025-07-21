@@ -207,9 +207,9 @@ const AboutSectionDark = () => {
       id="about"
     >
       <div
-        className="relative w-full"
+        className="relative"
         style={{
-          backgroundImage: "url('/abtbg.jpeg')",
+          backgroundImage: "url('/abtbg1.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

@@ -211,7 +211,7 @@ const FoundersSection = () => {
                 className="text-5xl md:text-6xl font-bold text-white"
                 ref={headlineRef}
               >
-                Meet Our <span className="text-[#f5f5f5]">Founders</span>
+                Meet Our <span className="text-[#f5f5f5]">Team</span>
               </h2>
               <Sparkles
                 className="w-8 h-8 text-[#f5f5f5] ml-4 animate-pulse"
