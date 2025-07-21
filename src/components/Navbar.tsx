@@ -61,18 +61,17 @@ const Navbar = () => {
               style={{ zIndex: 55 }}
             >
               {/* Column 1 */}
-              <span className="flex-1 text-base md:text-lg font-semibold text-[#222] text-right pr-4 whitespace-nowrap">
+              <span className="flex-1 text-xl md:text-2xl font-bold text-[#222] text-right pr-4 whitespace-nowrap">
                 India's Premier
               </span>
               {/* Column 2: Animated center with separators */}
               <span className="flex-1 flex items-center justify-center gap-2 text-xl md:text-2xl font-bold text-[#0678cf] whitespace-nowrap">
                 <span>|</span>
-              2D Animation
-                <span className="inline-block text-[#0678cf] font-bold"></span>
+                2D Animation
                 <span>|</span>
               </span>
               {/* Column 3 */}
-              <span className="flex-1 text-base md:text-lg font-semibold text-[#222] text-left pl-4 whitespace-nowrap">
+              <span className="flex-1 text-xl md:text-2xl font-bold text-[#222] text-left pl-4 whitespace-nowrap">
                 Studio
               </span>
             </div>
