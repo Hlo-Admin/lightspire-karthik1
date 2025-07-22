@@ -1,11 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Import Plus Jakarta Sans as fallback */
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap");
 /* Import Montserrat for paragraphs */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
@@ -199,61 +199,6 @@ All colors MUST be HSL.
     }
   }
 
-  /* New advanced animations */
-  @keyframes text-shimmer {
-    0% {
-      background-position: -200% 0;
-    }
-    100% {
-      background-position: 200% 0;
-    }
-  }
-
-  @keyframes bounce-scale {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-  }
-
-  @keyframes rotate-3d {
-    0% {
-      transform: rotateX(0) rotateY(0);
-    }
-    25% {
-      transform: rotateX(10deg) rotateY(10deg);
-    }
-    50% {
-      transform: rotateX(0) rotateY(20deg);
-    }
-    75% {
-      transform: rotateX(-10deg) rotateY(10deg);
-    }
-    100% {
-      transform: rotateX(0) rotateY(0);
-    }
-  }
-
-  @keyframes text-wave {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    20% {
-      transform: translateY(-10px);
-    }
-    40% {
-      transform: translateY(0);
-    }
-    60% {
-      transform: translateY(-5px);
-    }
-    80% {
-      transform: translateY(0);
-    }
-  }
-
   .animate-fade-in {
     animation: fade-in 0.8s ease-out forwards;
   }
@@ -272,42 +217,6 @@ All colors MUST be HSL.
 
   .animate-menu-scale {
     animation: menu-scale-in 0.3s ease-out forwards;
-  }
-
-  .animate-text-shimmer {
-    background: linear-gradient(90deg, transparent, rgba(6, 120, 207, 0.4), transparent);
-    background-size: 200% 100%;
-    animation: text-shimmer 2s infinite;
-  }
-
-  .animate-bounce-scale {
-    animation: bounce-scale 2s ease-in-out infinite;
-  }
-
-  .animate-rotate-3d {
-    animation: rotate-3d 4s ease-in-out infinite;
-  }
-
-  .animate-text-wave {
-    animation: text-wave 2s ease-in-out infinite;
-  }
-
-  /* Enhanced hover effects */
-  .hover-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .hover-lift:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  }
-
-  .hover-glow {
-    transition: box-shadow 0.3s ease;
-  }
-
-  .hover-glow:hover {
-    box-shadow: 0 0 20px rgba(6, 120, 207, 0.3);
   }
 
   /* ScrollSpy animations */
@@ -358,30 +267,6 @@ All colors MUST be HSL.
       from 180deg at 50% 50%,
       var(--tw-gradient-stops)
     );
-  }
-
-  /* Text animation utilities */
-  .split-line {
-    overflow: hidden;
-    display: block;
-  }
-
-  .split-word {
-    display: inline-block;
-  }
-
-  .split-char {
-    display: inline-block;
-  }
-
-  /* Marquee animations */
-  .marquee-container {
-    white-space: nowrap;
-  }
-
-  .marquee-content {
-    display: inline-block;
-    white-space: nowrap;
   }
 }
 

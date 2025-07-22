@@ -2,9 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Tv, Globe, Film, Megaphone, Users, Smartphone } from "lucide-react";
 import { TypingAnimation } from "./magicui/typing-animation";
 import { AnimatedShinyText } from "./magicui/animated-shiny-text";
-import { TextRevealAnimation } from "./animations/TextRevealAnimation";
-import { AnimatedGradientText } from "./animations/AnimatedGradientText";
-import { FlipboardText } from "./animations/FlipboardText";
 
 const ServicesSection2 = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -81,23 +78,23 @@ const ServicesSection2 = () => {
       id="services"
       style={{
         clipPath: "polygon(0 0, 100% 3vw, 100% 100%, 0 calc(100% - 3vw))",
-        paddingBottom: "6rem",
+        paddingBottom: "6rem", // adjust as needed
       }}
     >
-      {/* Header with Enhanced Animations */}
+      {/* Header */}
       <div className="text-center mb-20 relative z-10">
         <div className="max-w-4xl mx-auto px-6">
-          <AnimatedGradientText className="text-5xl md:text-6xl font-bold mb-6 cinematic-title">
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 cinematic-title">
             Our Services
-          </AnimatedGradientText>
-          <FlipboardText className="text-xl md:text-2xl text-gray-600 font-light">
+          </h2>
+          <p className="text-xl md:text-2xl text-gray-600 font-light">
             We bring stories to life across every screen and platform.
-          </FlipboardText>
-          <div className="mt-8 w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto rounded-full animate-pulse"></div>
+          </p>
+          <div className="mt-8 w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto rounded-full"></div>
         </div>
       </div>
 
-      {/* Services Grid with Enhanced Animations */}
+      {/* Services Grid */}
       <div className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {services.map((service, index) => {
@@ -105,7 +102,7 @@ const ServicesSection2 = () => {
             return (
               <div
                 key={service.title}
-                className={`group relative transform transition-all duration-700 hover:z-20 ${
+                className={`group relative transform transition-all duration-700 ${
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
@@ -114,43 +111,36 @@ const ServicesSection2 = () => {
                   transitionDelay: `${index * 150}ms`,
                 }}
               >
-                <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 overflow-hidden h-full p-4 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-4 group-hover:scale-105">
+                <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 overflow-hidden h-full p-4 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2 group-hover:-translate-x-1">
                   {/* Gradient Background */}
                   <div
-                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
                   ></div>
 
                   {/* Card Content */}
                   <div className="relative z-10">
                     {/* Animated Icon */}
                     <div
-                      className={`inline-flex w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl items-center justify-center shadow-lg mb-4 sm:mb-6 group-hover:shadow-xl transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 bg-[#0678cf]`}
+                      className={`inline-flex w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl items-center justify-center shadow-lg mb-4 sm:mb-6 group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 bg-[#0678cf]`}
                     >
-                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white group-hover:animate-bounce" />
+                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                     </div>
 
-                    {/* Title with Enhanced Animation */}
+                    {/* Title */}
                     <h3 className="text-xs sm:text-sm md:text-base font-bold text-gray-900 mb-2 sm:mb-4 cinematic-title group-hover:text-gray-800 transition-colors duration-300">
                       {isVisible ? (
-                        <TextRevealAnimation 
-                          animationType="scale" 
-                          stagger={0.05}
-                          className="inline-block"
-                        >
+                        <TypingAnimation startOnView duration={60}>
                           {service.title}
-                        </TextRevealAnimation>
+                        </TypingAnimation>
                       ) : (
                         service.title
                       )}
                     </h3>
 
-                    {/* Description with Fade Animation */}
-                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-light group-hover:text-gray-700 transition-colors duration-300">
+                    {/* Description */}
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-light">
                       {service.description}
                     </p>
-
-                    {/* Animated Border */}
-                    <div className="absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-transparent group-hover:border-[#0678cf] transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
 
                     {/* Hover Effect Line */}
                     <div
