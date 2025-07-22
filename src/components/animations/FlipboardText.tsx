@@ -1,6 +1,6 @@
 
 import { useEffect, useRef } from 'react';
-import anime from 'animejs';
+import * as anime from 'animejs';
 
 interface FlipboardTextProps {
   children: React.ReactNode;
@@ -26,7 +26,7 @@ const FlipboardText = ({
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              anime({
+              anime.default({
                 targets: textRef.current,
                 rotateX: [90, 0],
                 opacity: [0, 1],
@@ -52,7 +52,7 @@ const FlipboardText = ({
 
   const handleHover = () => {
     if (trigger === 'hover' && textRef.current) {
-      anime({
+      anime.default({
         targets: textRef.current,
         rotateX: [0, 10, 0],
         scale: [1, 1.05, 1],

@@ -1,6 +1,6 @@
 
 import { useEffect, useRef } from 'react';
-import anime from 'animejs';
+import * as anime from 'animejs';
 
 interface StrokeRevealProps {
   text: string;
@@ -31,14 +31,14 @@ const StrokeReveal = ({
               const textPath = svgRef.current.querySelector('text');
               if (textPath) {
                 // Animate stroke dash
-                anime({
+                anime.default({
                   targets: textPath,
-                  strokeDashoffset: [anime.setDashoffset, 0],
+                  strokeDashoffset: [anime.default.setDashoffset, 0],
                   easing: 'easeInOutSine',
                   duration: duration * 0.7,
                   complete: () => {
                     // Fill animation
-                    anime({
+                    anime.default({
                       targets: textPath,
                       fill: fillColor,
                       duration: duration * 0.3,
