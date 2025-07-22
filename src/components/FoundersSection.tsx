@@ -95,12 +95,14 @@ const FoundersSection = () => {
       name: "Sathiya Narayanan",
       title: "Co-Founder",
       tagline: "Vision meets production mastery.",
+      image: "founders/narayanan1.jpeg",
       delay: 200,
     },
     {
       name: "Leo Menezes",
       title: "Co-Founder",
       tagline: "Creative direction with storytelling soul.",
+      image: "founders/leo1.jpeg",
       delay: 400,
     },
   ];
@@ -248,17 +250,14 @@ const FoundersSection = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-[#f5f5f5]/10 to-[#8a8a8a]/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
                   {/* Avatar placeholder with animated border */}
                   <div className="relative mb-8">
-                    <div className="w-32 h-32 mx-auto bg-gradient-to-br from-[#bdbdbd] to-[#8a8a8a] rounded-full flex items-center justify-center group-hover:from-white/30 group-hover:to-[#f5f5f5]/30 transition-all duration-500">
-                      <div className="w-28 h-28 bg-gradient-to-br from-[#8a8a8a] to-[#bdbdbd] rounded-full flex items-center justify-center">
-                        <Star className="w-12 h-12 text-white group-hover:text-[#f5f5f5] transition-colors duration-500" />
-                      </div>
-                    </div>
-                    {/* Animated ring */}
-                    <div
-                      className="absolute inset-0 w-32 h-32 mx-auto border-2 border-transparent group-hover:border-gradient-to-r group-hover:from-white group-hover:to-[#f5f5f5] rounded-full group-hover:animate-spin transition-all duration-1000"
-                      style={{ animationDuration: "8s" }}
-                    ></div>
-                  </div>
+    <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-white/20 group-hover:border-[#f5f5f5] transition-all duration-500 shadow-lg">
+      <img
+        src={founder.image}
+        alt={founder.name}
+        className="w-full h-full object-cover object-center"
+      />
+    </div>
+  </div>
                   {/* Founder Info */}
                   <div className="text-center relative z-10">
                     {/* Name with animated underline */}

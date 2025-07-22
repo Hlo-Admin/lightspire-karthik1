@@ -137,15 +137,22 @@ const PremiumContactSection = () => {
       ref={sectionRef}
       className="relative bg-[#0678cf] py-20 md:py-32 overflow-hidden"
       id="contact"
+      style={{
+        clipPath: "polygon(0 0, 100% 3vw, 100% 100%, 0 100%)",
+      }}
     >
       {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 md:top-20 left-5 md:left-20 w-60 md:w-96 h-60 md:h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-10 md:top-20 left-5 md:left-20 w-60 md:w-96 h-60 md:h-96 bg-gradient-radial from-cyan-500/10 via-cyan-500/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
         <div
-          className="absolute bottom-16 md:bottom-32 right-5 md:right-20 w-48 md:w-80 h-48 md:h-80 bg-white/10 rounded-full blur-3xl animate-pulse"
+          className="absolute bottom-16 md:bottom-32 right-5 md:right-20 w-48 md:w-80 h-48 md:h-80 bg-gradient-radial from-purple-500/8 via-purple-500/4 to-transparent rounded-full blur-3xl animate-pulse"
           style={{ animationDelay: "2s" }}
         ></div>
-        {/* Floating elements */}
+
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+
+        {/* Existing floating elements */}
         {[...Array(15)].map((_, i) => (
           <div
             key={i}
@@ -212,7 +219,7 @@ const PremiumContactSection = () => {
                 : "opacity-0 -translate-x-8"
             }`}
           >
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl md:rounded-3xl p-5 sm:p-8 md:p-10 shadow-2xl border border-white/30">
+            <div className="bg-white backdrop-blur-sm rounded-2xl md:rounded-3xl p-5 sm:p-8 md:p-10 shadow-2xl border border-white/30">
               <h3 className="text-xl md:text-2xl font-bold text-[#0678cf] mb-6 md:mb-8">
                 Start Your Project
               </h3>
@@ -229,7 +236,7 @@ const PremiumContactSection = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 md:px-6 py-3 md:py-4 bg-white border border-[#0678cf] rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-300 group-hover:shadow-md text-[#0678cf] placeholder:text-blue-300"
+                    className="w-full px-4 md:px-6 py-3 md:py-4 bg-[#e6f2ff] border border-[#0678cf] rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#0678cf] focus:border-transparent transition-all duration-300 group-hover:shadow-md text-[#0678cf] placeholder:text-[#6bb2f3]"
                     placeholder="Your full name"
                   />
                 </div>
@@ -245,7 +252,7 @@ const PremiumContactSection = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 md:px-6 py-3 md:py-4 bg-white border border-[#0678cf] rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-300 group-hover:shadow-md text-[#0678cf] placeholder:text-blue-300"
+                    className="w-full px-4 md:px-6 py-3 md:py-4 bg-[#e6f2ff] border border-[#0678cf] rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#0678cf] focus:border-transparent transition-all duration-300 group-hover:shadow-md text-[#0678cf] placeholder:text-[#6bb2f3]"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -260,7 +267,7 @@ const PremiumContactSection = () => {
                     name="company"
                     value={formData.company}
                     onChange={handleInputChange}
-                    className="w-full px-4 md:px-6 py-3 md:py-4 bg-white border border-[#0678cf] rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-300 group-hover:shadow-md text-[#0678cf] placeholder:text-blue-300"
+                    className="w-full px-4 md:px-6 py-3 md:py-4 bg-[#e6f2ff] border border-[#0678cf] rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#0678cf] focus:border-transparent transition-all duration-300 group-hover:shadow-md text-[#0678cf] placeholder:text-[#6bb2f3]"
                     placeholder="Your company name"
                   />
                 </div>
@@ -276,7 +283,7 @@ const PremiumContactSection = () => {
                     onChange={handleInputChange}
                     required
                     rows={4}
-                    className="w-full px-4 md:px-6 py-3 md:py-4 bg-white border border-[#0678cf] rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-300 group-hover:shadow-md text-[#0678cf] placeholder:text-blue-300 resize-none"
+                    className="w-full px-4 md:px-6 py-3 md:py-4 bg-[#e6f2ff] border border-[#0678cf] rounded-xl md:rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#0678cf] focus:border-transparent transition-all duration-300 group-hover:shadow-md text-[#0678cf] placeholder:text-[#6bb2f3] resize-none"
                     placeholder="Tell us about your animation project, timeline, and goals..."
                   />
                 </div>
@@ -285,7 +292,7 @@ const PremiumContactSection = () => {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="group relative w-full bg-[#0678cf] hover:bg-white text-white hover:text-[#0678cf] px-6 md:px-8 py-4 md:py-6 text-base md:text-lg font-bold transition-all duration-500 transform hover:scale-105 hover:shadow-2xl rounded-xl md:rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed border-2 border-white"
+                  className="group relative w-full bg-[#0678cf] hover:bg-[#045a9e] text-white hover:text-white px-6 md:px-8 py-4 md:py-6 text-base md:text-lg font-bold transition-all duration-500 transform hover:scale-105 hover:shadow-2xl rounded-xl md:rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed border-2 border-white"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
 
@@ -320,7 +327,7 @@ const PremiumContactSection = () => {
                 return (
                   <div
                     key={info.title}
-                    className="group bg-white/80 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-white/30 hover:shadow-xl transition-all duration-500 hover:scale-105"
+                    className="group bg-white backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-[#0678cf]/30 hover:shadow-xl transition-all duration-500 hover:scale-105"
                     style={{
                       animationDelay: `${1000 + index * 100}ms`,
                       animation: isVisible
@@ -333,13 +340,13 @@ const PremiumContactSection = () => {
                         <Icon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                       </div>
                       <div className="flex-1">
-                        <h4 className="text-base md:text-lg font-bold text-[#0678cf] mb-1 group-hover:text-black transition-colors duration-300">
+                        <h4 className="text-base md:text-lg font-bold text-[#0678cf] mb-1 group-hover:text-[#045a9e] transition-colors duration-300">
                           {info.title}
                         </h4>
                         <p className="text-[#0678cf] font-semibold mb-1 text-sm md:text-base">
                           {info.content}
                         </p>
-                        <p className="text-blue-800 text-xs md:text-sm">
+                        <p className="text-[#6bb2f3] text-xs md:text-sm">
                           {info.subtext}
                         </p>
                       </div>
@@ -351,7 +358,6 @@ const PremiumContactSection = () => {
 
             {/* CTA Box */}
             <div className="mt-8 md:mt-12 bg-white rounded-2xl md:rounded-3xl p-6 md:p-10 text-[#0678cf] relative overflow-hidden">
-              <div className="absolute inset-0 bg-white "></div>
               <div className="relative z-10">
                 <h4 className="text-lg md:text-xl font-bold mb-2 md:mb-3">
                   Ready for a Quick Chat?
@@ -362,7 +368,7 @@ const PremiumContactSection = () => {
                 </p>
                 <Button
                   variant="outline"
-                  className="bg-[#0678cf] border-white/20 text-white hover:bg-white hover:text-[#0678cf] transition-all duration-300 font-semibold"
+                  className="bg-[#0678cf] border-white/20 text-white hover:bg-[#045a9e] hover:text-white transition-all duration-300 font-semibold"
                 >
                   Schedule Call
                 </Button>
