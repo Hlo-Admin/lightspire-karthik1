@@ -1,153 +1,179 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>spire-genesis-hero</title>
-    <meta name="description" content="Lovable Generated Project" />
+    <title>LightSpire</title>
+    <meta name="description" content="India's Premier 2D Animation Studio" />
     <meta name="author" content="Lovable" />
 
-    <meta property="og:title" content="spire-genesis-hero" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:title" content="India's Premier 2D Animation Studio" />
+    <meta property="og:description" content="India's Premier 2D Animation Studio" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/logo.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="/logo.png" />
-    
+
     <!-- Preload CreatoDisplay Fonts -->
-    <link rel="preload" href="/fonts/CreatoDisplay-Regular.otf" as="font" type="font/otf" crossorigin>
-    <link rel="preload" href="/fonts/CreatoDisplay-Medium.otf" as="font" type="font/otf" crossorigin>
-    <link rel="preload" href="/fonts/CreatoDisplay-Bold.otf" as="font" type="font/otf" crossorigin>
-    <link rel="preload" href="/fonts/CreatoDisplay-Black.otf" as="font" type="font/otf" crossorigin>
-    
+    <link
+      rel="preload"
+      href="/fonts/CreatoDisplay-Regular.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/CreatoDisplay-Medium.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/CreatoDisplay-Bold.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/CreatoDisplay-Black.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
+
     <!-- CreatoDisplay Font Face Declarations -->
     <style>
       @font-face {
-        font-family: 'CreatoDisplay';
-        src: url('/fonts/CreatoDisplay-Thin.otf') format('opentype');
+        font-family: "CreatoDisplay";
+        src: url("/fonts/CreatoDisplay-Thin.otf") format("opentype");
         font-weight: 100;
         font-style: normal;
         font-display: swap;
       }
-      
+
       @font-face {
-        font-family: 'CreatoDisplay';
-        src: url('/fonts/CreatoDisplay-Light.otf') format('opentype');
+        font-family: "CreatoDisplay";
+        src: url("/fonts/CreatoDisplay-Light.otf") format("opentype");
         font-weight: 300;
         font-style: normal;
         font-display: swap;
       }
-      
+
       @font-face {
-        font-family: 'CreatoDisplay';
-        src: url('/fonts/CreatoDisplay-Regular.otf') format('opentype');
+        font-family: "CreatoDisplay";
+        src: url("/fonts/CreatoDisplay-Regular.otf") format("opentype");
         font-weight: 400;
         font-style: normal;
         font-display: swap;
       }
-      
+
       @font-face {
-        font-family: 'CreatoDisplay';
-        src: url('/fonts/CreatoDisplay-Medium.otf') format('opentype');
+        font-family: "CreatoDisplay";
+        src: url("/fonts/CreatoDisplay-Medium.otf") format("opentype");
         font-weight: 500;
         font-style: normal;
         font-display: swap;
       }
-      
+
       @font-face {
-        font-family: 'CreatoDisplay';
-        src: url('/fonts/CreatoDisplay-Bold.otf') format('opentype');
+        font-family: "CreatoDisplay";
+        src: url("/fonts/CreatoDisplay-Bold.otf") format("opentype");
         font-weight: 700;
         font-style: normal;
         font-display: swap;
       }
-      
+
       @font-face {
-        font-family: 'CreatoDisplay';
-        src: url('/fonts/CreatoDisplay-ExtraBold.otf') format('opentype');
+        font-family: "CreatoDisplay";
+        src: url("/fonts/CreatoDisplay-ExtraBold.otf") format("opentype");
         font-weight: 800;
         font-style: normal;
         font-display: swap;
       }
-      
+
       @font-face {
-        font-family: 'CreatoDisplay';
-        src: url('/fonts/CreatoDisplay-Black.otf') format('opentype');
+        font-family: "CreatoDisplay";
+        src: url("/fonts/CreatoDisplay-Black.otf") format("opentype");
         font-weight: 900;
         font-style: normal;
         font-display: swap;
       }
-      
+
       /* Italic variants */
       @font-face {
-        font-family: 'CreatoDisplay';
-        src: url('/fonts/CreatoDisplay-ThinItalic.otf') format('opentype');
+        font-family: "CreatoDisplay";
+        src: url("/fonts/CreatoDisplay-ThinItalic.otf") format("opentype");
         font-weight: 100;
         font-style: italic;
         font-display: swap;
       }
-      
+
       @font-face {
-        font-family: 'CreatoDisplay';
-        src: url('/fonts/CreatoDisplay-LightItalic.otf') format('opentype');
+        font-family: "CreatoDisplay";
+        src: url("/fonts/CreatoDisplay-LightItalic.otf") format("opentype");
         font-weight: 300;
         font-style: italic;
         font-display: swap;
       }
-      
+
       @font-face {
-        font-family: 'CreatoDisplay';
-        src: url('/fonts/CreatoDisplay-RegularItalic.otf') format('opentype');
+        font-family: "CreatoDisplay";
+        src: url("/fonts/CreatoDisplay-RegularItalic.otf") format("opentype");
         font-weight: 400;
         font-style: italic;
         font-display: swap;
       }
-      
+
       @font-face {
-        font-family: 'CreatoDisplay';
-        src: url('/fonts/CreatoDisplay-MediumItalic.otf') format('opentype');
+        font-family: "CreatoDisplay";
+        src: url("/fonts/CreatoDisplay-MediumItalic.otf") format("opentype");
         font-weight: 500;
         font-style: italic;
         font-display: swap;
       }
-      
+
       @font-face {
-        font-family: 'CreatoDisplay';
-        src: url('/fonts/CreatoDisplay-BoldItalic.otf') format('opentype');
+        font-family: "CreatoDisplay";
+        src: url("/fonts/CreatoDisplay-BoldItalic.otf") format("opentype");
         font-weight: 700;
         font-style: italic;
         font-display: swap;
       }
-      
+
       @font-face {
-        font-family: 'CreatoDisplay';
-        src: url('/fonts/CreatoDisplay-ExtraBoldItalic.otf') format('opentype');
+        font-family: "CreatoDisplay";
+        src: url("/fonts/CreatoDisplay-ExtraBoldItalic.otf") format("opentype");
         font-weight: 800;
         font-style: italic;
         font-display: swap;
       }
-      
+
       @font-face {
-        font-family: 'CreatoDisplay';
-        src: url('/fonts/CreatoDisplay-BlackItalic.otf') format('opentype');
+        font-family: "CreatoDisplay";
+        src: url("/fonts/CreatoDisplay-BlackItalic.otf") format("opentype");
         font-weight: 900;
         font-style: italic;
         font-display: swap;
       }
-      
+
       /* Apply CreatoDisplay globally */
       * {
-        font-family: 'CreatoDisplay', 'Plus Jakarta Sans', sans-serif !important;
+        font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
       }
     </style>
-    
+
     <!-- Plus Jakarta Sans as fallback -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
