@@ -75,15 +75,6 @@ const ServicesSection2 = () => {
     };
   }, []);
 
-  const headerVariants = {
-    hidden: { rotateY: -30, opacity: 0 },
-    visible: { 
-      rotateY: 0, 
-      opacity: 1,
-      transition: { duration: 0.8, ease: "easeOut" }
-    }
-  };
-
   return (
     <section
       ref={sectionRef}
@@ -99,10 +90,10 @@ const ServicesSection2 = () => {
         <div className="max-w-4xl mx-auto px-6">
           <motion.h2 
             className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 cinematic-title"
-            initial="hidden"
-            whileInView="visible"
+            initial={{ rotateY: -30, opacity: 0 }}
+            whileInView={{ rotateY: 0, opacity: 1 }}
             viewport={{ once: true }}
-            variants={headerVariants}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
             Our Services
           </motion.h2>

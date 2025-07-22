@@ -17,31 +17,25 @@ const SkewReveal = ({
   duration = 0.8,
   delay = 0
 }: SkewRevealProps) => {
-  const variants = {
-    hidden: {
-      x: direction === 'left' ? -100 : 100,
-      skewX: direction === 'left' ? -15 : 15,
-      opacity: 0
-    },
-    visible: {
-      x: 0,
-      skewX: 0,
-      opacity: 1,
-      transition: {
-        duration,
-        delay,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
     <motion.div
       className={className}
-      initial="hidden"
-      whileInView="visible"
+      initial={{
+        x: direction === 'left' ? -100 : 100,
+        skewX: direction === 'left' ? -15 : 15,
+        opacity: 0
+      }}
+      whileInView={{
+        x: 0,
+        skewX: 0,
+        opacity: 1
+      }}
       viewport={{ once: true, amount: 0.3 }}
-      variants={variants}
+      transition={{
+        duration,
+        delay,
+        ease: "easeOut"
+      }}
     >
       {children}
     </motion.div>
