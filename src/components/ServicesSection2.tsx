@@ -1,11 +1,7 @@
-
 import { useEffect, useRef, useState } from "react";
 import { Tv, Globe, Film, Megaphone, Users, Smartphone } from "lucide-react";
 import { TypingAnimation } from "./magicui/typing-animation";
 import { AnimatedShinyText } from "./magicui/animated-shiny-text";
-import { motion } from "framer-motion";
-import MaskReveal from "./animations/MaskReveal";
-import FlipboardText from "./animations/FlipboardText";
 
 const ServicesSection2 = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -82,24 +78,18 @@ const ServicesSection2 = () => {
       id="services"
       style={{
         clipPath: "polygon(0 0, 100% 3vw, 100% 100%, 0 calc(100% - 3vw))",
-        paddingBottom: "6rem",
+        paddingBottom: "6rem", // adjust as needed
       }}
     >
       {/* Header */}
       <div className="text-center mb-20 relative z-10">
         <div className="max-w-4xl mx-auto px-6">
-          <motion.h2 
-            className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 cinematic-title"
-            initial={{ rotateY: -30, opacity: 0 }}
-            whileInView={{ rotateY: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 cinematic-title">
             Our Services
-          </motion.h2>
-          <MaskReveal className="text-xl md:text-2xl text-gray-600 font-light">
+          </h2>
+          <p className="text-xl md:text-2xl text-gray-600 font-light">
             We bring stories to life across every screen and platform.
-          </MaskReveal>
+          </p>
           <div className="mt-8 w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto rounded-full"></div>
         </div>
       </div>
@@ -121,7 +111,7 @@ const ServicesSection2 = () => {
                   transitionDelay: `${index * 150}ms`,
                 }}
               >
-                <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 overflow-hidden h-full p-4 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2 group-hover:-translate-x-1 hover-scale hover-glow">
+                <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-lg border border-gray-100 overflow-hidden h-full p-4 sm:p-6 md:p-8 hover:shadow-2xl transition-all duration-500 group-hover:-translate-y-2 group-hover:-translate-x-1">
                   {/* Gradient Background */}
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
@@ -136,14 +126,16 @@ const ServicesSection2 = () => {
                       <Icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                     </div>
 
-                    {/* Title with Flipboard Animation */}
-                    <FlipboardText 
-                      className="text-xs sm:text-sm md:text-base font-bold text-gray-900 mb-2 sm:mb-4 cinematic-title group-hover:text-gray-800 transition-colors duration-300"
-                      trigger="scroll"
-                      delay={index * 100}
-                    >
-                      {service.title}
-                    </FlipboardText>
+                    {/* Title */}
+                    <h3 className="text-xs sm:text-sm md:text-base font-bold text-gray-900 mb-2 sm:mb-4 cinematic-title group-hover:text-gray-800 transition-colors duration-300">
+                      {isVisible ? (
+                        <TypingAnimation startOnView duration={60}>
+                          {service.title}
+                        </TypingAnimation>
+                      ) : (
+                        service.title
+                      )}
+                    </h3>
 
                     {/* Description */}
                     <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-light">
@@ -170,6 +162,30 @@ const ServicesSection2 = () => {
 
       {/* Bottom Gradient Fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+
+      {/* Bottom Slant SVG Line */}
+      <svg
+        className="absolute left-0 bottom-0 w-full h-[3vw] pointer-events-none transition-all duration-2000"
+        style={{ zIndex: 20 }}
+        width="100%"
+        height="3vw"
+        viewBox="0 0 100 3"
+        preserveAspectRatio="none"
+      >
+        <line
+          x1="0"
+          y1="0"
+          x2="100"
+          y2="3"
+          stroke="white" // Tailwind's gray-200, adjust as needed
+          strokeWidth="2"
+          strokeDasharray="100"
+          strokeDashoffset="0"
+          style={{
+            transition: "stroke-dashoffset 2s cubic-bezier(0.4,0,0.2,1)",
+          }}
+        />
+      </svg>
     </section>
   );
 };

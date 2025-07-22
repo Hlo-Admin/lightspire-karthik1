@@ -12,9 +12,6 @@ import {
   Tv,
 } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import MaskReveal from "./animations/MaskReveal";
-import SplitTextReveal from "./animations/SplitTextReveal";
-import StrokeReveal from "./animations/StrokeReveal";
 
 // Lazy load Spline for better performance
 const LazySpline = lazy(() => import("@splinetool/react-spline"));
@@ -113,7 +110,7 @@ const AboutSectionDark = () => {
       <div
         className="relative w-full"
         style={{
-          background: "#0678cf",
+          background: "#0678cf", // Blue background - bottom layer
           clipPath: "polygon(0 3vw, 100% 0, 100% 100%, 0 calc(100% - 3vw))",
           paddingTop: "6rem",
           paddingBottom: "6rem",
@@ -153,18 +150,14 @@ const AboutSectionDark = () => {
                   : "opacity-0 translate-y-12"
               }`}
             >
-              <MaskReveal>
-                <h2 className="text-5xl md:text-6xl font-bold text-[#f5f5f5] mb-6">
-                  About <span className="text-white">Light Spire Media</span>
-                </h2>
-              </MaskReveal>
+              <h2 className="text-5xl md:text-6xl font-bold text-[#f5f5f5] mb-6">
+                About <span className="text-white">Light Spire Media</span>
+              </h2>
               <div className="w-24 h-1 bg-[#f5f5f5] mx-auto mb-8"></div>
-              <SplitTextReveal splitType="words" className="text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed">
-                <p>
-                  Crafting stories with character, color, and{" "}
-                  <span className="text-white">cinematic precision</span>.
-                </p>
-              </SplitTextReveal>
+              <p className="text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed">
+                Crafting stories with character, color, and{" "}
+                <span className="text-white">cinematic precision</span>.
+              </p>
             </div>
           </div>
 
@@ -184,30 +177,26 @@ const AboutSectionDark = () => {
                   <Target className="w-8 h-8 text-white mr-3" />
                   <h3 className="text-2xl font-bold text-white">Our Mission</h3>
                 </div>
-                <SplitTextReveal splitType="lines" stagger={0.2}>
-                  <div>
-                    <p className="text-[#f5f5f5] leading-relaxed mb-6">
-                      At{" "}
-                      <span className="text-white font-semibold">
-                        Light Spire Media
-                      </span>
-                      , we are passionate storytellers who transform imagination
-                      into stunning visual reality. Our studio specializes in
-                      creating captivating{" "}
-                      <span className="text-white">2D animations</span>, immersive{" "}
-                      <span className="text-white">3D experiences</span>, and
-                      cutting-edge <span className="text-white">VFX solutions</span>{" "}
-                      that bring stories to life across every platform.
-                    </p>
-                    <p className="text-white leading-relaxed">
-                      From concept to completion, we blend artistic vision with
-                      technical excellence to deliver content that not only meets
-                      but exceeds expectations. Every frame we create is a testament
-                      to our commitment to quality, creativity, and the magic of
-                      visual storytelling.
-                    </p>
-                  </div>
-                </SplitTextReveal>
+                <p className="text-[#f5f5f5] leading-relaxed mb-6">
+                  At{" "}
+                  <span className="text-white font-semibold">
+                    Light Spire Media
+                  </span>
+                  , we are passionate storytellers who transform imagination
+                  into stunning visual reality. Our studio specializes in
+                  creating captivating{" "}
+                  <span className="text-white">2D animations</span>, immersive{" "}
+                  <span className="text-white">3D experiences</span>, and
+                  cutting-edge <span className="text-white">VFX solutions</span>{" "}
+                  that bring stories to life across every platform.
+                </p>
+                <p className="text-white leading-relaxed">
+                  From concept to completion, we blend artistic vision with
+                  technical excellence to deliver content that not only meets
+                  but exceeds expectations. Every frame we create is a testament
+                  to our commitment to quality, creativity, and the magic of
+                  visual storytelling.
+                </p>
               </div>
 
               {/* Experience Card */}
@@ -218,12 +207,9 @@ const AboutSectionDark = () => {
                     {yearsCount}+
                   </div>
                 </div>
-                <StrokeReveal 
-                  text="Years of Excellence"
-                  strokeColor="#ffffff"
-                  fillColor="#ffffff"
-                  className="h-16 mb-2"
-                />
+                <h3 className="text-xl font-bold text-white mb-2">
+                  Years of Excellence
+                </h3>
                 <p className="text-[#f5f5f5] text-sm">
                   Over two decades mastering{" "}
                   <span className="text-white">animation</span> and{" "}
@@ -265,11 +251,9 @@ const AboutSectionDark = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-[#f5f5f5]/10 via-[#0678cf]/10 to-white/10 rounded-2xl blur-xl"></div>
               <div className="relative flex items-center justify-center">
                 <Sparkles className="w-8 h-8 text-white mr-4 animate-pulse" />
-                <div className="neon-glow-text">
-                  <p className="text-2xl md:text-3xl font-bold text-white">
-                    "We don't just animate. We envision worlds, frame by frame."
-                  </p>
-                </div>
+                <p className="text-2xl md:text-3xl font-bold text-white">
+                  "We don't just animate. We envision worlds, frame by frame."
+                </p>
                 <Sparkles
                   className="w-8 h-8 text-[#f5f5f5] ml-4 animate-pulse"
                   style={{ animationDelay: "0.5s" }}
