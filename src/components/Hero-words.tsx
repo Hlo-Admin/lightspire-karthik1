@@ -1,9 +1,16 @@
+
 import React, { useEffect, useRef } from "react";
 import { Play, ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FlickeringGrid } from "./magicui/flickering-grid";
 import { WordRotate } from "@/components/magicui/word-rotate";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
+import { TextRevealAnimation } from "./animations/TextRevealAnimation";
+import { TypingEffect } from "./animations/TypingEffect";
+import { AnimatedGradientText } from "./animations/AnimatedGradientText";
+import { NeonGlowText } from "./animations/NeonGlowText";
+import { FlipboardText } from "./animations/FlipboardText";
+import { ParallaxText } from "./animations/ParallaxText";
 import gsap from "gsap";
 // @ts-ignore
 import SplitText from "gsap/SplitText";
@@ -12,7 +19,6 @@ gsap.registerPlugin(SplitText);
 const LightspireHero = () => {
   const backgroundRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
-  // Store SplitText and animation instances
   const splitRef = useRef<any>(null);
   const animationRef = useRef<any>(null);
 
@@ -41,7 +47,7 @@ const LightspireHero = () => {
     splitRef.current = new SplitText(headlineRef.current, {
       type: "lines,words,chars",
     });
-    // Run the words animation automatically on mount
+    
     if (animationRef.current && animationRef.current.revert) {
       animationRef.current.revert();
     }
@@ -61,113 +67,89 @@ const LightspireHero = () => {
     };
   }, []);
 
-  // Handler to run the 'words' animation
-  const runWordsAnimation = () => {
-    if (!splitRef.current) return;
-    if (animationRef.current && animationRef.current.revert) {
-      animationRef.current.revert();
-    }
-    animationRef.current = gsap.from(splitRef.current.words, {
-      y: -100,
-      opacity: 0,
-      rotation: () => gsap.utils.random(-80, 80),
-      duration: 0.7,
-      ease: "back",
-      stagger: 0.15,
-    });
-  };
-
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* FlickeringGrid Background */}
-      {/* <div
-        ref={backgroundRef}
-        className="absolute inset-0 z-0 transition-transform duration-700 ease-out"
-        style={{ willChange: "transform" }}
-      >
-        <FlickeringGrid
-          className="absolute inset-0 z-0 size-full"
-          squareSize={4}
-          gridGap={6}
-          color="#0678cf"
-          maxOpacity={0.2}
-          flickerChance={0.08}
-        />
-      </div> */}
-
-      {/* Decorative Elements */}
-      <div
-        className="absolute top-1/3 left-10 hidden lg:block animate-fade-in"
-        style={{ animationDelay: "0.5s" }}
-      >
-        {/* <Sparkles className="h-8 w-8 text-[#0678cf] opacity-30" /> */}
+      {/* Background Effects */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-[#0678cf]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-[#06b6d4]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
-      <div
-        className="absolute bottom-1/3 right-10 hidden lg:block animate-fade-in"
-        style={{ animationDelay: "1s" }}
-      ></div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center">
           <div className="max-w-4xl">
+            {/* Animated Badge */}
             <div className="flex items-center justify-center mb-6 animate-fade-in">
               <div className="bg-[#0678cf] bg-opacity-10 text-[#0678cf] rounded-full px-6 py-2 text-sm font-medium inline-flex items-center border border-[#0678cf]/20">
-                {/* <Sparkles className="h-4 w-4 mr-2 text-[#0678cf]" /> */}
-                27+ Years of Animation Excellence
+                <NeonGlowText className="text-sm" color="#0678cf">
+                  27+ Years of Animation Excellence
+                </NeonGlowText>
               </div>
             </div>
 
-            {/* Animation trigger button */}
-            {/* <button
-              onClick={runWordsAnimation}
-              className="mb-4 px-4 py-2 bg-[#0678cf] text-white rounded hover:bg-[#055fa3] transition-colors"
-              type="button"
-            >
-              Animate Words
-            </button> */}
+            {/* Main Headline with Multiple Animations */}
+            <div className="mb-6 space-y-4">
+              <TextRevealAnimation 
+                className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-[#222]"
+                animationType="reveal"
+                stagger={0.08}
+              >
+                India's Premier
+              </TextRevealAnimation>
+              
+              <FlipboardText className="text-6xl font-bold text-[#0678cf]">
+                2D Animation
+              </FlipboardText>
+              
+              <ParallaxText 
+                className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#222]"
+                speed={0.3}
+              >
+                Studio
+              </ParallaxText>
+            </div>
 
-            <h1
-              ref={headlineRef}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 animate-fade-in text-[#222]"
-              style={{
-                // animationDelay: "0.2s",
-                willChange: "transform, opacity",
-              }}
-            >
-              India's Premier <br />
-              <span className="text-[#0678cf] text-6xl">
-                2D Animation <br />
-              </span>
-              Studio
-            </h1>
+            {/* Animated Subtitle */}
+            <div className="mb-8">
+              <TypingEffect
+                strings={[
+                  "Trusted by the Best, Loved by Millions",
+                  "Creating Magic Through Animation",
+                  "Where Stories Come to Life"
+                ]}
+                className="text-lg md:text-xl text-[#8a8a8a]"
+                typeSpeed={60}
+                backSpeed={40}
+                loop={true}
+              />
+            </div>
 
-            <p
-              className="text-lg md:text-xl text-[#8a8a8a] mb-4 animate-fade-in"
-              style={{ animationDelay: "0.4s" }}
-            >
-              Trusted by the Best, Loved by Millions
-            </p>
-            <br></br>
-            {/* <div
-              className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in"
-              style={{ animationDelay: "0.8s" }}
-            >
+            {/* Action Buttons with Hover Animations */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.8s" }}>
               <Link
                 to="/projects"
-                className="bg-[#0678cf] hover:bg-[#055fa3] text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 flex items-center justify-center shadow-none border-none"
+                className="group bg-[#0678cf] hover:bg-[#055fa3] text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 flex items-center justify-center shadow-none border-none transform hover:scale-105 hover:shadow-2xl"
               >
-                Explore Our Work
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <span className="group-hover:animate-pulse">Explore Our Work</span>
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform" />
               </Link>
               <Link
                 to="/contact"
-                className="bg-transparent border-2 border-[#0678cf] text-[#0678cf] hover:bg-[#0678cf] hover:text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 flex items-center justify-center shadow-none"
+                className="group bg-transparent border-2 border-[#0678cf] text-[#0678cf] hover:bg-[#0678cf] hover:text-white font-medium py-4 px-8 rounded-lg transition-all duration-500 flex items-center justify-center shadow-none transform hover:scale-105"
               >
-                Get in Touch
+                <span className="group-hover:animate-bounce">Get in Touch</span>
               </Link>
-            </div> */}
+            </div>
           </div>
         </div>
+      </div>
+
+      {/* Floating Animation Elements */}
+      <div className="absolute top-20 left-10 animate-float hidden lg:block">
+        <Sparkles className="h-8 w-8 text-[#0678cf] opacity-60" />
+      </div>
+      <div className="absolute bottom-20 right-10 animate-float hidden lg:block" style={{ animationDelay: '1s' }}>
+        <Play className="h-12 w-12 text-[#0678cf] opacity-60" />
       </div>
     </div>
   );
