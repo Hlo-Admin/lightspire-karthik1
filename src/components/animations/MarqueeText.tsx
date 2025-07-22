@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
 interface MarqueeTextProps {
-  children: string;
+  children: React.ReactNode;
   speed?: number;
   direction?: 'left' | 'right';
   className?: string;
