@@ -1,6 +1,9 @@
 
 import { useEffect, useRef } from 'react';
-import anime from 'animejs';
+import * as animeModule from 'animejs';
+
+// Handle the anime.js import properly
+const anime = (animeModule as any).default || animeModule;
 
 interface FlipboardTextProps {
   children: React.ReactNode;
