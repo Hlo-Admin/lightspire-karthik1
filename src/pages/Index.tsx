@@ -15,6 +15,7 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import LightspireHero from "@/components/Hero-words";
 import SwipeSection from "@/components/SwipeSection";
+import SkewReveal from "@/components/animations/SkewReveal";
 
 // Lazy load Spline component for better performance
 const LazySpline = lazy(() => import("@splinetool/react-spline"));
@@ -98,22 +99,17 @@ const Index = () => {
         <ServicesSection2 />
       </div>
 
-        {/* Founders Section - New section after Kids IP Strategy */}
-        <div className="creative-section" data-cursor="creative">
-        <FoundersSection />
+      {/* Founders Section - New section after Kids IP Strategy */}
+      <div className="creative-section" data-cursor="creative">
+        <SkewReveal>
+          <FoundersSection />
+        </SkewReveal>
       </div>
 
       {/* Kids IP Strategy Section - Now placed after About Us */}
       <div className="creative-section" data-cursor="creative" id="portfolio">
         <KidsIPStrategy />
       </div>
-
-      {/* Swipe Section - New GSAP powered section */}
-      {/* <div className="creative-section" data-cursor="creative">
-        <SwipeSection />
-      </div> */}
-
-    
 
       {/* Contact Section - New section */}
       <div className="creative-section" data-cursor="creative" id="contact">

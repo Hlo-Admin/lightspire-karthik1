@@ -1,11 +1,12 @@
+
+/* Import Google Fonts first */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+@import url("https://animate.css/animate.min.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Import Plus Jakarta Sans as fallback */
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap");
-/* Import Montserrat for paragraphs */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
@@ -139,11 +140,60 @@ All colors MUST be HSL.
       0 0 20px currentColor, 0 0 40px currentColor;
   }
 
+  .neon-glow-text {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+                 0 0 20px rgba(255, 255, 255, 0.3),
+                 0 0 30px rgba(255, 255, 255, 0.2);
+    animation: neon-pulse 3s ease-in-out infinite alternate;
+  }
+
   .cinematic-title {
     font-family: "CreatoDisplay", "Plus Jakarta Sans", sans-serif !important;
     font-weight: 900;
     letter-spacing: -0.02em;
     line-height: 0.9;
+  }
+
+  /* Animated Gradient Text */
+  .animated-gradient-text {
+    background: linear-gradient(45deg, #0678cf, #64b5f6, #0678cf, #1976d2);
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 4s ease-in-out infinite;
+  }
+
+  .animated-gradient-text-subtle {
+    background: linear-gradient(45deg, #8a8a8a, #b0b0b0, #8a8a8a);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 6s ease-in-out infinite;
+  }
+
+  /* Hover Effects */
+  .hover-scale {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.02) translateY(-2px);
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 10px 30px rgba(6, 120, 207, 0.2);
+  }
+
+  /* Skew Animation */
+  .skew-reveal {
+    transform: skewX(-15deg);
+    transition: transform 0.8s ease-out;
+  }
+
+  .skew-reveal.visible {
+    transform: skewX(0deg);
   }
 
   @keyframes fade-in {
@@ -197,6 +247,48 @@ All colors MUST be HSL.
       transform: scale(1);
       opacity: 1;
     }
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes neon-pulse {
+    0% {
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+                   0 0 20px rgba(255, 255, 255, 0.3),
+                   0 0 30px rgba(255, 255, 255, 0.2);
+    }
+    100% {
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+                   0 0 25px rgba(255, 255, 255, 0.5),
+                   0 0 35px rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  /* Flipboard Animation */
+  @keyframes flipboard {
+    0% {
+      transform: rotateX(90deg);
+      opacity: 0;
+    }
+    100% {
+      transform: rotateX(0deg);
+      opacity: 1;
+    }
+  }
+
+  .flipboard-text {
+    animation: flipboard 0.8s ease-out forwards;
+    transform-origin: center bottom;
   }
 
   .animate-fade-in {
