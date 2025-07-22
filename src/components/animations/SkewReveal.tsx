@@ -30,7 +30,7 @@ const SkewReveal = ({
       transition: {
         duration,
         delay,
-        ease: "easeOut"
+        ease: [0.25, 0.1, 0.25, 1]
       }
     }
   };
