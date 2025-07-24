@@ -89,7 +89,7 @@ const AboutSectionDark = () => {
     if (countStarted && yearsCount < 27) {
       const timer = setTimeout(() => {
         setYearsCount((prev) => prev + 1);
-      }, 80);
+      }, 80); 
       return () => clearTimeout(timer);
     }
   }, [countStarted, yearsCount]);
@@ -289,7 +289,7 @@ const AboutSectionDark = () => {
                   <span className="text-white font-semibold">
                     Lightspire Media
                   </span>
-                  is a creative animation studio specializing in 2D animation for TV animated series, OTT platforms, and feature films. With a strong foundation in visual storytelling and character-driven design, we craft high-quality animation that captivates audiences and enhances the viewer experience. Our work is rooted in a passion for art and motion, bringing bold, original ideas to life with clarity and impact.{" "}
+                  is a creative animation studio specializing in 2D animation for TV animated series, OTT platforms, and feature films. With a strong foundation in visual storytelling and character driven design, we craft high quality animation that captivates audiences and enhances the viewer experience. Our work is rooted in a passion for art and motion, bringing bold, original ideas to life with clarity and impact.{" "}
                 
                 </p>
                 <p className="text-white leading-relaxed" ref={missionPara2Ref}>
