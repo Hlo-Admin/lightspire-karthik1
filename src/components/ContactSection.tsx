@@ -164,7 +164,7 @@ const PremiumContactSection = () => {
               animationDuration: `${2 + Math.random() * 2}s`,
             }}
           >
-            <Sparkles className="w-2 h-2 md:w-3 md:h-3 text-white" />
+            {/* <Sparkles className="w-2 h-2 md:w-3 md:h-3 text-white" /> */}
           </div>
         ))}
       </div>

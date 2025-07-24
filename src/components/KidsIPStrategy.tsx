@@ -120,6 +120,16 @@ const KidsIPStrategy = () => {
 
   const strategyItems = [
     {
+      icon: Handshake,
+      title: "Co-Production Deals",
+      desc: "Global animation studio partnerships",
+    },
+    {
+      icon: Globe,
+      title: "International Syndication",
+      desc: "Global agents for IP reach & formats",
+    },
+    {
       icon: Share2,
       title: "Social Media",
       desc: "Animation snippets & insights on IG, LinkedIn & YouTube",
@@ -148,16 +158,6 @@ const KidsIPStrategy = () => {
       icon: Building,
       title: "Direct Studio Outreach",
       desc: "OTT, kids' TV & licensing decision-makers",
-    },
-    {
-      icon: Handshake,
-      title: "Co-Production Deals",
-      desc: "Global animation studio partnerships",
-    },
-    {
-      icon: Globe,
-      title: "International Syndication",
-      desc: "Global agents for IP reach & formats",
     },
   ];
 
@@ -203,7 +203,12 @@ const KidsIPStrategy = () => {
         {/* Header Section */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-3 mb-6 bg-blue-50 px-6 py-3 rounded-full">
-            <Target className="w-6 h-6 text-blue-600" />
+            <img
+              src="/target.svg"
+              alt="Mission Icon"
+              className="w-8 h-8 text-white"
+            />
+
             <AnimatedShinyText className="text-[#0678cf] font-semibold text-lg">
               IP Strategy Framework
             </AnimatedShinyText>

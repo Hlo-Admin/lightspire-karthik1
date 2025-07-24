@@ -81,7 +81,7 @@ const Index = () => {
       <Navbar />
 
       {/* ScrollSpy */}
-      <ScrollSpy menuItems={menuItems} />
+      {/* <ScrollSpy menuItems={menuItems} /> */}
 
       {/* Hero Section */}
       <div id="home" className="mt-16 sm:mt-0">

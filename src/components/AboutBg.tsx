@@ -256,7 +256,7 @@ const AboutSectionDark = () => {
                 className="text-5xl md:text-6xl font-bold text-[#f5f5f5] mb-6"
                 ref={headlineRef}
               >
-                About <span className="text-white">Light Spire Media</span>
+                About <span className="text-white">LightSpire Media</span>
               </h2>
               <div className="w-24 h-1 bg-[#f5f5f5] mx-auto mb-8"></div>
               <p className="text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed">
@@ -273,17 +273,17 @@ const AboutSectionDark = () => {
             >
               {/* About Description */}
               <div className="bg-[#0678cf]/10 backdrop-blur-sm border border-[#f5f5f5]/20 rounded-2xl p-8 w-full max-w-4xl mx-auto mb-8">
-                <div className="flex items-center justify-center mb-6">
-                  <Target className="w-8 h-8 text-white mr-3" />
-                  <h3 className="text-2xl font-bold text-white">Our Mission</h3>
-                </div>
+              <div className="flex items-center justify-center mb-6">
+  <img src="/mission.svg" alt="Mission Icon" className="w-8 h-8 text-white mr-3" />
+  <h3 className="text-2xl font-bold text-white">Our Mission</h3>
+</div>
                 <p
                   className="text-[#f5f5f5] leading-relaxed mb-6"
                   ref={missionPara1Ref}
                 >
                   At{" "}
                   <span className="text-white font-semibold">
-                    Light Spire Media
+                    LightSpire Media
                   </span>
                   , we are passionate storytellers who transform imagination
                   into stunning visual reality. Our studio specializes in
@@ -333,17 +333,17 @@ const AboutSectionDark = () => {
             <div className="relative inline-block bg-[#0678cf]/10 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl px-12 py-8">
               <div className="absolute inset-0 bg-gradient-to-r from-[#f5f5f5]/10 via-[#0678cf]/10 to-white/10 rounded-2xl blur-xl"></div>
               <div className="relative flex items-center justify-center">
-                <Sparkles className="w-8 h-8 text-white mr-4 animate-pulse" />
+                {/* <Sparkles className="w-8 h-8 text-white mr-4 animate-pulse" /> */}
                 <p
                   className="text-2xl md:text-3xl font-bold text-white"
                   ref={bottomQuoteRef}
                 >
                   "We don't just animate. We envision worlds, frame by frame."
                 </p>
-                <Sparkles
+                {/* <Sparkles
                   className="w-8 h-8 text-[#f5f5f5] ml-4 animate-pulse"
                   style={{ animationDelay: "0.5s" }}
-                />
+                /> */}
               </div>
             </div>
           </div>

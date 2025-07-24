@@ -141,12 +141,13 @@ const LightspireHero = () => {
               Studio
             </h1>
 
-            <p
-              className="text-lg md:text-xl text-[#8a8a8a] mb-4 animate-fade-in"
-              style={{ animationDelay: "0.4s" }}
-            >
-              Trusted by the Best, Loved by Millions
-            </p>
+           
+            {/* Typing Subtext */}
+            <div className="hero-subtext text-lg md:text-xl text-[#8a8a8a] mb-4 h-[36px]">
+              <TypingAnimation duration={60} delay={1000} loop>
+                Trusted by the Best, Loved by Millions
+              </TypingAnimation>
+            </div>
             <br></br>
             {/* <div
               className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in"
