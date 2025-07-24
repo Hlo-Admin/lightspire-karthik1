@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from "react";
 import { Play, ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -5,16 +6,10 @@ import { FlickeringGrid } from "./magicui/flickering-grid";
 import { WordRotate } from "@/components/magicui/word-rotate";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
 import gsap from "gsap";
-// @ts-ignore
-import SplitText from "gsap/SplitText";
-gsap.registerPlugin(SplitText);
 
 const LightspireHero = () => {
   const backgroundRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
-  // Store SplitText and animation instances
-  const splitRef = useRef<any>(null);
-  const animationRef = useRef<any>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -35,47 +30,21 @@ const LightspireHero = () => {
     };
   }, []);
 
-  // Setup SplitText on mount and animate words
+  // Animate the entire headline as one block from top to bottom
   useEffect(() => {
     if (!headlineRef.current) return;
-    splitRef.current = new SplitText(headlineRef.current, {
-      type: "lines,words,chars",
-    });
-    // Run the words animation automatically on mount
-    if (animationRef.current && animationRef.current.revert) {
-      animationRef.current.revert();
-    }
-    animationRef.current = gsap.from(splitRef.current.words, {
+    
+    gsap.fromTo(headlineRef.current, {
       y: -100,
       opacity: 0,
-      rotation: () => gsap.utils.random(-80, 80),
-      duration: 0.7,
-      ease: "back",
-      stagger: 0.15,
+    }, {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: "power2.out",
+      delay: 0.3
     });
-    return () => {
-      splitRef.current && splitRef.current.revert();
-      animationRef.current &&
-        animationRef.current.revert &&
-        animationRef.current.revert();
-    };
   }, []);
-
-  // Handler to run the 'words' animation
-  const runWordsAnimation = () => {
-    if (!splitRef.current) return;
-    if (animationRef.current && animationRef.current.revert) {
-      animationRef.current.revert();
-    }
-    animationRef.current = gsap.from(splitRef.current.words, {
-      y: -100,
-      opacity: 0,
-      rotation: () => gsap.utils.random(-80, 80),
-      duration: 0.7,
-      ease: "back",
-      stagger: 0.15,
-    });
-  };
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
@@ -117,20 +86,10 @@ const LightspireHero = () => {
               </div>
             </div>
 
-            {/* Animation trigger button */}
-            {/* <button
-              onClick={runWordsAnimation}
-              className="mb-4 px-4 py-2 bg-[#0678cf] text-white rounded hover:bg-[#055fa3] transition-colors"
-              type="button"
-            >
-              Animate Words
-            </button> */}
-
             <h1
               ref={headlineRef}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 animate-fade-in text-[#222]"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-[#222]"
               style={{
-                // animationDelay: "0.2s",
                 willChange: "transform, opacity",
               }}
             >
