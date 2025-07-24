@@ -151,7 +151,7 @@ const AboutSectionDark = () => {
               }`}
             >
               <h2 className="text-5xl md:text-6xl font-bold text-[#f5f5f5] mb-6">
-                About <span className="text-white">Light Spire Media</span>
+                About <span className="text-white">LightSpire Media</span>
               </h2>
               <div className="w-24 h-1 bg-[#f5f5f5] mx-auto mb-8"></div>
               <p className="text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed">
@@ -177,10 +177,10 @@ const AboutSectionDark = () => {
                   <Target className="w-8 h-8 text-white mr-3" />
                   <h3 className="text-2xl font-bold text-white">Our Mission</h3>
                 </div>
-                <p className="text-[#f5f5f5] leading-relaxed mb-6">
+{/*                 <p className="text-[#f5f5f5] leading-relaxed mb-6">
                   At{" "}
                   <span className="text-white font-semibold">
-                    Light Spire Media
+                    LightSpire Media
                   </span>
                   , we are passionate storytellers who transform imagination
                   into stunning visual reality. Our studio specializes in
@@ -189,13 +189,15 @@ const AboutSectionDark = () => {
                   <span className="text-white">3D experiences</span>, and
                   cutting-edge <span className="text-white">VFX solutions</span>{" "}
                   that bring stories to life across every platform.
+                </p> */}
+                <p className="text-white leading-relaxed">
+                  Animation Experts has been at the forefront of 2D animation for over 27 years, delivering high-quality content for television, OTT platforms, and feature films.
                 </p>
                 <p className="text-white leading-relaxed">
-                  From concept to completion, we blend artistic vision with
-                  technical excellence to deliver content that not only meets
-                  but exceeds expectations. Every frame we create is a testament
-                  to our commitment to quality, creativity, and the magic of
-                  visual storytelling.
+                  Our team of talented artists, animators, and production specialists works together to bring stories to life with creativity and technical excellence.
+                </p>
+                <p className="text-white leading-relaxed">
+                  We have collaborated with leading studios, including TIL Studios, Green Gold Animation, and Toonz Media, establishing ourselves as a reliable partner in the animation industry.
                 </p>
               </div>
 
