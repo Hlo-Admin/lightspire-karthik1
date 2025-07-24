@@ -104,7 +104,7 @@ const PremiumFooter = () => {
                   className="h-12 w-auto object-contain mb-6 drop-shadow-lg"
                 />
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  LightSpire Media
+                  Lightspire Media
                 </h3>
                 <p className="text-gray-600 text-lg leading-relaxed max-w-md font-light">
                   Crafting cinematic worlds frame by frame. We bring imagination
@@ -117,7 +117,7 @@ const PremiumFooter = () => {
               {/* <div className="space-y-4">
                 <div className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors duration-300 cursor-pointer">
                   <Mail className="w-5 h-5" />
-                  <span className="font-medium">hello@lightspire.media</span>
+                  <span className="font-medium">hello@Lightspire.media</span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors duration-300 cursor-pointer">
                   <Phone className="w-5 h-5" />
@@ -212,7 +212,7 @@ const PremiumFooter = () => {
               {/* Copyright */}
               <div className="text-gray-600 text-center lg:text-left">
                 <p className="font-medium">
-                  © 2024 Light Spire Media. All rights reserved.
+                  © 2024 Lightspire Media. All rights reserved.
                 </p>
                 <p className="text-sm mt-1 flex items-center gap-2">
                   Crafted with ❤️ by{" "}

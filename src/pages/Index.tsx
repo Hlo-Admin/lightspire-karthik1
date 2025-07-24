@@ -106,8 +106,8 @@ const Index = () => {
         <FoundersSection />
       </div>
 
-         {/* Teams Section */}
-         {/* <div
+      {/* Teams Section */}
+      {/* <div
         className="creative-section"
         data-cursor="creative"
         id="testimonials"
@@ -129,8 +129,6 @@ const Index = () => {
       <div className="creative-section" data-cursor="creative" id="contact">
         <ContactSection />
       </div>
-
-   
 
       {/* Footer */}
       <Footer />

@@ -141,7 +141,6 @@ const LightspireHero = () => {
               Studio
             </h1>
 
-           
             {/* Typing Subtext */}
             <div className="hero-subtext text-lg md:text-xl text-[#8a8a8a] mb-4 h-[36px]">
               <TypingAnimation duration={60} delay={1000} loop>

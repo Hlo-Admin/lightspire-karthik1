@@ -219,9 +219,9 @@ const KidsIPStrategy = () => {
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight max-w-5xl mx-auto"
           >
             Launch original IPs via global partners, platform deals &
-            storytelling to position{" "} <br />
+            storytelling to position <br />
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-[#0678cf]">
-              LightSpire
+              Lightspire
             </span>{" "}
             as a <span className="text-[#0678cf]">kids' animation leader</span>
           </h2>

@@ -231,7 +231,11 @@ Now, as co-founder of Lightspire Media, Leo is pivoting from studio leadership t
                       "{founder.tagline}"
                     </p>
                     {/* Bio Accordion */}
-                    <Accordion type="single" collapsible className="w-full mt-auto">
+                    <Accordion
+                      type="single"
+                      collapsible
+                      className="w-full mt-auto"
+                    >
                       <AccordionItem value="bio">
                         <AccordionTrigger className="text-white hover:text-[#f5f5f5] hover:no-underline justify-center text-sm">
                           Read Full Bio
@@ -250,7 +254,9 @@ Now, as co-founder of Lightspire Media, Leo is pivoting from studio leadership t
           {/* Bottom Quote */}
           <div
             className={`text-center mt-20 transition-all duration-1000 delay-700 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
             }`}
           >
             <div className="relative inline-block bg-[#7a7a7a]/80 border border-white/20 rounded-2xl px-8 py-6 backdrop-blur-sm">

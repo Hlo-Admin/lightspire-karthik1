@@ -256,7 +256,7 @@ const AboutSectionDark = () => {
                 className="text-5xl md:text-6xl font-bold text-[#f5f5f5] mb-6"
                 ref={headlineRef}
               >
-                About <span className="text-white">LightSpire Media</span>
+                About <span className="text-white">Lightspire Media</span>
               </h2>
               <div className="w-24 h-1 bg-[#f5f5f5] mx-auto mb-8"></div>
               <p className="text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed">
@@ -273,17 +273,21 @@ const AboutSectionDark = () => {
             >
               {/* About Description */}
               <div className="bg-[#0678cf]/10 backdrop-blur-sm border border-[#f5f5f5]/20 rounded-2xl p-8 w-full max-w-4xl mx-auto mb-8">
-              <div className="flex items-center justify-center mb-6">
-  <img src="/mission.svg" alt="Mission Icon" className="w-8 h-8 text-white mr-3" />
-  <h3 className="text-2xl font-bold text-white">Our Mission</h3>
-</div>
+                <div className="flex items-center justify-center mb-6">
+                  <img
+                    src="/mission.svg"
+                    alt="Mission Icon"
+                    className="w-8 h-8 text-white mr-3"
+                  />
+                  <h3 className="text-2xl font-bold text-white">Our Mission</h3>
+                </div>
                 <p
                   className="text-[#f5f5f5] leading-relaxed mb-6"
                   ref={missionPara1Ref}
                 >
                   At{" "}
                   <span className="text-white font-semibold">
-                    LightSpire Media
+                    Lightspire Media
                   </span>
                   , we are passionate storytellers who transform imagination
                   into stunning visual reality. Our studio specializes in
@@ -291,14 +295,15 @@ const AboutSectionDark = () => {
                   <span className="text-white">2D animations</span>, immersive{" "}
                   <span className="text-white">3D experiences</span>, and
                   cutting-edge <span className="text-white">VFX solutions</span>{" "}
-                  that <br />bring stories to life across every platform.
+                  that <br />
+                  bring stories to life across every platform.
                 </p>
                 <p className="text-white leading-relaxed" ref={missionPara2Ref}>
                   From concept to completion, we blend artistic vision with
                   technical excellence to deliver content that not only meets
-                 <br /> but exceeds expectations. Every frame we create is a testament
-                  to our commitment to quality, creativity, and the <br /> magic of
-                  visual storytelling.
+                  <br /> but exceeds expectations. Every frame we create is a
+                  testament to our commitment to quality, creativity, and the{" "}
+                  <br /> magic of visual storytelling.
                 </p>
               </div>
 
