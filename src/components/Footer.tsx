@@ -104,7 +104,7 @@ const PremiumFooter = () => {
                   className="h-12 w-auto object-contain mb-6 drop-shadow-lg"
                 />
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Light Spire Media
+                  LightSpire Media
                 </h3>
                 <p className="text-gray-600 text-lg leading-relaxed max-w-md font-light">
                   Crafting cinematic worlds frame by frame. We bring imagination

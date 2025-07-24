@@ -291,13 +291,13 @@ const AboutSectionDark = () => {
                   <span className="text-white">2D animations</span>, immersive{" "}
                   <span className="text-white">3D experiences</span>, and
                   cutting-edge <span className="text-white">VFX solutions</span>{" "}
-                  that bring stories to life across every platform.
+                  that <br />bring stories to life across every platform.
                 </p>
                 <p className="text-white leading-relaxed" ref={missionPara2Ref}>
                   From concept to completion, we blend artistic vision with
                   technical excellence to deliver content that not only meets
-                  but exceeds expectations. Every frame we create is a testament
-                  to our commitment to quality, creativity, and the magic of
+                 <br /> but exceeds expectations. Every frame we create is a testament
+                  to our commitment to quality, creativity, and the <br /> magic of
                   visual storytelling.
                 </p>
               </div>

@@ -109,7 +109,7 @@ const PremiumContactSection = () => {
     {
       icon: Mail,
       title: "Email Us",
-      content: "connect@lightspire.tv",
+      content: "connect@lightspiremedia.tv",
       subtext: "Quick response within 24 hours",
     },
     {
