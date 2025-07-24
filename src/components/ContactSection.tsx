@@ -109,20 +109,20 @@ const PremiumContactSection = () => {
     {
       icon: Mail,
       title: "Email Us",
-      content: "hello@lightspire.media",
+      content: "connect@lightspire.tv",
       subtext: "Quick response within 24 hours",
     },
     {
       icon: Phone,
       title: "Call Us",
-      content: "+1 (555) 123-4567",
-      subtext: "Mon-Fri, 9 AM - 6 PM EST",
+      content: "9840880908 / 9841937856",
+      subtext: "Mon-Fri, 9 AM - 6 PM IST",
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      content: "123 Creative District, Animation Hub",
-      subtext: "Los Angeles, CA 90028",
+      content: "New no.111, AWFIS Building, Rajiv Gandhi Salai",
+      subtext: "Kandanvhavadi, Chennai - 600 096",
     },
     // {
     //   icon: Clock,

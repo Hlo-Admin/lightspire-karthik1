@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, Suspense, lazy } from "react";
 import { Button } from "@/components/ui/button";
 import { Play, Quote, ArrowRight } from "lucide-react";
@@ -16,6 +15,8 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import LightspireHero from "@/components/Hero-words";
 import SwipeSection from "@/components/SwipeSection";
+import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import TestimonialsSection from "@/components/TeamSection";
 
 // Lazy load Spline component for better performance
 const LazySpline = lazy(() => import("@splinetool/react-spline"));
@@ -41,7 +42,8 @@ const HomeNew = () => {
     { name: "About", href: "#about" },
     { name: "Services", href: "#services" },
     { name: "Portfolio", href: "#portfolio" },
-    { name: "Founders", href:"#founders"},
+    { name: "Founders", href: "#founders" },
+    { name: "Testimonials", href: "#testimonials" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -94,8 +96,8 @@ const HomeNew = () => {
         <AboutSectionDark />
       </div>
 
-       {/* Premium Services Section */}
-       <div className="creative-section" data-cursor="creative" id="services">
+      {/* Premium Services Section */}
+      <div className="creative-section" data-cursor="creative" id="services">
         <ServicesSection2 />
       </div>
 
@@ -117,6 +119,15 @@ const HomeNew = () => {
       {/* Contact Section - New section */}
       <div className="creative-section" data-cursor="creative" id="contact">
         <ContactSection />
+      </div>
+
+      {/* Testimonials Section */}
+      <div
+        className="creative-section"
+        data-cursor="creative"
+        id="testimonials"
+      >
+        <TestimonialsSection />
       </div>
 
       {/* Footer */}

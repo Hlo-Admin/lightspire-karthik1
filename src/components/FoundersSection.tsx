@@ -1,10 +1,15 @@
-import { useEffect, useRef, useState } from "react";
-import { Sparkles, Star } from "lucide-react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 // @ts-ignore
 import SplitText from "gsap/SplitText";
 gsap.registerPlugin(SplitText);
-import { useCallback } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
 function useElementVisible<T extends HTMLElement = HTMLElement>() {
   const ref = useRef<T>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -30,9 +35,6 @@ const FoundersSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  // Add for bottom slant animation
-  // const [bottomLineVisible, setBottomLineVisible] = useState(false);
-  // const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observerOptions = {
@@ -50,7 +52,7 @@ const FoundersSection = () => {
       });
     }, observerOptions);
 
-    // Mouse tracking for parallax effect
+    // Mouse tracking for parallax effect (keep or remove if unused)
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: e.clientX / window.innerWidth,
@@ -70,26 +72,6 @@ const FoundersSection = () => {
     };
   }, []);
 
-  // Add observer for bottom slant line
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       entries.forEach((entry) => {
-  //         if (entry.isIntersecting) {
-  //           setBottomLineVisible(true);
-  //         } else {
-  //           setBottomLineVisible(false);
-  //         }
-  //       });
-  //     },
-  //     { threshold: 0.1 }
-  //   );
-  //   if (bottomRef.current) {
-  //     observer.observe(bottomRef.current);
-  //   }
-  //   return () => observer.disconnect();
-  // }, []);
-
   const founders = [
     {
       name: "Sathiya Narayanan",
@@ -97,6 +79,11 @@ const FoundersSection = () => {
       tagline: "Vision meets production mastery.",
       image: "founders/narayanan1.jpeg",
       delay: 200,
+      bio: `With over 27 years of leadership in India's animation industry, Sathiya Narayanan has built a legacy of operational excellence across 2D/3D, and VFX productions. As the former Head of Production at Green Gold Animation Studios, he managed large-scale projects from concept to delivery ensuring creative integrity, quality control, and global standards. Sathiya's journey spans India's top studios including TIL Studios, Criya Innfotainment, Inscribe Graphics, and Prime Focus. Known for orchestrating multi-million dollar projects with precision, he has played a critical role in building India's credibility as an outsourcing powerhouse for global animation.
+
+A regular at international markets like MIPCOM and Annecy, Sathiya has seen first-hand the growing global demand for culturally rooted, original content, something Indian studios often miss by focusing on service work.
+
+Today, he's turning that insight into action. Co-founding Lightspire Media, Sathiya is shifting gears from service execution to IP ownership. His mission: to build original Indian stories with global appeal, blending artistic ambition with production efficiency. At a time when the world is hungry for diverse narratives, Sathiya is ready to lead that change on his own terms.`,
     },
     {
       name: "Leo Menezes",
@@ -104,6 +91,13 @@ const FoundersSection = () => {
       tagline: "Creative direction with storytelling soul.",
       image: "founders/leo1.jpeg",
       delay: 400,
+      bio: `With over 25 years of experience across 2D and 3D animation, Leo Menezes has been a creative force behind some of India's most recognized animated IPs. Formerly the Head of Creative at Green Gold Animation Studios, Leo oversaw animation direction, story development, and production workflows bringing artistic depth and narrative clarity to every frame.
+
+A Master of Fine Arts graduate, Leo has consistently demonstrated a rare balance of visual storytelling and production sensibility. His creative leadership has shaped numerous TV series and theatrical films across both domestic and international markets, establishing him as a trusted name in end-to-end animation delivery.
+
+Leo's career spans acclaimed studios like Penta Media, DQ Entertainment, Toonz Media, Criya Infotainment, and Inscribe Graphics. He's also a regular at global forums such as MIPCOM and Annecy, where he engages with international producers, distributors, and creative leads to stay ahead of industry trends.
+
+Now, as co-founder of Lightspire Media, Leo is pivoting from studio leadership to content ownership. His vision is clear: to develop original, culturally resonant animated stories for a global audience infusing his signature creative finesse into IPs that reflect India's voice on the world stage.`,
     },
   ];
 
@@ -171,33 +165,6 @@ const FoundersSection = () => {
           paddingBottom: "6rem",
         }}
       >
-        {/* Top Slant Animated Line */}
-        {/*
-        <svg
-          className={`absolute left-0 top-0 w-full h-[3vw] pointer-events-none transition-all duration-2000 ${
-            isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
-          }`}
-          style={{ zIndex: 20 }}
-          width="100%"
-          height="3vw"
-          viewBox="0 0 100 3"
-          preserveAspectRatio="none"
-        >
-          <line
-            x1="0"
-            y1="3"
-            x2="100"
-            y2="0"
-            stroke="#f5f5f5"
-            strokeWidth="2"
-            strokeDasharray="100"
-            strokeDashoffset={isVisible ? "0" : "100"}
-            style={{
-              transition: "stroke-dashoffset 2s cubic-bezier(0.4,0,0.2,1)",
-            }}
-          />
-        </svg>
-        */}
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           {/* Section Title */}
           <div
@@ -208,17 +175,12 @@ const FoundersSection = () => {
             }`}
           >
             <div className="inline-flex items-center mb-6">
-              {/* <Sparkles className="w-8 h-8 text-white mr-4 animate-pulse" /> */}
               <h2
                 className="text-5xl md:text-6xl font-bold text-white"
                 ref={headlineRef}
               >
                 Meet Our <span className="text-[#f5f5f5]">Team</span>
               </h2>
-              {/* <Sparkles
-                className="w-8 h-8 text-[#f5f5f5] ml-4 animate-pulse"
-                style={{ animationDelay: "0.5s" }}
-              /> */}
             </div>
             <div className="w-32 h-1 bg-gradient-to-r from-white to-[#f5f5f5] mx-auto mb-8 rounded-full"></div>
             <p
@@ -234,10 +196,11 @@ const FoundersSection = () => {
 
           {/* Founders Grid */}
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-            {founders.map((founder, index) => (
+            {founders.map((founder) => (
               <div
                 key={founder.name}
-                className={`group relative transition-all duration-1000 ${
+                className={`relative transition-transform duration-500 hover:scale-105 
+                ${
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-16"
@@ -245,58 +208,40 @@ const FoundersSection = () => {
                 style={{ transitionDelay: `${founder.delay}ms` }}
               >
                 {/* Founder Card */}
-                <div className="relative bg-[#7a7a7a]/80 backdrop-blur-sm border border-white/20 rounded-3xl p-8 lg:p-10 hover:bg-[#9a9a9a]/80 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_50px_rgba(245,245,245,0.15)] group-hover:border-white/40">
-                  {/* Glow effect on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-[#f5f5f5]/10 to-[#8a8a8a]/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
-                  {/* Avatar placeholder with animated border */}
+                <div className="relative bg-[#7a7a7a]/80 border border-white/20 rounded-3xl p-8 lg:p-10 flex flex-col">
+                  {/* Avatar */}
                   <div className="relative mb-8">
-    <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-white/20 group-hover:border-[#f5f5f5] transition-all duration-500 shadow-lg">
-      <img
-        src={founder.image}
-        alt={founder.name}
-        className="w-full h-full object-cover object-center"
-      />
-    </div>
-  </div>
-                  {/* Founder Info */}
-                  <div className="text-center relative z-10">
-                    {/* Name with animated underline */}
-                    <div className="relative mb-2">
-                      <h3 className="text-3xl lg:text-4xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#f5f5f5] group-hover:bg-clip-text transition-all duration-500">
-                        {founder.name}
-                      </h3>
-                      {/* Signature-like underline animation */}
-                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-white to-[#f5f5f5] group-hover:w-full transition-all duration-700 ease-out"></div>
-                    </div>
-                    {/* Title */}
-                    <div className="flex items-center justify-center mb-6">
-                      {/* <Star className="w-5 h-5 text-white mr-2 group-hover:animate-pulse" /> */}
-                      <p className="text-xl text-white font-semibold tracking-wide">
-                        {founder.title}
-                      </p>
-                      {/* <Star
-                        className="w-5 h-5 text-[#f5f5f5] ml-2 group-hover:animate-pulse"
-                        style={{ animationDelay: "0.3s" }}
-                      /> */}
-                    </div>
-                    {/* Tagline */}
-                    <p className="text-lg text-[#f5f5f5] italic leading-relaxed group-hover:text-white transition-colors duration-500">
-                      "{founder.tagline}"
-                    </p>
-                    {/* Floating starbursts */}
-                    <div className="absolute -top-4 -right-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                      {/* <Sparkles className="w-6 h-6 text-white animate-pulse" /> */}
-                    </div>
-                    <div className="absolute -bottom-4 -left-4 opacity-0 group-hover:opacity-100 transition-all duration-700">
-                      {/* <Star
-                        className="w-5 h-5 text-[#f5f5f5] animate-pulse"
-                        style={{ animationDelay: "0.5s" }}
-                      /> */}
+                    <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-white/20 shadow-lg">
+                      <img
+                        src={founder.image}
+                        alt={founder.name}
+                        className="w-full h-full object-cover object-center"
+                      />
                     </div>
                   </div>
-                  {/* Card corner accents */}
-                  <div className="absolute top-0 left-0 w-8 h-8 border-l-2 border-t-2 border-white/0 group-hover:border-white rounded-tl-3xl transition-all duration-500"></div>
-                  <div className="absolute bottom-0 right-0 w-8 h-8 border-r-2 border-b-2 border-[#f5f5f5]/0 group-hover:border-[#f5f5f5] rounded-br-3xl transition-all duration-500"></div>
+                  {/* Founder Info */}
+                  <div className="text-center flex-grow flex flex-col">
+                    <h3 className="text-3xl lg:text-4xl font-bold text-white mb-2">
+                      {founder.name}
+                    </h3>
+                    <p className="text-xl text-white font-semibold tracking-wide mb-6">
+                      {founder.title}
+                    </p>
+                    <p className="text-lg text-[#f5f5f5] italic leading-relaxed mb-4 flex-grow">
+                      "{founder.tagline}"
+                    </p>
+                    {/* Bio Accordion */}
+                    <Accordion type="single" collapsible className="w-full mt-auto">
+                      <AccordionItem value="bio">
+                        <AccordionTrigger className="text-white hover:text-[#f5f5f5] hover:no-underline justify-center text-sm">
+                          Read Full Bio
+                        </AccordionTrigger>
+                        <AccordionContent className="text-left text-[#f5f5f5] p-4 bg-[#6a6a6a]/50 rounded-lg mt-2 text-sm">
+                          {founder.bio}
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </div>
                 </div>
               </div>
             ))}
@@ -305,12 +250,10 @@ const FoundersSection = () => {
           {/* Bottom Quote */}
           <div
             className={`text-center mt-20 transition-all duration-1000 delay-700 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="relative inline-block bg-[#7a7a7a]/80 backdrop-blur-sm border border-white/20 rounded-2xl px-8 py-6">
+            <div className="relative inline-block bg-[#7a7a7a]/80 border border-white/20 rounded-2xl px-8 py-6 backdrop-blur-sm">
               <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-[#f5f5f5]/10 to-[#8a8a8a]/10 rounded-2xl blur-xl"></div>
               <p
                 className="text-xl md:text-2xl font-light text-[#f5f5f5] italic relative z-10"
@@ -323,45 +266,6 @@ const FoundersSection = () => {
             </div>
           </div>
         </div>
-        {/* Bottom Slant Animated Line */}
-        {/*
-        <svg
-          className={`absolute left-0 bottom-0 w-full h-[3vw] pointer-events-none transition-all duration-2000 ${
-            bottomLineVisible
-              ? "opacity-100 scale-x-100"
-              : "opacity-0 scale-x-0"
-          }`}
-          style={{ zIndex: 20 }}
-          width="100%"
-          height="3vw"
-          viewBox="0 0 100 3"
-          preserveAspectRatio="none"
-        >
-          <line
-            x1="0"
-            y1="0"
-            x2="100"
-            y2="3"
-            stroke="#f5f5f5"
-            strokeWidth="2"
-            strokeDasharray="100"
-            strokeDashoffset={bottomLineVisible ? "0" : "100"}
-            style={{
-              transition: "stroke-dashoffset 2s cubic-bezier(0.4,0,0.2,1)",
-            }}
-          />
-        </svg>
-        <div
-          ref={bottomRef}
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            width: "100%",
-            height: "1px",
-          }}
-        />
-        */}
       </div>
     </section>
   );

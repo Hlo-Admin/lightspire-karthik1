@@ -250,14 +250,14 @@ const FoundersSection = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-[#f5f5f5]/10 to-[#8a8a8a]/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
                   {/* Avatar placeholder with animated border */}
                   <div className="relative mb-8">
-    <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-white/20 group-hover:border-[#f5f5f5] transition-all duration-500 shadow-lg">
-      <img
-        src={founder.image}
-        alt={founder.name}
-        className="w-full h-full object-cover object-center"
-      />
-    </div>
-  </div>
+                    <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-white/20 group-hover:border-[#f5f5f5] transition-all duration-500 shadow-lg">
+                      <img
+                        src={founder.image}
+                        alt={founder.name}
+                        className="w-full h-full object-cover object-center"
+                      />
+                    </div>
+                  </div>
                   {/* Founder Info */}
                   <div className="text-center relative z-10">
                     {/* Name with animated underline */}

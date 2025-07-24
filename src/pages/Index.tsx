@@ -15,6 +15,8 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import LightspireHero from "@/components/Hero-words";
 import SwipeSection from "@/components/SwipeSection";
+import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import TeamTestimonials from "@/components/TeamTestimonials";
 
 // Lazy load Spline component for better performance
 const LazySpline = lazy(() => import("@splinetool/react-spline"));
@@ -40,6 +42,7 @@ const Index = () => {
     { name: "About", href: "#about" },
     { name: "Services", href: "#services" },
     { name: "Team", href: "#founders" },
+    { name: "Testimonials", href: "#testimonials" },
     { name: "Portfolio", href: "#portfolio" },
     { name: "Contact", href: "#contact" },
   ];
@@ -98,10 +101,19 @@ const Index = () => {
         <ServicesSection2 />
       </div>
 
-        {/* Founders Section - New section after Kids IP Strategy */}
-        <div className="creative-section" data-cursor="creative">
+      {/* Founders Section - New section after Kids IP Strategy */}
+      <div className="creative-section" data-cursor="creative">
         <FoundersSection />
       </div>
+
+         {/* Teams Section */}
+         {/* <div
+        className="creative-section"
+        data-cursor="creative"
+        id="testimonials"
+      >
+        <TeamTestimonials />
+      </div> */}
 
       {/* Kids IP Strategy Section - Now placed after About Us */}
       <div className="creative-section" data-cursor="creative" id="portfolio">
@@ -113,12 +125,12 @@ const Index = () => {
         <SwipeSection />
       </div> */}
 
-    
-
       {/* Contact Section - New section */}
       <div className="creative-section" data-cursor="creative" id="contact">
         <ContactSection />
       </div>
+
+   
 
       {/* Footer */}
       <Footer />

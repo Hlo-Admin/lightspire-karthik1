@@ -1,10 +1,17 @@
-
-import { useEffect, useState } from 'react';
-import { 
-  Mail, Phone, MapPin, 
-  Facebook, Twitter, Instagram, Linkedin, Youtube,
-  ArrowUp, Sparkles, Play
-} from 'lucide-react';
+import { useEffect, useState } from "react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Youtube,
+  ArrowUp,
+  Sparkles,
+  Play,
+} from "lucide-react";
 
 const PremiumFooter = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -20,58 +27,61 @@ const PremiumFooter = () => {
       { threshold: 0.1 }
     );
 
-    const footerElement = document.getElementById('footer');
+    const footerElement = document.getElementById("footer");
     if (footerElement) observer.observe(footerElement);
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
       observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const navigationLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Founders', href: '#founders' },
-    { name: 'Strategy', href: '#strategy' },
-    { name: 'Contact', href: '#contact' }
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Services", href: "#services" },
+    { name: "Founders", href: "#founders" },
+    { name: "Strategy", href: "#strategy" },
+    { name: "Contact", href: "#contact" },
   ];
 
   const services = [
-    'TV Animation Series',
-    'OTT & Streaming',
-    'Feature Films',
-    'Brand Storytelling',
-    'Global Co-Productions',
-    'Digital Experiences'
+    "TV Animation Series",
+    "OTT & Streaming",
+    "Feature Films",
+    "Brand Storytelling",
+    "Global Co-Productions",
+    "Digital Experiences",
   ];
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Youtube, href: '#', label: 'YouTube' }
+    { icon: Facebook, href: "#", label: "Facebook" },
+    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Instagram, href: "#", label: "Instagram" },
+    { icon: Linkedin, href: "#", label: "LinkedIn" },
+    { icon: Youtube, href: "#", label: "YouTube" },
   ];
 
   return (
     <>
-      <footer 
+      <footer
         id="footer"
         className="relative bg-gradient-to-br from-gray-50 via-white to-blue-50 py-20 overflow-hidden"
       >
         {/* Background Effects */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-20 w-80 h-80 bg-gradient-to-br from-blue-200/15 to-purple-200/15 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-64 h-64 bg-gradient-to-br from-cyan-200/15 to-pink-200/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-          
+          <div
+            className="absolute bottom-20 right-20 w-64 h-64 bg-gradient-to-br from-cyan-200/15 to-pink-200/15 rounded-full blur-3xl animate-pulse"
+            style={{ animationDelay: "2s" }}
+          ></div>
+
           {/* Subtle grid pattern */}
           <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.02)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
         </div>
@@ -80,9 +90,13 @@ const PremiumFooter = () => {
           {/* Main Footer Content */}
           <div className="grid lg:grid-cols-4 gap-12 mb-16">
             {/* Company Info */}
-            <div className={`lg:col-span-2 transition-all duration-1000 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
+            <div
+              className={`lg:col-span-2 transition-all duration-1000 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+            >
               <div className="mb-8">
                 <img
                   src="/logo.png"
@@ -93,13 +107,14 @@ const PremiumFooter = () => {
                   Light Spire Media
                 </h3>
                 <p className="text-gray-600 text-lg leading-relaxed max-w-md font-light">
-                  Crafting cinematic worlds frame by frame. We bring imagination to life through 
-                  premium 2D/3D animation and VFX for global audiences.
+                  Crafting cinematic worlds frame by frame. We bring imagination
+                  to life through premium 2D/3D animation and VFX for global
+                  audiences.
                 </p>
               </div>
 
               {/* Contact Info */}
-              <div className="space-y-4">
+              {/* <div className="space-y-4">
                 <div className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors duration-300 cursor-pointer">
                   <Mail className="w-5 h-5" />
                   <span className="font-medium">hello@lightspire.media</span>
@@ -112,14 +127,20 @@ const PremiumFooter = () => {
                   <MapPin className="w-5 h-5" />
                   <span className="font-medium">Los Angeles, CA</span>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Navigation Links */}
-            <div className={`transition-all duration-1000 delay-200 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
-              <h4 className="text-lg font-bold text-gray-900 mb-6">Navigation</h4>
+            <div
+              className={`transition-all duration-1000 delay-200 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+            >
+              <h4 className="text-lg font-bold text-gray-900 mb-6">
+                Navigation
+              </h4>
               <ul className="space-y-3">
                 {navigationLinks.map((link) => (
                   <li key={link.name}>
@@ -135,9 +156,13 @@ const PremiumFooter = () => {
             </div>
 
             {/* Services */}
-            <div className={`transition-all duration-1000 delay-400 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
+            <div
+              className={`transition-all duration-1000 delay-400 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+            >
               <h4 className="text-lg font-bold text-gray-900 mb-6">Services</h4>
               <ul className="space-y-3">
                 {services.map((service) => (
@@ -176,17 +201,22 @@ const PremiumFooter = () => {
           </div> */}
 
           {/* Bottom Section */}
-          <div className={`border-t border-gray-200 pt-8 transition-all duration-1000 delay-800 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}>
+          <div
+            className={`border-t border-gray-200 pt-8 transition-all duration-1000 delay-800 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
+            }`}
+          >
             <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
               {/* Copyright */}
               <div className="text-gray-600 text-center lg:text-left">
                 <p className="font-medium">
                   © 2024 Light Spire Media. All rights reserved.
                 </p>
-                <p className="text-sm mt-1">
-                  Crafted with ❤️ for amazing storytellers worldwide.
+                <p className="text-sm mt-1 flex items-center gap-2">
+                  Crafted with ❤️ by{" "}
+                  <img src="/realm.png" alt="Realm" className="h-8 w-auto" />
                 </p>
               </div>
 
