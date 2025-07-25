@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 import {
   Send,
@@ -9,6 +10,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ScheduleCallForm from "@/components/ScheduleCallForm";
 import gsap from "gsap";
 // @ts-ignore
 import SplitText from "gsap/SplitText";
@@ -366,12 +368,14 @@ const PremiumContactSection = () => {
                   Schedule a 15-minute discovery call to discuss your project
                   requirements and timeline.
                 </p>
-                <Button
-                  variant="outline"
-                  className="bg-[#0678cf] border-white/20 text-white hover:bg-[#045a9e] hover:text-white transition-all duration-300 font-semibold"
-                >
-                  Schedule Call
-                </Button>
+                <ScheduleCallForm>
+                  <Button
+                    variant="outline"
+                    className="bg-[#0678cf] border-white/20 text-white hover:bg-[#045a9e] hover:text-white transition-all duration-300 font-semibold"
+                  >
+                    Schedule Call
+                  </Button>
+                </ScheduleCallForm>
               </div>
             </div>
           </div>
