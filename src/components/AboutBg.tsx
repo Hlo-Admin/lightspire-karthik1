@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState, Suspense, lazy } from "react";
 import {
   Target,
@@ -61,6 +62,10 @@ const AboutSectionDark = () => {
   const [bottomLineVisible, setBottomLineVisible] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  
+  // Add state to control content visibility
+  const [contentReady, setContentReady] = useState(false);
+  
   // --- Add headlineRef for GSAP animation ---
   const [headlineRef, headlineVisible] =
     useElementVisible<HTMLHeadingElement>();
@@ -145,6 +150,10 @@ const AboutSectionDark = () => {
   // GSAP line animation for About heading
   useEffect(() => {
     if (!headlineVisible || !headlineRef.current) return;
+    
+    // Set content as ready when first animation starts
+    setContentReady(true);
+    
     const split = new SplitText(headlineRef.current, { type: "lines" });
     gsap.from(split.lines, {
       rotationX: -80,
@@ -271,7 +280,9 @@ const AboutSectionDark = () => {
               }`}
             >
               <h2
-                className="text-5xl md:text-6xl font-bold text-[#f5f5f5] mb-6"
+                className={`text-5xl md:text-6xl font-bold text-[#f5f5f5] mb-6 ${
+                  contentReady ? "opacity-100" : "opacity-0"
+                }`}
                 ref={headlineRef}
               >
                 About <span className="text-white">LIGHTSPIRE MEDIA</span>
@@ -302,7 +313,9 @@ const AboutSectionDark = () => {
                   <h3 className="text-2xl font-bold text-white">Our Mission</h3>
                 </div>
                 <p
-                  className="text-[#f5f5f5] leading-relaxed mb-6"
+                  className={`text-[#f5f5f5] leading-relaxed mb-6 ${
+                    contentReady ? "opacity-100" : "opacity-0"
+                  }`}
                   ref={missionPara1Ref}
                 >
                   <span className="text-white font-semibold">
@@ -318,7 +331,9 @@ const AboutSectionDark = () => {
                   impact.
                 </p>
                 <p
-                  className="text-white leading-relaxed mb-6"
+                  className={`text-white leading-relaxed mb-6 ${
+                    contentReady ? "opacity-100" : "opacity-0"
+                  }`}
                   ref={missionPara2Ref}
                 >
                   Alongside our primary focus on 2D, we also provide 3D
@@ -327,7 +342,12 @@ const AboutSectionDark = () => {
                   social media networks.
                 </p>
 
-                <p className="text-white leading-relaxed" ref={missionPara3Ref}>
+                <p 
+                  className={`text-white leading-relaxed ${
+                    contentReady ? "opacity-100" : "opacity-0"
+                  }`} 
+                  ref={missionPara3Ref}
+                >
                   At LIGHTSPIRE MEDIA, we blend creativity and technical
                   expertise to deliver visually engaging content across
                   <br />entertainment and digital platforms.
@@ -367,7 +387,9 @@ const AboutSectionDark = () => {
               <div className="relative flex items-center justify-center">
                 {/* <Sparkles className="w-8 h-8 text-white mr-4 animate-pulse" /> */}
                 <p
-                  className="text-2xl md:text-3xl font-bold text-white"
+                  className={`text-2xl md:text-3xl font-bold text-white ${
+                    contentReady ? "opacity-100" : "opacity-0"
+                  }`}
                   ref={bottomQuoteRef}
                 >
                   "We don't just animate. We envision worlds, frame by frame."
