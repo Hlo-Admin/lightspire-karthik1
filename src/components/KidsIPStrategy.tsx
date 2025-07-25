@@ -218,12 +218,10 @@ const KidsIPStrategy = () => {
             ref={headingRef}
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight max-w-5xl mx-auto"
           >
-            Launch original IPs via global partners, platform deals &
-            storytelling to position <br />
+            Operational Framework for  <br />
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-[#0678cf]">
-              Lightspire
-            </span>{" "}
-            as a <span className="text-[#0678cf]">kids' animation leader</span>
+            Creative Market Growth
+            </span>
           </h2>
 
           <div className="flex items-center justify-center gap-4 mt-8">
