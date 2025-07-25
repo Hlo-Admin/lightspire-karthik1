@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState, Suspense, lazy } from "react";
 import {
   Target,
@@ -63,7 +62,7 @@ const AboutSectionDark = () => {
   const bottomRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   
-  // Add state to control content visibility
+  // Add state to control content visibility - start as false
   const [contentReady, setContentReady] = useState(false);
   
   // --- Add headlineRef for GSAP animation ---
@@ -274,21 +273,19 @@ const AboutSectionDark = () => {
           <div className="text-center mb-20">
             <div
               className={`transition-all duration-1000 ${
-                isVisible
+                isVisible && contentReady
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-12"
               }`}
             >
               <h2
-                className={`text-5xl md:text-6xl font-bold text-[#f5f5f5] mb-6 ${
-                  contentReady ? "opacity-100" : "opacity-0"
-                }`}
+                className="text-5xl md:text-6xl font-bold text-[#f5f5f5] mb-6 opacity-0"
                 ref={headlineRef}
               >
                 About <span className="text-white">LIGHTSPIRE MEDIA</span>
               </h2>
-              <div className="w-24 h-1 bg-[#f5f5f5] mx-auto mb-8"></div>
-              <p className="text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed">
+              <div className={`w-24 h-1 bg-[#f5f5f5] mx-auto mb-8 transition-opacity duration-500 ${contentReady ? "opacity-100" : "opacity-0"}`}></div>
+              <p className={`text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed transition-opacity duration-500 ${contentReady ? "opacity-100" : "opacity-0"}`}>
                 <span className="text-white">
                   Creative to Final Frame <br />
                 </span>
@@ -300,7 +297,9 @@ const AboutSectionDark = () => {
           {/* Main Content Grid */}
           <div className="w-full flex flex-col items-center justify-center min-h-[500px]">
             <div
-              className={`transition-all duration-1000 delay-300 w-full max-w-5xl mx-auto flex flex-col items-center justify-center text-center gap-8`}
+              className={`transition-all duration-1000 delay-300 w-full max-w-5xl mx-auto flex flex-col items-center justify-center text-center gap-8 ${
+                contentReady ? "opacity-100" : "opacity-0"
+              }`}
             >
               {/* About Description */}
               <div className="bg-[#0678cf]/10 backdrop-blur-sm border border-[#f5f5f5]/20 rounded-2xl p-8 w-full max-w-4xl mx-auto mb-8">
@@ -313,9 +312,7 @@ const AboutSectionDark = () => {
                   <h3 className="text-2xl font-bold text-white">Our Mission</h3>
                 </div>
                 <p
-                  className={`text-[#f5f5f5] leading-relaxed mb-6 ${
-                    contentReady ? "opacity-100" : "opacity-0"
-                  }`}
+                  className="text-[#f5f5f5] leading-relaxed mb-6 opacity-0"
                   ref={missionPara1Ref}
                 >
                   <span className="text-white font-semibold">
@@ -331,9 +328,7 @@ const AboutSectionDark = () => {
                   impact.
                 </p>
                 <p
-                  className={`text-white leading-relaxed mb-6 ${
-                    contentReady ? "opacity-100" : "opacity-0"
-                  }`}
+                  className="text-white leading-relaxed mb-6 opacity-0"
                   ref={missionPara2Ref}
                 >
                   Alongside our primary focus on 2D, we also provide 3D
@@ -343,9 +338,7 @@ const AboutSectionDark = () => {
                 </p>
 
                 <p 
-                  className={`text-white leading-relaxed ${
-                    contentReady ? "opacity-100" : "opacity-0"
-                  }`} 
+                  className="text-white leading-relaxed opacity-0"
                   ref={missionPara3Ref}
                 >
                   At LIGHTSPIRE MEDIA, we blend creativity and technical
@@ -377,7 +370,7 @@ const AboutSectionDark = () => {
           {/* Bottom Quote */}
           <div
             className={`text-center transition-all pt-16 duration-1000 delay-900 ${
-              isVisible
+              isVisible && contentReady
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
             }`}
@@ -387,9 +380,7 @@ const AboutSectionDark = () => {
               <div className="relative flex items-center justify-center">
                 {/* <Sparkles className="w-8 h-8 text-white mr-4 animate-pulse" /> */}
                 <p
-                  className={`text-2xl md:text-3xl font-bold text-white ${
-                    contentReady ? "opacity-100" : "opacity-0"
-                  }`}
+                  className="text-2xl md:text-3xl font-bold text-white opacity-0"
                   ref={bottomQuoteRef}
                 >
                   "We don't just animate. We envision worlds, frame by frame."
