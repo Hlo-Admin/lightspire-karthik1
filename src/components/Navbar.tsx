@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -77,22 +76,8 @@ const Navbar = () => {
               </span>
             </div>
 
-            {/* Desktop Navigation Menu */}
-            <div className="hidden md:flex items-center space-x-8">
-              {menuItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-[#222] hover:text-[#0678cf] transition-colors duration-300 font-medium text-sm uppercase tracking-wide relative group"
-                >
-                  {item.name}
-                  <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-[#0678cf] transition-all duration-300 group-hover:w-full"></span>
-                </a>
-              ))}
-            </div>
-
             {/* Hamburger Menu Button */}
-            <button
+            {/* <button
               onClick={toggleMenu}
               className="md:hidden relative z-60 p-3 rounded-lg bg-black from-cyan-500/20 to-purple-500/20 border border-cyan-500/40 hover:border-cyan-400/60 transition-all duration-300 group hover:scale-105 hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-purple-500/30"
               aria-label="Toggle menu"
@@ -115,7 +100,7 @@ const Navbar = () => {
                   )}
                 />
               </div>
-            </button>
+            </button> */}
           </div>
         </div>
       </nav>
