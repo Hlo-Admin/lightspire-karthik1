@@ -1,15 +1,15 @@
-
 import React, { useEffect, useRef } from "react";
-import { Play, ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
-import { FlickeringGrid } from "./magicui/flickering-grid";
-import { WordRotate } from "@/components/magicui/word-rotate";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
 import gsap from "gsap";
 
 const LightspireHero = () => {
   const backgroundRef = useRef<HTMLDivElement>(null);
-  const headlineRef = useRef<HTMLHeadingElement>(null);
+
+  // Refs for headline parts
+  const premierRef = useRef<HTMLSpanElement>(null);
+  const animationRef = useRef<HTMLSpanElement>(null);
+  const studioRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -18,9 +18,7 @@ const LightspireHero = () => {
       const x = e.clientX / window.innerWidth;
       const y = e.clientY / window.innerHeight;
 
-      backgroundRef.current.style.transform = `translate(${x * -10}px, ${
-        y * -10
-      }px)`;
+      backgroundRef.current.style.transform = `translate(${x * -10}px, ${y * -10}px)`;
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -30,25 +28,20 @@ const LightspireHero = () => {
     };
   }, []);
 
-  // Animate the entire headline as one block from top to bottom
+  // GSAP animation for headline parts
   useEffect(() => {
-    if (!headlineRef.current) return;
-    
-    gsap.fromTo(headlineRef.current, {
-      y: -100,
-      opacity: 0,
-    }, {
-      y: 0,
-      opacity: 1,
-      duration: 0.8,
-      ease: "power2.out",
-      delay: 0.3
-    });
+    const tl = gsap.timeline({ defaults: { duration: 0.8, ease: "power2.out" } });
+
+    if (premierRef.current && animationRef.current && studioRef.current) {
+      tl.from(premierRef.current, { x: -200, opacity: 0 })
+      .from(animationRef.current, { x: 200, opacity: 0 }, "-=0.5")
+      .from(studioRef.current, { x: -200, opacity: 0 }, "-=0.5");    
+    }
   }, []);
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* FlickeringGrid Background */}
+      {/* Background div for possible future flickering grid or background */}
       {/* <div
         ref={backgroundRef}
         className="absolute inset-0 z-0 transition-transform duration-700 ease-out"
@@ -87,17 +80,28 @@ const LightspireHero = () => {
             </div>
 
             <h1
-              ref={headlineRef}
               className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-[#222]"
               style={{
                 willChange: "transform, opacity",
               }}
             >
-              India's Premier <br />
-              <span className="text-[#0678cf] text-6xl">
-                2D Animation <br />
+              {/* India's Premier - animate from left */}
+              <span ref={premierRef} className="block">
+                India's Premier
               </span>
-              Studio
+
+              {/* 2D Animation - animate from right */}
+              <span
+                ref={animationRef}
+                className="block text-[#0678cf] text-6xl leading-tight mt-2"
+              >
+                2D Animation
+              </span>
+
+              {/* Studio - animate from left */}
+              <span ref={studioRef} className="block leading-tight mt-2">
+                Studio
+              </span>
             </h1>
 
             {/* Typing Subtext */}
@@ -107,6 +111,7 @@ const LightspireHero = () => {
               </TypingAnimation>
             </div>
             <br></br>
+            {/* Uncomment below if you want buttons */}
             {/* <div
               className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in"
               style={{ animationDelay: "0.8s" }}
