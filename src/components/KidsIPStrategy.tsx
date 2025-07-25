@@ -320,7 +320,12 @@ const KidsIPStrategy = () => {
                       />
                     </div>
                     <h4 className="text-lg font-bold text-gray-900 mb-3">
-                      {item.title}
+                      {item.title.split("\n").map((line, index) => (
+                        <span key={index}>
+                          {line}
+                          {index !== item.title.split("\n").length - 1 && <br />}
+                        </span>
+                      ))}
                     </h4>
                     <p className="text-gray-600 text-sm leading-relaxed">
                       {item.desc}
