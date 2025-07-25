@@ -13,7 +13,7 @@ import FoundersSection from "@/components/FoundersSection";
 import MagneticHover from "@/components/MagneticHover";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import LightspireHero from "@/components/Hero-words";
+import LIGHTSPIREHero from "@/components/Hero-words";
 import SwipeSection from "@/components/SwipeSection";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import TestimonialsSection from "@/components/TeamSection";
@@ -88,7 +88,7 @@ const HomeNew = () => {
 
       {/* Hero Section */}
       <div id="home">
-        <LightspireHero />
+        <LIGHTSPIREHero />
       </div>
 
       {/* Dark About Section */}

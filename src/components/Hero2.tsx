@@ -3,7 +3,7 @@ import { Play, ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { FlickeringGrid } from "./magicui/flickering-grid";
 
-const LightspireHero = () => {
+const LIGHTSPIREHero = () => {
   const backgroundRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -107,4 +107,4 @@ const LightspireHero = () => {
   );
 };
 
-export default LightspireHero;
+export default LIGHTSPIREHero;

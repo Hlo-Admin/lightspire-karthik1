@@ -4,7 +4,7 @@ import { HyperText } from "@/components/magicui/hyper-text";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
 import gsap from "gsap";
 
-const LightspireHero = () => {
+const LIGHTSPIREHero = () => {
   const backgroundRef = useRef<HTMLDivElement>(null);
 
   // Refs for headline parts
@@ -45,11 +45,11 @@ const LightspireHero = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden sm:pt-8">
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden sm:pt-8 pt-16 mt-8">
       {/* Background div with image */}
       <div
         ref={backgroundRef}
-        className="absolute inset-0 z-0 w-full bg-center opacity-20 transition-transform duration-700 ease-out"
+        className="absolute inset-0 z-0 w-full bg-center opacity-50 transition-transform duration-700 ease-out"
         style={{
           backgroundImage: "url(/hero1.jpg)",
           backgroundSize: "60% 80%",
@@ -71,7 +71,7 @@ const LightspireHero = () => {
         style={{ animationDelay: "1s" }}
       ></div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-8 md:px-12 relative z-10">
         <div className="flex flex-col items-center text-center">
           <div className="max-w-4xl w-full">
             <div className="flex items-center justify-center mb-4 animate-fade-in">
@@ -82,7 +82,7 @@ const LightspireHero = () => {
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 text-[#222]">
               <span ref={premierRef} className="block">
-                Premier
+              The Premier
               </span>
               <span
                 ref={animationRef}
@@ -102,10 +102,12 @@ const LightspireHero = () => {
                 </TypingAnimation>
               </div>
 
-              <div className="hero-subtext text-lg md:text-xl text-[#0678cf] font-semibold py-8 md:py-0">
+              <div className="mt-8 pt-4 text-center">
+                {" "}
+                {/* Increased vertical spacing with my-8 and py-4 */}
                 <span className="relative inline-block">
                   <span className="absolute inset-0 bg-[#0678cf] opacity-10 transform -skew-x-12 -rotate-2"></span>
-                  <span className="relative z-10 tracking-wide">
+                  <span className="relative z-10 tracking-wide text-xl">
                     We Bring Characters to Life Frame by Frame
                   </span>
                 </span>
@@ -123,4 +125,4 @@ const LightspireHero = () => {
   );
 };
 
-export default LightspireHero;
+export default LIGHTSPIREHero;

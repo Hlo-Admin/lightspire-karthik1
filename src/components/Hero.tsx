@@ -10,7 +10,7 @@ import SplitText from "gsap/SplitText";
 gsap.registerPlugin(SplitText);
 import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
 
-const LightspireHero = () => {
+const LIGHTSPIREHero = () => {
   const backgroundRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
 
@@ -136,4 +136,4 @@ const LightspireHero = () => {
   );
 };
 
-export default LightspireHero;
+export default LIGHTSPIREHero;

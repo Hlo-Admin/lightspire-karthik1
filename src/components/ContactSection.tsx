@@ -116,14 +116,14 @@ const PremiumContactSection = () => {
     {
       icon: Phone,
       title: "Call Us",
-      content: "9840880908 / 9841937856",
+      content: "+91 9840880908 / +91 9841937856",
       subtext: "Mon-Fri, 9 AM - 6 PM IST",
     },
     {
       icon: MapPin,
       title: "Visit Us",
       content: "New no.111, AWFIS Building, Rajiv Gandhi Salai",
-      subtext: "Kandanvhavadi, Chennai - 600 096",
+      subtext: "Kandanvhavadi, Chennai – 600096, Tamil Nadu, India",
     },
     // {
     //   icon: Clock,

@@ -75,7 +75,7 @@ const TeamTestimonials: React.FC = () => {
 \n
 A regular at international markets like MIPCOM and Annecy, Sathiya has seen first-hand the growing global demand for culturally rooted, original content, something Indian studios often miss by focusing on service work.
 
-Today, he's turning that insight into action. Co-founding Lightspire Media, Sathiya is shifting gears from service execution to IP ownership. His mission: to build original Indian stories with global appeal, blending artistic ambition with production efficiency. At a time when the world is hungry for diverse narratives, Sathiya is ready to lead that change on his own terms.`,
+Today, he's turning that insight into action. Co-founding LIGHTSPIRE MEDIA, Sathiya is shifting gears from service execution to IP ownership. His mission: to build original Indian stories with global appeal, blending artistic ambition with production efficiency. At a time when the world is hungry for diverse narratives, Sathiya is ready to lead that change on his own terms.`,
     },
     {
       quote:
@@ -89,7 +89,7 @@ A Master of Fine Arts graduate, Leo has consistently demonstrated a rare balance
 
 Leo's career spans acclaimed studios like Penta Media, DQ Entertainment, Toonz Media, Criya Infotainment, and Inscribe Graphics. He's also a regular at global forums such as MIPCOM and Annecy, where he engages with international producers, distributors, and creative leads to stay ahead of industry trends.
 
-Now, as co-founder of Lightspire Media, Leo is pivoting from studio leadership to content ownership. His vision is clear: to develop original, culturally resonant animated stories for a global audience infusing his signature creative finesse into IPs that reflect India's voice on the world stage.`,
+Now, as co-founder of LIGHTSPIRE MEDIA, Leo is pivoting from studio leadership to content ownership. His vision is clear: to develop original, culturally resonant animated stories for a global audience infusing his signature creative finesse into IPs that reflect India's voice on the world stage.`,
     },
   ];
 

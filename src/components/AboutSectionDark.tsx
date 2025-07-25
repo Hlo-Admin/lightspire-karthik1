@@ -117,13 +117,13 @@ const AboutSectionDark = () => {
         }}
       >
         {/* World Map Background - middle layer */}
-        <div 
+        <div
           className="absolute inset-0 z-10 opacity-30"
           style={{
             backgroundImage: `url('/lovable-uploads/1bfa71d5-65c9-42ee-919c-06fbd6583e7a.png')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
           }}
         />
 
@@ -151,7 +151,7 @@ const AboutSectionDark = () => {
               }`}
             >
               <h2 className="text-5xl md:text-6xl font-bold text-[#f5f5f5] mb-6">
-                About <span className="text-white">Lightspire Media</span>
+                About <span className="text-white">LIGHTSPIRE MEDIA</span>
               </h2>
               <div className="w-24 h-1 bg-[#f5f5f5] mx-auto mb-8"></div>
               <p className="text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed">
@@ -178,18 +178,25 @@ const AboutSectionDark = () => {
                   <h3 className="text-2xl font-bold text-white">About Us</h3>
                 </div>
                 <p className="text-[#f5f5f5] leading-relaxed mb-6">
-                  Lightspire Media is a creative animation studio specializing in{" "}
-                  <span className="text-white">2D animation</span> for TV animated series, OTT platforms, and feature films. 
-                  With a strong foundation in visual storytelling and character driven design, we craft high quality animation 
-                  that captivates audiences and enhances the viewer experience. Our work is rooted in a passion for art and motion, 
-                  bringing bold, original ideas to life with clarity and impact.
+                  LIGHTSPIRE MEDIA is a creative animation studio specializing
+                  in <span className="text-white">2D animation</span> for TV
+                  animated series, OTT platforms, and feature films. With a
+                  strong foundation in visual storytelling and character driven
+                  design, we craft high quality animation that captivates
+                  audiences and enhances the viewer experience. Our work is
+                  rooted in a passion for art and motion, bringing bold,
+                  original ideas to life with clarity and impact.
                 </p>
                 <p className="text-white leading-relaxed">
                   Alongside our primary focus on 2D, we also provide{" "}
-                  <span className="text-white">3D animation and VFX services</span> to support a variety of creative needs, 
-                  including video games, advertisements, mobile apps, and social media networks. At Lightspire Media, 
-                  we blend creativity and technical expertise to deliver visually engaging content across entertainment 
-                  and digital platforms.
+                  <span className="text-white">
+                    3D animation and VFX services
+                  </span>{" "}
+                  to support a variety of creative needs, including video games,
+                  advertisements, mobile apps, and social media networks. At
+                  LIGHTSPIRE MEDIA, we blend creativity and technical expertise
+                  to deliver visually engaging content across entertainment and
+                  digital platforms.
                 </p>
               </div>
 

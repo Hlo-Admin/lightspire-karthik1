@@ -11,24 +11,14 @@ const ServicesSection2 = () => {
     {
       icon: Tv,
       title: "TV Animated Series",
-      description:"We produce high quality 2D animated series for television with engaging characters and storytelling.",
+      description:
+        "We produce high quality 2D animated series for television with engaging characters and storytelling.",
       gradient: "from-blue-500 to-purple-600",
     },
-    {
-      icon: Film,
-      title: "Animated Features Films",
-      description: "We develop full length 2D animated films with cinematic visuals and strong narratives.",
-      gradient: "from-purple-500 to-pink-600",
-    },
-    {
-      icon: Megaphone,
-      title: "Ad Animations",
-      description: "We design short, impactful animated ads for brands and campaigns.",
-      gradient: "from-orange-500 to-red-600",
-    },
+
     {
       icon: Globe,
-      title: "Animation for OTT & WEB Series",
+      title: "Animation for\nOTT & WEB Series",
       description:
         "We create binge worthy animated content tailored for OTT and web platforms.",
       gradient: "from-cyan-500 to-blue-600",
@@ -36,13 +26,30 @@ const ServicesSection2 = () => {
     {
       icon: Users,
       title: "Co-Productions for International & Domestic",
-      description: "We partner with global studios to co create culturally relevant animated content.",
+      description:
+        "We partner with global studios to co create culturally relevant animated content.",
       gradient: "from-green-500 to-emerald-600",
     },
     {
+      icon: Film,
+      title: "Animated Features Films",
+      description:
+        "We develop full length 2D animated films with cinematic visuals and strong narratives.",
+      gradient: "from-purple-500 to-pink-600",
+    },
+    {
+      icon: Megaphone,
+      title: "Ad Animations",
+      description:
+        "We design short, impactful animated ads for brands and campaigns.",
+      gradient: "from-orange-500 to-red-600",
+    },
+
+    {
       icon: Smartphone,
       title: "Social Media Creatives",
-      description: "We deliver eye catching animated content optimized for social media engagement.",
+      description:
+        "We deliver eye catching animated content optimized for social media engagement.",
       gradient: "from-pink-500 to-rose-600",
     },
   ];
@@ -126,7 +133,7 @@ const ServicesSection2 = () => {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xs sm:text-sm md:text-base font-bold text-gray-900 mb-2 sm:mb-4 cinematic-title group-hover:text-gray-800 transition-colors duration-300">
+                    <h3 className="text-xs sm:text-sm md:text-base font-bold text-gray-900 mb-2 sm:mb-4 cinematic-title group-hover:text-gray-800 transition-colors duration-300 whitespace-pre-line">
                       {isVisible ? (
                         <TypingAnimation startOnView duration={60}>
                           {service.title}
