@@ -9,11 +9,6 @@ import {
   Building,
   Handshake,
   Globe,
-  Tv,
-  Monitor,
-  Film,
-  ShoppingBag,
-  Target,
   Zap,
 } from "lucide-react";
 import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
@@ -163,25 +158,25 @@ const KidsIPStrategy = () => {
 
   const platformItems = [
     {
-      icon: Tv,
+      image: "/icons/1.png", // Replace with actual path to your icon
       title: "Kids' Animation for OTT",
       desc: "Netflix, Amazon Prime, Disney+, YouTube Kids",
       color: "from-red-500 to-pink-500",
     },
     {
-      icon: Monitor,
+      image: "/icons/2.png", // Replace with actual path to your icon
       title: "Children's Television Content",
       desc: "Broadcasters and Cable Networks",
       color: "from-blue-500 to-cyan-500",
     },
     {
-      icon: Film,
+      image: "/icons/3.svg", // Replace with actual path to your icon
       title: "Animated Feature Films",
       desc: "For family audiences",
       color: "from-purple-500 to-indigo-500",
     },
     {
-      icon: ShoppingBag,
+      image: "/icons/4.png", // Replace with actual path to your icon
       title: "Consumer Brands Targeting Children",
       desc: "Co-branded IP opportunities & licensing",
       color: "from-green-500 to-emerald-500",
@@ -218,9 +213,9 @@ const KidsIPStrategy = () => {
             ref={headingRef}
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight max-w-5xl mx-auto"
           >
-            Operational Framework for  <br />
+            Operational Framework for <br />
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-[#0678cf]">
-            Creative Market Growth
+              Creative Market Growth
             </span>
           </h2>
 
@@ -304,7 +299,6 @@ const KidsIPStrategy = () => {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {platformItems.map((item, index) => {
-              const IconComponent = item.icon;
               return (
                 <div
                   key={index}
@@ -319,7 +313,11 @@ const KidsIPStrategy = () => {
                       className="w-14 h-14 rounded-xl flex items-center justify-center mb-4"
                       style={{ backgroundColor: "#0678cf" }}
                     >
-                      <IconComponent className="w-7 h-7 text-white" />
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-8 h-8"
+                      />
                     </div>
                     <h4 className="text-lg font-bold text-gray-900 mb-3">
                       {item.title}

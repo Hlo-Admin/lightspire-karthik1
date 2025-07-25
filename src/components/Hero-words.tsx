@@ -51,7 +51,7 @@ const LightspireHero = () => {
         ref={backgroundRef}
         className="absolute inset-0 z-0 w-full bg-center opacity-20 transition-transform duration-700 ease-out"
         style={{
-          backgroundImage: "url(/hero.jpg)",
+          backgroundImage: "url(/hero1.jpg)",
           backgroundSize: "60% 80%",
           backgroundRepeat: "no-repeat",
           willChange: "transform",
