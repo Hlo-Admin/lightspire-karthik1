@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { HyperText } from "@/components/magicui/hyper-text";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
 import gsap from "gsap";
 
@@ -45,21 +46,17 @@ const LightspireHero = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden sm:pt-8">
-      {/* Background div for possible future flickering grid or background */}
-      {/* <div
+      {/* Background div with image */}
+      <div
         ref={backgroundRef}
-        className="absolute inset-0 z-0 transition-transform duration-700 ease-out"
-        style={{ willChange: "transform" }}
-      >
-        <FlickeringGrid
-          className="absolute inset-0 z-0 size-full"
-          squareSize={4}
-          gridGap={6}
-          color="#0678cf"
-          maxOpacity={0.2}
-          flickerChance={0.08}
-        />
-      </div> */}
+        className="absolute inset-0 z-0 bg-cover bg-center opacity-20 transition-transform duration-700 ease-out"
+        style={{
+          backgroundImage:
+            "url(/hero.jpg)",
+          willChange: "transform",
+          filter: "grayscale(50%) brightness(120%)",
+        }}
+      />
 
       {/* Decorative Elements */}
       <div
@@ -75,65 +72,49 @@ const LightspireHero = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center">
-          <div className="max-w-4xl">
-            <div className="flex items-center justify-center mb-6 animate-fade-in">
+          <div className="max-w-4xl w-full">
+            <div className="flex items-center justify-center mb-4 animate-fade-in">
               <div className="bg-[#0678cf] bg-opacity-10 text-[#0678cf] rounded-full px-6 py-2 text-sm font-medium inline-flex items-center border border-[#0678cf]/20">
-                {/* <Sparkles className="h-4 w-4 mr-2 text-[#0678cf]" /> */}
                 27+ Years of Animation Excellence
               </div>
             </div>
 
-            <h1
-              className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-[#222]"
-              style={{
-                willChange: "transform, opacity",
-              }}
-            >
-              {/* India's Premier - animate from left */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 text-[#222]">
               <span ref={premierRef} className="block">
-                India's Premier
+                Premier
               </span>
-
-              {/* 2D Animation - animate from right */}
               <span
                 ref={animationRef}
-                className="block text-[#0678cf] text-4xl md:text-6xl lg:text-7xl leading-tight mt-2"
+                className="block text-[#0678cf] text-4xl md:text-6xl lg:text-7xl leading-tight"
               >
                 2D Animation
               </span>
-
-              {/* Studio - animate from left */}
-              <span ref={studioRef} className="block leading-tight mt-2">
+              <span ref={studioRef} className="block leading-tight">
                 Studio
               </span>
             </h1>
 
-            {/* Typing Subtext */}
-            <div className="hero-subtext text-lg md:text-xl text-[#8a8a8a] mb-4 h-[36px]">
-              <TypingAnimation duration={60} delay={1000} loop>
-                Trusted by the Best, Loved by Millions
-              </TypingAnimation>
+            <div className="space-y-3 mb-6">
+              <div className="hero-subtext text-lg md:text-xl text-[#8a8a8a] h-[36px] flex justify-center items-center">
+                <TypingAnimation duration={60} delay={1000} loop>
+                  Trusted by the Best, Loved by Millions
+                </TypingAnimation>
+              </div>
+
+              <div className="hero-subtext text-lg md:text-xl text-[#0678cf] font-semibold">
+                <span className="relative inline-block">
+                  <span className="absolute inset-0 bg-[#0678cf] opacity-10 transform -skew-x-12 -rotate-2"></span>
+                  <span className="relative z-10 tracking-wide">
+                    We Bring Characters to Life Frame by Frame
+                  </span>
+                </span>
+              </div>
+
+              <div className="hero-subtext text-lg md:text-xl text-[#6a6a6a]">
+                Creating powerful visual storytelling for brands, broadcasters,
+                and dreamers.
+              </div>
             </div>
-            <br></br>
-            {/* Uncomment below if you want buttons */}
-            {/* <div
-              className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in"
-              style={{ animationDelay: "0.8s" }}
-            >
-              <Link
-                to="/projects"
-                className="bg-[#0678cf] hover:bg-[#055fa3] text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 flex items-center justify-center shadow-none border-none"
-              >
-                Explore Our Work
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Link
-                to="/contact"
-                className="bg-transparent border-2 border-[#0678cf] text-[#0678cf] hover:bg-[#0678cf] hover:text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 flex items-center justify-center shadow-none"
-              >
-                Get in Touch
-              </Link>
-            </div> */}
           </div>
         </div>
       </div>

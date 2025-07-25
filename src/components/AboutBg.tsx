@@ -69,6 +69,9 @@ const AboutSectionDark = () => {
     useElementVisible<HTMLParagraphElement>();
   const [missionPara2Ref, missionPara2Visible] =
     useElementVisible<HTMLParagraphElement>();
+
+  const [missionPara3Ref, missionPara3Visible] =
+    useElementVisible<HTMLParagraphElement>();
   // --- Add ref for bottom quote ---
   const [bottomQuoteRef, bottomQuoteVisible] =
     useElementVisible<HTMLParagraphElement>();
@@ -200,6 +203,21 @@ const AboutSectionDark = () => {
     return () => split.revert();
   }, [bottomQuoteVisible, bottomQuoteRef]);
 
+  // GSAP character animation for mission paragraph 3
+  useEffect(() => {
+    if (!missionPara3Visible || !missionPara3Ref.current) return;
+    const split = new SplitText(missionPara3Ref.current, { type: "chars" });
+    gsap.from(split.chars, {
+      y: 20,
+      opacity: 0,
+      stagger: 0.005, // much faster
+      duration: 0.3, // much faster
+      ease: "power2.out",
+      overwrite: "auto",
+    });
+    return () => split.revert();
+  }, [missionPara3Visible, missionPara3Ref]);
+
   return (
     <section
       ref={sectionRef}
@@ -209,7 +227,7 @@ const AboutSectionDark = () => {
       <div
         className="relative"
         style={{
-          backgroundImage: "url('/abtbg1.png')",
+          // backgroundImage: "url('/abtbg1.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -260,8 +278,10 @@ const AboutSectionDark = () => {
               </h2>
               <div className="w-24 h-1 bg-[#f5f5f5] mx-auto mb-8"></div>
               <p className="text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed">
-                Crafting stories with character, color, and{" "}
-                <span className="text-white">cinematic precision</span>.
+                <span className="text-white">
+                  Creative to Final Frame <br />
+                </span>
+                We Do It All.
               </p>
             </div>
           </div>
@@ -289,20 +309,28 @@ const AboutSectionDark = () => {
                     Lightspire Media
                   </span>{" "}
                   is a creative animation studio specializing in 2D animation
-                  for TV animated series, OTT platforms, <br /> and feature films. With
-                  a strong foundation in visual storytelling and
-                  character driven design, we craft high-quality <br />animation that
-                  captivates audiences and enhances the viewer experience. Our
-                  work is rooted in a passion for art and motion, bringing bold,
-                  original ideas to life with clarity and impact.
+                  for TV animated series, OTT platforms, <br /> and feature
+                  films. With a strong foundation in visual storytelling and
+                  character driven design, we craft high-quality <br />
+                  animation that captivates audiences and enhances the viewer
+                  experience. Our work is rooted in a passion for art and
+                  motion, bringing bold, original ideas to life with clarity and
+                  impact.
                 </p>
-                <p className="text-white leading-relaxed" ref={missionPara2Ref}>
+                <p
+                  className="text-white leading-relaxed mb-6"
+                  ref={missionPara2Ref}
+                >
                   Alongside our primary focus on 2D, we also provide 3D
                   animation and VFX services to support a variety of creative
-                  <br />needs, including video games, advertisements, mobile apps, and
-                  social media networks. At Lightspire Media, we blend
-                  creativity and technical expertise to deliver visually
-                  engaging content across entertainment and digital platforms.
+                  needs, including video games, advertisements, mobile apps, and
+                  social media networks.
+                </p>
+
+                <p className="text-white leading-relaxed" ref={missionPara3Ref}>
+                  At Lightspire Media, we blend creativity and technical
+                  expertise to deliver visually engaging content across
+                  entertainment and digital platforms.
                 </p>
               </div>
 
@@ -317,11 +345,11 @@ const AboutSectionDark = () => {
                 <h3 className="text-xl font-bold text-white mb-2">
                   Years of Excellence
                 </h3>
-                <p className="text-[#f5f5f5] text-sm">
+                {/* <p className="text-[#f5f5f5] text-sm">
                   Over two decades mastering{" "}
                   <span className="text-white">animation</span> and{" "}
                   <span className="text-white">visual effects</span>.
-                </p>
+                </p> */}
               </div>
             </div>
           </div>

@@ -53,10 +53,10 @@ const PremiumFooter = () => {
 
   const services = [
     "TV Animation Series",
-    "OTT & Web Series",
-    "Feature Films",
+    "Animated Features Films",
     "Ad Animations",
-    "International Co-Productions",
+    "Animation for OTT & WEB Series",
+    "Co-Productions for International & Domestic",
     "Social Media Creatives",
   ];
 
@@ -229,7 +229,7 @@ const PremiumFooter = () => {
                       key={social.label}
                       href={social.href}
                       aria-label={social.label}
-                      className="group w-12 h-12 bg-gray-100 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                      className="group w-12 h-12 bg-gray-100 hover:bg-gradient-to-r hover:from-blue-500 hover:to-[#0678cf] rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
                     >
                       <Icon className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors duration-300" />
                     </a>

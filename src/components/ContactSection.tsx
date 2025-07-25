@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import {
   Send,
@@ -111,7 +110,7 @@ const PremiumContactSection = () => {
     {
       icon: Mail,
       title: "Email Us",
-      content: "connect@Lightspiremedia.tv",
+      content: "connect@lightspiremedia.tv",
       subtext: "Quick response within 24 hours",
     },
     {
@@ -140,7 +139,9 @@ const PremiumContactSection = () => {
       className="relative bg-[#0678cf] py-20 md:py-32 overflow-hidden"
       id="contact"
       style={{
-        clipPath: "polygon(0 3vw, 100% 0, 100% calc(100% - 3vw), 0 100%)",
+        clipPath: "polygon(0 3vw, 100% 0, 100% 100%, 0 calc(100% - 3vw))",
+        paddingTop: "6rem", // Add extra padding for top slant
+        paddingBottom: "6rem", // Add extra padding for bottom slant
       }}
     >
       {/* Background Effects */}
@@ -206,8 +207,8 @@ const PremiumContactSection = () => {
                 : "opacity-0 translate-y-12"
             }`}
           >
-            Ready to create something extraordinary? Let's discuss your next
-            animated masterpiece.
+            Ready to create something extraordinary? <br /> Let's discuss your
+            next animated masterpiece.
           </p>
         </div>
 

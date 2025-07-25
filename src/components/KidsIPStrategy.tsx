@@ -170,7 +170,7 @@ const KidsIPStrategy = () => {
     },
     {
       icon: Monitor,
-      title: "Children's Television",
+      title: "Children's Television Content",
       desc: "Broadcasters and Cable Networks",
       color: "from-blue-500 to-cyan-500",
     },
@@ -182,7 +182,7 @@ const KidsIPStrategy = () => {
     },
     {
       icon: ShoppingBag,
-      title: "Consumer Brands",
+      title: "Consumer Brands Targeting Children",
       desc: "Co-branded IP opportunities & licensing",
       color: "from-green-500 to-emerald-500",
     },

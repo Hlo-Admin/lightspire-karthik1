@@ -36,54 +36,29 @@ const FoundersSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -100px 0px",
-    };
+  type Founder = {
+    name: string;
+    title: string;
+    tagline: string;
+    image: string;
+    delay: number;
+    bio: string[];
+  };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
-        }
-      });
-    }, observerOptions);
-
-    // Mouse tracking for parallax effect (keep or remove if unused)
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: e.clientX / window.innerWidth,
-        y: e.clientY / window.innerHeight,
-      });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
-  const founders = [
+  const founders: Founder[] = [
     {
       name: "Sathiya Narayanan",
       title: "Co-Founder",
       tagline: "Vision meets production mastery.",
       image: "founders/narayanan1.jpeg",
       delay: 200,
-      bio: `With over 27 years of leadership in India's animation industry, Sathiya Narayanan has built a legacy of operational excellence across 2D/3D, and VFX productions. As the former Head of Production at Green Gold Animation Studios, he managed large-scale projects from concept to delivery ensuring creative integrity, quality control, and global standards. Sathiya's journey spans India's top studios including TIL Studios, Criya Innfotainment, Inscribe Graphics, and Prime Focus. Known for orchestrating multi-million dollar projects with precision, he has played a critical role in building India's credibility as an outsourcing powerhouse for global animation.
-
-A regular at international markets like MIPCOM and Annecy, Sathiya has seen first-hand the growing global demand for culturally rooted, original content, something Indian studios often miss by focusing on service work.
-
-Today, he's turning that insight into action. Co-founding Lightspire Media, Sathiya is shifting gears from service execution to IP ownership. His mission: to build original Indian stories with global appeal, blending artistic ambition with production efficiency. At a time when the world is hungry for diverse narratives, Sathiya is ready to lead that change on his own terms.`,
+      bio: [
+        "With over 27 years of leadership in India's animation industry, Sathiya Narayanan has built a legacy of operational excellence across 2D/3D, and VFX productions. As the former Head of Production at Green Gold Animation Studios, he managed large-scale projects from concept to delivery, ensuring creative integrity, quality control, and global standards.",
+        "Sathiya's journey spans India's top studios including TIL Studios, Criya Innfotainment, Inscribe Graphics, and Prime Focus. Known for orchestrating multi-million dollar projects with precision, he has played a critical role in building India's credibility as an outsourcing powerhouse for global animation.",
+        "A regular at international markets like MIPCOM and Annecy, Sathiya has seen first-hand the growing global demand for culturally rooted, original content, something Indian studios often miss by focusing on service work.",
+        "Today, he's turning that insight into action. Co-founding Lightspire Media, Sathiya is shifting gears from service execution to IP ownership. His mission: to build original Indian stories with global appeal, blending artistic ambition with production efficiency.",
+        "At a time when the world is hungry for diverse narratives, Sathiya is ready to lead that change on his own terms.",
+      ],
     },
     {
       name: "Leo Menezes",
@@ -91,13 +66,12 @@ Today, he's turning that insight into action. Co-founding Lightspire Media, Sath
       tagline: "Creative direction with storytelling soul.",
       image: "founders/leo1.jpeg",
       delay: 400,
-      bio: `With over 25 years of experience across 2D and 3D animation, Leo Menezes has been a creative force behind some of India's most recognized animated IPs. Formerly the Head of Creative at Green Gold Animation Studios, Leo oversaw animation direction, story development, and production workflows bringing artistic depth and narrative clarity to every frame.
-
-A Master of Fine Arts graduate, Leo has consistently demonstrated a rare balance of visual storytelling and production sensibility. His creative leadership has shaped numerous TV series and theatrical films across both domestic and international markets, establishing him as a trusted name in end-to-end animation delivery.
-
-Leo's career spans acclaimed studios like Penta Media, DQ Entertainment, Toonz Media, Criya Infotainment, and Inscribe Graphics. He's also a regular at global forums such as MIPCOM and Annecy, where he engages with international producers, distributors, and creative leads to stay ahead of industry trends.
-
-Now, as co-founder of Lightspire Media, Leo is pivoting from studio leadership to content ownership. His vision is clear: to develop original, culturally resonant animated stories for a global audience infusing his signature creative finesse into IPs that reflect India's voice on the world stage.`,
+      bio: [
+        "With over 25 years of experience across 2D and 3D animation, Leo Menezes has been a creative force behind some of India's most recognized animated IPs. Formerly the Head of Creative at Green Gold Animation Studios, Leo oversaw animation direction, story development, and production workflows bringing artistic depth and narrative clarity to every frame.",
+        "A Master of Fine Arts graduate, Leo has consistently demonstrated a rare balance of visual storytelling and production sensibility. His creative leadership has shaped numerous TV series and theatrical films across both domestic and international markets, establishing him as a trusted name in end-to-end animation delivery.",
+        "Leo's career spans acclaimed studios like Penta Media, DQ Entertainment, Toonz Media, Criya Infotainment, and Inscribe Graphics. He's also a regular at global forums such as MIPCOM and Annecy, where he engages with international producers, distributors, and creative leads to stay ahead of industry trends.",
+        "Now, as co-founder of Lightspire Media, Leo is pivoting from studio leadership to content ownership. His vision is clear: to develop original, culturally resonant animated stories for a global audience infusing his signature creative finesse into IPs that reflect India's voice on the world stage.",
+      ],
     },
   ];
 
@@ -150,6 +124,42 @@ Now, as co-founder of Lightspire Media, Leo is pivoting from studio leadership t
     return () => split.revert();
   }, [quoteVisible, quoteRef]);
 
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -100px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      });
+    }, observerOptions);
+
+    // Mouse tracking for parallax effect (keep or remove if unused)
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: e.clientX / window.innerWidth,
+        y: e.clientY / window.innerHeight,
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
   return (
     <section
       ref={sectionRef}
@@ -184,11 +194,11 @@ Now, as co-founder of Lightspire Media, Leo is pivoting from studio leadership t
             </div>
             <div className="w-32 h-1 bg-gradient-to-r from-white to-[#f5f5f5] mx-auto mb-8 rounded-full"></div>
             <p
-              className="text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed"
+              className="text-xl text-[#f5f5f5] max-w-4xl mx-auto leading-relaxed"
               ref={descParaRef}
             >
-              The visionary minds behind Lightspire Media, bringing together
-              decades of experience in{" "}
+              The visionary minds behind Lightspire Media,
+              <br /> bringing together decades of experience in{" "}
               <span className="text-white">creative direction</span> and{" "}
               <span className="text-[#f5f5f5]">production excellence</span>.
             </p>
@@ -241,7 +251,11 @@ Now, as co-founder of Lightspire Media, Leo is pivoting from studio leadership t
                           Read Full Bio
                         </AccordionTrigger>
                         <AccordionContent className="text-left text-[#f5f5f5] p-4 bg-[#6a6a6a]/50 rounded-lg mt-2 text-sm">
-                          {founder.bio}
+                          {founder.bio.map((paragraph, index) => (
+                            <p key={index} className="mb-4 last:mb-0">
+                              {paragraph}
+                            </p>
+                          ))}
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
