@@ -122,42 +122,42 @@ const KidsIPStrategy = () => {
     {
       icon: Handshake,
       title: "Co-Production Deals",
-      desc: "Global animation studio partnerships",
+      desc: "Building partnerships with studios and producers for collaborative content creation and shared IP",
     },
     {
       icon: Globe,
       title: "International Syndication",
-      desc: "Global agents for IP reach & formats",
+      desc: "Expanding global reach through licensing and distribution of animated content across territories",
     },
     {
       icon: Share2,
       title: "Social Media",
-      desc: "Animation snippets & insights on IG, LinkedIn & YouTube",
+      desc: "Using strategic content to grow presence, engage audiences, and amplify brand identity online",
     },
     {
       icon: FileText,
       title: "Content & Community",
-      desc: "Case studies & IP diaries via blog & Medium",
+      desc: "Creating valuable content and fostering communities that support long-term audience loyalty",
     },
     {
       icon: Calendar,
       title: "Events & Visibility",
-      desc: "Annecy, MIPCOM, ATF & Indian B2B markets",
+      desc: "Participating in industry events and festivals to showcase work and build brand recognition",
     },
     {
       icon: Megaphone,
       title: "PR & Outreach",
-      desc: "AnimationXpress, Animation Magazine interviews",
+      desc: "Implementing targeted media outreach and public relations to enhance credibility and visibility",
     },
     {
       icon: Users,
       title: "Inbound Sales",
-      desc: "Custom sample episodes via website",
+      desc: "Attracting clients organically through optimized content, storytelling, and digital presence",
     },
     {
       icon: Building,
       title: "Direct Studio Outreach",
-      desc: "OTT, kids' TV & licensing decision-makers",
+      desc: "Reaching out to studios, networks, and partners with tailored pitches and project proposals",
     },
   ];
 

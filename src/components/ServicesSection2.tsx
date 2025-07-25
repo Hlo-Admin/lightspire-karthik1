@@ -11,20 +11,20 @@ const ServicesSection2 = () => {
     {
       icon: Tv,
       title: "TV Animated Series",
-      description:"We produce high-quality 2D animated series for television with engaging characters and storytelling.",
+      description:"We produce high quality 2D animated series for television with engaging characters and storytelling.",
       gradient: "from-blue-500 to-purple-600",
     },
     {
       icon: Globe,
       title: "OTT & Web Series",
       description:
-        "We create binge-worthy animated content tailored for OTT and web platforms.",
+        "We create binge worthy animated content tailored for OTT and web platforms.",
       gradient: "from-cyan-500 to-blue-600",
     },
     {
       icon: Film,
       title: "Feature Films",
-      description: "We develop full-length 2D animated films with cinematic visuals and strong narratives.",
+      description: "We develop full length 2D animated films with cinematic visuals and strong narratives.",
       gradient: "from-purple-500 to-pink-600",
     },
     {
@@ -36,13 +36,13 @@ const ServicesSection2 = () => {
     {
       icon: Users,
       title: "International Co-Productions",
-      description: "We partner with global studios to co-create culturally relevant animated content.",
+      description: "We partner with global studios to co create culturally relevant animated content.",
       gradient: "from-green-500 to-emerald-600",
     },
     {
       icon: Smartphone,
       title: "Social Media Creatives",
-      description: "We deliver eye-catching animated content optimized for social media engagement.",
+      description: "We deliver eye catching animated content optimized for social media engagement.",
       gradient: "from-pink-500 to-rose-600",
     },
   ];

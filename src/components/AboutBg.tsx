@@ -291,7 +291,7 @@ const AboutSectionDark = () => {
                   is a creative animation studio specializing in 2D animation
                   for TV animated series, OTT platforms, <br /> and feature films. With
                   a strong foundation in visual storytelling and
-                  character-driven design, we craft high-quality <br />animation that
+                  character driven design, we craft high-quality <br />animation that
                   captivates audiences and enhances the viewer experience. Our
                   work is rooted in a passion for art and motion, bringing bold,
                   original ideas to life with clarity and impact.
