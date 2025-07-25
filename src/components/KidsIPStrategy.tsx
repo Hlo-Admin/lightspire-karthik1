@@ -159,25 +159,25 @@ const KidsIPStrategy = () => {
   const platformItems = [
     {
       image: "/icons/1.png", // Replace with actual path to your icon
-      title: "Kids' Animation for OTT",
+      title: "Kids' Animation for \nOTT Platforms",
       desc: "Netflix, Amazon Prime, Disney+, YouTube Kids",
       color: "from-red-500 to-pink-500",
     },
     {
       image: "/icons/2.png", // Replace with actual path to your icon
-      title: "Children's Television Content",
+      title: "Children's Television \nContent",
       desc: "Broadcasters and Cable Networks",
       color: "from-blue-500 to-cyan-500",
     },
     {
       image: "/icons/3.svg", // Replace with actual path to your icon
-      title: "Animated Feature Films",
+      title: "Animated \nFeature Films",
       desc: "For family audiences",
       color: "from-purple-500 to-indigo-500",
     },
     {
       image: "/icons/4.png", // Replace with actual path to your icon
-      title: "Consumer Brands Targeting Children",
+      title: "Consumer Brands \nTargeting Children",
       desc: "Co-branded IP opportunities & licensing",
       color: "from-green-500 to-emerald-500",
     },
