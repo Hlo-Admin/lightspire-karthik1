@@ -72,7 +72,7 @@ const TeamTestimonials: React.FC = () => {
       designation: "Co-Founder",
       src: "founders/narayanan1.jpeg",
       summary: `With over 27 years of leadership in India's animation industry, Sathiya Narayanan has built a legacy of operational excellence across 2D/3D, and VFX productions. As the former Head of Production at Green Gold Animation Studios, he managed large-scale projects from concept to delivery ensuring creative integrity, quality control, and global standards. Sathiya's journey spans India's top studios including TIL Studios, Criya Innfotainment, Inscribe Graphics, and Prime Focus. Known for orchestrating multi-million dollar projects with precision, he has played a critical role in building India's credibility as an outsourcing powerhouse for global animation.
-
+\n
 A regular at international markets like MIPCOM and Annecy, Sathiya has seen first-hand the growing global demand for culturally rooted, original content, something Indian studios often miss by focusing on service work.
 
 Today, he's turning that insight into action. Co-founding Lightspire Media, Sathiya is shifting gears from service execution to IP ownership. His mission: to build original Indian stories with global appeal, blending artistic ambition with production efficiency. At a time when the world is hungry for diverse narratives, Sathiya is ready to lead that change on his own terms.`,
