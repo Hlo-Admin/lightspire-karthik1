@@ -260,8 +260,8 @@ const AboutSectionDark = () => {
               </h2>
               <div className="w-24 h-1 bg-[#f5f5f5] mx-auto mb-8"></div>
               <p className="text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed">
-                Crafting stories with character, color, and{" "}
-                <span className="text-white">cinematic precision</span>.
+                Creative to Final Frame </br>{" "}
+                <span className="text-white">We Do It All.</span>
               </p>
             </div>
           </div>
@@ -300,7 +300,10 @@ const AboutSectionDark = () => {
                   Alongside our primary focus on 2D, we also provide 3D
                   animation and VFX services to support a variety of creative
                   <br />needs, including video games, advertisements, mobile apps, and
-                  social media networks. At Lightspire Media, we blend
+                  social media networks.
+                </p>
+                <p className="text-white leading-relaxed" ref={missionPara2Ref}>
+                At Lightspire Media, we blend
                   creativity and technical expertise to deliver visually
                   engaging content across entertainment and digital platforms.
                 </p>
@@ -317,11 +320,11 @@ const AboutSectionDark = () => {
                 <h3 className="text-xl font-bold text-white mb-2">
                   Years of Excellence
                 </h3>
-                <p className="text-[#f5f5f5] text-sm">
+{/*                 <p className="text-[#f5f5f5] text-sm">
                   Over two decades mastering{" "}
                   <span className="text-white">animation</span> and{" "}
                   <span className="text-white">visual effects</span>.
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
