@@ -297,7 +297,7 @@ const AboutSectionDark = () => {
                   original ideas to life with clarity and impact.
                 </p>
                 <p className="text-white leading-relaxed" ref={missionPara2Ref}>
-                  Alongside our primary focus on 2D, we also provide 3D
+                  A longside our primary focus on 2D, we also provide 3D
                   animation and VFX services to support a variety of creative
                   <br />needs, including video games, advertisements, mobile apps, and
                   social media networks.
