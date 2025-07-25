@@ -15,13 +15,6 @@ const ServicesSection2 = () => {
       gradient: "from-blue-500 to-purple-600",
     },
     {
-      icon: Globe,
-      title: "Animation for OTT & WEB Series",
-      description:
-        "We create binge worthy animated content tailored for OTT and web platforms.",
-      gradient: "from-cyan-500 to-blue-600",
-    },
-    {
       icon: Film,
       title: "Animated Features Films",
       description: "We develop full length 2D animated films with cinematic visuals and strong narratives.",
@@ -32,6 +25,13 @@ const ServicesSection2 = () => {
       title: "Ad Animations",
       description: "We design short, impactful animated ads for brands and campaigns.",
       gradient: "from-orange-500 to-red-600",
+    },
+    {
+      icon: Globe,
+      title: "Animation for OTT & WEB Series",
+      description:
+        "We create binge worthy animated content tailored for OTT and web platforms.",
+      gradient: "from-cyan-500 to-blue-600",
     },
     {
       icon: Users,
