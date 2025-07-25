@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -37,9 +36,9 @@ const ScheduleCallForm = ({ children }: ScheduleCallFormProps) => {
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -48,9 +47,9 @@ const ScheduleCallForm = ({ children }: ScheduleCallFormProps) => {
     console.log("Schedule call submission:", {
       ...formData,
       date: date ? format(date, "PPP") : "",
-      time: time + " IST"
+      time: time + " IST",
     });
-    
+
     // Reset form
     setFormData({
       name: "",
@@ -66,27 +65,43 @@ const ScheduleCallForm = ({ children }: ScheduleCallFormProps) => {
 
   // Generate time slots for IST (9 AM to 6 PM)
   const timeSlots = [
-    "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
-    "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
-    "15:00", "15:30", "16:00", "16:30", "17:00", "17:30"
+    "09:00",
+    "09:30",
+    "10:00",
+    "10:30",
+    "11:00",
+    "11:30",
+    "12:00",
+    "12:30",
+    "13:00",
+    "13:30",
+    "14:00",
+    "14:30",
+    "15:00",
+    "15:30",
+    "16:00",
+    "16:30",
+    "17:00",
+    "17:30",
   ];
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        {children}
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[500px] max-h-[80vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-[#0678cf]">
             Schedule a Call
           </DialogTitle>
         </DialogHeader>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             <div>
-              <Label htmlFor="name" className="text-sm font-semibold text-[#0678cf]">
+              <Label
+                htmlFor="name"
+                className="text-sm font-semibold text-[#0678cf]"
+              >
                 Full Name *
               </Label>
               <Input
@@ -99,9 +114,12 @@ const ScheduleCallForm = ({ children }: ScheduleCallFormProps) => {
                 placeholder="Your full name"
               />
             </div>
-            
+
             <div>
-              <Label htmlFor="email" className="text-sm font-semibold text-[#0678cf]">
+              <Label
+                htmlFor="email"
+                className="text-sm font-semibold text-[#0678cf]"
+              >
                 Email Address *
               </Label>
               <Input
@@ -115,11 +133,12 @@ const ScheduleCallForm = ({ children }: ScheduleCallFormProps) => {
                 placeholder="your@email.com"
               />
             </div>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="phone" className="text-sm font-semibold text-[#0678cf]">
+              <Label
+                htmlFor="phone"
+                className="text-sm font-semibold text-[#0678cf]"
+              >
                 Phone Number *
               </Label>
               <Input
@@ -133,9 +152,12 @@ const ScheduleCallForm = ({ children }: ScheduleCallFormProps) => {
                 placeholder="+91 9876543210"
               />
             </div>
-            
+
             <div>
-              <Label htmlFor="company" className="text-sm font-semibold text-[#0678cf]">
+              <Label
+                htmlFor="company"
+                className="text-sm font-semibold text-[#0678cf]"
+              >
                 Company Name
               </Label>
               <Input
@@ -147,9 +169,7 @@ const ScheduleCallForm = ({ children }: ScheduleCallFormProps) => {
                 placeholder="Your company"
               />
             </div>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label className="text-sm font-semibold text-[#0678cf]">
                 Select Date *
@@ -173,7 +193,9 @@ const ScheduleCallForm = ({ children }: ScheduleCallFormProps) => {
                     selected={date}
                     onSelect={setDate}
                     disabled={(date) =>
-                      date < new Date() || date.getDay() === 0 || date.getDay() === 6
+                      date < new Date() ||
+                      date.getDay() === 0 ||
+                      date.getDay() === 6
                     }
                     initialFocus
                     className="pointer-events-auto"
@@ -216,20 +238,23 @@ const ScheduleCallForm = ({ children }: ScheduleCallFormProps) => {
                 </PopoverContent>
               </Popover>
             </div>
-          </div>
 
-          <div>
-            <Label htmlFor="projectDetails" className="text-sm font-semibold text-[#0678cf]">
-              Project Details
-            </Label>
-            <Input
-              id="projectDetails"
-              name="projectDetails"
-              value={formData.projectDetails}
-              onChange={handleInputChange}
-              className="mt-1 border-[#0678cf] focus:ring-[#0678cf]"
-              placeholder="Brief description of your project"
-            />
+            <div>
+              <Label
+                htmlFor="projectDetails"
+                className="text-sm font-semibold text-[#0678cf]"
+              >
+                Project Details
+              </Label>
+              <Input
+                id="projectDetails"
+                name="projectDetails"
+                value={formData.projectDetails}
+                onChange={handleInputChange}
+                className="mt-1 border-[#0678cf] focus:ring-[#0678cf]"
+                placeholder="Brief description of your project"
+              />
+            </div>
           </div>
 
           <div className="flex gap-3 pt-4">
@@ -244,7 +269,13 @@ const ScheduleCallForm = ({ children }: ScheduleCallFormProps) => {
             <Button
               type="submit"
               className="flex-1 bg-[#0678cf] hover:bg-[#045a9e] text-white"
-              disabled={!formData.name || !formData.email || !formData.phone || !date || !time}
+              disabled={
+                !formData.name ||
+                !formData.email ||
+                !formData.phone ||
+                !date ||
+                !time
+              }
             >
               Schedule Call
             </Button>
