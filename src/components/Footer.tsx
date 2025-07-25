@@ -215,7 +215,7 @@ const PremiumFooter = () => {
                   © 2025 Lightspire Media. All rights reserved.
                 </p>
                 <p className="text-sm mt-1 flex items-center gap-2">
-                  Crafted with ❤️ by{" "}
+                  Powered by
                   <img src="/realm.png" alt="Realm" className="h-8 w-auto" />
                 </p>
               </div>
