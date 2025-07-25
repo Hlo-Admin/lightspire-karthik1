@@ -102,7 +102,7 @@ const LightspireHero = () => {
                 </TypingAnimation>
               </div>
 
-              <div className="hero-subtext text-lg md:text-xl text-[#0678cf] font-semibold">
+              <div className="hero-subtext text-lg md:text-xl text-[#0678cf] font-semibold py-8 md:py-0">
                 <span className="relative inline-block">
                   <span className="absolute inset-0 bg-[#0678cf] opacity-10 transform -skew-x-12 -rotate-2"></span>
                   <span className="relative z-10 tracking-wide">
