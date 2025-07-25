@@ -18,7 +18,9 @@ const LightspireHero = () => {
       const x = e.clientX / window.innerWidth;
       const y = e.clientY / window.innerHeight;
 
-      backgroundRef.current.style.transform = `translate(${x * -10}px, ${y * -10}px)`;
+      backgroundRef.current.style.transform = `translate(${x * -10}px, ${
+        y * -10
+      }px)`;
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -30,17 +32,19 @@ const LightspireHero = () => {
 
   // GSAP animation for headline parts
   useEffect(() => {
-    const tl = gsap.timeline({ defaults: { duration: 0.8, ease: "power2.out" } });
+    const tl = gsap.timeline({
+      defaults: { duration: 0.8, ease: "power2.out" },
+    });
 
     if (premierRef.current && animationRef.current && studioRef.current) {
       tl.from(premierRef.current, { x: -200, opacity: 0 })
-      .from(animationRef.current, { x: 200, opacity: 0 }, "-=0.5")
-      .from(studioRef.current, { x: -200, opacity: 0 }, "-=0.5");    
+        .from(animationRef.current, { x: 200, opacity: 0 }, "-=0.5")
+        .from(studioRef.current, { x: -200, opacity: 0 }, "-=0.5");
     }
   }, []);
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden sm:pt-8">
       {/* Background div for possible future flickering grid or background */}
       {/* <div
         ref={backgroundRef}
@@ -80,7 +84,7 @@ const LightspireHero = () => {
             </div>
 
             <h1
-              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-[#222]"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-[#222]"
               style={{
                 willChange: "transform, opacity",
               }}
@@ -93,7 +97,7 @@ const LightspireHero = () => {
               {/* 2D Animation - animate from right */}
               <span
                 ref={animationRef}
-                className="block text-[#0678cf] text-6xl leading-tight mt-2"
+                className="block text-[#0678cf] text-4xl md:text-6xl lg:text-7xl leading-tight mt-2"
               >
                 2D Animation
               </span>

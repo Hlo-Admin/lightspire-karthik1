@@ -210,7 +210,7 @@ const PremiumFooter = () => {
           >
             <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
               {/* Copyright */}
-              <div className="text-gray-600 text-center lg:text-left">
+              <div className="text-gray-600 text-left lg:text-left">
                 <p className="font-medium">
                   © 2025 Lightspire Media. All rights reserved.
                 </p>

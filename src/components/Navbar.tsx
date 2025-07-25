@@ -41,11 +41,11 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <div className="flex-shrink-0 flex items-center gap-4 ml-0 md:ml-6">
+            <div className="flex-shrink-0 flex items-center gap-4 ml-0 md:ml-6 w-full md:w-auto text-center md:text-left">
               <img
                 src="/logo.png"
                 alt="Light Spire Media Logo"
-                className="h-10 w-auto object-contain drop-shadow-md"
+                className="h-10 w-auto object-contain drop-shadow-md mx-auto md:mx-0"
                 style={{ filter: "drop-shadow(0 2px 8px #0678cf55)" }}
               />
             </div>
@@ -77,7 +77,7 @@ const Navbar = () => {
             </div>
 
             {/* Hamburger Menu Button */}
-            <button
+            {/* <button
               onClick={toggleMenu}
               className="md:hidden relative z-60 p-3 rounded-lg bg-black from-cyan-500/20 to-purple-500/20 border border-cyan-500/40 hover:border-cyan-400/60 transition-all duration-300 group hover:scale-105 hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-purple-500/30"
               aria-label="Toggle menu"
@@ -100,7 +100,7 @@ const Navbar = () => {
                   )}
                 />
               </div>
-            </button>
+            </button> */}
           </div>
         </div>
       </nav>
