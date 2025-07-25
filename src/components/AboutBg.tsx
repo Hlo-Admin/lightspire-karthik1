@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState, Suspense, lazy } from "react";
 import {
   Target,
@@ -260,7 +261,7 @@ const AboutSectionDark = () => {
               </h2>
               <div className="w-24 h-1 bg-[#f5f5f5] mx-auto mb-8"></div>
               <p className="text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed">
-                Creative to Final Frame </br>{" "}
+                Creative to Final Frame <br />{" "}
                 <span className="text-white">We Do It All.</span>
               </p>
             </div>
@@ -296,14 +297,14 @@ const AboutSectionDark = () => {
                   work is rooted in a passion for art and motion, bringing bold,
                   original ideas to life with clarity and impact.
                 </p>
-                <p className="text-white leading-relaxed" ref={missionPara2Ref}>
-                  A longside our primary focus on 2D, we also provide 3D
+                <p className="text-white leading-relaxed mb-6" ref={missionPara2Ref}>
+                  Alongside our primary focus on 2D, we also provide 3D
                   animation and VFX services to support a variety of creative
                   <br />needs, including video games, advertisements, mobile apps, and
                   social media networks.
                 </p>
-                <p className="text-white leading-relaxed" ref={missionPara2Ref}>
-                At Lightspire Media, we blend
+                <p className="text-white leading-relaxed">
+                  At Lightspire Media, we blend
                   creativity and technical expertise to deliver visually
                   engaging content across entertainment and digital platforms.
                 </p>
@@ -320,11 +321,6 @@ const AboutSectionDark = () => {
                 <h3 className="text-xl font-bold text-white mb-2">
                   Years of Excellence
                 </h3>
-{/*                 <p className="text-[#f5f5f5] text-sm">
-                  Over two decades mastering{" "}
-                  <span className="text-white">animation</span> and{" "}
-                  <span className="text-white">visual effects</span>.
-                </p> */}
               </div>
             </div>
           </div>
@@ -340,17 +336,12 @@ const AboutSectionDark = () => {
             <div className="relative inline-block bg-[#0678cf]/10 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl px-12 py-8">
               <div className="absolute inset-0 bg-gradient-to-r from-[#f5f5f5]/10 via-[#0678cf]/10 to-white/10 rounded-2xl blur-xl"></div>
               <div className="relative flex items-center justify-center">
-                {/* <Sparkles className="w-8 h-8 text-white mr-4 animate-pulse" /> */}
                 <p
                   className="text-2xl md:text-3xl font-bold text-white"
                   ref={bottomQuoteRef}
                 >
                   "We don't just animate. We envision worlds, frame by frame."
                 </p>
-                {/* <Sparkles
-                  className="w-8 h-8 text-[#f5f5f5] ml-4 animate-pulse"
-                  style={{ animationDelay: "0.5s" }}
-                /> */}
               </div>
             </div>
           </div>
