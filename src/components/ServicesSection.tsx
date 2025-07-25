@@ -15,13 +15,13 @@ const ServicesSection = () => {
     },
     {
       icon: Globe,
-      title: "OTT & Web Series",
+      title: "Animation for OTT & WEB Series",
       description: "Stylized content for streaming and digital media.",
       gradient: "from-cyan-500 to-blue-600",
     },
     {
       icon: Film,
-      title: "Feature Films",
+      title: "Animated Features Films",
       description: "End-to-end cinematic VFX and animation.",
       gradient: "from-purple-500 to-pink-600",
     },
@@ -33,7 +33,7 @@ const ServicesSection = () => {
     },
     {
       icon: Users,
-      title: "International Co-Productions",
+      title: "Co-Productions for International & Domestic",
       description: "Collaborative animation across borders.",
       gradient: "from-green-500 to-emerald-600",
     },
