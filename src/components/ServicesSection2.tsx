@@ -16,14 +16,14 @@ const ServicesSection2 = () => {
     },
     {
       icon: Globe,
-      title: "OTT & Web Series",
+      title: "Animation for OTT & WEB Series",
       description:
         "We create binge worthy animated content tailored for OTT and web platforms.",
       gradient: "from-cyan-500 to-blue-600",
     },
     {
       icon: Film,
-      title: "Feature Films",
+      title: "Animated Features Films",
       description: "We develop full length 2D animated films with cinematic visuals and strong narratives.",
       gradient: "from-purple-500 to-pink-600",
     },
@@ -35,7 +35,7 @@ const ServicesSection2 = () => {
     },
     {
       icon: Users,
-      title: "International Co-Productions",
+      title: "Co-Productions for International & Domestic",
       description: "We partner with global studios to co create culturally relevant animated content.",
       gradient: "from-green-500 to-emerald-600",
     },
