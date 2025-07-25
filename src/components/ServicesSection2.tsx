@@ -11,39 +11,38 @@ const ServicesSection2 = () => {
     {
       icon: Tv,
       title: "TV Animated Series",
-      description:
-        "High-quality 2D/3D animated series for broadcast platforms.",
+      description:"We produce high-quality 2D animated series for television with engaging characters and storytelling.",
       gradient: "from-blue-500 to-purple-600",
     },
     {
       icon: Globe,
       title: "OTT & Web Series",
       description:
-        "Visually compelling content for streaming platforms and web.",
+        "We create binge-worthy animated content tailored for OTT and web platforms.",
       gradient: "from-cyan-500 to-blue-600",
     },
     {
       icon: Film,
       title: "Feature Films",
-      description: "Full-scale animation and VFX for theatrical storytelling.",
+      description: "We develop full-length 2D animated films with cinematic visuals and strong narratives.",
       gradient: "from-purple-500 to-pink-600",
     },
     {
       icon: Megaphone,
       title: "Ad Animations",
-      description: "Dynamic commercials and brand storytelling in motion.",
+      description: "We design short, impactful animated ads for brands and campaigns.",
       gradient: "from-orange-500 to-red-600",
     },
     {
       icon: Users,
       title: "International Co-Productions",
-      description: "Collaborative cross-border projects with creative synergy.",
+      description: "We partner with global studios to co-create culturally relevant animated content.",
       gradient: "from-green-500 to-emerald-600",
     },
     {
       icon: Smartphone,
       title: "Social Media Creatives",
-      description: "Short-form animations tailored for digital platforms.",
+      description: "We deliver eye-catching animated content optimized for social media engagement.",
       gradient: "from-pink-500 to-rose-600",
     },
   ];

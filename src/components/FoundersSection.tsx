@@ -187,7 +187,7 @@ Now, as co-founder of Lightspire Media, Leo is pivoting from studio leadership t
               className="text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed"
               ref={descParaRef}
             >
-              The visionary minds behind Light Spire Media, bringing together
+              The visionary minds behind Lightspire Media, bringing together
               decades of experience in{" "}
               <span className="text-white">creative direction</span> and{" "}
               <span className="text-[#f5f5f5]">production excellence</span>.

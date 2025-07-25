@@ -337,14 +337,14 @@ const KidsIPStrategy = () => {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-16">
+        {/* <div className="text-center mt-16">
           <div className="inline-flex items-center gap-3 bg-[#0779cf] from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
             <Globe className="w-6 h-6" />
             <span className="font-semibold text-lg">
               Ready to Launch Your Next IP
             </span>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

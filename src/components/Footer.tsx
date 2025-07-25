@@ -53,11 +53,11 @@ const PremiumFooter = () => {
 
   const services = [
     "TV Animation Series",
-    "OTT & Streaming",
+    "OTT & Web Series",
     "Feature Films",
-    "Brand Storytelling",
-    "Global Co-Productions",
-    "Digital Experiences",
+    "Ad Animations",
+    "International Co-Productions",
+    "Social Media Creatives",
   ];
 
   const socialLinks = [
@@ -212,7 +212,7 @@ const PremiumFooter = () => {
               {/* Copyright */}
               <div className="text-gray-600 text-center lg:text-left">
                 <p className="font-medium">
-                  © 2024 Lightspire Media. All rights reserved.
+                  © 2025 Lightspire Media. All rights reserved.
                 </p>
                 <p className="text-sm mt-1 flex items-center gap-2">
                   Crafted with ❤️ by{" "}

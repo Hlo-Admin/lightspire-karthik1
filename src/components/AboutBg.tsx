@@ -285,25 +285,24 @@ const AboutSectionDark = () => {
                   className="text-[#f5f5f5] leading-relaxed mb-6"
                   ref={missionPara1Ref}
                 >
-                  At{" "}
                   <span className="text-white font-semibold">
                     Lightspire Media
-                  </span>
-                  , we are passionate storytellers who transform imagination
-                  into stunning visual reality. Our studio specializes in
-                  creating captivating{" "}
-                  <span className="text-white">2D animations</span>, immersive{" "}
-                  <span className="text-white">3D experiences</span>, and
-                  cutting-edge <span className="text-white">VFX solutions</span>{" "}
-                  that <br />
-                  bring stories to life across every platform.
+                  </span>{" "}
+                  is a creative animation studio specializing in 2D animation
+                  for TV animated series, OTT platforms, <br /> and feature films. With
+                  a strong foundation in visual storytelling and
+                  character-driven design, we craft high-quality <br />animation that
+                  captivates audiences and enhances the viewer experience. Our
+                  work is rooted in a passion for art and motion, bringing bold,
+                  original ideas to life with clarity and impact.
                 </p>
                 <p className="text-white leading-relaxed" ref={missionPara2Ref}>
-                  From concept to completion, we blend artistic vision with
-                  technical excellence to deliver content that not only meets
-                  <br /> but exceeds expectations. Every frame we create is a
-                  testament to our commitment to quality, creativity, and the{" "}
-                  <br /> magic of visual storytelling.
+                  Alongside our primary focus on 2D, we also provide 3D
+                  animation and VFX services to support a variety of creative
+                  <br />needs, including video games, advertisements, mobile apps, and
+                  social media networks. At Lightspire Media, we blend
+                  creativity and technical expertise to deliver visually
+                  engaging content across entertainment and digital platforms.
                 </p>
               </div>
 
