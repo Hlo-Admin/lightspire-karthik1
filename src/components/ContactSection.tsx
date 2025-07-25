@@ -9,6 +9,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ScheduleCallForm from "./ScheduleCallForm";
 import gsap from "gsap";
 // @ts-ignore
 import SplitText from "gsap/SplitText";
@@ -124,12 +125,6 @@ const PremiumContactSection = () => {
       content: "New no.111, AWFIS Building, Rajiv Gandhi Salai",
       subtext: "Kandanvhavadi, Chennai - 600 096",
     },
-    // {
-    //   icon: Clock,
-    //   title: "Working Hours",
-    //   content: "Mon - Fri: 9 AM - 6 PM",
-    //   subtext: "Weekend consultations available"
-    // }
   ];
 
   return (
@@ -366,12 +361,14 @@ const PremiumContactSection = () => {
                   Schedule a 15-minute discovery call to discuss your project
                   requirements and timeline.
                 </p>
-                <Button
-                  variant="outline"
-                  className="bg-[#0678cf] border-white/20 text-white hover:bg-[#045a9e] hover:text-white transition-all duration-300 font-semibold"
-                >
-                  Schedule Call
-                </Button>
+                <ScheduleCallForm>
+                  <Button
+                    variant="outline"
+                    className="bg-[#0678cf] border-white/20 text-white hover:bg-[#045a9e] hover:text-white transition-all duration-300 font-semibold"
+                  >
+                    Schedule Call
+                  </Button>
+                </ScheduleCallForm>
               </div>
             </div>
           </div>
