@@ -138,7 +138,7 @@ const PremiumContactSection = () => {
       className="relative bg-[#0678cf] py-20 md:py-32 overflow-hidden"
       id="contact"
       style={{
-        clipPath: "polygon(0 0, 100% 3vw, 100% 100%, 0 100%)",
+        clipPath: "polygon(0 3vw, 100% 0, 100% calc(100% - 3vw), 0 100%)",
       }}
     >
       {/* Background Effects */}
