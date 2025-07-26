@@ -134,7 +134,8 @@ const PremiumContactSection = () => {
   ];
 
   return (
-    <section
+   <div className="bg-[#fcfcfc]">
+     <section
       ref={sectionRef}
       className="relative bg-[#0678cf] py-20 md:py-32 overflow-hidden"
       id="contact"
@@ -383,6 +384,7 @@ const PremiumContactSection = () => {
         </div>
       </div>
     </section>
+   </div>
   );
 };
 

@@ -4,6 +4,40 @@ import { HyperText } from "@/components/magicui/hyper-text";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
 import gsap from "gsap";
 
+const ColorWaveText = ({ text }: { text: string }) => {
+  return (
+    <div className="inline-block color-wave-text">
+      {text.split(" ").map((word, wordIndex) => (
+        <React.Fragment key={wordIndex}>
+          {word.split("").map((char, charIndex) => (
+            <span
+              key={`${wordIndex}-${charIndex}`}
+              style={{
+                display: "inline-block",
+                animation: "colorwave 0.8s ease-in-out forwards",
+                animationDelay: `${charIndex * 0.05}s`,
+                marginRight: charIndex === word.length - 1 ? "0.3em" : "0",
+              }}
+            >
+              {char}
+            </span>
+          ))}
+        </React.Fragment>
+      ))}
+      <style>
+        {`
+          @keyframes colorwave {
+            0%   { color: #6a6a6a; transform: translateY(0);}
+            25%  { color: #0678cf; transform: translateY(-8px);}
+            50%  { color: #6a6a6a; transform: translateY(0);}
+            100% { color: #6a6a6a;}
+          }
+        `}
+      </style>
+    </div>
+  );
+};
+
 const LIGHTSPIREHero = () => {
   const backgroundRef = useRef<HTMLDivElement>(null);
 
@@ -15,17 +49,14 @@ const LIGHTSPIREHero = () => {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!backgroundRef.current) return;
-
       const x = e.clientX / window.innerWidth;
       const y = e.clientY / window.innerHeight;
-
       backgroundRef.current.style.transform = `translate(${x * -10}px, ${
         y * -10
       }px)`;
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
@@ -46,6 +77,33 @@ const LIGHTSPIREHero = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden sm:pt-8 pt-16 mt-8">
+      {/* Animated color strike style */}
+      <style>
+        {`
+          @keyframes strike-appear {
+            0% {
+              transform: skewX(-12deg) rotate(-1deg) scaleX(0);
+              opacity: 0.1;
+            }
+            100% {
+              transform: skewX(-12deg) rotate(-1deg) scaleX(1);
+              opacity: 0.2;
+            }
+          }
+          .color-strike {
+            position: absolute;
+            inset: 0;
+            background: #0678cf;
+            opacity: 0.2;
+            transform: skewX(-12deg) rotate(-2deg) scaleX(0);
+            transform-origin: left;
+            pointer-events: none;
+            z-index: 1;
+            animation: strike-appear 1s cubic-bezier(0.4,0,0.2,1) 0.5s forwards;
+          }
+        `}
+      </style>
+
       {/* Background div with image */}
       <div
         ref={backgroundRef}
@@ -63,9 +121,7 @@ const LIGHTSPIREHero = () => {
       <div
         className="absolute top-1/3 left-10 hidden lg:block animate-fade-in"
         style={{ animationDelay: "0.5s" }}
-      >
-        {/* <Sparkles className="h-8 w-8 text-[#0678cf] opacity-30" /> */}
-      </div>
+      ></div>
       <div
         className="absolute bottom-1/3 right-10 hidden lg:block animate-fade-in"
         style={{ animationDelay: "1s" }}
@@ -82,7 +138,7 @@ const LIGHTSPIREHero = () => {
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 text-[#222]">
               <span ref={premierRef} className="block">
-              The Premier
+                The Premier
               </span>
               <span
                 ref={animationRef}
@@ -102,20 +158,19 @@ const LIGHTSPIREHero = () => {
                 </TypingAnimation>
               </div>
 
+              {/* Animated strike-through highlight effect */}
               <div className="mt-8 pt-4 text-center">
-                {" "}
-                {/* Increased vertical spacing with my-8 and py-4 */}
                 <span className="relative inline-block">
-                  <span className="absolute inset-0 bg-[#0678cf] opacity-10 transform -skew-x-12 -rotate-2"></span>
+                  <span className="color-strike"></span>
                   <span className="relative z-10 tracking-wide text-xl">
                     We Bring Characters to Life Frame by Frame
                   </span>
                 </span>
               </div>
 
+              {/* Color Wave animated text line */}
               <div className="hero-subtext text-lg md:text-xl text-[#6a6a6a]">
-                Creating powerful visual storytelling for brands, broadcasters,
-                and dreamers.
+                <ColorWaveText text="Creating powerful visual storytelling for brands, broadcasters, and dreamers." />
               </div>
             </div>
           </div>

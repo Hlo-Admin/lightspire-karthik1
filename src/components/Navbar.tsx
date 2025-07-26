@@ -52,7 +52,14 @@ const Navbar = () => {
             </div>
 
             {/* Desktop Menu Items */}
-            <div className="hidden md:flex items-center space-x-6">
+            <div
+              className={cn(
+                "hidden md:flex items-center space-x-6 transition-all duration-500",
+                isScrolled
+                  ? "opacity-100 translate-y-0 pointer-events-auto"
+                  : "opacity-0 -translate-y-3 pointer-events-none"
+              )}
+            >
               {menuItems.map((item) => (
                 <a
                   key={item.name}
@@ -64,8 +71,9 @@ const Navbar = () => {
               ))}
             </div>
 
-            {/* Mobile Menu Toggle Button */}
-            {/* <button
+            {/* Mobile Menu Toggle Button *UNCOMMENT to use* */}
+            {/* 
+            <button
               onClick={toggleMenu}
               className="md:hidden relative z-60 p-3 rounded-lg bg-black from-cyan-500/20 to-purple-500/20 border border-cyan-500/40 hover:border-cyan-400/60 transition-all duration-300 group hover:scale-105 hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] hover:bg-gradient-to-r hover:from-cyan-500/30 hover:to-purple-500/30"
               aria-label="Toggle menu"
@@ -88,7 +96,8 @@ const Navbar = () => {
                   )}
                 />
               </div>
-            </button> */}
+            </button>
+            */}
           </div>
         </div>
       </nav>
