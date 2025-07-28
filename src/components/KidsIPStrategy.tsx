@@ -170,7 +170,7 @@ const KidsIPStrategy = () => {
       color: "from-blue-500 to-cyan-500",
     },
     {
-      image: "/icons/3.svg", // Replace with actual path to your icon
+      image: "/icons/3.png", // Replace with actual path to your icon
       title: "Animated\nFeature Films",
       desc: "For family audiences",
       color: "from-purple-500 to-indigo-500",

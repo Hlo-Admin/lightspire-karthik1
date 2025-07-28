@@ -122,13 +122,14 @@ const PremiumContactSection = () => {
     {
       icon: MapPin,
       title: "Visit Us",
-      content: (
+      subtext: (
         <>
-          New no.111, AWFIS Building <br />
-          Rajiv Gandhi Salai, Kandanvhavadi, OMR,
+         
+          Rajiv Gandhi Salai, Kandanvhavadi, OMR <br />
+          Chennai, Tamil Nadu, INDIA - 600096
         </>
       ),
-      subtext: "Chennai, Tamil Nadu, INDIA - 600096",
+      content: "New no.111, AWFIS Building",
     },
     // {
     //   icon: Clock,

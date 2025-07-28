@@ -255,6 +255,7 @@ All colors MUST be HSL.
   html {
     scroll-behavior: smooth;
     font-size: 19px;
+    letter-spacing: 1px;
   }
 
   /* Custom gradient backgrounds */
