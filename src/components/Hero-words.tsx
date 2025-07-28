@@ -163,7 +163,7 @@ const LIGHTSPIREHero = () => {
                 <span className="relative inline-block">
                   <span className="color-strike"></span>
                   <span className="relative z-10 tracking-wide text-xl">
-                    We Bring Characters to Life Frame by Frame
+                    We Bring Characters to Life-Frame by Frame
                   </span>
                 </span>
               </div>

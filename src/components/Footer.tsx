@@ -103,9 +103,9 @@ const PremiumFooter = () => {
                   alt="Light Spire Media"
                   className="h-12 w-auto object-contain mb-6 drop-shadow-lg"
                 />
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                {/* <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   LIGHTSPIRE MEDIA
-                </h3>
+                </h3> */}
                 <p className="text-gray-600 text-lg leading-relaxed max-w-md font-light">
                   Crafting cinematic worlds frame by frame. We bring imagination
                   to life through premium 2D/3D animation and VFX for global

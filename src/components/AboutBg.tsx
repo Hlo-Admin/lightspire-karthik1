@@ -1,5 +1,11 @@
-
-import { useEffect, useRef, useState, Suspense, lazy } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  Suspense,
+  lazy,
+  useCallback,
+} from "react";
 import {
   Target,
   Award,
@@ -13,13 +19,22 @@ import {
 } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Globe } from "@/components/magicui/globe";
-// --- GSAP for line animation ---
 import gsap from "gsap";
 // @ts-ignore
 import SplitText from "gsap/SplitText";
 gsap.registerPlugin(SplitText);
-// --- Custom hook for per-element visibility ---
-import { useCallback } from "react";
+
+const LazySpline = lazy(() => import("@splinetool/react-spline"));
+
+const SplineLoader = () => (
+  <div className="flex items-center justify-center h-full bg-gradient-to-br from-gray-800/60 to-gray-900/60 rounded-2xl">
+    <div className="text-center">
+      <div className="w-8 h-8 border-3 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
+      <p className="text-gray-400 text-xs">Loading 3D Model...</p>
+    </div>
+  </div>
+);
+
 function useElementVisible<T extends HTMLElement = HTMLElement>() {
   const ref = useRef<T>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -41,19 +56,6 @@ function useElementVisible<T extends HTMLElement = HTMLElement>() {
   return [ref, isVisible] as const;
 }
 
-// Lazy load Spline for better performance
-const LazySpline = lazy(() => import("@splinetool/react-spline"));
-
-// Optimized loading component
-const SplineLoader = () => (
-  <div className="flex items-center justify-center h-full bg-gradient-to-br from-gray-800/60 to-gray-900/60 rounded-2xl">
-    <div className="text-center">
-      <div className="w-8 h-8 border-3 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
-      <p className="text-gray-400 text-xs">Loading 3D Model...</p>
-    </div>
-  </div>
-);
-
 const AboutSectionDark = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -62,21 +64,16 @@ const AboutSectionDark = () => {
   const [bottomLineVisible, setBottomLineVisible] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
-  
-  // --- Add headlineRef for GSAP animation ---
+
+  // Headline animation visibility & ref
   const [headlineRef, headlineVisible] =
     useElementVisible<HTMLHeadingElement>();
-  // --- Add refs for paragraphs ---
-  const [missionPara1Ref, missionPara1Visible] =
-    useElementVisible<HTMLParagraphElement>();
-  const [missionPara2Ref, missionPara2Visible] =
-    useElementVisible<HTMLParagraphElement>();
 
-  const [missionPara3Ref, missionPara3Visible] =
-    useElementVisible<HTMLParagraphElement>();
-  // --- Add ref for bottom quote ---
-  const [bottomQuoteRef, bottomQuoteVisible] =
-    useElementVisible<HTMLParagraphElement>();
+  // Paragraph refs for animation
+  const missionPara1Ref = useRef<HTMLParagraphElement>(null);
+  const missionPara2Ref = useRef<HTMLParagraphElement>(null);
+  const missionPara3Ref = useRef<HTMLParagraphElement>(null);
+  const bottomQuoteRef = useRef<HTMLParagraphElement>(null);
 
   const studios = [
     { name: "Netflix", icon: Play, color: "text-red-500" },
@@ -89,7 +86,7 @@ const AboutSectionDark = () => {
     { name: "Paramount", icon: Sparkles, color: "text-indigo-600" },
   ];
 
-  // Count-up animation for years
+  // Years counter animation logic
   useEffect(() => {
     if (countStarted && yearsCount < 27) {
       const timer = setTimeout(() => {
@@ -99,6 +96,7 @@ const AboutSectionDark = () => {
     }
   }, [countStarted, yearsCount]);
 
+  // Visibility observer for main section
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
@@ -125,6 +123,7 @@ const AboutSectionDark = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Visibility observer for bottom line
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -144,10 +143,9 @@ const AboutSectionDark = () => {
     return () => observer.disconnect();
   }, []);
 
-  // GSAP line animation for About heading
+  // GSAP heading slide-in animation
   useEffect(() => {
     if (!headlineVisible || !headlineRef.current) return;
-    
     const split = new SplitText(headlineRef.current, { type: "lines" });
     gsap.from(split.lines, {
       rotationX: -80,
@@ -160,66 +158,53 @@ const AboutSectionDark = () => {
     return () => split.revert();
   }, [headlineVisible, headlineRef]);
 
-  // GSAP character animation for mission paragraph 1
+  // Add quote animation to the existing useEffect for paragraph animations
   useEffect(() => {
-    if (!missionPara1Visible || !missionPara1Ref.current) return;
-    const split = new SplitText(missionPara1Ref.current, { type: "chars" });
-    gsap.from(split.chars, {
-      y: 20,
-      opacity: 0,
-      stagger: 0.005, // much faster
-      duration: 0.3, // much faster
-      ease: "power2.out",
-      overwrite: "auto",
-    });
-    return () => split.revert();
-  }, [missionPara1Visible, missionPara1Ref]);
+    if (!isVisible) return;
 
-  // GSAP character animation for mission paragraph 2
-  useEffect(() => {
-    if (!missionPara2Visible || !missionPara2Ref.current) return;
-    const split = new SplitText(missionPara2Ref.current, { type: "chars" });
-    gsap.from(split.chars, {
-      y: 20,
-      opacity: 0,
-      stagger: 0.005, // much faster
-      duration: 0.3, // much faster
-      ease: "power2.out",
-      overwrite: "auto",
-    });
-    return () => split.revert();
-  }, [missionPara2Visible, missionPara2Ref]);
+    const paragraphs = [
+      missionPara1Ref.current,
+      missionPara2Ref.current,
+      missionPara3Ref.current,
+      bottomQuoteRef.current,
+    ].filter(Boolean);
 
-  // GSAP character animation for bottom quote
-  useEffect(() => {
-    if (!bottomQuoteVisible || !bottomQuoteRef.current) return;
-    const split = new SplitText(bottomQuoteRef.current, { type: "chars" });
-    gsap.from(split.chars, {
-      scale: 2.5,
-      rotationX: -180,
-      opacity: 0,
-      transformOrigin: "100% 50%",
-      ease: "back",
-      duration: 1,
-      stagger: 0.02,
-    });
-    return () => split.revert();
-  }, [bottomQuoteVisible, bottomQuoteRef]);
+    const splitArr = paragraphs.map(
+      (par) =>
+        par &&
+        new SplitText(par, {
+          type: par === bottomQuoteRef.current ? "chars" : "lines",
+        })
+    );
 
-  // GSAP character animation for mission paragraph 3
-  useEffect(() => {
-    if (!missionPara3Visible || !missionPara3Ref.current) return;
-    const split = new SplitText(missionPara3Ref.current, { type: "chars" });
-    gsap.from(split.chars, {
-      y: 20,
-      opacity: 0,
-      stagger: 0.005, // much faster
-      duration: 0.3, // much faster
-      ease: "power2.out",
-      overwrite: "auto",
+    splitArr.forEach((split, idx) => {
+      if (!split) return;
+
+      const animationParams =
+        split.chars && split.chars.length > 0
+          ? {
+              scale: 2.5,
+              rotationX: -180,
+              opacity: 0,
+              transformOrigin: "100% 50%",
+              ease: "back",
+              duration: 1,
+              stagger: 0.02,
+            }
+          : {
+              opacity: 0,
+              y: 24,
+              duration: 0.7,
+              stagger: 0.05,
+              delay: 0.2 * idx, // Stagger each paragraph's animation start
+              ease: "power2.out",
+            };
+
+      gsap.from(split.chars || split.lines, animationParams);
     });
-    return () => split.revert();
-  }, [missionPara3Visible, missionPara3Ref]);
+
+    return () => splitArr.forEach((split) => split && split.revert());
+  }, [isVisible]);
 
   return (
     <section
@@ -230,16 +215,14 @@ const AboutSectionDark = () => {
       <div
         className="relative"
         style={{
-          // backgroundImage: "url('/abtbg1.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           clipPath: "polygon(0 3vw, 100% 0, 100% 100%, 0 calc(100% - 3vw))",
-          paddingTop: "6rem", // Add extra padding for top slant
-          paddingBottom: "6rem", // Add extra padding for bottom slant
+          paddingTop: "6rem", // Extra padding for top slant
+          paddingBottom: "6rem", // Extra padding for bottom slant
         }}
       >
-        {/* --- Background Layers Start --- */}
         {/* Blue Overlay Layer */}
         <div
           className="absolute inset-0 w-full h-full z-10"
@@ -249,9 +232,7 @@ const AboutSectionDark = () => {
             pointerEvents: "none",
           }}
         />
-        {/* --- Background Layers End --- */}
         <div className="max-w-7xl mx-auto px-6 relative z-20">
-          {/* Place ALL your content here, including background effects */}
           {/* Background Effects */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <div className="absolute top-32 left-1/4 w-96 h-96 bg-gradient-radial from-cyan-500/10 via-cyan-500/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
@@ -259,8 +240,6 @@ const AboutSectionDark = () => {
               className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-radial from-purple-500/8 via-purple-500/4 to-transparent rounded-full blur-3xl animate-pulse"
               style={{ animationDelay: "1s" }}
             ></div>
-
-            {/* Grid Pattern */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
           </div>
 
@@ -279,8 +258,16 @@ const AboutSectionDark = () => {
               >
                 About <span className="text-white">LIGHTSPIRE MEDIA</span>
               </h2>
-              <div className={`w-24 h-1 bg-[#f5f5f5] mx-auto mb-8 transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}></div>
-              <p className={`text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"}`}>
+              <div
+                className={`w-24 h-1 bg-[#f5f5f5] mx-auto mb-8 transition-opacity duration-500 ${
+                  isVisible ? "opacity-100" : "opacity-0"
+                }`}
+              ></div>
+              <p
+                className={`text-xl text-[#f5f5f5] max-w-3xl mx-auto leading-relaxed transition-opacity duration-500 ${
+                  isVisible ? "opacity-100" : "opacity-0"
+                }`}
+              >
                 <span className="text-white">
                   Creative to Final Frame <br />
                 </span>
@@ -314,31 +301,27 @@ const AboutSectionDark = () => {
                     LIGTHSPIRE MEDIA
                   </span>{" "}
                   is a creative animation studio specializing in 2D animation
-                  for TV animated series, OTT platforms, <br /> and feature
-                  films. With a strong foundation in visual storytelling and
-                  character driven design, we craft high-quality <br />
-                  animation that captivates audiences and enhances the viewer
-                  experience. Our work is rooted in a passion for art and
-                  motion, bringing bold, original ideas to life with clarity and
-                  impact.
+                  for TV animated series, OTT platforms, and feature films. With
+                  a strong foundation in visual storytelling and character
+                  driven design, we craft high-quality animation that captivates
+                  audiences and enhances the viewer experience. Our work is
+                  rooted in a passion for art and motion, bringing bold,
+                  original ideas to life with clarity and impact.
                 </p>
                 <p
                   className="text-white leading-relaxed mb-6"
                   ref={missionPara2Ref}
                 >
                   Alongside our primary focus on 2D, we also provide 3D
-                  animation and VFX services to support a variety of creative <br />
+                  animation and VFX services to support a variety of creative
                   needs, including video games, advertisements, mobile apps, and
                   social media networks.
                 </p>
 
-                <p 
-                  className="text-white leading-relaxed"
-                  ref={missionPara3Ref}
-                >
+                <p className="text-white leading-relaxed" ref={missionPara3Ref}>
                   At LIGHTSPIRE MEDIA, we blend creativity and technical
                   expertise to deliver visually engaging content across
-                  <br />entertainment and digital platforms.
+                  entertainment and digital platforms.
                 </p>
               </div>
 
@@ -353,11 +336,6 @@ const AboutSectionDark = () => {
                 <h3 className="text-xl font-bold text-white mb-2">
                   Years of Excellence
                 </h3>
-                {/* <p className="text-[#f5f5f5] text-sm">
-                  Over two decades mastering{" "}
-                  <span className="text-white">animation</span> and{" "}
-                  <span className="text-white">visual effects</span>.
-                </p> */}
               </div>
             </div>
           </div>
@@ -373,17 +351,12 @@ const AboutSectionDark = () => {
             <div className="relative inline-block bg-[#0678cf]/10 backdrop-blur-sm border border-[#f5f5f5]/30 rounded-2xl px-12 py-8">
               <div className="absolute inset-0 bg-gradient-to-r from-[#f5f5f5]/10 via-[#0678cf]/10 to-white/10 rounded-2xl blur-xl"></div>
               <div className="relative flex items-center justify-center">
-                {/* <Sparkles className="w-8 h-8 text-white mr-4 animate-pulse" /> */}
                 <p
                   className="text-2xl md:text-3xl font-bold text-white"
                   ref={bottomQuoteRef}
                 >
                   "We don't just animate. We envision worlds, frame by frame."
                 </p>
-                {/* <Sparkles
-                  className="w-8 h-8 text-[#f5f5f5] ml-4 animate-pulse"
-                  style={{ animationDelay: "0.5s" }}
-                /> */}
               </div>
             </div>
           </div>
