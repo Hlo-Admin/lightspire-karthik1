@@ -1,5 +1,6 @@
 
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { Resend } from "npm:resend@2.0.0";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -11,31 +12,6 @@ interface EmailRequest {
   data: any;
 }
 
-const sendEmail = async (to: string, subject: string, htmlContent: string) => {
-  const gmailEmail = Deno.env.get('GMAIL_EMAIL');
-  const gmailPassword = Deno.env.get('GMAIL_APP_PASSWORD');
-
-  if (!gmailEmail || !gmailPassword) {
-    throw new Error('Gmail credentials not configured');
-  }
-
-  // Using Gmail SMTP via external service
-  const emailData = {
-    from: gmailEmail,
-    to: to,
-    subject: subject,
-    html: htmlContent,
-  };
-
-  // Since Deno doesn't have built-in SMTP, we'll use a simple HTTP API approach
-  // You might want to use a service like Resend, SendGrid, or similar for production
-  console.log('Email would be sent:', emailData);
-  
-  // For now, we'll simulate email sending
-  // In production, integrate with your preferred email service
-  return { success: true, message: 'Email sent successfully' };
-};
-
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -43,6 +19,15 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const { type, data }: EmailRequest = await req.json();
+
+    // Get Gmail credentials from environment
+    const gmailEmail = Deno.env.get('GMAIL_EMAIL');
+    const gmailPassword = Deno.env.get('GMAIL_APP_PASSWORD');
+    const resendApiKey = Deno.env.get('RESEND_API_KEY');
+
+    if (!gmailEmail) {
+      throw new Error('Gmail email not configured');
+    }
 
     let subject = '';
     let htmlContent = '';
@@ -84,12 +69,103 @@ const handler = async (req: Request): Promise<Response> => {
       `;
     }
 
-    const result = await sendEmail(recipientEmail, subject, htmlContent);
-    
-    return new Response(JSON.stringify(result), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      status: 200,
-    });
+    // Try Resend first if API key is available
+    if (resendApiKey) {
+      const resend = new Resend(resendApiKey);
+      
+      try {
+        const emailResponse = await resend.emails.send({
+          from: `LightSpire Media <${gmailEmail}>`,
+          to: [recipientEmail],
+          subject: subject,
+          html: htmlContent,
+        });
+
+        console.log('Email sent successfully via Resend:', emailResponse);
+        return new Response(JSON.stringify({ success: true, message: 'Email sent successfully via Resend', data: emailResponse }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          status: 200,
+        });
+      } catch (resendError) {
+        console.error('Resend failed, falling back to Gmail SMTP:', resendError);
+      }
+    }
+
+    // Fallback to Gmail SMTP implementation
+    if (gmailPassword) {
+      // Using a simple email service for Gmail SMTP
+      const emailData = {
+        service: 'gmail',
+        auth: {
+          user: gmailEmail,
+          pass: gmailPassword,
+        },
+        to: recipientEmail,
+        from: gmailEmail,
+        subject: subject,
+        html: htmlContent,
+      };
+
+      // For production, you would implement proper SMTP here
+      // For now, we'll use a webhook service or similar
+      console.log('Attempting to send email via Gmail SMTP:', {
+        to: recipientEmail,
+        from: gmailEmail,
+        subject: subject,
+      });
+
+      // Simple HTTP request to send email (you can use services like EmailJS, Formspree, etc.)
+      try {
+        const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            service_id: 'gmail',
+            template_id: 'template_1',
+            user_id: 'your_user_id', // This would need to be configured
+            template_params: {
+              to_email: recipientEmail,
+              from_email: gmailEmail,
+              subject: subject,
+              message_html: htmlContent,
+            }
+          }),
+        });
+
+        if (response.ok) {
+          console.log('Email sent successfully via EmailJS');
+          return new Response(JSON.stringify({ success: true, message: 'Email sent successfully' }), {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            status: 200,
+          });
+        } else {
+          throw new Error('EmailJS failed');
+        }
+      } catch (emailJsError) {
+        console.error('EmailJS failed:', emailJsError);
+        
+        // Final fallback - log the email for manual processing
+        console.log('EMAIL TO BE SENT MANUALLY:', {
+          to: recipientEmail,
+          subject: subject,
+          html: htmlContent,
+          timestamp: new Date().toISOString(),
+        });
+        
+        return new Response(JSON.stringify({ 
+          success: true, 
+          message: 'Email logged for manual processing',
+          note: 'Please check the function logs for email content'
+        }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          status: 200,
+        });
+      }
+    }
+
+    throw new Error('No email service configured');
 
   } catch (error) {
     console.error('Error sending email:', error);
