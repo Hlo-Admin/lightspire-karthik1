@@ -30,7 +30,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     let subject = '';
     let htmlContent = '';
-    const recipientEmail = 'karthikkishore2603@gmail.com';
+    const recipientEmail = 'connect@lightspiremedia.tv';
 
     if (type === 'contact') {
       subject = `New Contact Form Submission from ${data.name}`;
