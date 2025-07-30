@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ScheduleCallForm from "@/components/ScheduleCallForm";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import gsap from "gsap";
 // @ts-ignore
 import SplitText from "gsap/SplitText";
@@ -98,12 +100,29 @@ const PremiumContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company || null,
+          message: formData.message,
+        });
 
-    console.log("Form submitted:", formData);
-    setIsSubmitting(false);
-    setFormData({ name: "", email: "", company: "", message: "" });
+      if (error) {
+        console.error('Error submitting contact form:', error);
+        toast.error('Failed to send message. Please try again.');
+      } else {
+        toast.success('Message sent successfully! We\'ll get back to you soon.');
+        setFormData({ name: "", email: "", company: "", message: "" });
+      }
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      toast.error('An unexpected error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -301,7 +320,7 @@ const PremiumContactSection = () => {
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !formData.name || !formData.email || !formData.message}
                   className="group relative w-full bg-[#0678cf] hover:bg-[#045a9e] text-white hover:text-white px-6 md:px-8 py-4 md:py-6 text-base md:text-lg font-bold transition-all duration-500 transform hover:scale-105 hover:shadow-2xl rounded-xl md:rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed border-2 border-white"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>

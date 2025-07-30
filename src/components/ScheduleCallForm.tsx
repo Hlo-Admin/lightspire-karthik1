@@ -18,6 +18,8 @@ import {
 import { format } from "date-fns";
 import { CalendarIcon, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 interface ScheduleCallFormProps {
   children: React.ReactNode;
@@ -27,6 +29,7 @@ const ScheduleCallForm = ({ children }: ScheduleCallFormProps) => {
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState<Date>();
   const [time, setTime] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -42,25 +45,54 @@ const ScheduleCallForm = ({ children }: ScheduleCallFormProps) => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Schedule call submission:", {
-      ...formData,
-      date: date ? format(date, "PPP") : "",
-      time: time + " IST",
-    });
+    
+    if (!date || !time) {
+      toast.error('Please select both date and time for the call.');
+      return;
+    }
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      company: "",
-      projectDetails: "",
-    });
-    setDate(undefined);
-    setTime("");
-    setOpen(false);
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase
+        .from('scheduled_calls')
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company || null,
+          project_details: formData.projectDetails || null,
+          scheduled_date: format(date, 'yyyy-MM-dd'),
+          scheduled_time: time,
+          timezone: 'IST'
+        });
+
+      if (error) {
+        console.error('Error scheduling call:', error);
+        toast.error('Failed to schedule call. Please try again.');
+      } else {
+        toast.success(`Call scheduled successfully for ${format(date, "PPP")} at ${time} IST!`);
+        
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          projectDetails: "",
+        });
+        setDate(undefined);
+        setTime("");
+        setOpen(false);
+      }
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      toast.error('An unexpected error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Generate time slots for IST (9 AM to 6 PM)
@@ -263,6 +295,7 @@ const ScheduleCallForm = ({ children }: ScheduleCallFormProps) => {
               variant="outline"
               onClick={() => setOpen(false)}
               className="flex-1"
+              disabled={isSubmitting}
             >
               Cancel
             </Button>
@@ -270,6 +303,7 @@ const ScheduleCallForm = ({ children }: ScheduleCallFormProps) => {
               type="submit"
               className="flex-1 bg-[#0678cf] hover:bg-[#045a9e] text-white"
               disabled={
+                isSubmitting ||
                 !formData.name ||
                 !formData.email ||
                 !formData.phone ||
@@ -277,7 +311,14 @@ const ScheduleCallForm = ({ children }: ScheduleCallFormProps) => {
                 !time
               }
             >
-              Schedule Call
+              {isSubmitting ? (
+                <div className="flex items-center justify-center gap-2">
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                  Scheduling...
+                </div>
+              ) : (
+                'Schedule Call'
+              )}
             </Button>
           </div>
         </form>
