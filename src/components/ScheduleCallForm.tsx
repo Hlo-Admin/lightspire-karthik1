@@ -73,6 +73,33 @@ const ScheduleCallForm = ({ children }: ScheduleCallFormProps) => {
         console.error('Error scheduling call:', error);
         toast.error('Failed to schedule call. Please try again.');
       } else {
+        // Send email notification
+        try {
+          const { error: emailError } = await supabase.functions.invoke('send-notification-email', {
+            body: {
+              type: 'schedule',
+              data: {
+                name: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                company: formData.company,
+                project_details: formData.projectDetails,
+                scheduled_date: format(date, 'yyyy-MM-dd'),
+                scheduled_time: time,
+                timezone: 'IST'
+              }
+            }
+          });
+
+          if (emailError) {
+            console.error('Error sending email notification:', emailError);
+            // Don't fail the entire submission if email fails
+          }
+        } catch (emailError) {
+          console.error('Email notification error:', emailError);
+          // Don't fail the entire submission if email fails
+        }
+
         toast.success(`Call scheduled successfully for ${format(date, "PPP")} at ${time} IST!`);
         
         // Reset form

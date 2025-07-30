@@ -114,6 +114,29 @@ const PremiumContactSection = () => {
         console.error('Error submitting contact form:', error);
         toast.error('Failed to send message. Please try again.');
       } else {
+        // Send email notification
+        try {
+          const { error: emailError } = await supabase.functions.invoke('send-notification-email', {
+            body: {
+              type: 'contact',
+              data: {
+                name: formData.name,
+                email: formData.email,
+                company: formData.company,
+                message: formData.message,
+              }
+            }
+          });
+
+          if (emailError) {
+            console.error('Error sending email notification:', emailError);
+            // Don't fail the entire submission if email fails
+          }
+        } catch (emailError) {
+          console.error('Email notification error:', emailError);
+          // Don't fail the entire submission if email fails
+        }
+
         toast.success('Message sent successfully! We\'ll get back to you soon.');
         setFormData({ name: "", email: "", company: "", message: "" });
       }
