@@ -1,5 +1,6 @@
 
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { createTransport } from "npm:nodemailer@6.9.8";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -67,91 +68,58 @@ const handler = async (req: Request): Promise<Response> => {
       `;
     }
 
-    // Send email using Gmail SMTP via external service
-    const emailPayload = {
+    console.log('Creating nodemailer transporter with Gmail SMTP...');
+
+    // Create nodemailer transporter for Gmail
+    const transporter = createTransport({
+      service: 'gmail',
+      auth: {
+        user: gmailEmail,
+        pass: gmailPassword,
+      },
+    });
+
+    const mailOptions = {
+      from: `"LightSpire Media" <${gmailEmail}>`,
       to: recipientEmail,
-      from: gmailEmail,
       subject: subject,
       html: htmlContent,
-      smtp: {
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false,
-        auth: {
-          user: gmailEmail,
-          pass: gmailPassword
-        }
-      }
     };
 
-    console.log('Sending email with payload:', {
+    console.log('Sending email with nodemailer...', {
       to: recipientEmail,
       from: gmailEmail,
       subject: subject
     });
 
-    // Using a simple email service that accepts SMTP credentials
-    try {
-      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send-form', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          service_id: 'gmail',
-          template_id: 'custom_template',
-          user_id: 'public_key',
-          accessToken: 'private_key',
-          template_params: {
-            to_email: recipientEmail,
-            from_name: 'LightSpire Media',
-            from_email: gmailEmail,
-            subject: subject,
-            message_html: htmlContent,
-            reply_to: gmailEmail
-          }
-        }),
-      });
+    // Send email using nodemailer
+    const result = await transporter.sendMail(mailOptions);
+    
+    console.log('Email sent successfully:', result.messageId);
 
-      if (response.ok) {
-        console.log('Email sent successfully');
-        return new Response(JSON.stringify({ 
-          success: true, 
-          message: 'Email sent successfully' 
-        }), {
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          status: 200,
-        });
-      } else {
-        throw new Error('Failed to send email via EmailJS');
-      }
-    } catch (emailError) {
-      console.error('EmailJS failed, logging email for manual processing:', emailError);
-      
-      // Log the email content for manual processing
-      console.log('EMAIL TO BE SENT MANUALLY:', {
-        to: recipientEmail,
-        from: gmailEmail,
-        subject: subject,
-        html: htmlContent,
-        timestamp: new Date().toISOString(),
-        smtp_user: gmailEmail
-      });
-      
-      return new Response(JSON.stringify({ 
-        success: true, 
-        message: 'Email logged for processing - check function logs',
-        note: 'Email service temporarily unavailable, email has been logged'
-      }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 200,
-      });
-    }
+    return new Response(JSON.stringify({ 
+      success: true, 
+      message: 'Email sent successfully',
+      messageId: result.messageId
+    }), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status: 200,
+    });
 
   } catch (error) {
     console.error('Error sending email:', error);
+    
+    // Log the email content for debugging
+    console.log('Failed to send email. Details:', {
+      error: error.message,
+      timestamp: new Date().toISOString(),
+    });
+    
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: 'Failed to send email',
+        details: error.message
+      }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 500,
