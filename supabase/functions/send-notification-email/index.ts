@@ -45,7 +45,6 @@ const handler = async (req: Request): Promise<Response> => {
             <div style="background-color: white; padding: 15px; border-radius: 4px; margin-top: 10px;">
               ${data.message}
             </div>
-            <p style="margin-top: 20px; color: #666;"><small>Submitted on: ${new Date().toLocaleString()}</small></p>
           </div>
         </div>
       `;
@@ -62,7 +61,6 @@ const handler = async (req: Request): Promise<Response> => {
             <p><strong>Scheduled Date:</strong> ${data.scheduled_date}</p>
             <p><strong>Scheduled Time:</strong> ${data.scheduled_time} ${data.timezone}</p>
             <p><strong>Project Details:</strong> ${data.project_details || 'Not provided'}</p>
-            <p style="margin-top: 20px; color: #666;"><small>Scheduled on: ${new Date().toLocaleString()}</small></p>
           </div>
         </div>
       `;
